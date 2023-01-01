@@ -1,0 +1,1 @@
+"use strict";const e=require("../../common/vendor.js"),s={data(){return{}},methods:{}};function r(n,t,a,c,_,i){return{}}const o=e._export_sfc(s,[["render",r],["__file","/Users/wangbo/Desktop/HBuilderProjects/login-app/pages/message/message.vue"]]);wx.createPage(o);
