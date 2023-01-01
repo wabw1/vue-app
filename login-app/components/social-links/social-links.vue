@@ -30,13 +30,19 @@ export default {
   },
   methods: {
     loginWx() {
-      console.log('微信登录...');
+      uni.showToast({
+        title: '微信登录...'
+      });
     },
     loginQQ() {
-      console.log('QQ登录...');
+      uni.showToast({
+        title: 'QQ登录...'
+      });
     },
     loginWb() {
-      console.log('微博登录...');
+      uni.showToast({
+        title: 'weibo登录...'
+      });
     }
   }
 };

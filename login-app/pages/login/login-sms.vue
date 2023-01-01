@@ -25,7 +25,6 @@
           />
 
           <button v-show="!isDisabled" class="sms-btn" @tap="sendCode">获取验证码</button>
-          <!-- <button v-show="!isDisabled" type="default" class="disabled-btn">{{ loadTime }}s后重新发送</button> -->
           <text v-show="isDisabled" class="disabled-btn">{{ loadTime }}s后重新发送</text>
         </view>
       </uni-forms-item>
