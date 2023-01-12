@@ -1,30 +1,6326 @@
-"use strict";const ua=(e,t)=>{const n=e.__vccOpts||e;for(const[o,r]of t)n[o]=r;return n};function ft(e,t){const n=Object.create(null),o=e.split(",");for(let r=0;r<o.length;r++)n[o[r]]=!0;return t?r=>!!n[r.toLowerCase()]:r=>!!n[r]}function xs(e){if(k(e)){const t={};for(let n=0;n<e.length;n++){const o=e[n],r=j(o)?pa(o):xs(o);if(r)for(const s in r)t[s]=r[s]}return t}else{if(j(e))return e;if(M(e))return e}}const la=/;(?![^(]*\))/g,fa=/:([^]+)/,da=/\/\*.*?\*\//gs;function pa(e){const t={};return e.replace(da,"").split(la).forEach(n=>{if(n){const o=n.split(fa);o.length>1&&(t[o[0].trim()]=o[1].trim())}}),t}function Cs(e){let t="";if(j(e))t=e;else if(k(e))for(let n=0;n<e.length;n++){const o=Cs(e[n]);o&&(t+=o+" ")}else if(M(e))for(const n in e)e[n]&&(t+=n+" ");return t.trim()}const ha=e=>j(e)?e:e==null?"":k(e)||M(e)&&(e.toString===Rs||!T(e.toString))?JSON.stringify(e,Os,2):String(e),Os=(e,t)=>t&&t.__v_isRef?Os(e,t.value):He(t)?{[`Map(${t.size})`]:[...t.entries()].reduce((n,[o,r])=>(n[`${o} =>`]=r,n),{})}:$s(t)?{[`Set(${t.size})`]:[...t.values()]}:M(t)&&!k(t)&&!K(t)?String(t):t,B=Object.freeze({}),fr=Object.freeze([]),G=()=>{},Es=()=>!1,ga=/^on[^a-z]/,ks=e=>ga.test(e),dr=e=>e.startsWith("onUpdate:"),U=Object.assign,dn=(e,t)=>{const n=e.indexOf(t);n>-1&&e.splice(n,1)},ma=Object.prototype.hasOwnProperty,O=(e,t)=>ma.call(e,t),k=Array.isArray,He=e=>ge(e)==="[object Map]",$s=e=>ge(e)==="[object Set]",T=e=>typeof e=="function",j=e=>typeof e=="string",xo=e=>typeof e=="symbol",M=e=>e!==null&&typeof e=="object",kt=e=>M(e)&&T(e.then)&&T(e.catch),Rs=Object.prototype.toString,ge=e=>Rs.call(e),pn=e=>ge(e).slice(8,-1),K=e=>ge(e)==="[object Object]",Co=e=>j(e)&&e!=="NaN"&&e[0]!=="-"&&""+parseInt(e,10)===e,_a=ft(",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted"),ya=ft("bind,cloak,else-if,else,for,html,if,model,on,once,pre,show,slot,text,memo"),hn=e=>{const t=Object.create(null);return n=>t[n]||(t[n]=e(n))},wa=/-(\w)/g,ye=hn(e=>e.replace(wa,(t,n)=>n?n.toUpperCase():"")),ba=/\B([A-Z])/g,ze=hn(e=>e.replace(ba,"-$1").toLowerCase()),Je=hn(e=>e.charAt(0).toUpperCase()+e.slice(1)),De=hn(e=>e?`on${Je(e)}`:""),St=(e,t)=>!Object.is(e,t),Jt=(e,t)=>{for(let n=0;n<e.length;n++)e[n](t)},va=(e,t,n)=>{Object.defineProperty(e,t,{configurable:!0,enumerable:!1,value:n})},Ls=e=>{const t=parseFloat(e);return isNaN(t)?e:t},Sa=`
-`,Pa="d",gn="onShow",mn="onHide",Ns="onLaunch",Oo="onError",Ds="onThemeChange",Us="onPageNotFound",Ms="onUnhandledRejection",$t="onLoad",Eo="onReady",ko="onUnload",js="onInit",Fs="onSaveExitState",Hs="onResize",Bs="onBackPress",qs="onPageScroll",$o="onTabItemTap",Ro="onReachBottom",Lo="onPullDownRefresh",Ks="onShareTimeline",No="onAddToFavorites",Vs="onShareAppMessage",Ws="onNavigationBarButtonTap",zs="onNavigationBarSearchInputClicked",Js="onNavigationBarSearchInputChanged",Gs="onNavigationBarSearchInputConfirmed",Ys="onNavigationBarSearchInputFocusChanged",Ia=/:/g;function Aa(e){return ye(e.replace(Ia,"-"))}function Ta(e){return e.indexOf("/")===0}function xa(e){return Ta(e)?e:"/"+e}const Ca=(e,t)=>{let n;for(let o=0;o<e.length;o++)n=e[o](t);return n};function Qs(e,t=null){let n;return(...o)=>(e&&(n=e.apply(t,o),e=null),n)}function Xs(e,t){if(!j(t))return;t=t.replace(/\[(\d+)\]/g,".$1");const n=t.split(".");let o=n[0];return e||(e={}),n.length===1?e[o]:Xs(e[o],n.slice(1).join("."))}function Do(e){let t={};return K(e)&&Object.keys(e).sort().forEach(n=>{const o=n;t[o]=e[o]}),Object.keys(t)?t:e}const Oa=encodeURIComponent;function Ea(e,t=Oa){const n=e?Object.keys(e).map(o=>{let r=e[o];return typeof r===void 0||r===null?r="":K(r)&&(r=JSON.stringify(r)),t(o)+"="+t(r)}).filter(o=>o.length>0).join("&"):null;return n?`?${n}`:""}const ka=[js,$t,gn,mn,ko,Bs,qs,$o,Ro,Lo,Ks,Vs,No,Fs,Ws,zs,Js,Gs,Ys];function $a(e){return ka.indexOf(e)>-1}const Zs=[gn,mn,Ns,Oo,Ds,Us,Ms,js,$t,Eo,ko,Hs,Bs,qs,$o,Ro,Lo,Ks,No,Vs,Fs,Ws,zs,Js,Gs,Ys],Wn=(()=>({onPageScroll:1,onShareAppMessage:1<<1,onShareTimeline:1<<2}))();function ei(e,t,n=!0){return n&&!T(t)?!1:Zs.indexOf(e)>-1?!0:e.indexOf("on")===0}let zn;const ti=[];function Ra(e){if(zn)return e(zn);ti.push(e)}function La(e){zn=e,ti.forEach(t=>t(e))}const Na=Qs((e,t)=>{if(T(e._component.onError))return t(e)}),ni=function(){};ni.prototype={on:function(e,t,n){var o=this.e||(this.e={});return(o[e]||(o[e]=[])).push({fn:t,ctx:n}),this},once:function(e,t,n){var o=this;function r(){o.off(e,r),t.apply(n,arguments)}return r._=t,this.on(e,r,n)},emit:function(e){var t=[].slice.call(arguments,1),n=((this.e||(this.e={}))[e]||[]).slice(),o=0,r=n.length;for(o;o<r;o++)n[o].fn.apply(n[o].ctx,t);return this},off:function(e,t){var n=this.e||(this.e={}),o=n[e],r=[];if(o&&t)for(var s=0,i=o.length;s<i;s++)o[s].fn!==t&&o[s].fn._!==t&&r.push(o[s]);return r.length?n[e]=r:delete n[e],this}};var Da=ni;const Ua=e=>e!==null&&typeof e=="object",Ma=["{","}"];class ja{constructor(){this._caches=Object.create(null)}interpolate(t,n,o=Ma){if(!n)return[t];let r=this._caches[t];return r||(r=Ba(t,o),this._caches[t]=r),qa(r,n)}}const Fa=/^(?:\d)+/,Ha=/^(?:\w)+/;function Ba(e,[t,n]){const o=[];let r=0,s="";for(;r<e.length;){let i=e[r++];if(i===t){s&&o.push({type:"text",value:s}),s="";let c="";for(i=e[r++];i!==void 0&&i!==n;)c+=i,i=e[r++];const u=i===n,a=Fa.test(c)?"list":u&&Ha.test(c)?"named":"unknown";o.push({value:c,type:a})}else s+=i}return s&&o.push({type:"text",value:s}),o}function qa(e,t){const n=[];let o=0;const r=Array.isArray(t)?"list":Ua(t)?"named":"unknown";if(r==="unknown")return n;for(;o<e.length;){const s=e[o];switch(s.type){case"text":n.push(s.value);break;case"list":n.push(t[parseInt(s.value,10)]);break;case"named":r==="named"?n.push(t[s.value]):console.warn(`Type of token '${s.type}' and format of value '${r}' don't match!`);break;case"unknown":console.warn("Detect 'unknown' type of token!");break}o++}return n}const Tn="zh-Hans",pr="zh-Hant",Ee="en",Ka="fr",Va="es",Wa=Object.prototype.hasOwnProperty,hr=(e,t)=>Wa.call(e,t),za=new ja;function Ja(e,t){return!!t.find(n=>e.indexOf(n)!==-1)}function Ga(e,t){return t.find(n=>e.indexOf(n)===0)}function Qt(e,t){if(!e)return;if(e=e.trim().replace(/_/g,"-"),t&&t[e])return e;if(e=e.toLowerCase(),e==="chinese")return Tn;if(e.indexOf("zh")===0)return e.indexOf("-hans")>-1?Tn:e.indexOf("-hant")>-1||Ja(e,["-tw","-hk","-mo","-cht"])?pr:Tn;const n=Ga(e,[Ee,Ka,Va]);if(n)return n}class Ya{constructor({locale:t,fallbackLocale:n,messages:o,watcher:r,formater:s}){this.locale=Ee,this.fallbackLocale=Ee,this.message={},this.messages={},this.watchers=[],n&&(this.fallbackLocale=n),this.formater=s||za,this.messages=o||{},this.setLocale(t||Ee),r&&this.watchLocale(r)}setLocale(t){const n=this.locale;this.locale=Qt(t,this.messages)||this.fallbackLocale,this.messages[this.locale]||(this.messages[this.locale]={}),this.message=this.messages[this.locale],n!==this.locale&&this.watchers.forEach(o=>{o(this.locale,n)})}getLocale(){return this.locale}watchLocale(t){const n=this.watchers.push(t)-1;return()=>{this.watchers.splice(n,1)}}add(t,n,o=!0){const r=this.messages[t];r?o?Object.assign(r,n):Object.keys(n).forEach(s=>{hr(r,s)||(r[s]=n[s])}):this.messages[t]=n}f(t,n,o){return this.formater.interpolate(t,n,o).join("")}t(t,n,o){let r=this.message;return typeof n=="string"?(n=Qt(n,this.messages),n&&(r=this.messages[n])):o=n,hr(r,t)?this.formater.interpolate(r[t],o).join(""):(console.warn(`Cannot translate the value of keypath ${t}. Use the value of keypath as default.`),t)}}function Qa(e,t){e.$watchLocale?e.$watchLocale(n=>{t.setLocale(n)}):e.$watch(()=>e.$locale,n=>{t.setLocale(n)})}function Xa(){return typeof $<"u"&&$.getLocale?$.getLocale():typeof global<"u"&&global.getLocale?global.getLocale():Ee}function Za(e,t={},n,o){typeof e!="string"&&([e,t]=[t,e]),typeof e!="string"&&(e=Xa()),typeof n!="string"&&(n=typeof __uniConfig<"u"&&__uniConfig.fallbackLocale||Ee);const r=new Ya({locale:e,fallbackLocale:n,messages:t,watcher:o});let s=(i,c)=>{if(typeof getApp!="function")s=function(u,a){return r.t(u,a)};else{let u=!1;s=function(a,l){const f=getApp().$vm;return f&&(f.$locale,u||(u=!0,Qa(f,r))),r.t(a,l)}}return s(i,c)};return{i18n:r,f(i,c,u){return r.f(i,c,u)},t(i,c){return s(i,c)},add(i,c,u=!0){return r.add(i,c,u)},watch(i){return r.watchLocale(i)},getLocale(){return r.getLocale()},setLocale(i){return r.setLocale(i)}}}function eu(){return wx.getSystemInfoSync()}function tu(e,t){console.warn(`${e}: ${t}`)}function gr(e,t,n,o){o||(o=tu);for(const r in n){const s=ou(r,t[r],n[r],!O(t,r));j(s)&&o(e,s)}}function nu(e,t,n,o){if(!n)return;if(!k(n))return gr(e,t[0]||Object.create(null),n,o);const r=n.length,s=t.length;for(let i=0;i<r;i++){const c=n[i],u=Object.create(null);s>i&&(u[c.name]=t[i]),gr(e,u,{[c.name]:c},o)}}function ou(e,t,n,o){K(n)||(n={type:n});const{type:r,required:s,validator:i}=n;if(s&&o)return'Missing required args: "'+e+'"';if(!(t==null&&!s)){if(r!=null){let c=!1;const u=k(r)?r:[r],a=[];for(let l=0;l<u.length&&!c;l++){const{valid:f,expectedType:p}=su(t,u[l]);a.push(p||""),c=f}if(!c)return iu(e,t,a)}if(i)return i(t)}}const ru=ft("String,Number,Boolean,Function,Symbol");function su(e,t){let n;const o=cu(t);if(ru(o)){const r=typeof e;n=r===o.toLowerCase(),!n&&r==="object"&&(n=e instanceof t)}else o==="Object"?n=M(e):o==="Array"?n=k(e):n=e instanceof t;return{valid:n,expectedType:o}}function iu(e,t,n){let o=`Invalid args: type check failed for args "${e}". Expected ${n.map(Je).join(", ")}`;const r=n[0],s=pn(t),i=mr(t,r),c=mr(t,s);return n.length===1&&_r(r)&&!au(r,s)&&(o+=` with value ${i}`),o+=`, got ${s} `,_r(s)&&(o+=`with value ${c}.`),o}function cu(e){const t=e&&e.toString().match(/^\s*function (\w+)/);return t?t[1]:""}function mr(e,t){return t==="String"?`"${e}"`:t==="Number"?`${Number(e)}`:`${e}`}function _r(e){return["string","number","boolean"].some(n=>e.toLowerCase()===n)}function au(...e){return e.some(t=>t.toLowerCase()==="boolean")}function uu(e){return function(){try{return e.apply(e,arguments)}catch(t){console.error(t)}}}let lu=1;const Jn={};function fu(e,t,n,o=!1){return Jn[e]={name:t,keepAlive:o,callback:n},e}function oi(e,t,n){if(typeof e=="number"){const o=Jn[e];if(o)return o.keepAlive||delete Jn[e],o.callback(t,n)}return t}const du="success",pu="fail",hu="complete";function gu(e){const t={};for(const n in e){const o=e[n];T(o)&&(t[n]=uu(o),delete e[n])}return t}function mu(e,t){return!e||e.indexOf(":fail")===-1?t+":ok":t+e.substring(e.indexOf(":fail"))}function _u(e,t={},{beforeAll:n,beforeSuccess:o}={}){K(t)||(t={});const{success:r,fail:s,complete:i}=gu(t),c=T(r),u=T(s),a=T(i),l=lu++;return fu(l,e,f=>{f=f||{},f.errMsg=mu(f.errMsg,e),T(n)&&n(f),f.errMsg===e+":ok"?(T(o)&&o(f,t),c&&r(f)):u&&s(f),a&&i(f)}),l}const yu="success",wu="fail",bu="complete",rt={},st={};function vu(e){return function(t){return e(t)||t}}function ri(e,t){let n=!1;for(let o=0;o<e.length;o++){const r=e[o];if(n)n=Promise.resolve(vu(r));else{const s=r(t);if(kt(s)&&(n=Promise.resolve(s)),s===!1)return{then(){},catch(){}}}}return n||{then(o){return o(t)},catch(){}}}function yr(e,t={}){return[yu,wu,bu].forEach(n=>{const o=e[n];if(!k(o))return;const r=t[n];t[n]=function(i){ri(o,i).then(c=>T(r)&&r(c)||c)}}),t}function Xt(e,t){const n=[];k(rt.returnValue)&&n.push(...rt.returnValue);const o=st[e];return o&&k(o.returnValue)&&n.push(...o.returnValue),n.forEach(r=>{t=r(t)||t}),t}function Su(e){const t=Object.create(null);Object.keys(rt).forEach(o=>{o!=="returnValue"&&(t[o]=rt[o].slice())});const n=st[e];return n&&Object.keys(n).forEach(o=>{o!=="returnValue"&&(t[o]=(t[o]||[]).concat(n[o]))}),t}function Zt(e,t,n,o){const r=Su(e);return r&&Object.keys(r).length?k(r.invoke)?ri(r.invoke,n).then(i=>t(yr(r,i),...o)):t(yr(r,n),...o):t(n,...o)}function Pu(e){return!!(K(e)&&[du,pu,hu].find(t=>T(e[t])))}function Iu(e,t){return(n={},...o)=>Pu(n)?Xt(e,Zt(e,t,n,o)):Xt(e,new Promise((r,s)=>{Zt(e,t,U(n,{success:r,fail:s}),o)}))}function Au(e,t){const n=e[0];if(!t||!K(t.formatArgs)&&K(n))return;const o=t.formatArgs,r=Object.keys(o);for(let s=0;s<r.length;s++){const i=r[s],c=o[i];if(T(c)){const u=c(e[0][i],n);if(j(u))return u}else O(n,i)||(n[i]=c)}}function Tu(e,t,n){return oi(e,U(n||{},{errMsg:t+":ok"}))}function wr(e,t,n,o){return oi(e,U({errMsg:t+":fail"+(n?" "+n:"")},o))}function si(e,t,n,o){if(nu(e,t,n),o&&o.beforeInvoke){const s=o.beforeInvoke(t);if(j(s))return s}const r=Au(t,o);if(r)return r}function xu(e){return!e||j(e)?e:e.stack?(console.error(e.message+Sa+e.stack),e.message):e}function Cu(e,t,n,o){return r=>{const s=_u(e,r,o),i=si(e,[r],n,o);return i?wr(s,e,i):t(r,{resolve:c=>Tu(s,e,c),reject:(c,u)=>wr(s,e,xu(c),u)})}}function Ou(e,t,n,o){return(...r)=>{const s=si(e,r,n,o);if(s)throw new Error(s);return t.apply(null,r)}}function Eu(e,t,n,o){return Cu(e,t,n,o)}function Qe(e,t,n,o){return Ou(e,t,n,o)}function ku(e,t,n,o){return Iu(e,Eu(e,t,n,o))}const $u="upx2px",Ru=[{name:"upx",type:[Number,String],required:!0}],Lu=1e-4,Nu=750;let ii=!1,Gn=0,ci=0;function Du(){const{platform:e,pixelRatio:t,windowWidth:n}=eu();Gn=n,ci=t,ii=e==="ios"}const Uu=Qe($u,(e,t)=>{if(Gn===0&&Du(),e=Number(e),e===0)return 0;let n=t||Gn,o=e/Nu*n;return o<0&&(o=-o),o=Math.floor(o+Lu),o===0&&(ci===1||!ii?o=1:o=.5),e<0?-o:o},Ru),Mu="addInterceptor",ju="removeInterceptor",ai=[{name:"method",type:[String,Object],required:!0}],Fu=ai;function br(e,t){Object.keys(t).forEach(n=>{T(t[n])&&(e[n]=Hu(e[n],t[n]))})}function vr(e,t){!e||!t||Object.keys(t).forEach(n=>{const o=e[n],r=t[n];k(o)&&T(r)&&dn(o,r)})}function Hu(e,t){const n=t?e?e.concat(t):k(t)?t:[t]:e;return n&&Bu(n)}function Bu(e){const t=[];for(let n=0;n<e.length;n++)t.indexOf(e[n])===-1&&t.push(e[n]);return t}const qu=Qe(Mu,(e,t)=>{j(e)&&K(t)?br(st[e]||(st[e]={}),t):K(e)&&br(rt,e)},ai),Ku=Qe(ju,(e,t)=>{j(e)?K(t)?vr(st[e],t):delete st[e]:K(e)&&vr(rt,e)},Fu),Vu={},Wu="$on",ui=[{name:"event",type:String,required:!0},{name:"callback",type:Function,required:!0}],zu="$once",Ju=ui,Gu="$off",Yu=[{name:"event",type:[String,Array]},{name:"callback",type:Function}],Qu="$emit",Xu=[{name:"event",type:String,required:!0}],Ge=new Da,Zu=Qe(Wu,(e,t)=>(Ge.on(e,t),()=>Ge.off(e,t)),ui),el=Qe(zu,(e,t)=>(Ge.once(e,t),()=>Ge.off(e,t)),Ju),tl=Qe(Gu,(e,t)=>{if(!e){Ge.e={};return}k(e)||(e=[e]),e.forEach(n=>Ge.off(n,t))},Yu),nl=Qe(Qu,(e,...t)=>{Ge.emit(e,...t)},Xu);let bt,Yn,Qn;function Sr(e){try{return JSON.parse(e)}catch{}return e}function ol(e){if(e.type==="enabled")Qn=!0;else if(e.type==="clientId")bt=e.cid,Yn=e.errMsg,li(bt,e.errMsg);else if(e.type==="pushMsg"){const t={type:"receive",data:Sr(e.message)};for(let n=0;n<ke.length;n++){const o=ke[n];if(o(t),t.stopped)break}}else e.type==="click"&&ke.forEach(t=>{t({type:"click",data:Sr(e.message)})})}const Xn=[];function li(e,t){Xn.forEach(n=>{n(e,t)}),Xn.length=0}const rl="getPushClientId",sl=ku(rl,(e,{resolve:t,reject:n})=>{Promise.resolve().then(()=>{typeof Qn>"u"&&(Qn=!1,bt="",Yn="uniPush is not enabled"),Xn.push((o,r)=>{o?t({cid:o}):n(r)}),typeof bt<"u"&&li(bt,Yn)})}),ke=[],il=e=>{ke.indexOf(e)===-1&&ke.push(e)},cl=e=>{if(!e)ke.length=0;else{const t=ke.indexOf(e);t>-1&&ke.splice(t,1)}},al=/^\$|getLocale|setLocale|sendNativeEvent|restoreGlobal|requireGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64|getDeviceInfo|getAppBaseInfo|getWindowInfo|getSystemSetting|getAppAuthorizeSetting/,ul=/^create|Manager$/,ll=["createBLEConnection"],fl=["createBLEConnection"],dl=/^on|^off/;function fi(e){return ul.test(e)&&ll.indexOf(e)===-1}function di(e){return al.test(e)&&fl.indexOf(e)===-1}function pl(e){return dl.test(e)&&e!=="onPush"}function hl(e){return!(fi(e)||di(e)||pl(e))}Promise.prototype.finally||(Promise.prototype.finally=function(e){const t=this.constructor;return this.then(n=>t.resolve(e&&e()).then(()=>n),n=>t.resolve(e&&e()).then(()=>{throw n}))});function xn(e,t){return!hl(e)||!T(t)?t:function(o={},...r){return T(o.success)||T(o.fail)||T(o.complete)?Xt(e,Zt(e,t,o,r)):Xt(e,new Promise((s,i)=>{Zt(e,t,U({},o,{success:s,fail:i}),r)}))}}const gl=["success","fail","cancel","complete"];function ml(e){function t(r,s,i){return function(c){return s(o(r,c,i))}}function n(r,s,i={},c={},u=!1){if(K(s)){const a=u===!0?s:{};T(i)&&(i=i(s,a)||{});for(const l in s)if(O(i,l)){let f=i[l];T(f)&&(f=f(s[l],s,a)),f?j(f)?a[f]=s[l]:K(f)&&(a[f.name?f.name:l]=f.value):console.warn(`\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F ${r} \u6682\u4E0D\u652F\u6301 ${l}`)}else if(gl.indexOf(l)!==-1){const f=s[l];T(f)&&(a[l]=t(r,f,c))}else!u&&!O(a,l)&&(a[l]=s[l]);return a}else T(s)&&(s=t(r,s,c));return s}function o(r,s,i,c=!1){return T(e.returnValue)&&(s=e.returnValue(r,s)),n(r,s,i,{},c)}return function(s,i){if(!O(e,s))return i;const c=e[s];return c?function(u,a){let l=c;T(c)&&(l=c(u)),u=n(s,u,l.args,l.returnValue);const f=[u];typeof a<"u"&&f.push(a);const p=wx[l.name||s].apply(wx,f);return di(s)?o(s,p,l.returnValue,fi(s)):p}:function(){console.error(`\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F \u6682\u4E0D\u652F\u6301${s}`)}}}const en=()=>{const e=getApp({allowDefault:!0});return e&&e.$vm?e.$vm.$locale:Qt(wx.getSystemInfoSync().language)||Ee},_l=e=>{const t=getApp();return t&&t.$vm.$locale!==e?(t.$vm.$locale=e,Zn.forEach(o=>o({locale:e})),!0):!1},Zn=[],yl=e=>{Zn.indexOf(e)===-1&&Zn.push(e)};typeof global<"u"&&(global.getLocale=en);const Pr="__DC_STAT_UUID";let Ze;function pi(e=wx){return function(n,o){Ze=Ze||e.getStorageSync(Pr),Ze||(Ze=Date.now()+""+Math.floor(Math.random()*1e7),wx.setStorage({key:Pr,data:Ze})),o.deviceId=Ze}}function hi(e,t){if(e.safeArea){const n=e.safeArea;t.safeAreaInsets={top:n.top,left:n.left,right:e.windowWidth-n.right,bottom:e.screenHeight-n.bottom}}}function wl(e,t){const{brand:n="",model:o="",system:r="",language:s="",theme:i,version:c,platform:u,fontSizeSetting:a,SDKVersion:l,pixelRatio:f,deviceOrientation:p}=e;let g="",y="";g=r.split(" ")[0]||"",y=r.split(" ")[1]||"";let m=c,d=gi(e,o),h=mi(n),w=yi(e),_=p,b=f,A=l;const C=s.replace(/_/g,"-"),D={appId:"__UNI__C1A907D",appName:"todo-list",appVersion:"1.0.0",appVersionCode:"100",appLanguage:_i(C),uniCompileVersion:"3.6.15",uniRuntimeVersion:"3.6.15",uniPlatform:"mp-weixin",deviceBrand:h,deviceModel:o,deviceType:d,devicePixelRatio:b,deviceOrientation:_,osName:g.toLocaleLowerCase(),osVersion:y,hostTheme:i,hostVersion:m,hostLanguage:C,hostName:w,hostSDKVersion:A,hostFontSizeSetting:a,windowTop:0,windowBottom:0,osLanguage:void 0,osTheme:void 0,ua:void 0,hostPackageName:void 0,browserName:void 0,browserVersion:void 0};U(t,D)}function gi(e,t){let n=e.deviceType||"phone";{const o={ipad:"pad",windows:"pc",mac:"pc"},r=Object.keys(o),s=t.toLocaleLowerCase();for(let i=0;i<r.length;i++){const c=r[i];if(s.indexOf(c)!==-1){n=o[c];break}}}return n}function mi(e){let t=e;return t&&(t=t.toLocaleLowerCase()),t}function _i(e){return en?en():e}function yi(e){const t="WeChat";let n=e.hostName||t;return e.environment?n=e.environment:e.host&&e.host.env&&(n=e.host.env),n}const wi={returnValue:(e,t)=>{hi(e,t),pi()(e,t),wl(e,t)}},bl=wi,vl={},Sl={args(e,t){let n=parseInt(e.current);if(isNaN(n))return;const o=e.urls;if(!k(o))return;const r=o.length;if(!!r)return n<0?n=0:n>=r&&(n=r-1),n>0?(t.current=o[n],t.urls=o.filter((s,i)=>i<n?s!==o[n]:!0)):t.current=o[0],{indicator:!1,loop:!1}}},Pl={args(e,t){t.alertText=e.title}},Il={returnValue:(e,t)=>{const{brand:n,model:o}=e;let r=gi(e,o),s=mi(n);pi()(e,t),t=Do(U(t,{deviceType:r,deviceBrand:s,deviceModel:o}))}},Al={returnValue:(e,t)=>{const{version:n,language:o,SDKVersion:r,theme:s}=e;let i=yi(e),c=o.replace(/_/g,"-");t=Do(U(t,{hostVersion:n,hostLanguage:c,hostName:i,hostSDKVersion:r,hostTheme:s,appId:"__UNI__C1A907D",appName:"todo-list",appVersion:"1.0.0",appVersionCode:"100",appLanguage:_i(c)}))}},Tl={returnValue:(e,t)=>{hi(e,t),t=Do(U(t,{windowTop:0,windowBottom:0}))}},xl={returnValue:function(e,t){const{locationReducedAccuracy:n}=e;t.locationAccuracy="unsupported",n===!0?t.locationAccuracy="reduced":n===!1&&(t.locationAccuracy="full")}},Ir={$on:Zu,$off:tl,$once:el,$emit:nl,upx2px:Uu,interceptors:Vu,addInterceptor:qu,removeInterceptor:Ku,onCreateVueApp:Ra,invokeCreateVueAppHook:La,getLocale:en,setLocale:_l,onLocaleChange:yl,getPushClientId:sl,onPushMessage:il,offPushMessage:cl,invokePushCallback:ol};function Cl(e,t){const n=ml(t),o={get(r,s){return O(r,s)?r[s]:O(e,s)?xn(s,e[s]):O(Ir,s)?xn(s,Ir[s]):xn(s,n(s,wx[s]))}};return new Proxy({},o)}function Ol(e){return function({service:n,success:o,fail:r,complete:s}){let i;e[n]?(i={errMsg:"getProvider:ok",service:n,provider:e[n]},T(o)&&o(i)):(i={errMsg:"getProvider:fail:\u670D\u52A1["+n+"]\u4E0D\u5B58\u5728"},T(r)&&r(i)),T(s)&&s(i)}}const El=["__route__","__wxExparserNodeId__","__wxWebviewId__"],kl=Ol({oauth:["weixin"],share:["weixin"],payment:["wxpay"],push:["weixin"]});function $l(e){const t=Object.create(null);return El.forEach(n=>{t[n]=e[n]}),t}function Rl(){const e=wx.createSelectorQuery(),t=e.in;return e.in=function(o){return t.call(this,$l(o))},e}var Ll=Object.freeze({__proto__:null,getProvider:kl,createSelectorQuery:Rl}),Nl=Object.freeze({__proto__:null,redirectTo:vl,previewImage:Sl,getSystemInfo:wi,getSystemInfoSync:bl,showActionSheet:Pl,getDeviceInfo:Il,getAppBaseInfo:Al,getWindowInfo:Tl,getAppAuthorizeSetting:xl}),$=Cl(Ll,Nl);function eo(e,...t){console.warn(`[Vue warn] ${e}`,...t)}let fe;class Dl{constructor(t=!1){this.detached=t,this.active=!0,this.effects=[],this.cleanups=[],this.parent=fe,!t&&fe&&(this.index=(fe.scopes||(fe.scopes=[])).push(this)-1)}run(t){if(this.active){const n=fe;try{return fe=this,t()}finally{fe=n}}else eo("cannot run an inactive effect scope.")}on(){fe=this}off(){fe=this.parent}stop(t){if(this.active){let n,o;for(n=0,o=this.effects.length;n<o;n++)this.effects[n].stop();for(n=0,o=this.cleanups.length;n<o;n++)this.cleanups[n]();if(this.scopes)for(n=0,o=this.scopes.length;n<o;n++)this.scopes[n].stop(!0);if(!this.detached&&this.parent&&!t){const r=this.parent.scopes.pop();r&&r!==this&&(this.parent.scopes[this.index]=r,r.index=this.index)}this.parent=void 0,this.active=!1}}}function Ul(e,t=fe){t&&t.active&&t.effects.push(e)}const Uo=e=>{const t=new Set(e);return t.w=0,t.n=0,t},bi=e=>(e.w&Le)>0,vi=e=>(e.n&Le)>0,Ml=({deps:e})=>{if(e.length)for(let t=0;t<e.length;t++)e[t].w|=Le},jl=e=>{const{deps:t}=e;if(t.length){let n=0;for(let o=0;o<t.length;o++){const r=t[o];bi(r)&&!vi(r)?r.delete(e):t[n++]=r,r.w&=~Le,r.n&=~Le}t.length=n}},to=new WeakMap;let _t=0,Le=1;const no=30;let X;const Be=Symbol("iterate"),oo=Symbol("Map key iterate");class Mo{constructor(t,n=null,o){this.fn=t,this.scheduler=n,this.active=!0,this.deps=[],this.parent=void 0,Ul(this,o)}run(){if(!this.active)return this.fn();let t=X,n=$e;for(;t;){if(t===this)return;t=t.parent}try{return this.parent=X,X=this,$e=!0,Le=1<<++_t,_t<=no?Ml(this):Ar(this),this.fn()}finally{_t<=no&&jl(this),Le=1<<--_t,X=this.parent,$e=n,this.parent=void 0,this.deferStop&&this.stop()}}stop(){X===this?this.deferStop=!0:this.active&&(Ar(this),this.onStop&&this.onStop(),this.active=!1)}}function Ar(e){const{deps:t}=e;if(t.length){for(let n=0;n<t.length;n++)t[n].delete(e);t.length=0}}let $e=!0;const Si=[];function dt(){Si.push($e),$e=!1}function pt(){const e=Si.pop();$e=e===void 0?!0:e}function re(e,t,n){if($e&&X){let o=to.get(e);o||to.set(e,o=new Map);let r=o.get(n);r||o.set(n,r=Uo()),Pi(r,{effect:X,target:e,type:t,key:n})}}function Pi(e,t){let n=!1;_t<=no?vi(e)||(e.n|=Le,n=!bi(e)):n=!e.has(X),n&&(e.add(X),X.deps.push(e),X.onTrack&&X.onTrack(Object.assign({effect:X},t)))}function ve(e,t,n,o,r,s){const i=to.get(e);if(!i)return;let c=[];if(t==="clear")c=[...i.values()];else if(n==="length"&&k(e)){const a=Ls(o);i.forEach((l,f)=>{(f==="length"||f>=a)&&c.push(l)})}else switch(n!==void 0&&c.push(i.get(n)),t){case"add":k(e)?Co(n)&&c.push(i.get("length")):(c.push(i.get(Be)),He(e)&&c.push(i.get(oo)));break;case"delete":k(e)||(c.push(i.get(Be)),He(e)&&c.push(i.get(oo)));break;case"set":He(e)&&c.push(i.get(Be));break}const u={target:e,type:t,key:n,newValue:o,oldValue:r,oldTarget:s};if(c.length===1)c[0]&&ro(c[0],u);else{const a=[];for(const l of c)l&&a.push(...l);ro(Uo(a),u)}}function ro(e,t){const n=k(e)?e:[...e];for(const o of n)o.computed&&Tr(o,t);for(const o of n)o.computed||Tr(o,t)}function Tr(e,t){(e!==X||e.allowRecurse)&&(e.onTrigger&&e.onTrigger(U({effect:e},t)),e.scheduler?e.scheduler():e.run())}const Fl=ft("__proto__,__v_isRef,__isVue"),Ii=new Set(Object.getOwnPropertyNames(Symbol).filter(e=>e!=="arguments"&&e!=="caller").map(e=>Symbol[e]).filter(xo)),Hl=_n(),Bl=_n(!1,!0),ql=_n(!0),Kl=_n(!0,!0),xr=Vl();function Vl(){const e={};return["includes","indexOf","lastIndexOf"].forEach(t=>{e[t]=function(...n){const o=R(this);for(let s=0,i=this.length;s<i;s++)re(o,"get",s+"");const r=o[t](...n);return r===-1||r===!1?o[t](...n.map(R)):r}}),["push","pop","shift","unshift","splice"].forEach(t=>{e[t]=function(...n){dt();const o=R(this)[t].apply(this,n);return pt(),o}}),e}function _n(e=!1,t=!1){return function(o,r,s){if(r==="__v_isReactive")return!e;if(r==="__v_isReadonly")return e;if(r==="__v_isShallow")return t;if(r==="__v_raw"&&s===(e?t?$i:ki:t?Ei:Oi).get(o))return o;const i=k(o);if(!e&&i&&O(xr,r))return Reflect.get(xr,r,s);const c=Reflect.get(o,r,s);return(xo(r)?Ii.has(r):Fl(r))||(e||re(o,"get",r),t)?c:Y(c)?i&&Co(r)?c:c.value:M(c)?e?Ri(c):Fo(c):c}}const Wl=Ai(),zl=Ai(!0);function Ai(e=!1){return function(n,o,r,s){let i=n[o];if(it(i)&&Y(i)&&!Y(r))return!1;if(!e&&(!tn(r)&&!it(r)&&(i=R(i),r=R(r)),!k(n)&&Y(i)&&!Y(r)))return i.value=r,!0;const c=k(n)&&Co(o)?Number(o)<n.length:O(n,o),u=Reflect.set(n,o,r,s);return n===R(s)&&(c?St(r,i)&&ve(n,"set",o,r,i):ve(n,"add",o,r)),u}}function Jl(e,t){const n=O(e,t),o=e[t],r=Reflect.deleteProperty(e,t);return r&&n&&ve(e,"delete",t,void 0,o),r}function Gl(e,t){const n=Reflect.has(e,t);return(!xo(t)||!Ii.has(t))&&re(e,"has",t),n}function Yl(e){return re(e,"iterate",k(e)?"length":Be),Reflect.ownKeys(e)}const Ti={get:Hl,set:Wl,deleteProperty:Jl,has:Gl,ownKeys:Yl},xi={get:ql,set(e,t){return eo(`Set operation on key "${String(t)}" failed: target is readonly.`,e),!0},deleteProperty(e,t){return eo(`Delete operation on key "${String(t)}" failed: target is readonly.`,e),!0}},Ql=U({},Ti,{get:Bl,set:zl}),Xl=U({},xi,{get:Kl}),jo=e=>e,yn=e=>Reflect.getPrototypeOf(e);function Mt(e,t,n=!1,o=!1){e=e.__v_raw;const r=R(e),s=R(t);n||(t!==s&&re(r,"get",t),re(r,"get",s));const{has:i}=yn(r),c=o?jo:n?Bo:Pt;if(i.call(r,t))return c(e.get(t));if(i.call(r,s))return c(e.get(s));e!==r&&e.get(t)}function jt(e,t=!1){const n=this.__v_raw,o=R(n),r=R(e);return t||(e!==r&&re(o,"has",e),re(o,"has",r)),e===r?n.has(e):n.has(e)||n.has(r)}function Ft(e,t=!1){return e=e.__v_raw,!t&&re(R(e),"iterate",Be),Reflect.get(e,"size",e)}function Cr(e){e=R(e);const t=R(this);return yn(t).has.call(t,e)||(t.add(e),ve(t,"add",e,e)),this}function Or(e,t){t=R(t);const n=R(this),{has:o,get:r}=yn(n);let s=o.call(n,e);s?Ci(n,o,e):(e=R(e),s=o.call(n,e));const i=r.call(n,e);return n.set(e,t),s?St(t,i)&&ve(n,"set",e,t,i):ve(n,"add",e,t),this}function Er(e){const t=R(this),{has:n,get:o}=yn(t);let r=n.call(t,e);r?Ci(t,n,e):(e=R(e),r=n.call(t,e));const s=o?o.call(t,e):void 0,i=t.delete(e);return r&&ve(t,"delete",e,void 0,s),i}function kr(){const e=R(this),t=e.size!==0,n=He(e)?new Map(e):new Set(e),o=e.clear();return t&&ve(e,"clear",void 0,void 0,n),o}function Ht(e,t){return function(o,r){const s=this,i=s.__v_raw,c=R(i),u=t?jo:e?Bo:Pt;return!e&&re(c,"iterate",Be),i.forEach((a,l)=>o.call(r,u(a),u(l),s))}}function Bt(e,t,n){return function(...o){const r=this.__v_raw,s=R(r),i=He(s),c=e==="entries"||e===Symbol.iterator&&i,u=e==="keys"&&i,a=r[e](...o),l=n?jo:t?Bo:Pt;return!t&&re(s,"iterate",u?oo:Be),{next(){const{value:f,done:p}=a.next();return p?{value:f,done:p}:{value:c?[l(f[0]),l(f[1])]:l(f),done:p}},[Symbol.iterator](){return this}}}}function Ae(e){return function(...t){{const n=t[0]?`on key "${t[0]}" `:"";console.warn(`${Je(e)} operation ${n}failed: target is readonly.`,R(this))}return e==="delete"?!1:this}}function Zl(){const e={get(s){return Mt(this,s)},get size(){return Ft(this)},has:jt,add:Cr,set:Or,delete:Er,clear:kr,forEach:Ht(!1,!1)},t={get(s){return Mt(this,s,!1,!0)},get size(){return Ft(this)},has:jt,add:Cr,set:Or,delete:Er,clear:kr,forEach:Ht(!1,!0)},n={get(s){return Mt(this,s,!0)},get size(){return Ft(this,!0)},has(s){return jt.call(this,s,!0)},add:Ae("add"),set:Ae("set"),delete:Ae("delete"),clear:Ae("clear"),forEach:Ht(!0,!1)},o={get(s){return Mt(this,s,!0,!0)},get size(){return Ft(this,!0)},has(s){return jt.call(this,s,!0)},add:Ae("add"),set:Ae("set"),delete:Ae("delete"),clear:Ae("clear"),forEach:Ht(!0,!0)};return["keys","values","entries",Symbol.iterator].forEach(s=>{e[s]=Bt(s,!1,!1),n[s]=Bt(s,!0,!1),t[s]=Bt(s,!1,!0),o[s]=Bt(s,!0,!0)}),[e,n,t,o]}const[ef,tf,nf,of]=Zl();function wn(e,t){const n=t?e?of:nf:e?tf:ef;return(o,r,s)=>r==="__v_isReactive"?!e:r==="__v_isReadonly"?e:r==="__v_raw"?o:Reflect.get(O(n,r)&&r in o?n:o,r,s)}const rf={get:wn(!1,!1)},sf={get:wn(!1,!0)},cf={get:wn(!0,!1)},af={get:wn(!0,!0)};function Ci(e,t,n){const o=R(n);if(o!==n&&t.call(e,o)){const r=pn(e);console.warn(`Reactive ${r} contains both the raw and reactive versions of the same object${r==="Map"?" as keys":""}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`)}}const Oi=new WeakMap,Ei=new WeakMap,ki=new WeakMap,$i=new WeakMap;function uf(e){switch(e){case"Object":case"Array":return 1;case"Map":case"Set":case"WeakMap":case"WeakSet":return 2;default:return 0}}function lf(e){return e.__v_skip||!Object.isExtensible(e)?0:uf(pn(e))}function Fo(e){return it(e)?e:bn(e,!1,Ti,rf,Oi)}function ff(e){return bn(e,!1,Ql,sf,Ei)}function Ri(e){return bn(e,!0,xi,cf,ki)}function et(e){return bn(e,!0,Xl,af,$i)}function bn(e,t,n,o,r){if(!M(e))return console.warn(`value cannot be made reactive: ${String(e)}`),e;if(e.__v_raw&&!(t&&e.__v_isReactive))return e;const s=r.get(e);if(s)return s;const i=lf(e);if(i===0)return e;const c=new Proxy(e,i===2?o:n);return r.set(e,c),c}function nt(e){return it(e)?nt(e.__v_raw):!!(e&&e.__v_isReactive)}function it(e){return!!(e&&e.__v_isReadonly)}function tn(e){return!!(e&&e.__v_isShallow)}function df(e){return nt(e)||it(e)}function R(e){const t=e&&e.__v_raw;return t?R(t):e}function Ho(e){return va(e,"__v_skip",!0),e}const Pt=e=>M(e)?Fo(e):e,Bo=e=>M(e)?Ri(e):e;function Li(e){$e&&X&&(e=R(e),Pi(e.dep||(e.dep=Uo()),{target:e,type:"get",key:"value"}))}function Ni(e,t){e=R(e),e.dep&&ro(e.dep,{target:e,type:"set",key:"value",newValue:t})}function Y(e){return!!(e&&e.__v_isRef===!0)}function pf(e){return hf(e,!1)}function hf(e,t){return Y(e)?e:new gf(e,t)}class gf{constructor(t,n){this.__v_isShallow=n,this.dep=void 0,this.__v_isRef=!0,this._rawValue=n?t:R(t),this._value=n?t:Pt(t)}get value(){return Li(this),this._value}set value(t){const n=this.__v_isShallow||tn(t)||it(t);t=n?t:R(t),St(t,this._rawValue)&&(this._rawValue=t,this._value=n?t:Pt(t),Ni(this,t))}}function Di(e){return Y(e)?e.value:e}const mf={get:(e,t,n)=>Di(Reflect.get(e,t,n)),set:(e,t,n,o)=>{const r=e[t];return Y(r)&&!Y(n)?(r.value=n,!0):Reflect.set(e,t,n,o)}};function Ui(e){return nt(e)?e:new Proxy(e,mf)}var Mi;class _f{constructor(t,n,o,r){this._setter=n,this.dep=void 0,this.__v_isRef=!0,this[Mi]=!1,this._dirty=!0,this.effect=new Mo(t,()=>{this._dirty||(this._dirty=!0,Ni(this))}),this.effect.computed=this,this.effect.active=this._cacheable=!r,this.__v_isReadonly=o}get value(){const t=R(this);return Li(t),(t._dirty||!t._cacheable)&&(t._dirty=!1,t._value=t.effect.run()),t._value}set value(t){this._setter(t)}}Mi="__v_isReadonly";function yf(e,t,n=!1){let o,r;const s=T(e);s?(o=e,r=()=>{console.warn("Write operation failed: computed value is readonly")}):(o=e.get,r=e.set);const i=new _f(o,r,s||!r,n);return t&&!n&&(i.effect.onTrack=t.onTrack,i.effect.onTrigger=t.onTrigger),i}const qe=[];function qo(e){qe.push(e)}function Ko(){qe.pop()}function x(e,...t){dt();const n=qe.length?qe[qe.length-1].component:null,o=n&&n.appContext.config.warnHandler,r=wf();if(o)be(o,n,11,[e+t.join(""),n&&n.proxy,r.map(({vnode:s})=>`at <${Pn(n,s.type)}>`).join(`
-`),r]);else{const s=[`[Vue warn]: ${e}`,...t];r.length&&s.push(`
-`,...bf(r)),console.warn(...s)}pt()}function wf(){let e=qe[qe.length-1];if(!e)return[];const t=[];for(;e;){const n=t[0];n&&n.vnode===e?n.recurseCount++:t.push({vnode:e,recurseCount:0});const o=e.component&&e.component.parent;e=o&&o.vnode}return t}function bf(e){const t=[];return e.forEach((n,o)=>{t.push(...o===0?[]:[`
-`],...vf(n))}),t}function vf({vnode:e,recurseCount:t}){const n=t>0?`... (${t} recursive calls)`:"",o=e.component?e.component.parent==null:!1,r=` at <${Pn(e.component,e.type,o)}`,s=">"+n;return e.props?[r,...Sf(e.props),s]:[r+s]}function Sf(e){const t=[],n=Object.keys(e);return n.slice(0,3).forEach(o=>{t.push(...ji(o,e[o]))}),n.length>3&&t.push(" ..."),t}function ji(e,t,n){return j(t)?(t=JSON.stringify(t),n?t:[`${e}=${t}`]):typeof t=="number"||typeof t=="boolean"||t==null?n?t:[`${e}=${t}`]:Y(t)?(t=ji(e,R(t.value),!0),n?t:[`${e}=Ref<`,t,">"]):T(t)?[`${e}=fn${t.name?`<${t.name}>`:""}`]:(t=R(t),n?t:[`${e}=`,t])}const Vo={sp:"serverPrefetch hook",bc:"beforeCreate hook",c:"created hook",bm:"beforeMount hook",m:"mounted hook",bu:"beforeUpdate hook",u:"updated",bum:"beforeUnmount hook",um:"unmounted hook",a:"activated hook",da:"deactivated hook",ec:"errorCaptured hook",rtc:"renderTracked hook",rtg:"renderTriggered hook",[0]:"setup function",[1]:"render function",[2]:"watcher getter",[3]:"watcher callback",[4]:"watcher cleanup function",[5]:"native event handler",[6]:"component event handler",[7]:"vnode hook",[8]:"directive hook",[9]:"transition hook",[10]:"app errorHandler",[11]:"app warnHandler",[12]:"ref function",[13]:"async component loader",[14]:"scheduler flush. This is likely a Vue internals bug. Please open an issue at https://new-issue.vuejs.org/?repo=vuejs/core"};function be(e,t,n,o){let r;try{r=o?e(...o):e()}catch(s){Wo(s,t,n)}return r}function Ne(e,t,n,o){if(T(e)){const s=be(e,t,n,o);return s&&kt(s)&&s.catch(i=>{Wo(i,t,n)}),s}const r=[];for(let s=0;s<e.length;s++)r.push(Ne(e[s],t,n,o));return r}function Wo(e,t,n,o=!0){const r=t?t.vnode:null;if(t){let s=t.parent;const i=t.proxy,c=Vo[n]||n;for(;s;){const a=s.ec;if(a){for(let l=0;l<a.length;l++)if(a[l](e,i,c)===!1)return}s=s.parent}const u=t.appContext.config.errorHandler;if(u){be(u,null,10,[e,i,c]);return}}Pf(e,n,r,o)}function Pf(e,t,n,o=!0){{const r=Vo[t]||t;n&&qo(n),x(`Unhandled error${r?` during execution of ${r}`:""}`),n&&Ko(),console.error(e)}}let It=!1,so=!1;const V=[];let pe=0;const ot=[];let de=null,Ce=0;const Fi=Promise.resolve();let zo=null;const If=100;function Hi(e){const t=zo||Fi;return e?t.then(this?e.bind(this):e):t}function Af(e){let t=pe+1,n=V.length;for(;t<n;){const o=t+n>>>1;At(V[o])<e?t=o+1:n=o}return t}function nn(e){(!V.length||!V.includes(e,It&&e.allowRecurse?pe+1:pe))&&(e.id==null?V.push(e):V.splice(Af(e.id),0,e),Bi())}function Bi(){!It&&!so&&(so=!0,zo=Fi.then(Vi))}function Tf(e){return V.indexOf(e)>-1}function xf(e){const t=V.indexOf(e);t>pe&&V.splice(t,1)}function qi(e){k(e)?ot.push(...e):(!de||!de.includes(e,e.allowRecurse?Ce+1:Ce))&&ot.push(e),Bi()}function Ki(e,t=It?pe+1:0){for(e=e||new Map;t<V.length;t++){const n=V[t];if(n&&n.pre){if(Jo(e,n))continue;V.splice(t,1),t--,n()}}}function Cf(e){if(ot.length){const t=[...new Set(ot)];if(ot.length=0,de){de.push(...t);return}for(de=t,e=e||new Map,de.sort((n,o)=>At(n)-At(o)),Ce=0;Ce<de.length;Ce++)Jo(e,de[Ce])||de[Ce]();de=null,Ce=0}}const At=e=>e.id==null?1/0:e.id,Of=(e,t)=>{const n=At(e)-At(t);if(n===0){if(e.pre&&!t.pre)return-1;if(t.pre&&!e.pre)return 1}return n};function Vi(e){so=!1,It=!0,e=e||new Map,V.sort(Of);const t=n=>Jo(e,n);try{for(pe=0;pe<V.length;pe++){const n=V[pe];if(n&&n.active!==!1){if(t(n))continue;be(n,null,14)}}}finally{pe=0,V.length=0,Cf(e),It=!1,zo=null,(V.length||ot.length)&&Vi(e)}}function Jo(e,t){if(!e.has(t))e.set(t,1);else{const n=e.get(t);if(n>If){const o=t.ownerInstance,r=o&&Zo(o.type);return x(`Maximum recursive updates exceeded${r?` in component <${r}>`:""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`),!0}else e.set(t,n+1)}}let he,yt=[],io=!1;function vn(e,...t){he?he.emit(e,...t):io||yt.push({event:e,args:t})}function Wi(e,t){var n,o;he=e,he?(he.enabled=!0,yt.forEach(({event:r,args:s})=>he.emit(r,...s)),yt=[]):typeof window<"u"&&window.HTMLElement&&!(!((o=(n=window.navigator)===null||n===void 0?void 0:n.userAgent)===null||o===void 0)&&o.includes("jsdom"))?((t.__VUE_DEVTOOLS_HOOK_REPLAY__=t.__VUE_DEVTOOLS_HOOK_REPLAY__||[]).push(s=>{Wi(s,t)}),setTimeout(()=>{he||(t.__VUE_DEVTOOLS_HOOK_REPLAY__=null,io=!0,yt=[])},3e3)):(io=!0,yt=[])}function Ef(e,t){vn("app:init",e,t,{Fragment:yd,Text:wd,Comment:bd,Static:vd})}const zi=Go("component:added"),kf=Go("component:updated"),$f=Go("component:removed"),Ji=e=>{he&&typeof he.cleanupBuffer=="function"&&!he.cleanupBuffer(e)&&$f(e)};function Go(e){return t=>{vn(e,t.appContext.app,t.uid,t.uid===0?void 0:t.parent?t.parent.uid:0,t)}}const Rf=Gi("perf:start"),Lf=Gi("perf:end");function Gi(e){return(t,n,o)=>{vn(e,t.appContext.app,t.uid,t,n,o)}}function Nf(e,t,n){vn("component:emit",e.appContext.app,e,t,n)}function Df(e,t,...n){if(e.isUnmounted)return;const o=e.vnode.props||B;{const{emitsOptions:l,propsOptions:[f]}=e;if(l)if(!(t in l))(!f||!(De(t)in f))&&x(`Component emitted event "${t}" but it is neither declared in the emits option nor as an "${De(t)}" prop.`);else{const p=l[t];T(p)&&(p(...n)||x(`Invalid event arguments: event validation failed for event "${t}".`))}}let r=n;const s=t.startsWith("update:"),i=s&&t.slice(7);if(i&&i in o){const l=`${i==="modelValue"?"model":i}Modifiers`,{number:f,trim:p}=o[l]||B;p&&(r=n.map(g=>j(g)?g.trim():g)),f&&(r=n.map(Ls))}Nf(e,t,r);{const l=t.toLowerCase();l!==t&&o[De(l)]&&x(`Event "${l}" is emitted in component ${Pn(e,e.type)} but the handler is registered for "${t}". Note that HTML attributes are case-insensitive and you cannot use v-on to listen to camelCase events when using in-DOM templates. You should probably use "${ze(t)}" instead of "${t}".`)}let c,u=o[c=De(t)]||o[c=De(ye(t))];!u&&s&&(u=o[c=De(ze(t))]),u&&Ne(u,e,6,r);const a=o[c+"Once"];if(a){if(!e.emitted)e.emitted={};else if(e.emitted[c])return;e.emitted[c]=!0,Ne(a,e,6,r)}}function Yi(e,t,n=!1){const o=t.emitsCache,r=o.get(e);if(r!==void 0)return r;const s=e.emits;let i={},c=!1;if(!T(e)){const u=a=>{const l=Yi(a,t,!0);l&&(c=!0,U(i,l))};!n&&t.mixins.length&&t.mixins.forEach(u),e.extends&&u(e.extends),e.mixins&&e.mixins.forEach(u)}return!s&&!c?(M(e)&&o.set(e,null),null):(k(s)?s.forEach(u=>i[u]=null):U(i,s),M(e)&&o.set(e,i),i)}function Qi(e,t){return!e||!ks(t)?!1:(t=t.slice(2).replace(/Once$/,""),O(e,t[0].toLowerCase()+t.slice(1))||O(e,ze(t))||O(e,t))}let Ye=null;function $r(e){const t=Ye;return Ye=e,e&&e.type.__scopeId,t}function Uf(e,t){if(!q)x("provide() can only be used inside setup().");else{let n=q.provides;const o=q.parent&&q.parent.provides;o===n&&(n=q.provides=Object.create(o)),n[e]=t,q.type.mpType==="app"&&q.appContext.app.provide(e,t)}}function Cn(e,t,n=!1){const o=q||Ye;if(o){const r=o.parent==null?o.vnode.appContext&&o.vnode.appContext.provides:o.parent.provides;if(r&&e in r)return r[e];if(arguments.length>1)return n&&T(t)?t.call(o.proxy):t;x(`injection "${String(e)}" not found.`)}else x("inject() can only be used inside setup() or functional components.")}const qt={};function On(e,t,n){return T(t)||x("`watch(fn, options?)` signature has been moved to a separate API. Use `watchEffect(fn, options?)` instead. `watch` now only supports `watch(source, cb, options?) signature."),Xi(e,t,n)}function Xi(e,t,{immediate:n,deep:o,flush:r,onTrack:s,onTrigger:i}=B){t||(n!==void 0&&x('watch() "immediate" option is only respected when using the watch(source, callback, options?) signature.'),o!==void 0&&x('watch() "deep" option is only respected when using the watch(source, callback, options?) signature.'));const c=_=>{x("Invalid watch source: ",_,"A watch source can only be a getter/effect function, a ref, a reactive object, or an array of these types.")},u=q;let a,l=!1,f=!1;if(Y(e)?(a=()=>e.value,l=tn(e)):nt(e)?(a=()=>e,o=!0):k(e)?(f=!0,l=e.some(_=>nt(_)||tn(_)),a=()=>e.map(_=>{if(Y(_))return _.value;if(nt(_))return tt(_);if(T(_))return be(_,u,2);c(_)})):T(e)?t?a=()=>be(e,u,2):a=()=>{if(!(u&&u.isUnmounted))return p&&p(),Ne(e,u,3,[g])}:(a=G,c(e)),t&&o){const _=a;a=()=>tt(_())}let p,g=_=>{p=h.onStop=()=>{be(_,u,4)}},y=f?new Array(e.length).fill(qt):qt;const m=()=>{if(!!h.active)if(t){const _=h.run();(o||l||(f?_.some((b,A)=>St(b,y[A])):St(_,y)))&&(p&&p(),Ne(t,u,3,[_,y===qt?void 0:f&&y[0]===qt?[]:y,g]),y=_)}else h.run()};m.allowRecurse=!!t;let d;r==="sync"?d=m:r==="post"?d=()=>Hr(m,u&&u.suspense):(m.pre=!0,u&&(m.id=u.uid),d=()=>nn(m));const h=new Mo(a,d);return h.onTrack=s,h.onTrigger=i,t?n?m():y=h.run():r==="post"?Hr(h.run.bind(h),u&&u.suspense):h.run(),()=>{h.stop(),u&&u.scope&&dn(u.scope.effects,h)}}function Mf(e,t,n){const o=this.proxy,r=j(e)?e.includes(".")?Zi(o,e):()=>o[e]:e.bind(o,o);let s;T(t)?s=t:(s=t.handler,n=t);const i=q;ct(this);const c=Xi(r,s.bind(o),n);return i?ct(i):Ke(),c}function Zi(e,t){const n=t.split(".");return()=>{let o=e;for(let r=0;r<n.length&&o;r++)o=o[n[r]];return o}}function tt(e,t){if(!M(e)||e.__v_skip||(t=t||new Set,t.has(e)))return e;if(t.add(e),Y(e))tt(e.value,t);else if(k(e))for(let n=0;n<e.length;n++)tt(e[n],t);else if($s(e)||He(e))e.forEach(n=>{tt(n,t)});else if(K(e))for(const n in e)tt(e[n],t);return e}const jf=e=>e.type.__isKeepAlive;function Ff(e,t){ec(e,"a",t)}function Hf(e,t){ec(e,"da",t)}function ec(e,t,n=q){const o=e.__wdc||(e.__wdc=()=>{let r=n;for(;r;){if(r.isDeactivated)return;r=r.parent}return e()});if(Rt(t,o,n),n){let r=n.parent;for(;r&&r.parent;)jf(r.parent.vnode)&&Bf(o,t,n,r),r=r.parent}}function Bf(e,t,n,o){const r=Rt(t,e,o,!0);tc(()=>{dn(o[t],r)},n)}function Rt(e,t,n=q,o=!1){if(n){$a(e)&&(n=n.root);const r=n[e]||(n[e]=[]),s=t.__weh||(t.__weh=(...i)=>{if(n.isUnmounted)return;dt(),ct(n);const c=Ne(t,n,e,i);return Ke(),pt(),c});return o?r.unshift(s):r.push(s),s}else{const r=De((Vo[e]||e.replace(/^on/,"")).replace(/ hook$/,""));x(`${r} is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup().`)}}const Se=e=>(t,n=q)=>(!an||e==="sp")&&Rt(e,(...o)=>t(...o),n),qf=Se("bm"),Kf=Se("m"),Vf=Se("bu"),Wf=Se("u"),Yo=Se("bum"),tc=Se("um"),zf=Se("sp"),Jf=Se("rtg"),Gf=Se("rtc");function Yf(e,t=q){Rt("ec",e,t)}function nc(e){ya(e)&&x("Do not use built-in directive ids as custom directive id: "+e)}const co="components";function Qf(e,t){return Xf(co,e,!0,t)||e}function Xf(e,t,n=!0,o=!1){const r=Ye||q;if(r){const s=r.type;if(e===co){const c=Zo(s,!1);if(c&&(c===t||c===ye(t)||c===Je(ye(t))))return s}const i=Rr(r[e]||s[e],t)||Rr(r.appContext[e],t);if(!i&&o)return s;if(n&&!i){const c=e===co?`
-If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.`:"";x(`Failed to resolve ${e.slice(0,-1)}: ${t}${c}`)}return i}else x(`resolve${Je(e.slice(0,-1))} can only be used in render() or setup().`)}function Rr(e,t){return e&&(e[t]||e[ye(t)]||e[Je(ye(t))])}const ao=e=>e?lc(e)?Sn(e)||e.proxy:ao(e.parent):null,Tt=U(Object.create(null),{$:e=>e,$el:e=>e.__$el||(e.__$el={}),$data:e=>e.data,$props:e=>et(e.props),$attrs:e=>et(e.attrs),$slots:e=>et(e.slots),$refs:e=>et(e.refs),$parent:e=>ao(e.parent),$root:e=>ao(e.root),$emit:e=>e.emit,$options:e=>sc(e),$forceUpdate:e=>e.f||(e.f=()=>nn(e.update)),$watch:e=>Mf.bind(e)}),Qo=e=>e==="_"||e==="$",En=(e,t)=>e!==B&&!e.__isScriptSetup&&O(e,t),oc={get({_:e},t){const{ctx:n,setupState:o,data:r,props:s,accessCache:i,type:c,appContext:u}=e;if(t==="__isVue")return!0;let a;if(t[0]!=="$"){const g=i[t];if(g!==void 0)switch(g){case 1:return o[t];case 2:return r[t];case 4:return n[t];case 3:return s[t]}else{if(En(o,t))return i[t]=1,o[t];if(r!==B&&O(r,t))return i[t]=2,r[t];if((a=e.propsOptions[0])&&O(a,t))return i[t]=3,s[t];if(n!==B&&O(n,t))return i[t]=4,n[t];uo&&(i[t]=0)}}const l=Tt[t];let f,p;if(l)return t==="$attrs"&&re(e,"get",t),l(e);if((f=c.__cssModules)&&(f=f[t]))return f;if(n!==B&&O(n,t))return i[t]=4,n[t];if(p=u.config.globalProperties,O(p,t))return p[t];Ye&&(!j(t)||t.indexOf("__v")!==0)&&(r!==B&&Qo(t[0])&&O(r,t)?x(`Property ${JSON.stringify(t)} must be accessed via $data because it starts with a reserved character ("$" or "_") and is not proxied on the render context.`):e===Ye&&x(`Property ${JSON.stringify(t)} was accessed during render but is not defined on instance.`))},set({_:e},t,n){const{data:o,setupState:r,ctx:s}=e;return En(r,t)?(r[t]=n,!0):r.__isScriptSetup&&O(r,t)?(x(`Cannot mutate <script setup> binding "${t}" from Options API.`),!1):o!==B&&O(o,t)?(o[t]=n,!0):O(e.props,t)?(x(`Attempting to mutate prop "${t}". Props are readonly.`),!1):t[0]==="$"&&t.slice(1)in e?(x(`Attempting to mutate public property "${t}". Properties starting with $ are reserved and readonly.`),!1):(t in e.appContext.config.globalProperties?Object.defineProperty(s,t,{enumerable:!0,configurable:!0,value:n}):s[t]=n,!0)},has({_:{data:e,setupState:t,accessCache:n,ctx:o,appContext:r,propsOptions:s}},i){let c;return!!n[i]||e!==B&&O(e,i)||En(t,i)||(c=s[0])&&O(c,i)||O(o,i)||O(Tt,i)||O(r.config.globalProperties,i)},defineProperty(e,t,n){return n.get!=null?e._.accessCache[t]=0:O(n,"value")&&this.set(e,t,n.value,null),Reflect.defineProperty(e,t,n)}};oc.ownKeys=e=>(x("Avoid app logic that relies on enumerating keys on a component instance. The keys will be empty in production mode to avoid performance overhead."),Reflect.ownKeys(e));function Zf(e){const t={};return Object.defineProperty(t,"_",{configurable:!0,enumerable:!1,get:()=>e}),Object.keys(Tt).forEach(n=>{Object.defineProperty(t,n,{configurable:!0,enumerable:!1,get:()=>Tt[n](e),set:G})}),t}function ed(e){const{ctx:t,propsOptions:[n]}=e;n&&Object.keys(n).forEach(o=>{Object.defineProperty(t,o,{enumerable:!0,configurable:!0,get:()=>e.props[o],set:G})})}function td(e){const{ctx:t,setupState:n}=e;Object.keys(R(n)).forEach(o=>{if(!n.__isScriptSetup){if(Qo(o[0])){x(`setup() return property ${JSON.stringify(o)} should not start with "$" or "_" which are reserved prefixes for Vue internals.`);return}Object.defineProperty(t,o,{enumerable:!0,configurable:!0,get:()=>n[o],set:G})}})}function nd(){const e=Object.create(null);return(t,n)=>{e[n]?x(`${t} property "${n}" is already defined in ${e[n]}.`):e[n]=t}}let uo=!0;function od(e){const t=sc(e),n=e.proxy,o=e.ctx;uo=!1,t.beforeCreate&&Lr(t.beforeCreate,e,"bc");const{data:r,computed:s,methods:i,watch:c,provide:u,inject:a,created:l,beforeMount:f,mounted:p,beforeUpdate:g,updated:y,activated:m,deactivated:d,beforeDestroy:h,beforeUnmount:w,destroyed:_,unmounted:b,render:A,renderTracked:C,renderTriggered:D,errorCaptured:H,serverPrefetch:oe,expose:ae,inheritAttrs:ue,components:Ie,directives:we,filters:ht}=t,le=nd();{const[L]=e.propsOptions;if(L)for(const N in L)le("Props",N)}if(a&&rd(a,o,le,e.appContext.config.unwrapInjectedRef),i)for(const L in i){const N=i[L];T(N)?(Object.defineProperty(o,L,{value:N.bind(n),configurable:!0,enumerable:!0,writable:!0}),le("Methods",L)):x(`Method "${L}" has type "${typeof N}" in the component definition. Did you reference the function correctly?`)}if(r){T(r)||x("The data option must be a function. Plain object usage is no longer supported.");const L=r.call(n,n);if(kt(L)&&x("data() returned a Promise - note data() cannot be async; If you intend to perform data fetching before component renders, use async setup() + <Suspense>."),!M(L))x("data() should return an object.");else{e.data=Fo(L);for(const N in L)le("Data",N),Qo(N[0])||Object.defineProperty(o,N,{configurable:!0,enumerable:!0,get:()=>L[N],set:G})}}if(uo=!0,s)for(const L in s){const N=s[L],ie=T(N)?N.bind(n,n):T(N.get)?N.get.bind(n,n):G;ie===G&&x(`Computed property "${L}" has no getter.`);const Xe=!T(N)&&T(N.set)?N.set.bind(n):()=>{x(`Write operation failed: computed property "${L}" is readonly.`)},v=Md({get:ie,set:Xe});Object.defineProperty(o,L,{enumerable:!0,configurable:!0,get:()=>v.value,set:I=>v.value=I}),le("Computed",L)}if(c)for(const L in c)rc(c[L],o,n,L);if(u){const L=T(u)?u.call(n):u;Reflect.ownKeys(L).forEach(N=>{Uf(N,L[N])})}l&&Lr(l,e,"c");function z(L,N){k(N)?N.forEach(ie=>L(ie.bind(n))):N&&L(N.bind(n))}if(z(qf,f),z(Kf,p),z(Vf,g),z(Wf,y),z(Ff,m),z(Hf,d),z(Yf,H),z(Gf,C),z(Jf,D),z(Yo,w),z(tc,b),z(zf,oe),k(ae))if(ae.length){const L=e.exposed||(e.exposed={});ae.forEach(N=>{Object.defineProperty(L,N,{get:()=>n[N],set:ie=>n[N]=ie})})}else e.exposed||(e.exposed={});A&&e.render===G&&(e.render=A),ue!=null&&(e.inheritAttrs=ue),Ie&&(e.components=Ie),we&&(e.directives=we),e.ctx.$onApplyOptions&&e.ctx.$onApplyOptions(t,e,n)}function rd(e,t,n=G,o=!1){k(e)&&(e=lo(e));for(const r in e){const s=e[r];let i;M(s)?"default"in s?i=Cn(s.from||r,s.default,!0):i=Cn(s.from||r):i=Cn(s),Y(i)?o?Object.defineProperty(t,r,{enumerable:!0,configurable:!0,get:()=>i.value,set:c=>i.value=c}):(x(`injected property "${r}" is a ref and will be auto-unwrapped and no longer needs \`.value\` in the next minor release. To opt-in to the new behavior now, set \`app.config.unwrapInjectedRef = true\` (this config is temporary and will not be needed in the future.)`),t[r]=i):t[r]=i,n("Inject",r)}}function Lr(e,t,n){Ne(k(e)?e.map(o=>o.bind(t.proxy)):e.bind(t.proxy),t,n)}function rc(e,t,n,o){const r=o.includes(".")?Zi(n,o):()=>n[o];if(j(e)){const s=t[e];T(s)?On(r,s):x(`Invalid watch handler specified by key "${e}"`,s)}else if(T(e))On(r,e.bind(n));else if(M(e))if(k(e))e.forEach(s=>rc(s,t,n,o));else{const s=T(e.handler)?e.handler.bind(n):t[e.handler];T(s)?On(r,s,e):x(`Invalid watch handler specified by key "${e.handler}"`,s)}else x(`Invalid watch option: "${o}"`,e)}function sc(e){const t=e.type,{mixins:n,extends:o}=t,{mixins:r,optionsCache:s,config:{optionMergeStrategies:i}}=e.appContext,c=s.get(t);let u;return c?u=c:!r.length&&!n&&!o?u=t:(u={},r.length&&r.forEach(a=>on(u,a,i,!0)),on(u,t,i)),M(t)&&s.set(t,u),u}function on(e,t,n,o=!1){const{mixins:r,extends:s}=t;s&&on(e,s,n,!0),r&&r.forEach(i=>on(e,i,n,!0));for(const i in t)if(o&&i==="expose")x('"expose" option is ignored when declared in mixins or extends. It should only be declared in the base component itself.');else{const c=sd[i]||n&&n[i];e[i]=c?c(e[i],t[i]):t[i]}return e}const sd={data:Nr,props:Ue,emits:Ue,methods:Ue,computed:Ue,beforeCreate:Q,created:Q,beforeMount:Q,mounted:Q,beforeUpdate:Q,updated:Q,beforeDestroy:Q,beforeUnmount:Q,destroyed:Q,unmounted:Q,activated:Q,deactivated:Q,errorCaptured:Q,serverPrefetch:Q,components:Ue,directives:Ue,watch:cd,provide:Nr,inject:id};function Nr(e,t){return t?e?function(){return U(T(e)?e.call(this,this):e,T(t)?t.call(this,this):t)}:t:e}function id(e,t){return Ue(lo(e),lo(t))}function lo(e){if(k(e)){const t={};for(let n=0;n<e.length;n++)t[e[n]]=e[n];return t}return e}function Q(e,t){return e?[...new Set([].concat(e,t))]:t}function Ue(e,t){return e?U(U(Object.create(null),e),t):t}function cd(e,t){if(!e)return t;if(!t)return e;const n=U(Object.create(null),e);for(const o in t)n[o]=Q(e[o],t[o]);return n}function ad(e,t,n,o=!1){const r={},s={};e.propsDefaults=Object.create(null),ic(e,t,r,s);for(const i in e.propsOptions[0])i in r||(r[i]=void 0);ac(t||{},r,e),n?e.props=o?r:ff(r):e.type.props?e.props=r:e.props=s,e.attrs=s}function ud(e){for(;e;){if(e.type.__hmrId)return!0;e=e.parent}}function ld(e,t,n,o){const{props:r,attrs:s,vnode:{patchFlag:i}}=e,c=R(r),[u]=e.propsOptions;let a=!1;if(!ud(e)&&(o||i>0)&&!(i&16)){if(i&8){const l=e.vnode.dynamicProps;for(let f=0;f<l.length;f++){let p=l[f];if(Qi(e.emitsOptions,p))continue;const g=t[p];if(u)if(O(s,p))g!==s[p]&&(s[p]=g,a=!0);else{const y=ye(p);r[y]=fo(u,c,y,g,e,!1)}else g!==s[p]&&(s[p]=g,a=!0)}}}else{ic(e,t,r,s)&&(a=!0);let l;for(const f in c)(!t||!O(t,f)&&((l=ze(f))===f||!O(t,l)))&&(u?n&&(n[f]!==void 0||n[l]!==void 0)&&(r[f]=fo(u,c,f,void 0,e,!0)):delete r[f]);if(s!==c)for(const f in s)(!t||!O(t,f)&&!0)&&(delete s[f],a=!0)}a&&ve(e,"set","$attrs"),ac(t||{},r,e)}function ic(e,t,n,o){const[r,s]=e.propsOptions;let i=!1,c;if(t)for(let u in t){if(_a(u))continue;const a=t[u];let l;r&&O(r,l=ye(u))?!s||!s.includes(l)?n[l]=a:(c||(c={}))[l]=a:Qi(e.emitsOptions,u)||(!(u in o)||a!==o[u])&&(o[u]=a,i=!0)}if(s){const u=R(n),a=c||B;for(let l=0;l<s.length;l++){const f=s[l];n[f]=fo(r,u,f,a[f],e,!O(a,f))}}return i}function fo(e,t,n,o,r,s){const i=e[n];if(i!=null){const c=O(i,"default");if(c&&o===void 0){const u=i.default;if(i.type!==Function&&T(u)){const{propsDefaults:a}=r;n in a?o=a[n]:(ct(r),o=a[n]=u.call(null,t),Ke())}else o=u}i[0]&&(s&&!c?o=!1:i[1]&&(o===""||o===ze(n))&&(o=!0))}return o}function cc(e,t,n=!1){const o=t.propsCache,r=o.get(e);if(r)return r;const s=e.props,i={},c=[];let u=!1;if(!T(e)){const l=f=>{u=!0;const[p,g]=cc(f,t,!0);U(i,p),g&&c.push(...g)};!n&&t.mixins.length&&t.mixins.forEach(l),e.extends&&l(e.extends),e.mixins&&e.mixins.forEach(l)}if(!s&&!u)return M(e)&&o.set(e,fr),fr;if(k(s))for(let l=0;l<s.length;l++){j(s[l])||x("props must be strings when using array syntax.",s[l]);const f=ye(s[l]);Dr(f)&&(i[f]=B)}else if(s){M(s)||x("invalid props options",s);for(const l in s){const f=ye(l);if(Dr(f)){const p=s[l],g=i[f]=k(p)||T(p)?{type:p}:Object.assign({},p);if(g){const y=Mr(Boolean,g.type),m=Mr(String,g.type);g[0]=y>-1,g[1]=m<0||y<m,(y>-1||O(g,"default"))&&c.push(f)}}}}const a=[i,c];return M(e)&&o.set(e,a),a}function Dr(e){return e[0]!=="$"?!0:(x(`Invalid prop name: "${e}" is a reserved property.`),!1)}function po(e){const t=e&&e.toString().match(/^\s*function (\w+)/);return t?t[1]:e===null?"null":""}function Ur(e,t){return po(e)===po(t)}function Mr(e,t){return k(t)?t.findIndex(n=>Ur(n,e)):T(t)&&Ur(t,e)?0:-1}function ac(e,t,n){const o=R(t),r=n.propsOptions[0];for(const s in r){let i=r[s];i!=null&&fd(s,o[s],i,!O(e,s)&&!O(e,ze(s)))}}function fd(e,t,n,o){const{type:r,required:s,validator:i}=n;if(s&&o){x('Missing required prop: "'+e+'"');return}if(!(t==null&&!n.required)){if(r!=null&&r!==!0){let c=!1;const u=k(r)?r:[r],a=[];for(let l=0;l<u.length&&!c;l++){const{valid:f,expectedType:p}=pd(t,u[l]);a.push(p||""),c=f}if(!c){x(hd(e,t,a));return}}i&&!i(t)&&x('Invalid prop: custom validator check failed for prop "'+e+'".')}}const dd=ft("String,Number,Boolean,Function,Symbol,BigInt");function pd(e,t){let n;const o=po(t);if(dd(o)){const r=typeof e;n=r===o.toLowerCase(),!n&&r==="object"&&(n=e instanceof t)}else o==="Object"?n=M(e):o==="Array"?n=k(e):o==="null"?n=e===null:n=e instanceof t;return{valid:n,expectedType:o}}function hd(e,t,n){let o=`Invalid prop: type check failed for prop "${e}". Expected ${n.map(Je).join(" | ")}`;const r=n[0],s=pn(t),i=jr(t,r),c=jr(t,s);return n.length===1&&Fr(r)&&!gd(r,s)&&(o+=` with value ${i}`),o+=`, got ${s} `,Fr(s)&&(o+=`with value ${c}.`),o}function jr(e,t){return t==="String"?`"${e}"`:t==="Number"?`${Number(e)}`:`${e}`}function Fr(e){return["string","number","boolean"].some(n=>e.toLowerCase()===n)}function gd(...e){return e.some(t=>t.toLowerCase()==="boolean")}function uc(){return{app:null,config:{isNativeTag:Es,performance:!1,globalProperties:{},optionMergeStrategies:{},errorHandler:void 0,warnHandler:void 0,compilerOptions:{}},mixins:[],components:{},directives:{},provides:Object.create(null),optionsCache:new WeakMap,propsCache:new WeakMap,emitsCache:new WeakMap}}let md=0;function _d(e,t){return function(o,r=null){T(o)||(o=Object.assign({},o)),r!=null&&!M(r)&&(x("root props passed to app.mount() must be an object."),r=null);const s=uc(),i=new Set,c=s.app={_uid:md++,_component:o,_props:r,_container:null,_context:s,_instance:null,version:dc,get config(){return s.config},set config(u){x("app.config cannot be replaced. Modify individual options instead.")},use(u,...a){return i.has(u)?x("Plugin has already been applied to target app."):u&&T(u.install)?(i.add(u),u.install(c,...a)):T(u)?(i.add(u),u(c,...a)):x('A plugin must either be a function or an object with an "install" function.'),c},mixin(u){return s.mixins.includes(u)?x("Mixin has already been applied to target app"+(u.name?`: ${u.name}`:"")):s.mixins.push(u),c},component(u,a){return ho(u,s.config),a?(s.components[u]&&x(`Component "${u}" has already been registered in target app.`),s.components[u]=a,c):s.components[u]},directive(u,a){return nc(u),a?(s.directives[u]&&x(`Directive "${u}" has already been registered in target app.`),s.directives[u]=a,c):s.directives[u]},mount(){},unmount(){},provide(u,a){return u in s.provides&&x(`App already provides property with key "${String(u)}". It will be overwritten with the new value.`),s.provides[u]=a,c}};return c}}let gt,Oe;function rn(e,t){e.appContext.config.performance&&cn()&&Oe.mark(`vue-${t}-${e.uid}`),Rf(e,t,cn()?Oe.now():Date.now())}function sn(e,t){if(e.appContext.config.performance&&cn()){const n=`vue-${t}-${e.uid}`,o=n+":end";Oe.mark(o),Oe.measure(`<${Pn(e,e.type)}> ${t}`,n,o),Oe.clearMarks(n),Oe.clearMarks(o)}Lf(e,t,cn()?Oe.now():Date.now())}function cn(){return gt!==void 0||(typeof window<"u"&&window.performance?(gt=!0,Oe=window.performance):gt=!1),gt}const Hr=qi,yd=Symbol("Fragment"),wd=Symbol("Text"),bd=Symbol("Comment"),vd=Symbol("Static");function Sd(e){return e?e.__v_isVNode===!0:!1}const Pd="__vInternal";function Id(e){return e?df(e)||Pd in e?U({},e):e:null}const Ad=uc();let Td=0;function xd(e,t,n){const o=e.type,r=(t?t.appContext:e.appContext)||Ad,s={uid:Td++,vnode:e,type:o,parent:t,appContext:r,root:null,next:null,subTree:null,effect:null,update:null,scope:new Dl(!0),render:null,proxy:null,exposed:null,exposeProxy:null,withProxy:null,provides:t?t.provides:Object.create(r.provides),accessCache:null,renderCache:[],components:null,directives:null,propsOptions:cc(o,r),emitsOptions:Yi(o,r),emit:null,emitted:null,propsDefaults:B,inheritAttrs:o.inheritAttrs,ctx:B,data:B,props:B,attrs:B,slots:B,refs:B,setupState:B,setupContext:null,suspense:n,suspenseId:n?n.pendingId:0,asyncDep:null,asyncResolved:!1,isMounted:!1,isUnmounted:!1,isDeactivated:!1,bc:null,c:null,bm:null,m:null,bu:null,u:null,um:null,bum:null,da:null,a:null,rtg:null,rtc:null,ec:null,sp:null};return s.ctx=Zf(s),s.root=t?t.root:s,s.emit=Df.bind(null,s),e.ce&&e.ce(s),s}let q=null;const Xo=()=>q||Ye,ct=e=>{q=e,e.scope.on()},Ke=()=>{q&&q.scope.off(),q=null},Cd=ft("slot,component");function ho(e,t){const n=t.isNativeTag||Es;(Cd(e)||n(e))&&x("Do not use built-in or reserved HTML elements as component id: "+e)}function lc(e){return e.vnode.shapeFlag&4}let an=!1;function Od(e,t=!1){an=t;const{props:n}=e.vnode,o=lc(e);ad(e,n,o,t);const r=o?Ed(e,t):void 0;return an=!1,r}function Ed(e,t){const n=e.type;{if(n.name&&ho(n.name,e.appContext.config),n.components){const r=Object.keys(n.components);for(let s=0;s<r.length;s++)ho(r[s],e.appContext.config)}if(n.directives){const r=Object.keys(n.directives);for(let s=0;s<r.length;s++)nc(r[s])}n.compilerOptions&&Rd()&&x('"compilerOptions" is only supported when using a build of Vue that includes the runtime compiler. Since you are using a runtime-only build, the options should be passed via your build tool config instead.')}e.accessCache=Object.create(null),e.proxy=Ho(new Proxy(e.ctx,oc)),ed(e);const{setup:o}=n;if(o){const r=e.setupContext=o.length>1?Nd(e):null;ct(e),dt();const s=be(o,e,0,[et(e.props),r]);pt(),Ke(),kt(s)?(s.then(Ke,Ke),x("setup() returned a Promise, but the version of Vue you are using does not support it yet.")):kd(e,s,t)}else fc(e,t)}function kd(e,t,n){T(t)?e.render=t:M(t)?(Sd(t)&&x("setup() should not return VNodes directly - return a render function instead."),e.devtoolsRawSetupState=t,e.setupState=Ui(t),td(e)):t!==void 0&&x(`setup() should return an object. Received: ${t===null?"null":typeof t}`),fc(e,n)}let $d;const Rd=()=>!$d;function fc(e,t,n){const o=e.type;e.render||(e.render=o.render||G),ct(e),dt(),od(e),pt(),Ke(),!o.render&&e.render===G&&!t&&(o.template?x('Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias "vue" to "vue/dist/vue.esm-bundler.js".'):x("Component is missing template or render function."))}function Ld(e){return new Proxy(e.attrs,{get(t,n){return re(e,"get","$attrs"),t[n]},set(){return x("setupContext.attrs is readonly."),!1},deleteProperty(){return x("setupContext.attrs is readonly."),!1}})}function Nd(e){const t=o=>{e.exposed&&x("expose() should be called only once per setup()."),e.exposed=o||{}};let n;return Object.freeze({get attrs(){return n||(n=Ld(e))},get slots(){return et(e.slots)},get emit(){return(o,...r)=>e.emit(o,...r)},expose:t})}function Sn(e){if(e.exposed)return e.exposeProxy||(e.exposeProxy=new Proxy(Ui(Ho(e.exposed)),{get(t,n){return n in t?t[n]:e.proxy[n]},has(t,n){return n in t||n in Tt}}))}const Dd=/(?:^|[-_])(\w)/g,Ud=e=>e.replace(Dd,t=>t.toUpperCase()).replace(/[-_]/g,"");function Zo(e,t=!0){return T(e)?e.displayName||e.name:e.name||t&&e.__name}function Pn(e,t,n=!1){let o=Zo(t);if(!o&&t.__file){const r=t.__file.match(/([^/\\]+)\.\w+$/);r&&(o=r[1])}if(!o&&e&&e.parent){const r=s=>{for(const i in s)if(s[i]===t)return i};o=r(e.components||e.parent.type.components)||r(e.appContext.components)}return o?Ud(o):n?"App":"Anonymous"}const Md=(e,t)=>yf(e,t,an),dc="3.2.45";function un(e){return Di(e)}const Me="[object Array]",je="[object Object]";function pc(e,t){const n={};return go(e,t),Gt(e,t,"",n),n}function go(e,t){if(e=un(e),e===t)return;const n=ge(e),o=ge(t);if(n==je&&o==je)for(let r in t){const s=e[r];s===void 0?e[r]=null:go(s,t[r])}else n==Me&&o==Me&&e.length>=t.length&&t.forEach((r,s)=>{go(e[s],r)})}function Gt(e,t,n,o){if(e=un(e),e===t)return;const r=ge(e),s=ge(t);if(r==je)if(s!=je||Object.keys(e).length<Object.keys(t).length)Te(o,n,e);else for(let i in e){const c=un(e[i]),u=t[i],a=ge(c),l=ge(u);if(a!=Me&&a!=je)c!=u&&Te(o,(n==""?"":n+".")+i,c);else if(a==Me)l!=Me||c.length<u.length?Te(o,(n==""?"":n+".")+i,c):c.forEach((f,p)=>{Gt(f,u[p],(n==""?"":n+".")+i+"["+p+"]",o)});else if(a==je)if(l!=je||Object.keys(c).length<Object.keys(u).length)Te(o,(n==""?"":n+".")+i,c);else for(let f in c)Gt(c[f],u[f],(n==""?"":n+".")+i+"."+f,o)}else r==Me?s!=Me||e.length<t.length?Te(o,n,e):e.forEach((i,c)=>{Gt(i,t[c],n+"["+c+"]",o)}):Te(o,n,e)}function Te(e,t,n){e[t]=n}function jd(e){return V.includes(e.update)}function Br(e){const n=e.ctx.__next_tick_callbacks;if(n&&n.length){const o=n.slice(0);n.length=0;for(let r=0;r<o.length;r++)o[r]()}}function hc(e,t){const n=e.ctx;if(!n.__next_tick_pending&&!jd(e))return Hi(t&&t.bind(e.proxy));let o;return n.__next_tick_callbacks||(n.__next_tick_callbacks=[]),n.__next_tick_callbacks.push(()=>{t?be(t.bind(e.proxy),e,14):o&&o(e.proxy)}),new Promise(r=>{o=r})}function mo(e,t){e=un(e);const n=typeof e;if(n==="object"&&e!==null){let o=t.get(e);if(typeof o<"u")return o;if(k(e)){const r=e.length;o=new Array(r),t.set(e,o);for(let s=0;s<r;s++)o[s]=mo(e[s],t)}else{o={},t.set(e,o);for(const r in e)O(e,r)&&(o[r]=mo(e[r],t))}return o}if(n!=="symbol")return e}function Fd(e){return mo(e,typeof WeakMap<"u"?new WeakMap:new Map)}function Hd(e,t){const n=e.data,o=Object.create(null);return t.forEach(r=>{o[r]=n[r]}),o}function qr(e,t,n){if(!t)return;t=Fd(t);const o=e.ctx,r=o.mpType;if(r==="page"||r==="component"){t.r0=1;const s=o.$scope,i=Object.keys(t),c=pc(t,n||Hd(s,i));Object.keys(c).length?(o.__next_tick_pending=!0,s.setData(c,()=>{o.__next_tick_pending=!1,Br(e)}),Ki()):Br(e)}}function Bd(e){e.globalProperties.$nextTick=function(n){return hc(this.$,n)}}function qd(e,t,n){t.appContext.config.globalProperties.$applyOptions(e,t,n);const o=e.computed;if(o){const r=Object.keys(o);if(r.length){const s=t.ctx;s.$computedKeys||(s.$computedKeys=[]),s.$computedKeys.push(...r)}}delete t.ctx.$onApplyOptions}function gc(e,t=!1){const{setupState:n,$templateRefs:o,ctx:{$scope:r,$mpPlatform:s}}=e;if(s==="mp-alipay"||!o||!r)return;if(t)return o.forEach(a=>Kr(a,null,n));const i=s==="mp-baidu"||s==="mp-toutiao",c=a=>{const l=(r.selectAllComponents(".r")||[]).concat(r.selectAllComponents(".r-i-f")||[]);return a.filter(f=>{const p=Vd(l,f.i);return i&&p===null?!0:(Kr(f,p,n),!1)})},u=()=>{const a=c(o);a.length&&e.proxy&&e.proxy.$scope&&e.proxy.$scope.setData({r1:1},()=>{c(a)})};r._$setRef?r._$setRef(u):hc(e,u)}function Kd(e){return M(e)&&Ho(e),e}function Vd(e,t){const n=e.find(o=>o&&(o.properties||o.props).uI===t);if(n){const o=n.$vm;return o?Sn(o.$)||o:Kd(n)}return null}function Kr({r:e,f:t},n,o){if(T(e))e(n,{});else{const r=j(e),s=Y(e);if(r||s)if(t){if(!s)return;k(e.value)||(e.value=[]);const i=e.value;if(i.indexOf(n)===-1){if(i.push(n),!n)return;Yo(()=>dn(i,n),n.$)}}else r?O(o,e)&&(o[e]=n):Y(e)?e.value=n:Vr(e);else Vr(e)}}function Vr(e){x("Invalid template ref type:",e,`(${typeof e})`)}var _o;(function(e){e.APP="app",e.PAGE="page",e.COMPONENT="component"})(_o||(_o={}));const yo=qi;function Wr(e,t){const n=e.component=xd(e,t.parentComponent,null);return n.ctx.$onApplyOptions=qd,n.ctx.$children=[],t.mpType==="app"&&(n.render=G),t.onBeforeSetup&&t.onBeforeSetup(n,t),qo(e),rn(n,"mount"),rn(n,"init"),Od(n),sn(n,"init"),t.parentComponent&&n.proxy&&t.parentComponent.ctx.$children.push(Sn(n)||n.proxy),Gd(n),Ko(),sn(n,"mount"),n.proxy}const Wd=e=>{let t;for(const n in e)(n==="class"||n==="style"||ks(n))&&((t||(t={}))[n]=e[n]);return t};function zr(e){const{type:t,vnode:n,proxy:o,withProxy:r,props:s,propsOptions:[i],slots:c,attrs:u,emit:a,render:l,renderCache:f,data:p,setupState:g,ctx:y,uid:m,appContext:{app:{config:{globalProperties:{pruneComponentPropsCache:d}}}},inheritAttrs:h}=e;e.$templateRefs=[],e.$ei=0,d(m),e.__counter=e.__counter===0?1:0;let w;const _=$r(e);try{if(n.shapeFlag&4){Jr(h,s,i,u);const b=r||o;w=l.call(b,b,f,s,g,p,y)}else{Jr(h,s,i,t.props?u:Wd(u));const b=t;w=b.length>1?b(s,{attrs:u,slots:c,emit:a}):b(s,null)}}catch(b){Wo(b,e,1),w=!1}return gc(e),$r(_),w}function Jr(e,t,n,o){if(t&&o&&e!==!1){const r=Object.keys(o).filter(s=>s!=="class"&&s!=="style");if(!r.length)return;n&&r.some(dr)?r.forEach(s=>{(!dr(s)||!(s.slice(9)in n))&&(t[s]=o[s])}):r.forEach(s=>t[s]=o[s])}}const zd=e=>{dt(),Ki(),pt()};function Jd(){const e=this.$scopedSlotsData;if(!e||e.length===0)return;const t=this.ctx.$scope,n=t.data,o=Object.create(null);e.forEach(({path:r,index:s,data:i})=>{const c=Xs(n,r),u=j(s)?`${r}.${s}`:`${r}[${s}]`;if(typeof c>"u"||typeof c[s]>"u")o[u]=i;else{const a=pc(i,c[s]);Object.keys(a).forEach(l=>{o[u+"."+l]=a[l]})}}),e.length=0,Object.keys(o).length&&t.setData(o)}function kn({effect:e,update:t},n){e.allowRecurse=t.allowRecurse=n}function Gd(e){const t=Jd.bind(e);e.$updateScopedSlots=()=>Hi(()=>nn(t));const n=()=>{if(!e.isMounted)Yo(()=>{gc(e,!0)},e),rn(e,"patch"),qr(e,zr(e)),sn(e,"patch"),zi(e);else{const{next:s,bu:i,u:c}=e;qo(s||e.vnode),kn(e,!1),zd(),i&&Jt(i),kn(e,!0),rn(e,"patch"),qr(e,zr(e)),sn(e,"patch"),c&&yo(c),kf(e),Ko()}},o=e.effect=new Mo(n,()=>nn(e.update),e.scope),r=e.update=o.run.bind(o);r.id=e.uid,kn(e,!0),o.onTrack=e.rtc?s=>Jt(e.rtc,s):void 0,o.onTrigger=e.rtg?s=>Jt(e.rtg,s):void 0,r.ownerInstance=e,r()}function Yd(e){const{bum:t,scope:n,update:o,um:r}=e;t&&Jt(t),n.stop(),o&&(o.active=!1),r&&yo(r),yo(()=>{e.isUnmounted=!0}),Ji(e)}const Qd=_d();function Xd(){if(typeof window<"u")return window;if(typeof globalThis<"u")return globalThis;if(typeof global<"u")return global;if(typeof my<"u")return my}function Zd(e,t=null){const n=Xd();n.__VUE__=!0,Wi(n.__VUE_DEVTOOLS_GLOBAL_HOOK__,n);const o=Qd(e,t),r=o._context;Bd(r.config);const s=u=>(u.appContext=r,u.shapeFlag=6,u),i=function(a,l){return Wr(s(a),l)},c=function(a){return a&&Yd(a.$)};return o.mount=function(){e.render=G;const a=Wr(s({type:e}),{mpType:_o.APP,mpInstance:null,parentComponent:null,slots:[],props:null});return o._instance=a.$,Ef(o,dc),a.$app=o,a.$createComponent=i,a.$destroyComponent=c,r.$appInstance=a,a},o.unmount=function(){x("Cannot unmount an app.")},o}function Gr(e,t,n,o){T(t)&&Rt(e,t.bind(n),o)}function ep(e,t,n){const o=e.mpType||n.$mpType;!o||o==="component"||Object.keys(e).forEach(r=>{if(ei(r,e[r],!1)){const s=e[r];k(s)?s.forEach(i=>Gr(r,i,n,t)):Gr(r,s,n,t)}})}function tp(e,t,n){ep(e,t,n)}function np(e,t,n){return e[t]=n}function op(e){return function(n,o,r){if(!o)throw n;const s=e._instance;if(!s||!s.proxy)throw n;s.proxy.$callHook(Oo,n)}}function rp(e,t){return e?[...new Set([].concat(e,t))]:t}function sp(e){Zs.forEach(t=>{e[t]=rp})}let wo;const Kt="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",ip=/^(?:[A-Za-z\d+/]{4})*?(?:[A-Za-z\d+/]{2}(?:==)?|[A-Za-z\d+/]{3}=?)?$/;typeof atob!="function"?wo=function(e){if(e=String(e).replace(/[\t\n\f\r ]+/g,""),!ip.test(e))throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");e+="==".slice(2-(e.length&3));for(var t,n="",o,r,s=0;s<e.length;)t=Kt.indexOf(e.charAt(s++))<<18|Kt.indexOf(e.charAt(s++))<<12|(o=Kt.indexOf(e.charAt(s++)))<<6|(r=Kt.indexOf(e.charAt(s++))),n+=o===64?String.fromCharCode(t>>16&255):r===64?String.fromCharCode(t>>16&255,t>>8&255):String.fromCharCode(t>>16&255,t>>8&255,t&255);return n}:wo=atob;function cp(e){return decodeURIComponent(wo(e).split("").map(function(t){return"%"+("00"+t.charCodeAt(0).toString(16)).slice(-2)}).join(""))}function $n(){const e=$.getStorageSync("uni_id_token")||"",t=e.split(".");if(!e||t.length!==3)return{uid:null,role:[],permission:[],tokenExpired:0};let n;try{n=JSON.parse(cp(t[1]))}catch(o){throw new Error("\u83B7\u53D6\u5F53\u524D\u7528\u6237\u4FE1\u606F\u51FA\u9519\uFF0C\u8BE6\u7EC6\u9519\u8BEF\u4FE1\u606F\u4E3A\uFF1A"+o.message)}return n.tokenExpired=n.exp*1e3,delete n.exp,delete n.iat,n}function ap(e){e.uniIDHasRole=function(t){const{role:n}=$n();return n.indexOf(t)>-1},e.uniIDHasPermission=function(t){const{permission:n}=$n();return this.uniIDHasRole("admin")||n.indexOf(t)>-1},e.uniIDTokenValid=function(){const{tokenExpired:t}=$n();return t>Date.now()}}function up(e){const t=e._context.config;t.errorHandler=Na(e,op),sp(t.optionMergeStrategies);const n=t.globalProperties;ap(n),n.$set=np,n.$applyOptions=tp,$.invokeCreateVueAppHook(e)}const xt=Object.create(null);function lp(e){const{uid:t,__counter:n}=Xo(),o=(xt[t]||(xt[t]=[])).push(Id(e))-1;return t+","+o+","+n}function mc(e){delete xt[e]}function er(e){if(!e)return;const[t,n]=e.split(",");if(!!xt[t])return xt[t][parseInt(n)]}var fp={install(e){up(e),e.config.globalProperties.pruneComponentPropsCache=mc;const t=e.mount;e.mount=function(o){const r=t.call(e,o),s=dp();return s?s(r):typeof createMiniProgramApp<"u"&&createMiniProgramApp(r),r}}};function dp(){const e="createApp";if(typeof global<"u")return global[e];if(typeof my<"u")return my[e]}function pp(e,t){const n=Xo(),o=n.ctx,r=typeof t<"u"&&(o.$mpPlatform==="mp-weixin"||o.$mpPlatform==="mp-qq")&&(j(t)||typeof t=="number")?"_"+t:"",s="e"+n.$ei+++r,i=o.$scope;if(!e)return delete i[s],s;const c=i[s];return c?c.value=e:i[s]=hp(e,n),s}function hp(e,t){const n=o=>{mp(o);let r=[o];o.detail&&o.detail.__args__&&(r=o.detail.__args__);const s=n.value,i=()=>Ne(_p(o,s),t,5,r),c=o.target,u=c&&c.dataset?c.dataset.eventsync==="true":!1;if(gp.includes(o.type)&&!u)setTimeout(i);else{const a=i();return o.type==="input"&&(k(a)||kt(a))?void 0:a}};return n.value=e,n}const gp=["tap","longpress","longtap","transitionend","animationstart","animationiteration","animationend","touchforcechange"];function mp(e){e.type&&e.target&&(e.preventDefault=G,e.stopPropagation=G,e.stopImmediatePropagation=G,O(e,"detail")||(e.detail={}),O(e,"markerId")&&(e.detail=typeof e.detail=="object"?e.detail:{},e.detail.markerId=e.markerId),K(e.detail)&&O(e.detail,"checked")&&!O(e.detail,"value")&&(e.detail.value=e.detail.checked),K(e.detail)&&(e.target=U({},e.target,e.detail)))}function _p(e,t){if(k(t)){const n=e.stopImmediatePropagation;return e.stopImmediatePropagation=()=>{n&&n.call(e),e._stopped=!0},t.map(o=>r=>!r._stopped&&o(r))}else return t}function yp(e){return j(e)?e:wp(xs(e))}function wp(e){let t="";if(!e||j(e))return t;for(const n in e)t+=`${n.startsWith("--")?n:ze(n)}:${e[n]};`;return t}function bp(e,t,n={}){const{$templateRefs:o}=Xo();o.push({i:t,r:e,k:n.k,f:n.f})}const vp=(e,t)=>pp(e,t),Sp=e=>yp(e),Pp=(e,...t)=>U(e,...t),Ip=e=>Cs(e),Ap=e=>ha(e),Tp=e=>lp(e),xp=(e,t,n)=>bp(e,t,n);function Cp(e,t=null){return e&&(e.mpType="app"),Zd(e,t).use(fp)}const Op=Cp,Ep=["createSelectorQuery","createIntersectionObserver","selectAllComponents","selectComponent"];function kp(e,t){return function(o,...r){const s=t.$scope;if(s&&o){const i={__args__:r};s.triggerEvent(o,i)}return e.apply(this,[o,...r])}}function _c(e,t){const n=e.ctx;n.mpType=t.mpType,n.$mpType=t.mpType,n.$mpPlatform="mp-weixin",n.$scope=t.mpInstance,n.$mp={},n._self={},e.slots={},k(t.slots)&&t.slots.length&&(t.slots.forEach(o=>{e.slots[o]=!0}),e.slots[Pa]&&(e.slots.default=!0)),n.getOpenerEventChannel=function(){return t.mpInstance.getOpenerEventChannel()},n.$hasHook=Lp,n.$callHook=yc,e.emit=kp(e.emit,n)}function $p(e,t){_c(e,t);const n=e.ctx;Ep.forEach(o=>{n[o]=function(...r){const s=n.$scope;if(s&&s[o])return s[o].apply(s,r)}})}function Rp(e,t,n){const o=e.ctx;n.forEach(r=>{O(t,r)&&(e[r]=o[r]=t[r])})}function Lp(e){const t=this.$[e];return!!(t&&t.length)}function yc(e,t){e==="mounted"&&(yc.call(this,"bm"),this.$.isMounted=!0,e="m");const n=this.$[e];return n&&Ca(n,t)}const Np=[$t,gn,mn,ko,Hs,$o,Ro,Lo,No];function bo(e,t=new Set){if(e){Object.keys(e).forEach(n=>{ei(n,e[n])&&t.add(n)});{const{extends:n,mixins:o}=e;o&&o.forEach(r=>bo(r,t)),n&&bo(n,t)}}return t}function tr(e,t,n){n.indexOf(t)===-1&&!O(e,t)&&(e[t]=function(o){return this.$vm&&this.$vm.$callHook(t,o)})}const wc=[Eo];function nr(e,t,n=wc){t.forEach(o=>tr(e,o,n))}function bc(e,t,n=wc){bo(t).forEach(o=>tr(e,o,n))}function Dp(e,t){if(!t)return;Object.keys(Wn).forEach(o=>{t&Wn[o]&&tr(e,o,[])})}const Up=Qs(()=>{const e=[],t=getApp({allowDefault:!0});if(t&&t.$vm&&t.$vm.$){const n=t.$vm.$.appContext.mixins;if(k(n)){const o=Object.keys(Wn);n.forEach(r=>{o.forEach(s=>{O(r,s)&&!e.includes(s)&&e.push(s)})})}}return e});function Mp(e){nr(e,Up())}const jp=[gn,mn,Oo,Ds,Us,Ms];function or(e,t){const n=e.$,o={globalData:e.$options&&e.$options.globalData||{},$vm:e,onLaunch(s){this.$vm=e;const i=n.ctx;this.$vm&&i.$scope||(_c(n,{mpType:"app",mpInstance:this,slots:[]}),i.globalData=this.globalData,e.$callHook(Ns,s))}};Bp(e);const r=e.$.type;nr(o,jp),bc(o,r);{const s=r.methods;s&&U(o,s)}return t&&t.parse(o),o}function Fp(e){return function(n){return App(or(n,e))}}function Hp(e){return function(n){const o=or(n,e),r=getApp({allowDefault:!0});n.$.ctx.$scope=r;const s=r.globalData;s&&Object.keys(o.globalData).forEach(i=>{O(s,i)||(s[i]=o.globalData[i])}),Object.keys(o).forEach(i=>{O(r,i)||(r[i]=o[i])}),vc(o,n)}}function vc(e,t){if(T(e.onLaunch)){const n=wx.getLaunchOptionsSync&&wx.getLaunchOptionsSync();e.onLaunch(n)}T(e.onShow)&&wx.onAppShow&&wx.onAppShow(n=>{t.$callHook("onShow",n)}),T(e.onHide)&&wx.onAppHide&&wx.onAppHide(n=>{t.$callHook("onHide",n)})}function Bp(e){const t=pf(Qt(wx.getSystemInfoSync().language)||Ee);Object.defineProperty(e,"$locale",{get(){return t.value},set(n){t.value=n}})}function qp(e,t){if(!e)return;const n=e.split(","),o=n.length;o===1?t._$vueId=n[0]:o===2&&(t._$vueId=n[0],t._$vuePid=n[1])}const Kp=["externalClasses"];function Vp(e,t){Kp.forEach(n=>{O(t,n)&&(e[n]=t[n])})}function Wp(e,t){!k(t)||t.forEach(n=>{e[n]=function(o){return this.$vm[n](o)}})}function zp(e,t,n){e.selectAllComponents(t).forEach(r=>{const s=r.properties.uR;n[s]=r.$vm||r})}function Jp(e,t){Object.defineProperty(e,"refs",{get(){const n={};return zp(t,".r",n),t.selectAllComponents(".r-i-f").forEach(r=>{const s=r.properties.uR;!s||(n[s]||(n[s]=[]),n[s].push(r.$vm||r))}),n}})}function Sc(e,t){const n=e.$children;for(let r=n.length-1;r>=0;r--){const s=n[r];if(s.$scope._$vueId===t)return s}let o;for(let r=n.length-1;r>=0;r--)if(o=Sc(n[r],t),o)return o}const Pc=["eO","uR","uRIF","uI","uT","uP","uS"];function Gp(e,t=!1){const n={};return t||(Pc.forEach(o=>{n[o]={type:null,value:""}}),n.uS={type:null,value:[],observer:function(o){const r=Object.create(null);o&&o.forEach(s=>{r[s]=!0}),this.setData({$slots:r})}}),e.behaviors&&e.behaviors.includes("wx://form-field")&&(n.name={type:null,value:""},n.value={type:null,value:""}),n}function Yp(e){const t={};return e&&e.virtualHost&&(t.virtualHostStyle={type:null,value:""},t.virtualHostClass={type:null,value:""}),t}function Ic(e){e.properties||(e.properties={}),U(e.properties,Gp(e),Yp(e.options))}const Qp=[String,Number,Boolean,Object,Array,null];function Xp(e,t){return k(e)&&e.length===1?e[0]:e}function Yr(e,t){const n=Xp(e);return Qp.indexOf(n)!==-1?n:null}function Zp({properties:e},t){k(t)?t.forEach(n=>{e[n]={type:String,value:""}}):K(t)&&Object.keys(t).forEach(n=>{const o=t[n];if(K(o)){let r=o.default;T(r)&&(r=r());const s=o.type;o.type=Yr(s),e[n]={type:o.type,value:r}}else e[n]={type:Yr(o)}})}function eh(e,t){return(t?th(e):er(e.uP))||{}}function th(e){const t={};return K(e)&&Object.keys(e).forEach(n=>{Pc.indexOf(n)===-1&&(t[n]=e[n])}),t}function nh(e){const t=e.$options;k(t.behaviors)&&t.behaviors.includes("uni://form-field")&&e.$watch("modelValue",()=>{e.$scope&&e.$scope.setData({name:e.name,value:e.modelValue})},{immediate:!0})}function oh(e){return{}}function Ac(e){const t=function(){const o=this.properties.uP;!o||(this.$vm?sh(o,this.$vm.$):this.properties.uT==="m"&&rh(o,this))};e.observers||(e.observers={}),e.observers.uP=t}function rh(e,t){const n=t.properties,o=er(e)||{};Tc(n,o,!1)&&t.setData(o)}function sh(e,t){const n=R(t.props),o=er(e)||{};Tc(n,o)&&(ld(t,o,n,!1),Tf(t.update)&&xf(t.update),t.update())}function Tc(e,t,n=!0){const o=Object.keys(t);if(n&&o.length!==Object.keys(e).length)return!0;for(let r=0;r<o.length;r++){const s=o[r];if(t[s]!==e[s])return!0}return!1}function ih(e){const t=e.behaviors;let n=e.props;n||(e.props=n=[]);const o=[];return k(t)&&t.forEach(r=>{o.push(r.replace("uni://","wx://")),r==="uni://form-field"&&(k(n)?(n.push("name"),n.push("modelValue")):(n.name={type:String,default:""},n.modelValue={type:[String,Number,Boolean,Array,Object,Date],default:""}))}),o}function ch(e,t){e.data=oh(),e.behaviors=ih(t)}function xc(e,{parse:t,mocks:n,isPage:o,initRelation:r,handleLink:s,initLifetimes:i}){e=e.default||e;const c={multipleSlots:!0,addGlobalClass:!0,pureDataPattern:/^uP$/};e.options&&U(c,e.options);const u={options:c,lifetimes:i({mocks:n,isPage:o,initRelation:r,vueOptions:e}),pageLifetimes:{show(){Ji(this.$vm.$),zi(this.$vm.$),this.$vm&&this.$vm.$callHook("onPageShow")},hide(){this.$vm&&this.$vm.$callHook("onPageHide")},resize(a){this.$vm&&this.$vm.$callHook("onPageResize",a)}},methods:{__l:s}};return ch(u,e),Ic(u),Ac(u),Vp(u,e),Wp(u.methods,e.wxsCallMethods),t&&t(u,{handleLink:s}),u}function ah(e){return function(n){return Component(xc(n,e))}}let Rn,Ln;function Cc(){return getApp().$vm}function uh(e,t){Rn||(Rn=Cc().$createComponent);const n=Rn(e,t);return Sn(n.$)||n}function lh(e){return Ln||(Ln=Cc().$destroyComponent),Ln(e)}function fh(e,t){const{parse:n,mocks:o,isPage:r,initRelation:s,handleLink:i,initLifetimes:c}=t,u=xc(e,{mocks:o,isPage:r,initRelation:s,handleLink:i,initLifetimes:c});Zp(u,(e.default||e).props);const a=u.methods;return a.onLoad=function(l){return this.options=l,this.$page={fullPath:xa(this.route+Ea(l))},this.$vm&&this.$vm.$callHook($t,l)},nr(a,Np),bc(a,e),Dp(a,e.__runtimeHooks),Mp(a),n&&n(u,{handleLink:i}),u}function dh(e){return function(n){return Component(fh(n,e))}}function ph(e){return function(n){vc(or(n,e),n)}}const hh=Page,gh=Component;function Qr(e){const t=e.triggerEvent;e.triggerEvent=function(n,...o){return t.apply(e,[Aa(n),...o])}}function Oc(e,t,n){const o=t[e];o?t[e]=function(...r){return Qr(this),o.apply(this,r)}:t[e]=function(){Qr(this)}}Page=function(e){return Oc($t,e),hh(e)};Component=function(e){return Oc("created",e),e.properties&&e.properties.uP||(Ic(e),Ac(e)),gh(e)};function mh({mocks:e,isPage:t,initRelation:n,vueOptions:o}){return{attached(){let r=this.properties;qp(r.uI,this);const s={vuePid:this._$vuePid};n(this,s);const i=this,c=t(i);let u=r;this.$vm=uh({type:o,props:eh(u,c)},{mpType:c?"page":"component",mpInstance:i,slots:r.uS||{},parentComponent:s.parent&&s.parent.$,onBeforeSetup(a,l){Jp(a,i),Rp(a,i,e),$p(a,l)}}),c||nh(this.$vm)},ready(){this.$vm&&(this.$vm.$callHook("mounted"),this.$vm.$callHook(Eo))},detached(){this.$vm&&(mc(this.$vm.$.uid),lh(this.$vm))}}}const _h=["__route__","__wxExparserNodeId__","__wxWebviewId__"];function yh(e){return!!e.route}function wh(e,t){e.triggerEvent("__l",t)}function bh(e){const t=e.detail||e.value,n=t.vuePid;let o;n&&(o=Sc(this.$vm,n)),o||(o=this.$vm),t.parent=o}var Ec=Object.freeze({__proto__:null,mocks:_h,isPage:yh,initRelation:wh,handleLink:bh,initLifetimes:mh});const vh=Fp(),Sh=dh(Ec),Ph=ah(Ec),Ih=ph(),Ah=Hp();wx.createApp=global.createApp=vh,wx.createPage=Sh,wx.createComponent=Ph,wx.createPluginApp=global.createPluginApp=Ih,wx.createSubpackageApp=global.createSubpackageApp=Ah;const Th=[{path:"pages/index/index",style:{navigationBarTitleText:"HOME"}},{path:"pages/login/login-pwd",style:{enablePullDownRefresh:!1,navigationBarTitleText:"\u5BC6\u7801"}},{path:"pages/login/login-sms",style:{enablePullDownRefresh:!1,navigationBarTitleText:"\u9A8C\u8BC1\u7801"}},{path:"pages/message/message",style:{enablePullDownRefresh:!1,navigationBarTitleText:"\u4E3B\u9875"}}],xh={navigationBarTextStyle:"black",navigationBarTitleText:"uni-app",navigationBarBackgroundColor:"#F8F8F8",backgroundColor:"#F8F8F8",autoBackButton:!0,homeButton:!0,navigationStyle:"custom"},Ch={},kc={pages:Th,globalStyle:xh,uniIdRouter:Ch};function Oh(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}function Ve(e,t,n){return e(n={path:t,exports:{},require:function(o,r){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(r==null&&n.path)}},n.exports),n.exports}var Eh=Ve(function(e,t){var n;e.exports=(n=n||function(o,r){var s=Object.create||function(){function d(){}return function(h){var w;return d.prototype=h,w=new d,d.prototype=null,w}}(),i={},c=i.lib={},u=c.Base={extend:function(d){var h=s(this);return d&&h.mixIn(d),h.hasOwnProperty("init")&&this.init!==h.init||(h.init=function(){h.$super.init.apply(this,arguments)}),h.init.prototype=h,h.$super=this,h},create:function(){var d=this.extend();return d.init.apply(d,arguments),d},init:function(){},mixIn:function(d){for(var h in d)d.hasOwnProperty(h)&&(this[h]=d[h]);d.hasOwnProperty("toString")&&(this.toString=d.toString)},clone:function(){return this.init.prototype.extend(this)}},a=c.WordArray=u.extend({init:function(d,h){d=this.words=d||[],this.sigBytes=h!=r?h:4*d.length},toString:function(d){return(d||f).stringify(this)},concat:function(d){var h=this.words,w=d.words,_=this.sigBytes,b=d.sigBytes;if(this.clamp(),_%4)for(var A=0;A<b;A++){var C=w[A>>>2]>>>24-A%4*8&255;h[_+A>>>2]|=C<<24-(_+A)%4*8}else for(A=0;A<b;A+=4)h[_+A>>>2]=w[A>>>2];return this.sigBytes+=b,this},clamp:function(){var d=this.words,h=this.sigBytes;d[h>>>2]&=4294967295<<32-h%4*8,d.length=o.ceil(h/4)},clone:function(){var d=u.clone.call(this);return d.words=this.words.slice(0),d},random:function(d){for(var h,w=[],_=function(C){C=C;var D=987654321,H=4294967295;return function(){var oe=((D=36969*(65535&D)+(D>>16)&H)<<16)+(C=18e3*(65535&C)+(C>>16)&H)&H;return oe/=4294967296,(oe+=.5)*(o.random()>.5?1:-1)}},b=0;b<d;b+=4){var A=_(4294967296*(h||o.random()));h=987654071*A(),w.push(4294967296*A()|0)}return new a.init(w,d)}}),l=i.enc={},f=l.Hex={stringify:function(d){for(var h=d.words,w=d.sigBytes,_=[],b=0;b<w;b++){var A=h[b>>>2]>>>24-b%4*8&255;_.push((A>>>4).toString(16)),_.push((15&A).toString(16))}return _.join("")},parse:function(d){for(var h=d.length,w=[],_=0;_<h;_+=2)w[_>>>3]|=parseInt(d.substr(_,2),16)<<24-_%8*4;return new a.init(w,h/2)}},p=l.Latin1={stringify:function(d){for(var h=d.words,w=d.sigBytes,_=[],b=0;b<w;b++){var A=h[b>>>2]>>>24-b%4*8&255;_.push(String.fromCharCode(A))}return _.join("")},parse:function(d){for(var h=d.length,w=[],_=0;_<h;_++)w[_>>>2]|=(255&d.charCodeAt(_))<<24-_%4*8;return new a.init(w,h)}},g=l.Utf8={stringify:function(d){try{return decodeURIComponent(escape(p.stringify(d)))}catch{throw new Error("Malformed UTF-8 data")}},parse:function(d){return p.parse(unescape(encodeURIComponent(d)))}},y=c.BufferedBlockAlgorithm=u.extend({reset:function(){this._data=new a.init,this._nDataBytes=0},_append:function(d){typeof d=="string"&&(d=g.parse(d)),this._data.concat(d),this._nDataBytes+=d.sigBytes},_process:function(d){var h=this._data,w=h.words,_=h.sigBytes,b=this.blockSize,A=_/(4*b),C=(A=d?o.ceil(A):o.max((0|A)-this._minBufferSize,0))*b,D=o.min(4*C,_);if(C){for(var H=0;H<C;H+=b)this._doProcessBlock(w,H);var oe=w.splice(0,C);h.sigBytes-=D}return new a.init(oe,D)},clone:function(){var d=u.clone.call(this);return d._data=this._data.clone(),d},_minBufferSize:0});c.Hasher=y.extend({cfg:u.extend(),init:function(d){this.cfg=this.cfg.extend(d),this.reset()},reset:function(){y.reset.call(this),this._doReset()},update:function(d){return this._append(d),this._process(),this},finalize:function(d){return d&&this._append(d),this._doFinalize()},blockSize:16,_createHelper:function(d){return function(h,w){return new d.init(w).finalize(h)}},_createHmacHelper:function(d){return function(h,w){return new m.HMAC.init(d,w).finalize(h)}}});var m=i.algo={};return i}(Math),n)}),vt=Eh,kh=(Ve(function(e,t){var n;e.exports=(n=vt,function(o){var r=n,s=r.lib,i=s.WordArray,c=s.Hasher,u=r.algo,a=[];(function(){for(var m=0;m<64;m++)a[m]=4294967296*o.abs(o.sin(m+1))|0})();var l=u.MD5=c.extend({_doReset:function(){this._hash=new i.init([1732584193,4023233417,2562383102,271733878])},_doProcessBlock:function(m,d){for(var h=0;h<16;h++){var w=d+h,_=m[w];m[w]=16711935&(_<<8|_>>>24)|4278255360&(_<<24|_>>>8)}var b=this._hash.words,A=m[d+0],C=m[d+1],D=m[d+2],H=m[d+3],oe=m[d+4],ae=m[d+5],ue=m[d+6],Ie=m[d+7],we=m[d+8],ht=m[d+9],le=m[d+10],z=m[d+11],L=m[d+12],N=m[d+13],ie=m[d+14],Xe=m[d+15],v=b[0],I=b[1],S=b[2],P=b[3];v=f(v,I,S,P,A,7,a[0]),P=f(P,v,I,S,C,12,a[1]),S=f(S,P,v,I,D,17,a[2]),I=f(I,S,P,v,H,22,a[3]),v=f(v,I,S,P,oe,7,a[4]),P=f(P,v,I,S,ae,12,a[5]),S=f(S,P,v,I,ue,17,a[6]),I=f(I,S,P,v,Ie,22,a[7]),v=f(v,I,S,P,we,7,a[8]),P=f(P,v,I,S,ht,12,a[9]),S=f(S,P,v,I,le,17,a[10]),I=f(I,S,P,v,z,22,a[11]),v=f(v,I,S,P,L,7,a[12]),P=f(P,v,I,S,N,12,a[13]),S=f(S,P,v,I,ie,17,a[14]),v=p(v,I=f(I,S,P,v,Xe,22,a[15]),S,P,C,5,a[16]),P=p(P,v,I,S,ue,9,a[17]),S=p(S,P,v,I,z,14,a[18]),I=p(I,S,P,v,A,20,a[19]),v=p(v,I,S,P,ae,5,a[20]),P=p(P,v,I,S,le,9,a[21]),S=p(S,P,v,I,Xe,14,a[22]),I=p(I,S,P,v,oe,20,a[23]),v=p(v,I,S,P,ht,5,a[24]),P=p(P,v,I,S,ie,9,a[25]),S=p(S,P,v,I,H,14,a[26]),I=p(I,S,P,v,we,20,a[27]),v=p(v,I,S,P,N,5,a[28]),P=p(P,v,I,S,D,9,a[29]),S=p(S,P,v,I,Ie,14,a[30]),v=g(v,I=p(I,S,P,v,L,20,a[31]),S,P,ae,4,a[32]),P=g(P,v,I,S,we,11,a[33]),S=g(S,P,v,I,z,16,a[34]),I=g(I,S,P,v,ie,23,a[35]),v=g(v,I,S,P,C,4,a[36]),P=g(P,v,I,S,oe,11,a[37]),S=g(S,P,v,I,Ie,16,a[38]),I=g(I,S,P,v,le,23,a[39]),v=g(v,I,S,P,N,4,a[40]),P=g(P,v,I,S,A,11,a[41]),S=g(S,P,v,I,H,16,a[42]),I=g(I,S,P,v,ue,23,a[43]),v=g(v,I,S,P,ht,4,a[44]),P=g(P,v,I,S,L,11,a[45]),S=g(S,P,v,I,Xe,16,a[46]),v=y(v,I=g(I,S,P,v,D,23,a[47]),S,P,A,6,a[48]),P=y(P,v,I,S,Ie,10,a[49]),S=y(S,P,v,I,ie,15,a[50]),I=y(I,S,P,v,ae,21,a[51]),v=y(v,I,S,P,L,6,a[52]),P=y(P,v,I,S,H,10,a[53]),S=y(S,P,v,I,le,15,a[54]),I=y(I,S,P,v,C,21,a[55]),v=y(v,I,S,P,we,6,a[56]),P=y(P,v,I,S,Xe,10,a[57]),S=y(S,P,v,I,ue,15,a[58]),I=y(I,S,P,v,N,21,a[59]),v=y(v,I,S,P,oe,6,a[60]),P=y(P,v,I,S,z,10,a[61]),S=y(S,P,v,I,D,15,a[62]),I=y(I,S,P,v,ht,21,a[63]),b[0]=b[0]+v|0,b[1]=b[1]+I|0,b[2]=b[2]+S|0,b[3]=b[3]+P|0},_doFinalize:function(){var m=this._data,d=m.words,h=8*this._nDataBytes,w=8*m.sigBytes;d[w>>>5]|=128<<24-w%32;var _=o.floor(h/4294967296),b=h;d[15+(w+64>>>9<<4)]=16711935&(_<<8|_>>>24)|4278255360&(_<<24|_>>>8),d[14+(w+64>>>9<<4)]=16711935&(b<<8|b>>>24)|4278255360&(b<<24|b>>>8),m.sigBytes=4*(d.length+1),this._process();for(var A=this._hash,C=A.words,D=0;D<4;D++){var H=C[D];C[D]=16711935&(H<<8|H>>>24)|4278255360&(H<<24|H>>>8)}return A},clone:function(){var m=c.clone.call(this);return m._hash=this._hash.clone(),m}});function f(m,d,h,w,_,b,A){var C=m+(d&h|~d&w)+_+A;return(C<<b|C>>>32-b)+d}function p(m,d,h,w,_,b,A){var C=m+(d&w|h&~w)+_+A;return(C<<b|C>>>32-b)+d}function g(m,d,h,w,_,b,A){var C=m+(d^h^w)+_+A;return(C<<b|C>>>32-b)+d}function y(m,d,h,w,_,b,A){var C=m+(h^(d|~w))+_+A;return(C<<b|C>>>32-b)+d}r.MD5=c._createHelper(l),r.HmacMD5=c._createHmacHelper(l)}(Math),n.MD5)}),Ve(function(e,t){var n;e.exports=(n=vt,void function(){var o=n,r=o.lib.Base,s=o.enc.Utf8;o.algo.HMAC=r.extend({init:function(i,c){i=this._hasher=new i.init,typeof c=="string"&&(c=s.parse(c));var u=i.blockSize,a=4*u;c.sigBytes>a&&(c=i.finalize(c)),c.clamp();for(var l=this._oKey=c.clone(),f=this._iKey=c.clone(),p=l.words,g=f.words,y=0;y<u;y++)p[y]^=1549556828,g[y]^=909522486;l.sigBytes=f.sigBytes=a,this.reset()},reset:function(){var i=this._hasher;i.reset(),i.update(this._iKey)},update:function(i){return this._hasher.update(i),this},finalize:function(i){var c=this._hasher,u=c.finalize(i);return c.reset(),c.finalize(this._oKey.clone().concat(u))}})}())}),Ve(function(e,t){e.exports=vt.HmacMD5})),$h=Ve(function(e,t){e.exports=vt.enc.Utf8}),Rh=Ve(function(e,t){var n;e.exports=(n=vt,function(){var o=n,r=o.lib.WordArray;function s(i,c,u){for(var a=[],l=0,f=0;f<c;f++)if(f%4){var p=u[i.charCodeAt(f-1)]<<f%4*2,g=u[i.charCodeAt(f)]>>>6-f%4*2;a[l>>>2]|=(p|g)<<24-l%4*8,l++}return r.create(a,l)}o.enc.Base64={stringify:function(i){var c=i.words,u=i.sigBytes,a=this._map;i.clamp();for(var l=[],f=0;f<u;f+=3)for(var p=(c[f>>>2]>>>24-f%4*8&255)<<16|(c[f+1>>>2]>>>24-(f+1)%4*8&255)<<8|c[f+2>>>2]>>>24-(f+2)%4*8&255,g=0;g<4&&f+.75*g<u;g++)l.push(a.charAt(p>>>6*(3-g)&63));var y=a.charAt(64);if(y)for(;l.length%4;)l.push(y);return l.join("")},parse:function(i){var c=i.length,u=this._map,a=this._reverseMap;if(!a){a=this._reverseMap=[];for(var l=0;l<u.length;l++)a[u.charCodeAt(l)]=l}var f=u.charAt(64);if(f){var p=i.indexOf(f);p!==-1&&(c=p)}return s(i,c,a)},_map:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="}}(),n.enc.Base64)});const Xr="FUNCTION",Lh="OBJECT",Nh="CLIENT_DB";function rr(e){return Object.prototype.toString.call(e).slice(8,-1).toLowerCase()}function $c(e){return rr(e)==="object"}function Rc(e){return typeof e=="function"}function Dh(e){return function(){try{return e.apply(e,arguments)}catch(t){console.error(t)}}}function sr(e){return e&&typeof e=="string"?JSON.parse(e):e}const Uh=!0,Mh="mp-weixin",jh=sr([]);let F;F=Mh;const Fh=sr(`{
-    "address": [
-        "127.0.0.1",
-        "192.168.0.15"
-    ],
-    "debugPort": 9000,
-    "initialLaunchType": "local",
-    "servePort": 7000,
-    "skipFiles": [
-        "<node_internals>/**",
-        "/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"
-    ]
+"use strict";
+const _export_sfc = (sfc, props) => {
+  const target = sfc.__vccOpts || sfc;
+  for (const [key, val] of props) {
+    target[key] = val;
+  }
+  return target;
+};
+function makeMap(str, expectsLowerCase) {
+  const map = /* @__PURE__ */ Object.create(null);
+  const list = str.split(",");
+  for (let i = 0; i < list.length; i++) {
+    map[list[i]] = true;
+  }
+  return expectsLowerCase ? (val) => !!map[val.toLowerCase()] : (val) => !!map[val];
 }
-`),Lc=sr('[{"provider":"aliyun","spaceName":"aliyun-test","spaceId":"mp-903d3447-57af-4512-bb58-c50e39c116f0","clientSecret":"QWvx8Tw/oBZfgYTUfTYwQg==","endpoint":"https://api.next.bspapp.com"}]')||[];let vo="";try{vo="__UNI__C1A907D"}catch{}let Yt={};function at(e,t={}){var n,o;return n=Yt,o=e,Object.prototype.hasOwnProperty.call(n,o)||(Yt[e]=t),Yt[e]}F==="app"&&(Yt=$._globalUniCloudObj?$._globalUniCloudObj:$._globalUniCloudObj={});const Nc=["invoke","success","fail","complete"],me=at("_globalUniCloudInterceptor");function Dc(e,t){me[e]||(me[e]={}),$c(t)&&Object.keys(t).forEach(n=>{Nc.indexOf(n)>-1&&function(o,r,s){let i=me[o][r];i||(i=me[o][r]=[]),i.indexOf(s)===-1&&Rc(s)&&i.push(s)}(e,n,t[n])})}function Hh(e,t){me[e]||(me[e]={}),$c(t)?Object.keys(t).forEach(n=>{Nc.indexOf(n)>-1&&function(o,r,s){const i=me[o][r];if(!i)return;const c=i.indexOf(s);c>-1&&i.splice(c,1)}(e,n,t[n])}):delete me[e]}function ee(e,t){return e&&e.length!==0?e.reduce((n,o)=>n.then(()=>o(t)),Promise.resolve()):Promise.resolve()}function te(e,t){return me[e]&&me[e][t]||[]}function Bh(e){Dc("callObject",e)}const Nn=at("_globalUniCloudListener"),_e="response",ut="needLogin",ln="refreshToken",Zr="clientdb",Vt="cloudfunction",es="cloudobject";function Lt(e){return Nn[e]||(Nn[e]=[]),Nn[e]}function Dn(e,t){const n=Lt(e);n.includes(t)||n.push(t)}function Un(e,t){const n=Lt(e),o=n.indexOf(t);o!==-1&&n.splice(o,1)}function se(e,t){const n=Lt(e);for(let o=0;o<n.length;o++)(0,n[o])(t)}let Mn,jn=!1;function Uc(){return Mn||(Mn=new Promise(e=>{jn&&e(),function t(){if(typeof getCurrentPages=="function"){const n=getCurrentPages();n&&n[0]&&(jn=!0,e())}jn||setTimeout(()=>{t()},30)}()}),Mn)}function ts(e){const t={};for(const n in e){const o=e[n];Rc(o)&&(t[n]=Dh(o))}return t}function Mc(e,t){return t?function(n){let o=!1;t==="callFunction"&&(o=(n&&n.type||Xr)!==Xr);const r=t==="callFunction"&&!o;let s;s=this.isReady?Promise.resolve():this.initUniCloud,n=n||{};const{success:i,fail:c,complete:u}=ts(n),a=s.then(()=>o?Promise.resolve():ee(te(t,"invoke"),n)).then(()=>e.call(this,n)).then(l=>o?Promise.resolve(l):ee(te(t,"success"),l).then(()=>ee(te(t,"complete"),l)).then(()=>(r&&se(_e,{type:Vt,content:l}),Promise.resolve(l))),l=>o?Promise.reject(l):ee(te(t,"fail"),l).then(()=>ee(te(t,"complete"),l)).then(()=>(se(_e,{type:Vt,content:l}),Promise.reject(l))));if(!(i||c||u))return a;a.then(l=>{i&&i(l),u&&u(l),r&&se(_e,{type:Vt,content:l})},l=>{c&&c(l),u&&u(l),r&&se(_e,{type:Vt,content:l})})}:function(n){n=n||{};const{success:o,fail:r,complete:s}=ts(n);if(!(o||r||s))return e.call(this,n);e.call(this,n).then(i=>{o&&o(i),s&&s(i)},i=>{r&&r(i),s&&s(i)})}}class E extends Error{constructor(t){super(t.message),this.errMsg=t.message||t.errMsg||"unknown system error",this.code=this.errCode=t.code||t.errCode||"SYSTEM_ERROR",this.errSubject=this.subject=t.subject||t.errSubject,this.cause=t.cause,this.requestId=t.requestId}toJson(t=0){if(!(t>=10))return t++,{errCode:this.errCode,errMsg:this.errMsg,errSubject:this.errSubject,cause:this.cause&&this.cause.toJson?this.cause.toJson(t):this.cause}}}var W={request:e=>$.request(e),uploadFile:e=>$.uploadFile(e),setStorageSync:(e,t)=>$.setStorageSync(e,t),getStorageSync:e=>$.getStorageSync(e),removeStorageSync:e=>$.removeStorageSync(e),clearStorageSync:()=>$.clearStorageSync()};function jc(e){return e&&jc(e.__v_raw)||e}function In(){return{token:W.getStorageSync("uni_id_token")||W.getStorageSync("uniIdToken"),tokenExpired:W.getStorageSync("uni_id_token_expired")}}function Fc({token:e,tokenExpired:t}={}){e&&W.setStorageSync("uni_id_token",e),t&&W.setStorageSync("uni_id_token_expired",t)}function qh(){F==="web"&&$.getStorageSync("__LAST_DCLOUD_APPID")!==vo&&($.setStorageSync("__LAST_DCLOUD_APPID",vo),console.warn("\u68C0\u6D4B\u5230\u5F53\u524D\u9879\u76EE\u4E0E\u4E0A\u6B21\u8FD0\u884C\u5230\u6B64\u7AEF\u53E3\u7684\u9879\u76EE\u4E0D\u4E00\u81F4\uFF0C\u81EA\u52A8\u6E05\u7406uni-id\u4FDD\u5B58\u7684token\u4FE1\u606F\uFF08\u4EC5\u5F00\u53D1\u8C03\u8BD5\u65F6\u751F\u6548\uFF09"),W.removeStorageSync("uni_id_token"),W.removeStorageSync("uniIdToken"),W.removeStorageSync("uni_id_token_expired"))}let Fn,Wt;function ir(){return Fn||(Fn=$.getSystemInfoSync()),Fn}function Kh(){let e,t;try{if($.getLaunchOptionsSync){if($.getLaunchOptionsSync.toString().indexOf("not yet implemented")>-1)return;const{scene:n,channel:o}=$.getLaunchOptionsSync();e=o,t=n}}catch{}return{channel:e,scene:t}}function Hc(){const e=$.getLocale&&$.getLocale()||"en";if(Wt)return{...Wt,locale:e,LOCALE:e};const t=ir(),{deviceId:n,osName:o,uniPlatform:r,appId:s}=t,i=["pixelRatio","brand","model","system","language","version","platform","host","SDKVersion","swanNativeVersion","app","AppPlatform","fontSizeSetting"];for(let c=0;c<i.length;c++)delete t[i[c]];return Wt={PLATFORM:r,OS:o,APPID:s,DEVICEID:n,...Kh(),...t},{...Wt,locale:e,LOCALE:e}}var wt={sign:function(e,t){let n="";return Object.keys(e).sort().forEach(function(o){e[o]&&(n=n+"&"+o+"="+e[o])}),n=n.slice(1),kh(n,t).toString()},wrappedRequest:function(e,t){return new Promise((n,o)=>{t(Object.assign(e,{complete(r){r||(r={}),F==="web"&&r.errMsg&&r.errMsg.indexOf("request:fail")===0&&console.warn("\u53D1\u5E03H5\uFF0C\u9700\u8981\u5728uniCloud\u540E\u53F0\u64CD\u4F5C\uFF0C\u7ED1\u5B9A\u5B89\u5168\u57DF\u540D\uFF0C\u5426\u5219\u4F1A\u56E0\u4E3A\u8DE8\u57DF\u95EE\u9898\u800C\u65E0\u6CD5\u8BBF\u95EE\u3002\u6559\u7A0B\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.io/uniCloud/quickstart?id=useinh5");const s=r.data&&r.data.header&&r.data.header["x-serverless-request-id"]||r.header&&r.header["request-id"];if(!r.statusCode||r.statusCode>=400)return o(new E({code:"SYS_ERR",message:r.errMsg||"request:fail",requestId:s}));const i=r.data;if(i.error)return o(new E({code:i.error.code,message:i.error.message,requestId:s}));i.result=i.data,i.requestId=s,delete i.data,n(i)}}))})},toBase64:function(e){return Rh.stringify($h.parse(e))}},ns={"uniCloud.init.paramRequired":"{param} required","uniCloud.uploadFile.fileError":"filePath should be instance of File"};const{t:Vh}=Za({"zh-Hans":{"uniCloud.init.paramRequired":"\u7F3A\u5C11\u53C2\u6570\uFF1A{param}","uniCloud.uploadFile.fileError":"filePath\u5E94\u4E3AFile\u5BF9\u8C61"},"zh-Hant":{"uniCloud.init.paramRequired":"\u7F3A\u5C11\u53C2\u6570\uFF1A{param}","uniCloud.uploadFile.fileError":"filePath\u5E94\u4E3AFile\u5BF9\u8C61"},en:ns,fr:{"uniCloud.init.paramRequired":"{param} required","uniCloud.uploadFile.fileError":"filePath should be instance of File"},es:{"uniCloud.init.paramRequired":"{param} required","uniCloud.uploadFile.fileError":"filePath should be instance of File"},ja:ns},"zh-Hans");var Bc=class{constructor(e){["spaceId","clientSecret"].forEach(t=>{if(!Object.prototype.hasOwnProperty.call(e,t))throw new Error(Vh("uniCloud.init.paramRequired",{param:t}))}),this.config=Object.assign({},{endpoint:"https://api.bspapp.com"},e),this.config.provider="aliyun",this.config.requestUrl=this.config.endpoint+"/client",this.config.envType=this.config.envType||"public",this.config.accessTokenKey="access_token_"+this.config.spaceId,this.adapter=W,this._getAccessTokenPromise=null,this._getAccessTokenPromiseStatus=null}get hasAccessToken(){return!!this.accessToken}setAccessToken(e){this.accessToken=e}requestWrapped(e){return wt.wrappedRequest(e,this.adapter.request)}requestAuth(e){return this.requestWrapped(e)}request(e,t){return Promise.resolve().then(()=>this.hasAccessToken?t?this.requestWrapped(e):this.requestWrapped(e).catch(n=>new Promise((o,r)=>{!n||n.code!=="GATEWAY_INVALID_TOKEN"&&n.code!=="InvalidParameter.InvalidToken"?r(n):o()}).then(()=>this.getAccessToken()).then(()=>{const o=this.rebuildRequest(e);return this.request(o,!0)})):this.getAccessToken().then(()=>{const n=this.rebuildRequest(e);return this.request(n,!0)}))}rebuildRequest(e){const t=Object.assign({},e);return t.data.token=this.accessToken,t.header["x-basement-token"]=this.accessToken,t.header["x-serverless-sign"]=wt.sign(t.data,this.config.clientSecret),t}setupRequest(e,t){const n=Object.assign({},e,{spaceId:this.config.spaceId,timestamp:Date.now()}),o={"Content-Type":"application/json"};return t!=="auth"&&(n.token=this.accessToken,o["x-basement-token"]=this.accessToken),o["x-serverless-sign"]=wt.sign(n,this.config.clientSecret),{url:this.config.requestUrl,method:"POST",data:n,dataType:"json",header:o}}getAccessToken(){return this._getAccessTokenPromiseStatus==="pending"?this._getAccessTokenPromise:(this._getAccessTokenPromiseStatus="pending",this._getAccessTokenPromise=this.requestAuth(this.setupRequest({method:"serverless.auth.user.anonymousAuthorize",params:"{}"},"auth")).then(e=>new Promise((t,n)=>{e.result&&e.result.accessToken?(this.setAccessToken(e.result.accessToken),this._getAccessTokenPromiseStatus="fulfilled",t(this.accessToken)):(this._getAccessTokenPromiseStatus="rejected",n(new E({code:"AUTH_FAILED",message:"\u83B7\u53D6accessToken\u5931\u8D25"})))}),e=>(this._getAccessTokenPromiseStatus="rejected",Promise.reject(e))),this._getAccessTokenPromise)}authorize(){this.getAccessToken()}callFunction(e){const t={method:"serverless.function.runtime.invoke",params:JSON.stringify({functionTarget:e.name,functionArgs:e.data||{}})};return this.request(this.setupRequest(t))}getOSSUploadOptionsFromPath(e){const t={method:"serverless.file.resource.generateProximalSign",params:JSON.stringify(e)};return this.request(this.setupRequest(t))}uploadFileToOSS({url:e,formData:t,name:n,filePath:o,fileType:r,onUploadProgress:s}){return new Promise((i,c)=>{const u=this.adapter.uploadFile({url:e,formData:t,name:n,filePath:o,fileType:r,header:{"X-OSS-server-side-encrpytion":"AES256"},success(a){a&&a.statusCode<400?i(a):c(new E({code:"UPLOAD_FAILED",message:"\u6587\u4EF6\u4E0A\u4F20\u5931\u8D25"}))},fail(a){c(new E({code:a.code||"UPLOAD_FAILED",message:a.message||a.errMsg||"\u6587\u4EF6\u4E0A\u4F20\u5931\u8D25"}))}});typeof s=="function"&&u&&typeof u.onProgressUpdate=="function"&&u.onProgressUpdate(a=>{s({loaded:a.totalBytesSent,total:a.totalBytesExpectedToSend})})})}reportOSSUpload(e){const t={method:"serverless.file.resource.report",params:JSON.stringify(e)};return this.request(this.setupRequest(t))}async uploadFile({filePath:e,cloudPath:t,fileType:n="image",onUploadProgress:o,config:r}){if(rr(t)!=="string")throw new E({code:"INVALID_PARAM",message:"cloudPath\u5FC5\u987B\u4E3A\u5B57\u7B26\u4E32\u7C7B\u578B"});if(!(t=t.trim()))throw new E({code:"CLOUDPATH_REQUIRED",message:"cloudPath\u4E0D\u53EF\u4E3A\u7A7A"});if(/:\/\//.test(t))throw new E({code:"INVALID_PARAM",message:"cloudPath\u4E0D\u5408\u6CD5"});const s=r&&r.envType||this.config.envType,i=(await this.getOSSUploadOptionsFromPath({env:s,filename:t})).result,c="https://"+i.cdnDomain+"/"+i.ossPath,{securityToken:u,accessKeyId:a,signature:l,host:f,ossPath:p,id:g,policy:y,ossCallbackUrl:m}=i,d={"Cache-Control":"max-age=2592000","Content-Disposition":"attachment",OSSAccessKeyId:a,Signature:l,host:f,id:g,key:p,policy:y,success_action_status:200};if(u&&(d["x-oss-security-token"]=u),m){const w=JSON.stringify({callbackUrl:m,callbackBody:JSON.stringify({fileId:g,spaceId:this.config.spaceId}),callbackBodyType:"application/json"});d.callback=wt.toBase64(w)}const h={url:"https://"+i.host,formData:d,fileName:"file",name:"file",filePath:e,fileType:n};if(await this.uploadFileToOSS(Object.assign({},h,{onUploadProgress:o})),m)return{success:!0,filePath:e,fileID:c};if((await this.reportOSSUpload({id:g})).success)return{success:!0,filePath:e,fileID:c};throw new E({code:"UPLOAD_FAILED",message:"\u6587\u4EF6\u4E0A\u4F20\u5931\u8D25"})}getTempFileURL({fileList:e}={}){return new Promise((t,n)=>{Array.isArray(e)&&e.length!==0||n(new E({code:"INVALID_PARAM",message:"fileList\u7684\u5143\u7D20\u5FC5\u987B\u662F\u975E\u7A7A\u7684\u5B57\u7B26\u4E32"})),t({fileList:e.map(o=>({fileID:o,tempFileURL:o}))})})}async getFileInfo({fileList:e}={}){if(!Array.isArray(e)||e.length===0)throw new E({code:"INVALID_PARAM",message:"fileList\u7684\u5143\u7D20\u5FC5\u987B\u662F\u975E\u7A7A\u7684\u5B57\u7B26\u4E32"});const t={method:"serverless.file.resource.info",params:JSON.stringify({id:e.map(n=>n.split("?")[0]).join(",")})};return{fileList:(await this.request(this.setupRequest(t))).result}}},Wh={init(e){const t=new Bc(e),n={signInAnonymously:function(){return t.authorize()},getLoginState:function(){return Promise.resolve(!1)}};return t.auth=function(){return n},t.customAuth=t.auth,t}};const zh=typeof location<"u"&&location.protocol==="http:"?"http:":"https:";var os;(function(e){e.local="local",e.none="none",e.session="session"})(os||(os={}));var Jh=function(){};const Nt=()=>{let e;if(!Promise){e=()=>{},e.promise={};const n=()=>{throw new E({message:'Your Node runtime does support ES6 Promises. Set "global.Promise" to your preferred implementation of promises.'})};return Object.defineProperty(e.promise,"then",{get:n}),Object.defineProperty(e.promise,"catch",{get:n}),e}const t=new Promise((n,o)=>{e=(r,s)=>r?o(r):n(s)});return e.promise=t,e};function Gh(e){return e===void 0}function Yh(e){return Object.prototype.toString.call(e)==="[object Null]"}var rs;function Qh(e){const t=(n=e,Object.prototype.toString.call(n)==="[object Array]"?e:[e]);var n;for(const o of t){const{isMatch:r,genAdapter:s,runtime:i}=o;if(r())return{adapter:s(),runtime:i}}}(function(e){e.WEB="web",e.WX_MP="wx_mp"})(rs||(rs={}));const Z={adapter:null,runtime:void 0},Xh=["anonymousUuidKey"];class Hn extends Jh{constructor(){super(),Z.adapter.root.tcbObject||(Z.adapter.root.tcbObject={})}setItem(t,n){Z.adapter.root.tcbObject[t]=n}getItem(t){return Z.adapter.root.tcbObject[t]}removeItem(t){delete Z.adapter.root.tcbObject[t]}clear(){delete Z.adapter.root.tcbObject}}function ss(e,t){switch(e){case"local":return t.localStorage||new Hn;case"none":return new Hn;default:return t.sessionStorage||new Hn}}class is{constructor(t){if(!this._storage){this._persistence=Z.adapter.primaryStorage||t.persistence,this._storage=ss(this._persistence,Z.adapter);const n=`access_token_${t.env}`,o=`access_token_expire_${t.env}`,r=`refresh_token_${t.env}`,s=`anonymous_uuid_${t.env}`,i=`login_type_${t.env}`,c=`user_info_${t.env}`;this.keys={accessTokenKey:n,accessTokenExpireKey:o,refreshTokenKey:r,anonymousUuidKey:s,loginTypeKey:i,userInfoKey:c}}}updatePersistence(t){if(t===this._persistence)return;const n=this._persistence==="local";this._persistence=t;const o=ss(t,Z.adapter);for(const r in this.keys){const s=this.keys[r];if(n&&Xh.includes(r))continue;const i=this._storage.getItem(s);Gh(i)||Yh(i)||(o.setItem(s,i),this._storage.removeItem(s))}this._storage=o}setStore(t,n,o){if(!this._storage)return;const r={version:o||"localCachev1",content:n},s=JSON.stringify(r);try{this._storage.setItem(t,s)}catch(i){throw i}}getStore(t,n){try{if(!this._storage)return}catch{return""}n=n||"localCachev1";const o=this._storage.getItem(t);return o&&o.indexOf(n)>=0?JSON.parse(o).content:""}removeStore(t){this._storage.removeItem(t)}}const qc={},Kc={};function Dt(e){return qc[e]}class Vc{constructor(t,n){this.data=n||null,this.name=t}}class Zh extends Vc{constructor(t,n){super("error",{error:t,data:n}),this.error=t}}const cr=new class{constructor(){this._listeners={}}on(e,t){return function(n,o,r){r[n]=r[n]||[],r[n].push(o)}(e,t,this._listeners),this}off(e,t){return function(n,o,r){if(r&&r[n]){const s=r[n].indexOf(o);s!==-1&&r[n].splice(s,1)}}(e,t,this._listeners),this}fire(e,t){if(e instanceof Zh)return console.error(e.error),this;const n=typeof e=="string"?new Vc(e,t||{}):e,o=n.name;if(this._listens(o)){n.target=this;const r=this._listeners[o]?[...this._listeners[o]]:[];for(const s of r)s.call(this,n)}return this}_listens(e){return this._listeners[e]&&this._listeners[e].length>0}};function xe(e,t){cr.on(e,t)}function ne(e,t={}){cr.fire(e,t)}function eg(e,t){cr.off(e,t)}const lt="loginStateChanged",Wc="loginStateExpire",Re="loginTypeChanged",So="anonymousConverted",zc="refreshAccessToken";var J;(function(e){e.ANONYMOUS="ANONYMOUS",e.WECHAT="WECHAT",e.WECHAT_PUBLIC="WECHAT-PUBLIC",e.WECHAT_OPEN="WECHAT-OPEN",e.CUSTOM="CUSTOM",e.EMAIL="EMAIL",e.USERNAME="USERNAME",e.NULL="NULL"})(J||(J={}));const cs=["auth.getJwt","auth.logout","auth.signInWithTicket","auth.signInAnonymously","auth.signIn","auth.fetchAccessTokenWithRefreshToken","auth.signUpWithEmailAndPassword","auth.activateEndUserMail","auth.sendPasswordResetEmail","auth.resetPasswordWithToken","auth.isUsernameRegistered"],tg={"X-SDK-Version":"1.3.5"};function Bn(e,t,n){const o=e[t];e[t]=function(r){const s={},i={};n.forEach(u=>{const{data:a,headers:l}=u.call(e,r);Object.assign(s,a),Object.assign(i,l)});const c=r.data;return c&&(()=>{var u;if(u=c,Object.prototype.toString.call(u)!=="[object FormData]")r.data={...c,...s};else for(const a in s)c.append(a,s[a])})(),r.headers={...r.headers||{},...i},o.call(e,r)}}function qn(){const e=Math.random().toString(16).slice(2);return{data:{seqId:e},headers:{...tg,"x-seqid":e}}}class ng{constructor(t={}){var n;this.config=t,this._reqClass=new Z.adapter.reqClass({timeout:this.config.timeout,timeoutMsg:`\u8BF7\u6C42\u5728${this.config.timeout/1e3}s\u5185\u672A\u5B8C\u6210\uFF0C\u5DF2\u4E2D\u65AD`,restrictedMethods:["post"]}),this._cache=Dt(this.config.env),this._localCache=(n=this.config.env,Kc[n]),Bn(this._reqClass,"post",[qn]),Bn(this._reqClass,"upload",[qn]),Bn(this._reqClass,"download",[qn])}async post(t){return await this._reqClass.post(t)}async upload(t){return await this._reqClass.upload(t)}async download(t){return await this._reqClass.download(t)}async refreshAccessToken(){let t,n;this._refreshAccessTokenPromise||(this._refreshAccessTokenPromise=this._refreshAccessToken());try{t=await this._refreshAccessTokenPromise}catch(o){n=o}if(this._refreshAccessTokenPromise=null,this._shouldRefreshAccessTokenHook=null,n)throw n;return t}async _refreshAccessToken(){const{accessTokenKey:t,accessTokenExpireKey:n,refreshTokenKey:o,loginTypeKey:r,anonymousUuidKey:s}=this._cache.keys;this._cache.removeStore(t),this._cache.removeStore(n);let i=this._cache.getStore(o);if(!i)throw new E({message:"\u672A\u767B\u5F55CloudBase"});const c={refresh_token:i},u=await this.request("auth.fetchAccessTokenWithRefreshToken",c);if(u.data.code){const{code:a}=u.data;if(a==="SIGN_PARAM_INVALID"||a==="REFRESH_TOKEN_EXPIRED"||a==="INVALID_REFRESH_TOKEN"){if(this._cache.getStore(r)===J.ANONYMOUS&&a==="INVALID_REFRESH_TOKEN"){const l=this._cache.getStore(s),f=this._cache.getStore(o),p=await this.send("auth.signInAnonymously",{anonymous_uuid:l,refresh_token:f});return this.setRefreshToken(p.refresh_token),this._refreshAccessToken()}ne(Wc),this._cache.removeStore(o)}throw new E({code:u.data.code,message:`\u5237\u65B0access token\u5931\u8D25\uFF1A${u.data.code}`})}if(u.data.access_token)return ne(zc),this._cache.setStore(t,u.data.access_token),this._cache.setStore(n,u.data.access_token_expire+Date.now()),{accessToken:u.data.access_token,accessTokenExpire:u.data.access_token_expire};u.data.refresh_token&&(this._cache.removeStore(o),this._cache.setStore(o,u.data.refresh_token),this._refreshAccessToken())}async getAccessToken(){const{accessTokenKey:t,accessTokenExpireKey:n,refreshTokenKey:o}=this._cache.keys;if(!this._cache.getStore(o))throw new E({message:"refresh token\u4E0D\u5B58\u5728\uFF0C\u767B\u5F55\u72B6\u6001\u5F02\u5E38"});let r=this._cache.getStore(t),s=this._cache.getStore(n),i=!0;return this._shouldRefreshAccessTokenHook&&!await this._shouldRefreshAccessTokenHook(r,s)&&(i=!1),(!r||!s||s<Date.now())&&i?this.refreshAccessToken():{accessToken:r,accessTokenExpire:s}}async request(t,n,o){const r=`x-tcb-trace_${this.config.env}`;let s="application/x-www-form-urlencoded";const i={action:t,env:this.config.env,dataVersion:"2019-08-16",...n};if(cs.indexOf(t)===-1){const{refreshTokenKey:h}=this._cache.keys;this._cache.getStore(h)&&(i.access_token=(await this.getAccessToken()).accessToken)}let c;if(t==="storage.uploadFile"){c=new FormData;for(let h in c)c.hasOwnProperty(h)&&c[h]!==void 0&&c.append(h,i[h]);s="multipart/form-data"}else{s="application/json",c={};for(let h in i)i[h]!==void 0&&(c[h]=i[h])}let u={headers:{"content-type":s}};o&&o.onUploadProgress&&(u.onUploadProgress=o.onUploadProgress);const a=this._localCache.getStore(r);a&&(u.headers["X-TCB-Trace"]=a);const{parse:l,inQuery:f,search:p}=n;let g={env:this.config.env};l&&(g.parse=!0),f&&(g={...f,...g});let y=function(h,w,_={}){const b=/\?/.test(w);let A="";for(let C in _)A===""?!b&&(w+="?"):A+="&",A+=`${C}=${encodeURIComponent(_[C])}`;return/^http(s)?\:\/\//.test(w+=A)?w:`${h}${w}`}(zh,"//tcb-api.tencentcloudapi.com/web",g);p&&(y+=p);const m=await this.post({url:y,data:c,...u}),d=m.header&&m.header["x-tcb-trace"];if(d&&this._localCache.setStore(r,d),Number(m.status)!==200&&Number(m.statusCode)!==200||!m.data)throw new E({code:"NETWORK_ERROR",message:"network request error"});return m}async send(t,n={}){const o=await this.request(t,n,{onUploadProgress:n.onUploadProgress});if(o.data.code==="ACCESS_TOKEN_EXPIRED"&&cs.indexOf(t)===-1){await this.refreshAccessToken();const r=await this.request(t,n,{onUploadProgress:n.onUploadProgress});if(r.data.code)throw new E({code:r.data.code,message:r.data.message});return r.data}if(o.data.code)throw new E({code:o.data.code,message:o.data.message});return o.data}setRefreshToken(t){const{accessTokenKey:n,accessTokenExpireKey:o,refreshTokenKey:r}=this._cache.keys;this._cache.removeStore(n),this._cache.removeStore(o),this._cache.setStore(r,t)}}const Jc={};function Pe(e){return Jc[e]}class An{constructor(t){this.config=t,this._cache=Dt(t.env),this._request=Pe(t.env)}setRefreshToken(t){const{accessTokenKey:n,accessTokenExpireKey:o,refreshTokenKey:r}=this._cache.keys;this._cache.removeStore(n),this._cache.removeStore(o),this._cache.setStore(r,t)}setAccessToken(t,n){const{accessTokenKey:o,accessTokenExpireKey:r}=this._cache.keys;this._cache.setStore(o,t),this._cache.setStore(r,n)}async refreshUserInfo(){const{data:t}=await this._request.send("auth.getUserInfo",{});return this.setLocalUserInfo(t),t}setLocalUserInfo(t){const{userInfoKey:n}=this._cache.keys;this._cache.setStore(n,t)}}class og{constructor(t){if(!t)throw new E({code:"PARAM_ERROR",message:"envId is not defined"});this._envId=t,this._cache=Dt(this._envId),this._request=Pe(this._envId),this.setUserInfo()}linkWithTicket(t){if(typeof t!="string")throw new E({code:"PARAM_ERROR",message:"ticket must be string"});return this._request.send("auth.linkWithTicket",{ticket:t})}linkWithRedirect(t){t.signInWithRedirect()}updatePassword(t,n){return this._request.send("auth.updatePassword",{oldPassword:n,newPassword:t})}updateEmail(t){return this._request.send("auth.updateEmail",{newEmail:t})}updateUsername(t){if(typeof t!="string")throw new E({code:"PARAM_ERROR",message:"username must be a string"});return this._request.send("auth.updateUsername",{username:t})}async getLinkedUidList(){const{data:t}=await this._request.send("auth.getLinkedUidList",{});let n=!1;const{users:o}=t;return o.forEach(r=>{r.wxOpenId&&r.wxPublicId&&(n=!0)}),{users:o,hasPrimaryUid:n}}setPrimaryUid(t){return this._request.send("auth.setPrimaryUid",{uid:t})}unlink(t){return this._request.send("auth.unlink",{platform:t})}async update(t){const{nickName:n,gender:o,avatarUrl:r,province:s,country:i,city:c}=t,{data:u}=await this._request.send("auth.updateUserInfo",{nickName:n,gender:o,avatarUrl:r,province:s,country:i,city:c});this.setLocalUserInfo(u)}async refresh(){const{data:t}=await this._request.send("auth.getUserInfo",{});return this.setLocalUserInfo(t),t}setUserInfo(){const{userInfoKey:t}=this._cache.keys,n=this._cache.getStore(t);["uid","loginType","openid","wxOpenId","wxPublicId","unionId","qqMiniOpenId","email","hasPassword","customUserId","nickName","gender","avatarUrl"].forEach(o=>{this[o]=n[o]}),this.location={country:n.country,province:n.province,city:n.city}}setLocalUserInfo(t){const{userInfoKey:n}=this._cache.keys;this._cache.setStore(n,t),this.setUserInfo()}}class Ut{constructor(t){if(!t)throw new E({code:"PARAM_ERROR",message:"envId is not defined"});this._cache=Dt(t);const{refreshTokenKey:n,accessTokenKey:o,accessTokenExpireKey:r}=this._cache.keys,s=this._cache.getStore(n),i=this._cache.getStore(o),c=this._cache.getStore(r);this.credential={refreshToken:s,accessToken:i,accessTokenExpire:c},this.user=new og(t)}get isAnonymousAuth(){return this.loginType===J.ANONYMOUS}get isCustomAuth(){return this.loginType===J.CUSTOM}get isWeixinAuth(){return this.loginType===J.WECHAT||this.loginType===J.WECHAT_OPEN||this.loginType===J.WECHAT_PUBLIC}get loginType(){return this._cache.getStore(this._cache.keys.loginTypeKey)}}class Kn extends An{async signIn(){this._cache.updatePersistence("local");const{anonymousUuidKey:t,refreshTokenKey:n}=this._cache.keys,o=this._cache.getStore(t)||void 0,r=this._cache.getStore(n)||void 0,s=await this._request.send("auth.signInAnonymously",{anonymous_uuid:o,refresh_token:r});if(s.uuid&&s.refresh_token){this._setAnonymousUUID(s.uuid),this.setRefreshToken(s.refresh_token),await this._request.refreshAccessToken(),ne(lt),ne(Re,{env:this.config.env,loginType:J.ANONYMOUS,persistence:"local"});const i=new Ut(this.config.env);return await i.user.refresh(),i}throw new E({message:"\u533F\u540D\u767B\u5F55\u5931\u8D25"})}async linkAndRetrieveDataWithTicket(t){const{anonymousUuidKey:n,refreshTokenKey:o}=this._cache.keys,r=this._cache.getStore(n),s=this._cache.getStore(o),i=await this._request.send("auth.linkAndRetrieveDataWithTicket",{anonymous_uuid:r,refresh_token:s,ticket:t});if(i.refresh_token)return this._clearAnonymousUUID(),this.setRefreshToken(i.refresh_token),await this._request.refreshAccessToken(),ne(So,{env:this.config.env}),ne(Re,{loginType:J.CUSTOM,persistence:"local"}),{credential:{refreshToken:i.refresh_token}};throw new E({message:"\u533F\u540D\u8F6C\u5316\u5931\u8D25"})}_setAnonymousUUID(t){const{anonymousUuidKey:n,loginTypeKey:o}=this._cache.keys;this._cache.removeStore(n),this._cache.setStore(n,t),this._cache.setStore(o,J.ANONYMOUS)}_clearAnonymousUUID(){this._cache.removeStore(this._cache.keys.anonymousUuidKey)}}class as extends An{async signIn(t){if(typeof t!="string")throw new E({code:"PARAM_ERROR",message:"ticket must be a string"});const{refreshTokenKey:n}=this._cache.keys,o=await this._request.send("auth.signInWithTicket",{ticket:t,refresh_token:this._cache.getStore(n)||""});if(o.refresh_token)return this.setRefreshToken(o.refresh_token),await this._request.refreshAccessToken(),ne(lt),ne(Re,{env:this.config.env,loginType:J.CUSTOM,persistence:this.config.persistence}),await this.refreshUserInfo(),new Ut(this.config.env);throw new E({message:"\u81EA\u5B9A\u4E49\u767B\u5F55\u5931\u8D25"})}}class us extends An{async signIn(t,n){if(typeof t!="string")throw new E({code:"PARAM_ERROR",message:"email must be a string"});const{refreshTokenKey:o}=this._cache.keys,r=await this._request.send("auth.signIn",{loginType:"EMAIL",email:t,password:n,refresh_token:this._cache.getStore(o)||""}),{refresh_token:s,access_token:i,access_token_expire:c}=r;if(s)return this.setRefreshToken(s),i&&c?this.setAccessToken(i,c):await this._request.refreshAccessToken(),await this.refreshUserInfo(),ne(lt),ne(Re,{env:this.config.env,loginType:J.EMAIL,persistence:this.config.persistence}),new Ut(this.config.env);throw r.code?new E({code:r.code,message:`\u90AE\u7BB1\u767B\u5F55\u5931\u8D25: ${r.message}`}):new E({message:"\u90AE\u7BB1\u767B\u5F55\u5931\u8D25"})}async activate(t){return this._request.send("auth.activateEndUserMail",{token:t})}async resetPasswordWithToken(t,n){return this._request.send("auth.resetPasswordWithToken",{token:t,newPassword:n})}}class ls extends An{async signIn(t,n){if(typeof t!="string")throw new E({code:"PARAM_ERROR",message:"username must be a string"});typeof n!="string"&&(n="",console.warn("password is empty"));const{refreshTokenKey:o}=this._cache.keys,r=await this._request.send("auth.signIn",{loginType:J.USERNAME,username:t,password:n,refresh_token:this._cache.getStore(o)||""}),{refresh_token:s,access_token_expire:i,access_token:c}=r;if(s)return this.setRefreshToken(s),c&&i?this.setAccessToken(c,i):await this._request.refreshAccessToken(),await this.refreshUserInfo(),ne(lt),ne(Re,{env:this.config.env,loginType:J.USERNAME,persistence:this.config.persistence}),new Ut(this.config.env);throw r.code?new E({code:r.code,message:`\u7528\u6237\u540D\u5BC6\u7801\u767B\u5F55\u5931\u8D25: ${r.message}`}):new E({message:"\u7528\u6237\u540D\u5BC6\u7801\u767B\u5F55\u5931\u8D25"})}}class rg{constructor(t){this.config=t,this._cache=Dt(t.env),this._request=Pe(t.env),this._onAnonymousConverted=this._onAnonymousConverted.bind(this),this._onLoginTypeChanged=this._onLoginTypeChanged.bind(this),xe(Re,this._onLoginTypeChanged)}get currentUser(){const t=this.hasLoginState();return t&&t.user||null}get loginType(){return this._cache.getStore(this._cache.keys.loginTypeKey)}anonymousAuthProvider(){return new Kn(this.config)}customAuthProvider(){return new as(this.config)}emailAuthProvider(){return new us(this.config)}usernameAuthProvider(){return new ls(this.config)}async signInAnonymously(){return new Kn(this.config).signIn()}async signInWithEmailAndPassword(t,n){return new us(this.config).signIn(t,n)}signInWithUsernameAndPassword(t,n){return new ls(this.config).signIn(t,n)}async linkAndRetrieveDataWithTicket(t){return this._anonymousAuthProvider||(this._anonymousAuthProvider=new Kn(this.config)),xe(So,this._onAnonymousConverted),await this._anonymousAuthProvider.linkAndRetrieveDataWithTicket(t)}async signOut(){if(this.loginType===J.ANONYMOUS)throw new E({message:"\u533F\u540D\u7528\u6237\u4E0D\u652F\u6301\u767B\u51FA\u64CD\u4F5C"});const{refreshTokenKey:t,accessTokenKey:n,accessTokenExpireKey:o}=this._cache.keys,r=this._cache.getStore(t);if(!r)return;const s=await this._request.send("auth.logout",{refresh_token:r});return this._cache.removeStore(t),this._cache.removeStore(n),this._cache.removeStore(o),ne(lt),ne(Re,{env:this.config.env,loginType:J.NULL,persistence:this.config.persistence}),s}async signUpWithEmailAndPassword(t,n){return this._request.send("auth.signUpWithEmailAndPassword",{email:t,password:n})}async sendPasswordResetEmail(t){return this._request.send("auth.sendPasswordResetEmail",{email:t})}onLoginStateChanged(t){xe(lt,()=>{const o=this.hasLoginState();t.call(this,o)});const n=this.hasLoginState();t.call(this,n)}onLoginStateExpired(t){xe(Wc,t.bind(this))}onAccessTokenRefreshed(t){xe(zc,t.bind(this))}onAnonymousConverted(t){xe(So,t.bind(this))}onLoginTypeChanged(t){xe(Re,()=>{const n=this.hasLoginState();t.call(this,n)})}async getAccessToken(){return{accessToken:(await this._request.getAccessToken()).accessToken,env:this.config.env}}hasLoginState(){const{refreshTokenKey:t}=this._cache.keys;return this._cache.getStore(t)?new Ut(this.config.env):null}async isUsernameRegistered(t){if(typeof t!="string")throw new E({code:"PARAM_ERROR",message:"username must be a string"});const{data:n}=await this._request.send("auth.isUsernameRegistered",{username:t});return n&&n.isRegistered}getLoginState(){return Promise.resolve(this.hasLoginState())}async signInWithTicket(t){return new as(this.config).signIn(t)}shouldRefreshAccessToken(t){this._request._shouldRefreshAccessTokenHook=t.bind(this)}getUserInfo(){return this._request.send("auth.getUserInfo",{}).then(t=>t.code?t:{...t.data,requestId:t.seqId})}getAuthHeader(){const{refreshTokenKey:t,accessTokenKey:n}=this._cache.keys,o=this._cache.getStore(t);return{"x-cloudbase-credentials":this._cache.getStore(n)+"/@@/"+o}}_onAnonymousConverted(t){const{env:n}=t.data;n===this.config.env&&this._cache.updatePersistence(this.config.persistence)}_onLoginTypeChanged(t){const{loginType:n,persistence:o,env:r}=t.data;r===this.config.env&&(this._cache.updatePersistence(o),this._cache.setStore(this._cache.keys.loginTypeKey,n))}}const sg=function(e,t){t=t||Nt();const n=Pe(this.config.env),{cloudPath:o,filePath:r,onUploadProgress:s,fileType:i="image"}=e;return n.send("storage.getUploadMetadata",{path:o}).then(c=>{const{data:{url:u,authorization:a,token:l,fileId:f,cosFileId:p},requestId:g}=c,y={key:o,signature:a,"x-cos-meta-fileid":p,success_action_status:"201","x-cos-security-token":l};n.upload({url:u,data:y,file:r,name:o,fileType:i,onUploadProgress:s}).then(m=>{m.statusCode===201?t(null,{fileID:f,requestId:g}):t(new E({code:"STORAGE_REQUEST_FAIL",message:`STORAGE_REQUEST_FAIL: ${m.data}`}))}).catch(m=>{t(m)})}).catch(c=>{t(c)}),t.promise},ig=function(e,t){t=t||Nt();const n=Pe(this.config.env),{cloudPath:o}=e;return n.send("storage.getUploadMetadata",{path:o}).then(r=>{t(null,r)}).catch(r=>{t(r)}),t.promise},cg=function({fileList:e},t){if(t=t||Nt(),!e||!Array.isArray(e))return{code:"INVALID_PARAM",message:"fileList\u5FC5\u987B\u662F\u975E\u7A7A\u7684\u6570\u7EC4"};for(let o of e)if(!o||typeof o!="string")return{code:"INVALID_PARAM",message:"fileList\u7684\u5143\u7D20\u5FC5\u987B\u662F\u975E\u7A7A\u7684\u5B57\u7B26\u4E32"};const n={fileid_list:e};return Pe(this.config.env).send("storage.batchDeleteFile",n).then(o=>{o.code?t(null,o):t(null,{fileList:o.data.delete_list,requestId:o.requestId})}).catch(o=>{t(o)}),t.promise},Gc=function({fileList:e},t){t=t||Nt(),e&&Array.isArray(e)||t(null,{code:"INVALID_PARAM",message:"fileList\u5FC5\u987B\u662F\u975E\u7A7A\u7684\u6570\u7EC4"});let n=[];for(let r of e)typeof r=="object"?(r.hasOwnProperty("fileID")&&r.hasOwnProperty("maxAge")||t(null,{code:"INVALID_PARAM",message:"fileList\u7684\u5143\u7D20\u5FC5\u987B\u662F\u5305\u542BfileID\u548CmaxAge\u7684\u5BF9\u8C61"}),n.push({fileid:r.fileID,max_age:r.maxAge})):typeof r=="string"?n.push({fileid:r}):t(null,{code:"INVALID_PARAM",message:"fileList\u7684\u5143\u7D20\u5FC5\u987B\u662F\u5B57\u7B26\u4E32"});const o={file_list:n};return Pe(this.config.env).send("storage.batchGetDownloadUrl",o).then(r=>{r.code?t(null,r):t(null,{fileList:r.data.download_list,requestId:r.requestId})}).catch(r=>{t(r)}),t.promise},ag=async function({fileID:e},t){const n=(await Gc.call(this,{fileList:[{fileID:e,maxAge:600}]})).fileList[0];if(n.code!=="SUCCESS")return t?t(n):new Promise(s=>{s(n)});const o=Pe(this.config.env);let r=n.download_url;if(r=encodeURI(r),!t)return o.download({url:r});t(await o.download({url:r}))},ug=function({name:e,data:t,query:n,parse:o,search:r},s){const i=s||Nt();let c;try{c=t?JSON.stringify(t):""}catch(a){return Promise.reject(a)}if(!e)return Promise.reject(new E({code:"PARAM_ERROR",message:"\u51FD\u6570\u540D\u4E0D\u80FD\u4E3A\u7A7A"}));const u={inQuery:n,parse:o,search:r,function_name:e,request_data:c};return Pe(this.config.env).send("functions.invokeFunction",u).then(a=>{if(a.code)i(null,a);else{let l=a.data.response_data;if(o)i(null,{result:l,requestId:a.requestId});else try{l=JSON.parse(a.data.response_data),i(null,{result:l,requestId:a.requestId})}catch{i(new E({message:"response data must be json"}))}}return i.promise}).catch(a=>{i(a)}),i.promise},fs={timeout:15e3,persistence:"session"},ds={};class ar{constructor(t){this.config=t||this.config,this.authObj=void 0}init(t){switch(Z.adapter||(this.requestClient=new Z.adapter.reqClass({timeout:t.timeout||5e3,timeoutMsg:`\u8BF7\u6C42\u5728${(t.timeout||5e3)/1e3}s\u5185\u672A\u5B8C\u6210\uFF0C\u5DF2\u4E2D\u65AD`})),this.config={...fs,...t},!0){case this.config.timeout>6e5:console.warn("timeout\u5927\u4E8E\u53EF\u914D\u7F6E\u4E0A\u9650[10\u5206\u949F]\uFF0C\u5DF2\u91CD\u7F6E\u4E3A\u4E0A\u9650\u6570\u503C"),this.config.timeout=6e5;break;case this.config.timeout<100:console.warn("timeout\u5C0F\u4E8E\u53EF\u914D\u7F6E\u4E0B\u9650[100ms]\uFF0C\u5DF2\u91CD\u7F6E\u4E3A\u4E0B\u9650\u6570\u503C"),this.config.timeout=100}return new ar(this.config)}auth({persistence:t}={}){if(this.authObj)return this.authObj;const n=t||Z.adapter.primaryStorage||fs.persistence;var o;return n!==this.config.persistence&&(this.config.persistence=n),function(r){const{env:s}=r;qc[s]=new is(r),Kc[s]=new is({...r,persistence:"local"})}(this.config),o=this.config,Jc[o.env]=new ng(o),this.authObj=new rg(this.config),this.authObj}on(t,n){return xe.apply(this,[t,n])}off(t,n){return eg.apply(this,[t,n])}callFunction(t,n){return ug.apply(this,[t,n])}deleteFile(t,n){return cg.apply(this,[t,n])}getTempFileURL(t,n){return Gc.apply(this,[t,n])}downloadFile(t,n){return ag.apply(this,[t,n])}uploadFile(t,n){return sg.apply(this,[t,n])}getUploadMetadata(t,n){return ig.apply(this,[t,n])}registerExtension(t){ds[t.name]=t}async invokeExtension(t,n){const o=ds[t];if(!o)throw new E({message:`\u6269\u5C55${t} \u5FC5\u987B\u5148\u6CE8\u518C`});return await o.invoke(n,this)}useAdapters(t){const{adapter:n,runtime:o}=Qh(t)||{};n&&(Z.adapter=n),o&&(Z.runtime=o)}}var Yc=new ar;function ps(e,t,n){n===void 0&&(n={});var o=/\?/.test(t),r="";for(var s in n)r===""?!o&&(t+="?"):r+="&",r+=s+"="+encodeURIComponent(n[s]);return/^http(s)?:\/\//.test(t+=r)?t:""+e+t}class lg{post(t){const{url:n,data:o,headers:r}=t;return new Promise((s,i)=>{W.request({url:ps("https:",n),data:o,method:"POST",header:r,success(c){s(c)},fail(c){i(c)}})})}upload(t){return new Promise((n,o)=>{const{url:r,file:s,data:i,headers:c,fileType:u}=t,a=W.uploadFile({url:ps("https:",r),name:"file",formData:Object.assign({},i),filePath:s,fileType:u,header:c,success(l){const f={statusCode:l.statusCode,data:l.data||{}};l.statusCode===200&&i.success_action_status&&(f.statusCode=parseInt(i.success_action_status,10)),n(f)},fail(l){o(new Error(l.errMsg||"uploadFile:fail"))}});typeof t.onUploadProgress=="function"&&a&&typeof a.onProgressUpdate=="function"&&a.onProgressUpdate(l=>{t.onUploadProgress({loaded:l.totalBytesSent,total:l.totalBytesExpectedToSend})})})}}const fg={setItem(e,t){W.setStorageSync(e,t)},getItem:e=>W.getStorageSync(e),removeItem(e){W.removeStorageSync(e)},clear(){W.clearStorageSync()}};var dg={genAdapter:function(){return{root:{},reqClass:lg,localStorage:fg,primaryStorage:"local"}},isMatch:function(){return!0},runtime:"uni_app"};Yc.useAdapters(dg);const ur=Yc,pg=ur.init;ur.init=function(e){e.env=e.spaceId;const t=pg.call(this,e);t.config.provider="tencent",t.config.spaceId=e.spaceId;const n=t.auth;return t.auth=function(o){const r=n.call(this,o);return["linkAndRetrieveDataWithTicket","signInAnonymously","signOut","getAccessToken","getLoginState","signInWithTicket","getUserInfo"].forEach(s=>{r[s]=Mc(r[s]).bind(r)}),r},t.customAuth=t.auth,t};var hs=ur,hg=class extends Bc{getAccessToken(){return new Promise((e,t)=>{const n="Anonymous_Access_token";this.setAccessToken(n),e(n)})}setupRequest(e,t){const n=Object.assign({},e,{spaceId:this.config.spaceId,timestamp:Date.now()}),o={"Content-Type":"application/json"};t!=="auth"&&(n.token=this.accessToken,o["x-basement-token"]=this.accessToken),o["x-serverless-sign"]=wt.sign(n,this.config.clientSecret);const r=Hc();o["x-client-info"]=encodeURIComponent(JSON.stringify(r));const{token:s}=In();return o["x-client-token"]=s,{url:this.config.requestUrl,method:"POST",data:n,dataType:"json",header:JSON.parse(JSON.stringify(o))}}uploadFileToOSS({url:e,formData:t,name:n,filePath:o,fileType:r,onUploadProgress:s}){return new Promise((i,c)=>{const u=this.adapter.uploadFile({url:e,formData:t,name:n,filePath:o,fileType:r,success(a){a&&a.statusCode<400?i(a):c(new E({code:"UPLOAD_FAILED",message:"\u6587\u4EF6\u4E0A\u4F20\u5931\u8D25"}))},fail(a){c(new E({code:a.code||"UPLOAD_FAILED",message:a.message||a.errMsg||"\u6587\u4EF6\u4E0A\u4F20\u5931\u8D25"}))}});typeof s=="function"&&u&&typeof u.onProgressUpdate=="function"&&u.onProgressUpdate(a=>{s({loaded:a.totalBytesSent,total:a.totalBytesExpectedToSend})})})}uploadFile({filePath:e,cloudPath:t,fileType:n="image",onUploadProgress:o}){if(!t)throw new E({code:"CLOUDPATH_REQUIRED",message:"cloudPath\u4E0D\u53EF\u4E3A\u7A7A"});let r;return this.getOSSUploadOptionsFromPath({cloudPath:t}).then(s=>{const{url:i,formData:c,name:u}=s.result;r=s.result.fileUrl;const a={url:i,formData:c,name:u,filePath:e,fileType:n};return this.uploadFileToOSS(Object.assign({},a,{onUploadProgress:o}))}).then(()=>this.reportOSSUpload({cloudPath:t})).then(s=>new Promise((i,c)=>{s.success?i({success:!0,filePath:e,fileID:r}):c(new E({code:"UPLOAD_FAILED",message:"\u6587\u4EF6\u4E0A\u4F20\u5931\u8D25"}))}))}deleteFile({fileList:e}){const t={method:"serverless.file.resource.delete",params:JSON.stringify({fileList:e})};return this.request(this.setupRequest(t)).then(n=>{if(n.success)return n.result;throw new E({code:"DELETE_FILE_FAILED",message:"\u5220\u9664\u6587\u4EF6\u5931\u8D25"})})}getTempFileURL({fileList:e}={}){if(!Array.isArray(e)||e.length===0)throw new E({code:"INVALID_PARAM",message:"fileList\u7684\u5143\u7D20\u5FC5\u987B\u662F\u975E\u7A7A\u7684\u5B57\u7B26\u4E32"});const t={method:"serverless.file.resource.getTempFileURL",params:JSON.stringify({fileList:e})};return this.request(this.setupRequest(t)).then(n=>{if(n.success)return{fileList:n.result.fileList.map(o=>({fileID:o.fileID,tempFileURL:o.tempFileURL}))};throw new E({code:"GET_TEMP_FILE_URL_FAILED",message:"\u83B7\u53D6\u4E34\u65F6\u6587\u4EF6\u94FE\u63A5\u5931\u8D25"})})}},gg={init(e){const t=new hg(e),n={signInAnonymously:function(){return t.authorize()},getLoginState:function(){return Promise.resolve(!1)}};return t.auth=function(){return n},t.customAuth=t.auth,t}};function Qc({data:e}){let t;t=Hc();const n=JSON.parse(JSON.stringify(e||{}));if(Object.assign(n,{clientInfo:t}),!n.uniIdToken){const{token:o}=In();o&&(n.uniIdToken=o)}return n}function gs({name:e,data:t}={}){const{localAddress:n,localPort:o}=this.__dev__,r={aliyun:"aliyun",tencent:"tcb"}[this.config.provider],s=this.config.spaceId,i=`http://${n}:${o}/system/check-function`,c=`http://${n}:${o}/cloudfunctions/${e}`;return new Promise((u,a)=>{W.request({method:"POST",url:i,data:{name:e,platform:F,provider:r,spaceId:s},timeout:3e3,success(l){u(l)},fail(){u({data:{code:"NETWORK_ERROR",message:"\u8FDE\u63A5\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u5BA2\u6237\u7AEF\u662F\u5426\u548C\u4E3B\u673A\u5728\u540C\u4E00\u5C40\u57DF\u7F51\u4E0B\uFF0C\u81EA\u52A8\u5207\u6362\u4E3A\u5DF2\u90E8\u7F72\u7684\u4E91\u51FD\u6570\u3002"}})}})}).then(({data:u}={})=>{const{code:a,message:l}=u||{};return{code:a===0?0:a||"SYS_ERR",message:l||"SYS_ERR"}}).then(({code:u,message:a})=>{if(u!==0){switch(u){case"MODULE_ENCRYPTED":console.error(`\u6B64\u4E91\u51FD\u6570\uFF08${e}\uFF09\u4F9D\u8D56\u52A0\u5BC6\u516C\u5171\u6A21\u5757\u4E0D\u53EF\u672C\u5730\u8C03\u8BD5\uFF0C\u81EA\u52A8\u5207\u6362\u4E3A\u4E91\u7AEF\u5DF2\u90E8\u7F72\u7684\u4E91\u51FD\u6570`);break;case"FUNCTION_ENCRYPTED":console.error(`\u6B64\u4E91\u51FD\u6570\uFF08${e}\uFF09\u5DF2\u52A0\u5BC6\u4E0D\u53EF\u672C\u5730\u8C03\u8BD5\uFF0C\u81EA\u52A8\u5207\u6362\u4E3A\u4E91\u7AEF\u5DF2\u90E8\u7F72\u7684\u4E91\u51FD\u6570`);break;case"ACTION_ENCRYPTED":console.error(a||"\u9700\u8981\u8BBF\u95EE\u52A0\u5BC6\u7684uni-clientDB-action\uFF0C\u81EA\u52A8\u5207\u6362\u4E3A\u4E91\u7AEF\u73AF\u5883");break;case"NETWORK_ERROR":{const l="\u8FDE\u63A5\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u5BA2\u6237\u7AEF\u662F\u5426\u548C\u4E3B\u673A\u5728\u540C\u4E00\u5C40\u57DF\u7F51\u4E0B";throw console.error(l),new Error(l)}case"SWITCH_TO_CLOUD":break;default:{const l=`\u68C0\u6D4B\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u51FA\u73B0\u9519\u8BEF\uFF1A${a}\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u73AF\u5883\u6216\u91CD\u542F\u5BA2\u6237\u7AEF\u518D\u8BD5`;throw console.error(l),new Error(l)}}return this._callCloudFunction({name:e,data:t})}return new Promise((l,f)=>{const p=Qc.call(this,{data:t});W.request({method:"POST",url:c,data:{provider:r,platform:F,param:p},success:({statusCode:g,data:y}={})=>!g||g>=400?f(new E({code:y.code||"SYS_ERR",message:y.message||"request:fail"})):l({result:y}),fail(g){f(new E({code:g.code||g.errCode||"SYS_ERR",message:g.message||g.errMsg||"request:fail"}))}})})})}const mg=[{rule:/fc_function_not_found|FUNCTION_NOT_FOUND/,content:"\uFF0C\u4E91\u51FD\u6570[{functionName}]\u5728\u4E91\u7AEF\u4E0D\u5B58\u5728\uFF0C\u8BF7\u68C0\u67E5\u6B64\u4E91\u51FD\u6570\u540D\u79F0\u662F\u5426\u6B63\u786E\u4EE5\u53CA\u8BE5\u4E91\u51FD\u6570\u662F\u5426\u5DF2\u4E0A\u4F20\u5230\u670D\u52A1\u7A7A\u95F4",mode:"append"}];var Xc=/[\\^$.*+?()[\]{}|]/g,_g=RegExp(Xc.source);function ms(e,t,n){return e.replace(new RegExp((o=t)&&_g.test(o)?o.replace(Xc,"\\$&"):o,"g"),n);var o}const yg="request",wg="response",bg="both",vg={code:2e4,message:"System error"},Sg={code:20101,message:"Invalid client"};function Po(e){const{errSubject:t,subject:n,errCode:o,errMsg:r,code:s,message:i,cause:c}=e||{};return new E({subject:t||n||"uni-secure-network",code:o||s||vg.code,message:r||i,cause:c})}let Io;function _s({secretType:e}={}){return e===yg||e===wg||e===bg}function ys({name:e,data:t={}}={}){return F==="app"&&e==="DCloud-clientDB"&&t.redirectTo==="encryption"&&t.action==="getAppClientKey"}function Pg({provider:e,spaceId:t,functionName:n}={}){const{appId:o,uniPlatform:r,osName:s}=ir();let i=r;r==="app"&&(i=s);const c=function({provider:f,spaceId:p}={}){const g=jh;if(!g)return{};f=function(m){return m==="tencent"?"tcb":m}(f);const y=g.find(m=>m.provider===f&&m.spaceId===p);return y&&y.config}({provider:e,spaceId:t});if(!c||!c.accessControl||!c.accessControl.enable)return!1;const u=c.accessControl.function||{},a=Object.keys(u);if(a.length===0)return!0;const l=function(f,p){let g,y,m;for(let d=0;d<f.length;d++){const h=f[d];h!==p?h!=="*"?h.split(",").map(w=>w.trim()).indexOf(p)>-1&&(y=h):m=h:g=h}return g||y||m}(a,n);if(!l)return!1;if((u[l]||[]).find((f={})=>f.appId===o&&(f.platform||"").toLowerCase()===i.toLowerCase()))return!0;throw console.error(`\u6B64\u5E94\u7528[appId: ${o}, platform: ${i}]\u4E0D\u5728\u4E91\u7AEF\u914D\u7F6E\u7684\u5141\u8BB8\u8BBF\u95EE\u7684\u5E94\u7528\u5217\u8868\u5185\uFF0C\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/secure-network.html#verify-client`),Po(Sg)}function ws({functionName:e,result:t,logPvd:n}){if(this.__dev__.debugLog&&t&&t.requestId){const o=JSON.stringify({spaceId:this.config.spaceId,functionName:e,requestId:t.requestId});console.log(`[${n}-request]${o}[/${n}-request]`)}}function Ig(e){const t=e.callFunction,n=function(o){const r=o.name;o.data=Qc.call(e,{data:o.data});const s={aliyun:"aliyun",tencent:"tcb",tcb:"tcb"}[this.config.provider],i=_s(o),c=ys(o),u=i||c;return t.call(this,o).then(a=>(a.errCode=0,!u&&ws.call(this,{functionName:r,result:a,logPvd:s}),Promise.resolve(a)),a=>(!u&&ws.call(this,{functionName:r,result:a,logPvd:s}),a&&a.message&&(a.message=function({message:l="",extraInfo:f={},formatter:p=[]}={}){for(let g=0;g<p.length;g++){const{rule:y,content:m,mode:d}=p[g],h=l.match(y);if(!h)continue;let w=m;for(let _=1;_<h.length;_++)w=ms(w,`{$${_}}`,h[_]);for(const _ in f)w=ms(w,`{${_}}`,f[_]);return d==="replace"?w:l+w}return l}({message:`[${o.name}]: ${a.message}`,formatter:mg,extraInfo:{functionName:r}})),Promise.reject(a)))};e.callFunction=function(o){const{provider:r,spaceId:s}=e.config,i=o.name;let c,u;return o.data=o.data||{},e.__dev__.debugInfo&&!e.__dev__.debugInfo.forceRemote&&Lc?(e._callCloudFunction||(e._callCloudFunction=n,e._callLocalFunction=gs),c=gs):c=n,c=c.bind(e),ys(o)?u=n.call(e,o):function({name:a,data:l={}}){return F==="mp-weixin"&&a==="uni-id-co"&&l.method==="secureNetworkHandshakeByWeixin"}(o)?u=c.call(e,o):_s(o)?u=new Io({secretType:o.secretType,uniCloudIns:e}).wrapEncryptDataCallFunction(n.bind(e))(o):Pg({provider:r,spaceId:s,functionName:i})?u=new Io({secretType:o.secretType,uniCloudIns:e}).wrapVerifyClientCallFunction(n.bind(e))(o):u=c(o),Object.defineProperty(u,"result",{get:()=>(console.warn("\u5F53\u524D\u8FD4\u56DE\u7ED3\u679C\u4E3APromise\u7C7B\u578B\uFF0C\u4E0D\u53EF\u76F4\u63A5\u8BBF\u95EE\u5176result\u5C5E\u6027\uFF0C\u8BE6\u60C5\u8BF7\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/faq?id=promise"),{})}),u}}Io=F!=="mp-weixin"&&F!=="app"?class{constructor(){throw Po({message:`Platform ${F} is not supported by secure network`})}}:class{constructor(){throw Po({message:`Platform ${F} is not enabled, please check whether secure network module is enabled in your manifest.json`})}};const Zc=Symbol("CLIENT_DB_INTERNAL");function fn(e,t){return e.then="DoNotReturnProxyWithAFunctionNamedThen",e._internalType=Zc,e.inspect=null,e.__v_raw=void 0,new Proxy(e,{get(n,o,r){if(o==="_uniClient")return null;if(typeof o=="symbol")return n[o];if(o in n||typeof o!="string"){const s=n[o];return typeof s=="function"?s.bind(n):s}return t.get(n,o,r)}})}function bs(e){return{on:(t,n)=>{e[t]=e[t]||[],e[t].indexOf(n)>-1||e[t].push(n)},off:(t,n)=>{e[t]=e[t]||[];const o=e[t].indexOf(n);o!==-1&&e[t].splice(o,1)}}}const Ag=["db.Geo","db.command","command.aggregate"];function ea(e,t){return Ag.indexOf(`${e}.${t}`)>-1}function We(e){switch(rr(e=jc(e))){case"array":return e.map(t=>We(t));case"object":return e._internalType===Zc||Object.keys(e).forEach(t=>{e[t]=We(e[t])}),e;case"regexp":return{$regexp:{source:e.source,flags:e.flags}};case"date":return{$date:e.toISOString()};default:return e}}function mt(e){return e&&e.content&&e.content.$method}class Tg{constructor(t,n,o){this.content=t,this.prevStage=n||null,this.udb=null,this._database=o}toJSON(){let t=this;const n=[t.content];for(;t.prevStage;)t=t.prevStage,n.push(t.content);return{$db:n.reverse().map(o=>({$method:o.$method,$param:We(o.$param)}))}}getAction(){const t=this.toJSON().$db.find(n=>n.$method==="action");return t&&t.$param&&t.$param[0]}getCommand(){return{$db:this.toJSON().$db.filter(t=>t.$method!=="action")}}get isAggregate(){let t=this;for(;t;){const n=mt(t),o=mt(t.prevStage);if(n==="aggregate"&&o==="collection"||n==="pipeline")return!0;t=t.prevStage}return!1}get isCommand(){let t=this;for(;t;){if(mt(t)==="command")return!0;t=t.prevStage}return!1}get isAggregateCommand(){let t=this;for(;t;){const n=mt(t),o=mt(t.prevStage);if(n==="aggregate"&&o==="command")return!0;t=t.prevStage}return!1}getNextStageFn(t){const n=this;return function(){return Ct({$method:t,$param:We(Array.from(arguments))},n,n._database)}}get count(){return this.isAggregate?this.getNextStageFn("count"):function(){return this._send("count",Array.from(arguments))}}get remove(){return this.isCommand?this.getNextStageFn("remove"):function(){return this._send("remove",Array.from(arguments))}}get(){return this._send("get",Array.from(arguments))}get add(){return this.isCommand?this.getNextStageFn("add"):function(){return this._send("add",Array.from(arguments))}}update(){return this._send("update",Array.from(arguments))}end(){return this._send("end",Array.from(arguments))}get set(){return this.isCommand?this.getNextStageFn("set"):function(){throw new Error("JQL\u7981\u6B62\u4F7F\u7528set\u65B9\u6CD5")}}_send(t,n){const o=this.getAction(),r=this.getCommand();if(r.$db.push({$method:t,$param:We(n)}),Uh){const s=r.$db.find(c=>c.$method==="collection"),i=s&&s.$param;i&&i.length===1&&typeof s.$param[0]=="string"&&s.$param[0].indexOf(",")>-1&&console.warn(`\u68C0\u6D4B\u5230\u4F7F\u7528JQL\u8BED\u6CD5\u8054\u8868\u67E5\u8BE2\u65F6\uFF0C\u672A\u4F7F\u7528getTemp\u5148\u8FC7\u6EE4\u4E3B\u8868\u6570\u636E\uFF0C\u5728\u4E3B\u8868\u6570\u636E\u91CF\u5927\u7684\u60C5\u51B5\u4E0B\u53EF\u80FD\u4F1A\u67E5\u8BE2\u7F13\u6162\u3002
-- \u5982\u4F55\u4F18\u5316\u8BF7\u53C2\u8003\u6B64\u6587\u6863\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/jql?id=lookup-with-temp 
-- \u5982\u679C\u4E3B\u8868\u6570\u636E\u91CF\u5F88\u5C0F\u8BF7\u5FFD\u7565\u6B64\u4FE1\u606F\uFF0C\u9879\u76EE\u53D1\u884C\u65F6\u4E0D\u4F1A\u51FA\u73B0\u6B64\u63D0\u793A\u3002`)}return this._database._callCloudFunction({action:o,command:r})}}function Ct(e,t,n){return fn(new Tg(e,t,n),{get(o,r){let s="db";return o&&o.content&&(s=o.content.$method),ea(s,r)?Ct({$method:r},o,n):function(){return Ct({$method:r,$param:We(Array.from(arguments))},o,n)}}})}function Vn({path:e,method:t}){return class{constructor(){this.param=Array.from(arguments)}toJSON(){return{$newDb:[...e.map(n=>({$method:n})),{$method:t,$param:this.param}]}}}}function vs(e,t={}){return fn(new e(t),{get:(n,o)=>ea("db",o)?Ct({$method:o},null,n):function(){return Ct({$method:o,$param:We(Array.from(arguments))},null,n)}})}class Ss extends class{constructor({uniClient:t={},isJQL:n=!1}={}){this._uniClient=t,this._authCallBacks={},this._dbCallBacks={},t.isDefault&&(this._dbCallBacks=at("_globalUniCloudDatabaseCallback")),n||(this.auth=bs(this._authCallBacks)),this._isJQL=n,Object.assign(this,bs(this._dbCallBacks)),this.env=fn({},{get:(o,r)=>({$env:r})}),this.Geo=fn({},{get:(o,r)=>Vn({path:["Geo"],method:r})}),this.serverDate=Vn({path:[],method:"serverDate"}),this.RegExp=Vn({path:[],method:"RegExp"})}getCloudEnv(t){if(typeof t!="string"||!t.trim())throw new Error("getCloudEnv\u53C2\u6570\u9519\u8BEF");return{$env:t.replace("$cloudEnv_","")}}_callback(t,n){const o=this._dbCallBacks;o[t]&&o[t].forEach(r=>{r(...n)})}_callbackAuth(t,n){const o=this._authCallBacks;o[t]&&o[t].forEach(r=>{r(...n)})}multiSend(){const t=Array.from(arguments),n=t.map(o=>{const r=o.getAction(),s=o.getCommand();if(s.$db[s.$db.length-1].$method!=="getTemp")throw new Error("multiSend\u53EA\u652F\u6301\u5B50\u547D\u4EE4\u5185\u4F7F\u7528getTemp");return{action:r,command:s}});return this._callCloudFunction({multiCommand:n,queryList:t})}}{_parseResult(t){return this._isJQL?t.result:t}_callCloudFunction({action:t,command:n,multiCommand:o,queryList:r}){function s(f,p){if(o&&r)for(let g=0;g<r.length;g++){const y=r[g];y.udb&&typeof y.udb.setResult=="function"&&(p?y.udb.setResult(p):y.udb.setResult(f.result.dataList[g]))}}const i=this,c=this._isJQL?"databaseForJQL":"database";function u(f){return i._callback("error",[f]),ee(te(c,"fail"),f).then(()=>ee(te(c,"complete"),f)).then(()=>(s(null,f),se(_e,{type:Zr,content:f}),Promise.reject(f)))}const a=ee(te(c,"invoke")),l=this._uniClient;return a.then(()=>l.callFunction({name:"DCloud-clientDB",type:Nh,data:{action:t,command:n,multiCommand:o}})).then(f=>{const{code:p,message:g,token:y,tokenExpired:m,systemInfo:d=[]}=f.result;if(d)for(let w=0;w<d.length;w++){const{level:_,message:b,detail:A}=d[w],C=console[F==="app"&&_==="warn"?"error":_]||console.log;let D="[System Info]"+b;A&&(D=`${D}
-\u8BE6\u7EC6\u4FE1\u606F\uFF1A${A}`),C(D)}if(p)return u(new E({code:p,message:g,requestId:f.requestId}));f.result.errCode=f.result.errCode||f.result.code,f.result.errMsg=f.result.errMsg||f.result.message,y&&m&&(Fc({token:y,tokenExpired:m}),this._callbackAuth("refreshToken",[{token:y,tokenExpired:m}]),this._callback("refreshToken",[{token:y,tokenExpired:m}]),se(ln,{token:y,tokenExpired:m}));const h=[{prop:"affectedDocs",tips:"affectedDocs\u4E0D\u518D\u63A8\u8350\u4F7F\u7528\uFF0C\u8BF7\u4F7F\u7528inserted/deleted/updated/data.length\u66FF\u4EE3"},{prop:"code",tips:"code\u4E0D\u518D\u63A8\u8350\u4F7F\u7528\uFF0C\u8BF7\u4F7F\u7528errCode\u66FF\u4EE3"},{prop:"message",tips:"message\u4E0D\u518D\u63A8\u8350\u4F7F\u7528\uFF0C\u8BF7\u4F7F\u7528errMsg\u66FF\u4EE3"}];for(let w=0;w<h.length;w++){const{prop:_,tips:b}=h[w];if(_ in f.result){const A=f.result[_];Object.defineProperty(f.result,_,{get:()=>(console.warn(b),A)})}}return function(w){return ee(te(c,"success"),w).then(()=>ee(te(c,"complete"),w)).then(()=>{s(w,null);const _=i._parseResult(w);return se(_e,{type:Zr,content:_}),Promise.resolve(_)})}(f)},f=>(/fc_function_not_found|FUNCTION_NOT_FOUND/g.test(f.message)&&console.warn("clientDB\u672A\u521D\u59CB\u5316\uFF0C\u8BF7\u5728web\u63A7\u5236\u53F0\u4FDD\u5B58\u4E00\u6B21schema\u4EE5\u5F00\u542FclientDB"),u(new E({code:f.code||"SYSTEM_ERROR",message:f.message,requestId:f.requestId}))))}}const Fe="token\u65E0\u6548\uFF0C\u8DF3\u8F6C\u767B\u5F55\u9875\u9762",ta="token\u8FC7\u671F\uFF0C\u8DF3\u8F6C\u767B\u5F55\u9875\u9762",xg={TOKEN_INVALID_TOKEN_EXPIRED:ta,TOKEN_INVALID_INVALID_CLIENTID:Fe,TOKEN_INVALID:Fe,TOKEN_INVALID_WRONG_TOKEN:Fe,TOKEN_INVALID_ANONYMOUS_USER:Fe},Ao={"uni-id-token-expired":ta,"uni-id-check-token-failed":Fe,"uni-id-token-not-exist":Fe,"uni-id-check-device-feature-failed":Fe};function Ps(e,t){let n="";return n=e?`${e}/${t}`:t,n.replace(/^\//,"")}function Is(e=[],t=""){const n=[],o=[];return e.forEach(r=>{r.needLogin===!0?n.push(Ps(t,r.path)):r.needLogin===!1&&o.push(Ps(t,r.path))}),{needLoginPage:n,notNeedLoginPage:o}}function Ot(e){return e.split("?")[0].replace(/^\//,"")}function lr(){return function(e){let t=e&&e.$page&&e.$page.fullPath||"";return t&&(t.charAt(0)!=="/"&&(t="/"+t),t)}(function(){const e=getCurrentPages();return e[e.length-1]}())}function na(){return Ot(lr())}function Cg(e="",t={}){if(!e||!(t&&t.list&&t.list.length))return!1;const n=t.list,o=Ot(e);return n.some(r=>r.pagePath===o)}const Og=!!kc.uniIdRouter,{loginPage:Et,routerNeedLogin:Eg,resToLogin:kg,needLoginPage:oa,notNeedLoginPage:$g,loginPageInTabBar:Rg}=function({pages:e=[],subPackages:t=[],uniIdRouter:n={},tabBar:o={}}=kc){const{loginPage:r,needLogin:s=[],resToLogin:i=!0}=n,{needLoginPage:c,notNeedLoginPage:u}=Is(e),{needLoginPage:a,notNeedLoginPage:l}=function(f=[]){const p=[],g=[];return f.forEach(y=>{const{root:m,pages:d=[]}=y,{needLoginPage:h,notNeedLoginPage:w}=Is(d,m);p.push(...h),g.push(...w)}),{needLoginPage:p,notNeedLoginPage:g}}(t);return{loginPage:r,routerNeedLogin:s,resToLogin:i,needLoginPage:[...c,...a],notNeedLoginPage:[...u,...l],loginPageInTabBar:Cg(r,o)}}();if(oa.indexOf(Et)>-1)throw new Error(`Login page [${Et}] should not be "needLogin", please check your pages.json`);function ra(e){const t=na();if(e.charAt(0)==="/")return e;const[n,o]=e.split("?"),r=n.replace(/^\//,"").split("/"),s=t.split("/");s.pop();for(let i=0;i<r.length;i++){const c=r[i];c===".."?s.pop():c!=="."&&s.push(c)}return s[0]===""&&s.shift(),"/"+s.join("/")+(o?"?"+o:"")}function Lg(e){const t=Ot(ra(e));return!($g.indexOf(t)>-1)&&(oa.indexOf(t)>-1||Eg.some(n=>function(o,r){return new RegExp(r).test(o)}(e,n)))}function sa({redirect:e}){const t=Ot(e),n=Ot(Et);return na()!==n&&t!==n}function To({api:e,redirect:t}={}){if(!t||!sa({redirect:t}))return;const n=function(r,s){return r.charAt(0)!=="/"&&(r="/"+r),s?r.indexOf("?")>-1?r+`&uniIdRedirectUrl=${encodeURIComponent(s)}`:r+`?uniIdRedirectUrl=${encodeURIComponent(s)}`:r}(Et,t);Rg?e!=="navigateTo"&&e!=="redirectTo"||(e="switchTab"):e==="switchTab"&&(e="navigateTo");const o={navigateTo:$.navigateTo,redirectTo:$.redirectTo,switchTab:$.switchTab,reLaunch:$.reLaunch};setTimeout(()=>{o[e]({url:n})})}function As({url:e}={}){const t={abortLoginPageJump:!1,autoToLoginPage:!1},n=function(){const{token:o,tokenExpired:r}=In();let s;if(o){if(r<Date.now()){const i="uni-id-token-expired";s={errCode:i,errMsg:Ao[i]}}}else{const i="uni-id-check-token-failed";s={errCode:i,errMsg:Ao[i]}}return s}();if(Lg(e)&&n){if(n.uniIdRedirectUrl=e,Lt(ut).length>0)return setTimeout(()=>{se(ut,n)},0),t.abortLoginPageJump=!0,t;t.autoToLoginPage=!0}return t}function Ng(){(function(){const t=lr(),{abortLoginPageJump:n,autoToLoginPage:o}=As({url:t});n||o&&To({api:"redirectTo",redirect:t})})();const e=["navigateTo","redirectTo","reLaunch","switchTab"];for(let t=0;t<e.length;t++){const n=e[t];$.addInterceptor(n,{invoke(o){const{abortLoginPageJump:r,autoToLoginPage:s}=As({url:o.url});return r?o:s?(To({api:n,redirect:ra(o.url)}),!1):o}})}}function Dg(){this.onResponse(e=>{const{type:t,content:n}=e;let o=!1;switch(t){case"cloudobject":o=function(r){const{errCode:s}=r;return s in Ao}(n);break;case"clientdb":o=function(r){const{errCode:s}=r;return s in xg}(n)}o&&function(r={}){const s=Lt(ut);Uc().then(()=>{const i=lr();if(i&&sa({redirect:i}))return s.length>0?se(ut,Object.assign({uniIdRedirectUrl:i},r)):void(Et&&To({api:"navigateTo",redirect:i}))})}(n)})}function Ug(e){(function(t){t.onResponse=function(n){Dn(_e,n)},t.offResponse=function(n){Un(_e,n)}})(e),function(t){t.onNeedLogin=function(n){Dn(ut,n)},t.offNeedLogin=function(n){Un(ut,n)},Og&&(at("_globalUniCloudStatus").needLoginInit||(at("_globalUniCloudStatus").needLoginInit=!0,Uc().then(()=>{Ng.call(t)}),kg&&Dg.call(t)))}(e),function(t){t.onRefreshToken=function(n){Dn(ln,n)},t.offRefreshToken=function(n){Un(ln,n)}}(e)}let ia;const zt="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",Mg=/^(?:[A-Za-z\d+/]{4})*?(?:[A-Za-z\d+/]{2}(?:==)?|[A-Za-z\d+/]{3}=?)?$/;function jg(){const e=In().token||"",t=e.split(".");if(!e||t.length!==3)return{uid:null,role:[],permission:[],tokenExpired:0};let n;try{n=JSON.parse((o=t[1],decodeURIComponent(ia(o).split("").map(function(r){return"%"+("00"+r.charCodeAt(0).toString(16)).slice(-2)}).join(""))))}catch(r){throw new Error("\u83B7\u53D6\u5F53\u524D\u7528\u6237\u4FE1\u606F\u51FA\u9519\uFF0C\u8BE6\u7EC6\u9519\u8BEF\u4FE1\u606F\u4E3A\uFF1A"+r.message)}var o;return n.tokenExpired=1e3*n.exp,delete n.exp,delete n.iat,n}ia=typeof atob!="function"?function(e){if(e=String(e).replace(/[\t\n\f\r ]+/g,""),!Mg.test(e))throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");var t;e+="==".slice(2-(3&e.length));for(var n,o,r="",s=0;s<e.length;)t=zt.indexOf(e.charAt(s++))<<18|zt.indexOf(e.charAt(s++))<<12|(n=zt.indexOf(e.charAt(s++)))<<6|(o=zt.indexOf(e.charAt(s++))),r+=n===64?String.fromCharCode(t>>16&255):o===64?String.fromCharCode(t>>16&255,t>>8&255):String.fromCharCode(t>>16&255,t>>8&255,255&t);return r}:atob;var Fg=Ve(function(e,t){Object.defineProperty(t,"__esModule",{value:!0});const n="chooseAndUploadFile:ok",o="chooseAndUploadFile:fail";function r(i,c){return i.tempFiles.forEach((u,a)=>{u.name||(u.name=u.path.substring(u.path.lastIndexOf("/")+1)),c&&(u.fileType=c),u.cloudPath=Date.now()+"_"+a+u.name.substring(u.name.lastIndexOf("."))}),i.tempFilePaths||(i.tempFilePaths=i.tempFiles.map(u=>u.path)),i}function s(i,c,{onChooseFile:u,onUploadProgress:a}){return c.then(l=>{if(u){const f=u(l);if(f!==void 0)return Promise.resolve(f).then(p=>p===void 0?l:p)}return l}).then(l=>l===!1?{errMsg:n,tempFilePaths:[],tempFiles:[]}:function(f,p,g=5,y){(p=Object.assign({},p)).errMsg=n;const m=p.tempFiles,d=m.length;let h=0;return new Promise(w=>{for(;h<g;)_();function _(){const b=h++;if(b>=d)return void(!m.find(C=>!C.url&&!C.errMsg)&&w(p));const A=m[b];f.uploadFile({filePath:A.path,cloudPath:A.cloudPath,fileType:A.fileType,onUploadProgress(C){C.index=b,C.tempFile=A,C.tempFilePath=A.path,y&&y(C)}}).then(C=>{A.url=C.fileID,b<d&&_()}).catch(C=>{A.errMsg=C.errMsg||C.message,b<d&&_()})}})}(i,l,5,a))}t.initChooseAndUploadFile=function(i){return function(c={type:"all"}){return c.type==="image"?s(i,function(u){const{count:a,sizeType:l,sourceType:f=["album","camera"],extension:p}=u;return new Promise((g,y)=>{$.chooseImage({count:a,sizeType:l,sourceType:f,extension:p,success(m){g(r(m,"image"))},fail(m){y({errMsg:m.errMsg.replace("chooseImage:fail",o)})}})})}(c),c):c.type==="video"?s(i,function(u){const{camera:a,compressed:l,maxDuration:f,sourceType:p=["album","camera"],extension:g}=u;return new Promise((y,m)=>{$.chooseVideo({camera:a,compressed:l,maxDuration:f,sourceType:p,extension:g,success(d){const{tempFilePath:h,duration:w,size:_,height:b,width:A}=d;y(r({errMsg:"chooseVideo:ok",tempFilePaths:[h],tempFiles:[{name:d.tempFile&&d.tempFile.name||"",path:h,size:_,type:d.tempFile&&d.tempFile.type||"",width:A,height:b,duration:w,fileType:"video",cloudPath:""}]},"video"))},fail(d){m({errMsg:d.errMsg.replace("chooseVideo:fail",o)})}})})}(c),c):s(i,function(u){const{count:a,extension:l}=u;return new Promise((f,p)=>{let g=$.chooseFile;if(typeof wx<"u"&&typeof wx.chooseMessageFile=="function"&&(g=wx.chooseMessageFile),typeof g!="function")return p({errMsg:o+" \u8BF7\u6307\u5B9A type \u7C7B\u578B\uFF0C\u8BE5\u5E73\u53F0\u4EC5\u652F\u6301\u9009\u62E9 image \u6216 video\u3002"});g({type:"all",count:a,extension:l,success(y){f(r(y))},fail(y){p({errMsg:y.errMsg.replace("chooseFile:fail",o)})}})})}(c),c)}}}),Hg=Oh(Fg);const Bg="manual";function ca(e){return{props:{localdata:{type:Array,default:()=>[]},options:{type:[Object,Array],default:()=>({})},spaceInfo:{type:Object,default:()=>({})},collection:{type:[String,Array],default:""},action:{type:String,default:""},field:{type:String,default:""},orderby:{type:String,default:""},where:{type:[String,Object],default:""},pageData:{type:String,default:"add"},pageCurrent:{type:Number,default:1},pageSize:{type:Number,default:20},getcount:{type:[Boolean,String],default:!1},gettree:{type:[Boolean,String],default:!1},gettreepath:{type:[Boolean,String],default:!1},startwith:{type:String,default:""},limitlevel:{type:Number,default:10},groupby:{type:String,default:""},groupField:{type:String,default:""},distinct:{type:[Boolean,String],default:!1},foreignKey:{type:String,default:""},loadtime:{type:String,default:"auto"},manual:{type:Boolean,default:!1}},data:()=>({mixinDatacomLoading:!1,mixinDatacomHasMore:!1,mixinDatacomResData:[],mixinDatacomErrorMessage:"",mixinDatacomPage:{}}),created(){this.mixinDatacomPage={current:this.pageCurrent,size:this.pageSize,count:0},this.$watch(()=>{var t=[];return["pageCurrent","pageSize","localdata","collection","action","field","orderby","where","getont","getcount","gettree","groupby","groupField","distinct"].forEach(n=>{t.push(this[n])}),t},(t,n)=>{if(this.loadtime===Bg)return;let o=!1;const r=[];for(let s=2;s<t.length;s++)t[s]!==n[s]&&(r.push(t[s]),o=!0);t[0]!==n[0]&&(this.mixinDatacomPage.current=this.pageCurrent),this.mixinDatacomPage.size=this.pageSize,this.onMixinDatacomPropsChange(o,r)})},methods:{onMixinDatacomPropsChange(t,n){},mixinDatacomEasyGet({getone:t=!1,success:n,fail:o}={}){this.mixinDatacomLoading||(this.mixinDatacomLoading=!0,this.mixinDatacomErrorMessage="",this.mixinDatacomGet().then(r=>{this.mixinDatacomLoading=!1;const{data:s,count:i}=r.result;this.getcount&&(this.mixinDatacomPage.count=i),this.mixinDatacomHasMore=s.length<this.pageSize;const c=t?s.length?s[0]:void 0:s;this.mixinDatacomResData=c,n&&n(c)}).catch(r=>{this.mixinDatacomLoading=!1,this.mixinDatacomErrorMessage=r,o&&o(r)}))},mixinDatacomGet(t={}){let n=e.database(this.spaceInfo);const o=t.action||this.action;o&&(n=n.action(o));const r=t.collection||this.collection;n=Array.isArray(r)?n.collection(...r):n.collection(r);const s=t.where||this.where;s&&Object.keys(s).length&&(n=n.where(s));const i=t.field||this.field;i&&(n=n.field(i));const c=t.foreignKey||this.foreignKey;c&&(n=n.foreignKey(c));const u=t.groupby||this.groupby;u&&(n=n.groupBy(u));const a=t.groupField||this.groupField;a&&(n=n.groupField(a)),(t.distinct!==void 0?t.distinct:this.distinct)===!0&&(n=n.distinct());const l=t.orderby||this.orderby;l&&(n=n.orderBy(l));const f=t.pageCurrent!==void 0?t.pageCurrent:this.mixinDatacomPage.current,p=t.pageSize!==void 0?t.pageSize:this.mixinDatacomPage.size,g=t.getcount!==void 0?t.getcount:this.getcount,y=t.gettree!==void 0?t.gettree:this.gettree,m=t.gettreepath!==void 0?t.gettreepath:this.gettreepath,d={getCount:g},h={limitLevel:t.limitlevel!==void 0?t.limitlevel:this.limitlevel,startWith:t.startwith!==void 0?t.startwith:this.startwith};return y&&(d.getTree=h),m&&(d.getTreePath=h),n=n.skip(p*(f-1)).limit(p).get(d),n}}}}function qg(e){return function(t,n={}){n=function(u,a={}){return u.customUI=a.customUI||u.customUI,u.parseSystemError=a.parseSystemError||u.parseSystemError,Object.assign(u.loadingOptions,a.loadingOptions),Object.assign(u.errorOptions,a.errorOptions),typeof a.secretMethods=="object"&&(u.secretMethods=a.secretMethods),u}({customUI:!1,loadingOptions:{title:"\u52A0\u8F7D\u4E2D...",mask:!0},errorOptions:{type:"modal",retry:!1}},n);const{customUI:o,loadingOptions:r,errorOptions:s,parseSystemError:i}=n,c=!o;return new Proxy({},{get:(u,a)=>function({fn:l,interceptorName:f,getCallbackArgs:p}={}){return async function(...g){const y=p?p({params:g}):{};let m,d;try{return await ee(te(f,"invoke"),{...y}),m=await l(...g),await ee(te(f,"success"),{...y,result:m}),m}catch(h){throw d=h,await ee(te(f,"fail"),{...y,error:d}),d}finally{await ee(te(f,"complete"),d?{...y,error:d}:{...y,result:m})}}}({fn:async function l(...f){let p;c&&$.showLoading({title:r.title,mask:r.mask});const g={name:t,type:Lh,data:{method:a,params:f}};typeof n.secretMethods=="object"&&function(_,b){const A=b.data.method,C=_.secretMethods||{},D=C[A]||C["*"];D&&(b.secretType=D)}(n,g);let y=!1;try{p=await e.callFunction(g)}catch(_){y=!0,p={result:new E(_)}}const{errSubject:m,errCode:d,errMsg:h,newToken:w}=p.result||{};if(c&&$.hideLoading(),w&&w.token&&w.tokenExpired&&(Fc(w),se(ln,{...w})),d){let _=h;if(y&&i&&(_=(await i({objectName:t,methodName:a,params:f,errSubject:m,errCode:d,errMsg:h})).errMsg||h),c)if(s.type==="toast")$.showToast({title:_,icon:"none"});else{if(s.type!=="modal")throw new Error(`Invalid errorOptions.type: ${s.type}`);{const{confirm:A}=await async function({title:C,content:D,showCancel:H,cancelText:oe,confirmText:ae}={}){return new Promise((ue,Ie)=>{$.showModal({title:C,content:D,showCancel:H,cancelText:oe,confirmText:ae,success(we){ue(we)},fail(){ue({confirm:!1,cancel:!0})}})})}({title:"\u63D0\u793A",content:_,showCancel:s.retry,cancelText:"\u53D6\u6D88",confirmText:s.retry?"\u91CD\u8BD5":"\u786E\u5B9A"});if(s.retry&&A)return l(...f)}}const b=new E({subject:m,code:d,message:h,requestId:p.requestId});throw b.detail=p.result,se(_e,{type:es,content:b}),b}return se(_e,{type:es,content:p.result}),p.result},interceptorName:"callObject",getCallbackArgs:function({params:l}={}){return{objectName:t,methodName:a,params:l}}})})}}function aa(e){return at("_globalUniCloudSecureNetworkCache__{spaceId}".replace("{spaceId}",e.config.spaceId))}async function Kg({callLoginByWeixin:e=!1}={}){const t=aa(this);if(F!=="mp-weixin")throw new Error(`[SecureNetwork] API \`initSecureNetworkByWeixin\` is not supported on platform \`${F}\``);const n=await new Promise((r,s)=>{$.login({success(i){r(i.code)},fail(i){s(new Error(i.errMsg))}})});return await this.importObject("uni-id-co",{customUI:!0}).secureNetworkHandshakeByWeixin({code:n,callLoginByWeixin:e}),t.mpWeixinCode=n,{code:n}}async function Vg(e){const t=aa(this);return t.initPromise||(t.initPromise=Kg.call(this,e)),t.initPromise}function Wg(e){return function({callLoginByWeixin:t=!1}={}){return Vg.call(e,{callLoginByWeixin:t})}}async function zg(e,t){const n=`http://${e}:${t}/system/ping`;try{const r=await(o={url:n,timeout:500},new Promise((s,i)=>{W.request({...o,success(c){s(c)},fail(c){i(c)}})}));return!(!r.data||r.data.code!==0)}catch{return!1}var o}function Ts(e){if(e.initUniCloudStatus&&e.initUniCloudStatus!=="rejected")return;let t=Promise.resolve();var n;n=1,t=new Promise(r=>{setTimeout(()=>{r()},n)}),e.isReady=!1,e.isDefault=!1;const o=e.auth();e.initUniCloudStatus="pending",e.initUniCloud=t.then(()=>o.getLoginState()).then(r=>r?Promise.resolve():o.signInAnonymously()).then(()=>{if(F==="app"){const{osName:r,osVersion:s}=ir();r==="ios"&&function(i){if(!i||typeof i!="string")return 0;const c=i.match(/^(\d+)./);return c&&c[1]?parseInt(c[1]):0}(s)>=14&&console.warn("iOS 14\u53CA\u4EE5\u4E0A\u7248\u672C\u8FDE\u63A5uniCloud\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u9700\u8981\u5141\u8BB8\u5BA2\u6237\u7AEF\u67E5\u627E\u5E76\u8FDE\u63A5\u5230\u672C\u5730\u7F51\u7EDC\u4E0A\u7684\u8BBE\u5907\uFF08\u4EC5\u5F00\u53D1\u6A21\u5F0F\u751F\u6548\uFF0C\u53D1\u884C\u6A21\u5F0F\u4F1A\u8FDE\u63A5uniCloud\u4E91\u7AEF\u670D\u52A1\uFF09")}if(e.__dev__.debugInfo){const{address:r,servePort:s}=e.__dev__.debugInfo;return async function(i,c){let u;for(let a=0;a<i.length;a++){const l=i[a];if(await zg(l,c)){u=l;break}}return{address:u,port:c}}(r,s)}}).then(({address:r,port:s}={})=>{const i=console[F==="app"?"error":"warn"];if(r)e.__dev__.localAddress=r,e.__dev__.localPort=s;else if(e.__dev__.debugInfo){let c="";e.__dev__.debugInfo.initialLaunchType==="remote"?(e.__dev__.debugInfo.forceRemote=!0,c=`\u5F53\u524D\u5BA2\u6237\u7AEF\u548CHBuilderX\u4E0D\u5728\u540C\u4E00\u5C40\u57DF\u7F51\u4E0B\uFF08\u6216\u5176\u4ED6\u7F51\u7EDC\u539F\u56E0\u65E0\u6CD5\u8FDE\u63A5HBuilderX\uFF09\uFF0CuniCloud\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u4E0D\u5BF9\u5F53\u524D\u5BA2\u6237\u7AEF\u751F\u6548\u3002
-- \u5982\u679C\u4E0D\u4F7F\u7528uniCloud\u672C\u5730\u8C03\u8BD5\u670D\u52A1\uFF0C\u8BF7\u76F4\u63A5\u5FFD\u7565\u6B64\u4FE1\u606F\u3002
-- \u5982\u9700\u4F7F\u7528uniCloud\u672C\u5730\u8C03\u8BD5\u670D\u52A1\uFF0C\u8BF7\u5C06\u5BA2\u6237\u7AEF\u4E0E\u4E3B\u673A\u8FDE\u63A5\u5230\u540C\u4E00\u5C40\u57DF\u7F51\u4E0B\u5E76\u91CD\u65B0\u8FD0\u884C\u5230\u5BA2\u6237\u7AEF\u3002`):c=`\u65E0\u6CD5\u8FDE\u63A5uniCloud\u672C\u5730\u8C03\u8BD5\u670D\u52A1\uFF0C\u8BF7\u68C0\u67E5\u5F53\u524D\u5BA2\u6237\u7AEF\u662F\u5426\u4E0E\u4E3B\u673A\u5728\u540C\u4E00\u5C40\u57DF\u7F51\u4E0B\u3002
-- \u5982\u9700\u4F7F\u7528uniCloud\u672C\u5730\u8C03\u8BD5\u670D\u52A1\uFF0C\u8BF7\u5C06\u5BA2\u6237\u7AEF\u4E0E\u4E3B\u673A\u8FDE\u63A5\u5230\u540C\u4E00\u5C40\u57DF\u7F51\u4E0B\u5E76\u91CD\u65B0\u8FD0\u884C\u5230\u5BA2\u6237\u7AEF\u3002`,c+=`
-- \u5982\u679C\u5728HBuilderX\u5F00\u542F\u7684\u72B6\u6001\u4E0B\u5207\u6362\u8FC7\u7F51\u7EDC\u73AF\u5883\uFF0C\u8BF7\u91CD\u542FHBuilderX\u540E\u518D\u8BD5
-- \u68C0\u67E5\u7CFB\u7EDF\u9632\u706B\u5899\u662F\u5426\u62E6\u622A\u4E86HBuilderX\u81EA\u5E26\u7684nodejs
-- \u68C0\u67E5\u662F\u5426\u9519\u8BEF\u7684\u4F7F\u7528\u62E6\u622A\u5668\u4FEE\u6539uni.request\u65B9\u6CD5\u7684\u53C2\u6570`,F==="web"&&(c+=`
-- \u90E8\u5206\u6D4F\u89C8\u5668\u5F00\u542F\u8282\u6D41\u6A21\u5F0F\u4E4B\u540E\u8BBF\u95EE\u672C\u5730\u5730\u5740\u53D7\u9650\uFF0C\u8BF7\u68C0\u67E5\u662F\u5426\u542F\u7528\u4E86\u8282\u6D41\u6A21\u5F0F`),F.indexOf("mp-")===0&&(c+=`
-- \u5C0F\u7A0B\u5E8F\u4E2D\u5982\u4F55\u4F7F\u7528uniCloud\uFF0C\u8BF7\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/publish.html#useinmp`),i(c)}}).then(()=>{qh(),e.isReady=!0,e.initUniCloudStatus="fulfilled"}).catch(r=>{console.error(r),e.initUniCloudStatus="rejected"})}const Jg={tcb:hs,tencent:hs,aliyun:Wh,private:gg};let ce=new class{init(e){let t={};const n=Jg[e.provider];if(!n)throw new Error("\u672A\u63D0\u4F9B\u6B63\u786E\u7684provider\u53C2\u6570");t=n.init(e),t.__dev__={},t.__dev__.debugLog=F==="web"&&navigator.userAgent.indexOf("HBuilderX")>0||F==="app";const o=Fh;return o&&!o.code&&(t.__dev__.debugInfo=o),Ts(t),t.reInit=function(){Ts(this)},Ig(t),function(r){const s=r.uploadFile;r.uploadFile=function(i){return s.call(this,i)}}(t),function(r){r.database=function(s){if(s&&Object.keys(s).length>0)return r.init(s).database();if(this._database)return this._database;const i=vs(Ss,{uniClient:r});return this._database=i,i},r.databaseForJQL=function(s){if(s&&Object.keys(s).length>0)return r.init(s).databaseForJQL();if(this._databaseForJQL)return this._databaseForJQL;const i=vs(Ss,{uniClient:r,isJQL:!0});return this._databaseForJQL=i,i}}(t),function(r){r.getCurrentUserInfo=jg,r.chooseAndUploadFile=Hg.initChooseAndUploadFile(r),Object.assign(r,{get mixinDatacom(){return ca(r)}}),r.importObject=qg(r),r.initSecureNetworkByWeixin=Wg(r)}(t),["callFunction","uploadFile","deleteFile","getTempFileURL","downloadFile","chooseAndUploadFile"].forEach(r=>{if(!t[r])return;const s=t[r];t[r]=function(){return t.reInit(),s.apply(t,Array.from(arguments))},t[r]=Mc(t[r],r).bind(t)}),t.init=this.init,t}};(()=>{const e=Lc;let t={};if(e&&e.length===1)t=e[0],ce=ce.init(t),ce.isDefault=!0;else{const n=["auth","callFunction","uploadFile","deleteFile","getTempFileURL","downloadFile","database","getCurrentUSerInfo","importObject"];let o;o=e&&e.length>0?"\u5E94\u7528\u6709\u591A\u4E2A\u670D\u52A1\u7A7A\u95F4\uFF0C\u8BF7\u901A\u8FC7uniCloud.init\u65B9\u6CD5\u6307\u5B9A\u8981\u4F7F\u7528\u7684\u670D\u52A1\u7A7A\u95F4":"\u5E94\u7528\u672A\u5173\u8054\u670D\u52A1\u7A7A\u95F4\uFF0C\u8BF7\u5728uniCloud\u76EE\u5F55\u53F3\u952E\u5173\u8054\u670D\u52A1\u7A7A\u95F4",n.forEach(r=>{ce[r]=function(){return console.error(o),Promise.reject(new E({code:"SYS_ERR",message:o}))}})}Object.assign(ce,{get mixinDatacom(){return ca(ce)}}),Ug(ce),ce.addInterceptor=Dc,ce.removeInterceptor=Hh,ce.interceptObject=Bh,F==="web"&&(window.uniCloud=ce)})();exports._export_sfc=ua;exports.createSSRApp=Op;exports.e=Pp;exports.index=$;exports.n=Ip;exports.o=vp;exports.p=Tp;exports.resolveComponent=Qf;exports.s=Sp;exports.sr=xp;exports.t=Ap;
+function normalizeStyle(value) {
+  if (isArray(value)) {
+    const res = {};
+    for (let i = 0; i < value.length; i++) {
+      const item = value[i];
+      const normalized = isString(item) ? parseStringStyle(item) : normalizeStyle(item);
+      if (normalized) {
+        for (const key in normalized) {
+          res[key] = normalized[key];
+        }
+      }
+    }
+    return res;
+  } else if (isString(value)) {
+    return value;
+  } else if (isObject(value)) {
+    return value;
+  }
+}
+const listDelimiterRE = /;(?![^(]*\))/g;
+const propertyDelimiterRE = /:([^]+)/;
+const styleCommentRE = /\/\*.*?\*\//gs;
+function parseStringStyle(cssText) {
+  const ret = {};
+  cssText.replace(styleCommentRE, "").split(listDelimiterRE).forEach((item) => {
+    if (item) {
+      const tmp = item.split(propertyDelimiterRE);
+      tmp.length > 1 && (ret[tmp[0].trim()] = tmp[1].trim());
+    }
+  });
+  return ret;
+}
+function normalizeClass(value) {
+  let res = "";
+  if (isString(value)) {
+    res = value;
+  } else if (isArray(value)) {
+    for (let i = 0; i < value.length; i++) {
+      const normalized = normalizeClass(value[i]);
+      if (normalized) {
+        res += normalized + " ";
+      }
+    }
+  } else if (isObject(value)) {
+    for (const name in value) {
+      if (value[name]) {
+        res += name + " ";
+      }
+    }
+  }
+  return res.trim();
+}
+const toDisplayString = (val) => {
+  return isString(val) ? val : val == null ? "" : isArray(val) || isObject(val) && (val.toString === objectToString || !isFunction(val.toString)) ? JSON.stringify(val, replacer, 2) : String(val);
+};
+const replacer = (_key, val) => {
+  if (val && val.__v_isRef) {
+    return replacer(_key, val.value);
+  } else if (isMap(val)) {
+    return {
+      [`Map(${val.size})`]: [...val.entries()].reduce((entries, [key, val2]) => {
+        entries[`${key} =>`] = val2;
+        return entries;
+      }, {})
+    };
+  } else if (isSet(val)) {
+    return {
+      [`Set(${val.size})`]: [...val.values()]
+    };
+  } else if (isObject(val) && !isArray(val) && !isPlainObject(val)) {
+    return String(val);
+  }
+  return val;
+};
+const EMPTY_OBJ = Object.freeze({});
+const EMPTY_ARR = Object.freeze([]);
+const NOOP = () => {
+};
+const NO = () => false;
+const onRE = /^on[^a-z]/;
+const isOn = (key) => onRE.test(key);
+const isModelListener = (key) => key.startsWith("onUpdate:");
+const extend = Object.assign;
+const remove = (arr, el) => {
+  const i = arr.indexOf(el);
+  if (i > -1) {
+    arr.splice(i, 1);
+  }
+};
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+const hasOwn = (val, key) => hasOwnProperty.call(val, key);
+const isArray = Array.isArray;
+const isMap = (val) => toTypeString(val) === "[object Map]";
+const isSet = (val) => toTypeString(val) === "[object Set]";
+const isFunction = (val) => typeof val === "function";
+const isString = (val) => typeof val === "string";
+const isSymbol = (val) => typeof val === "symbol";
+const isObject = (val) => val !== null && typeof val === "object";
+const isPromise = (val) => {
+  return isObject(val) && isFunction(val.then) && isFunction(val.catch);
+};
+const objectToString = Object.prototype.toString;
+const toTypeString = (value) => objectToString.call(value);
+const toRawType = (value) => {
+  return toTypeString(value).slice(8, -1);
+};
+const isPlainObject = (val) => toTypeString(val) === "[object Object]";
+const isIntegerKey = (key) => isString(key) && key !== "NaN" && key[0] !== "-" && "" + parseInt(key, 10) === key;
+const isReservedProp = /* @__PURE__ */ makeMap(
+  ",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted"
+);
+const isBuiltInDirective = /* @__PURE__ */ makeMap("bind,cloak,else-if,else,for,html,if,model,on,once,pre,show,slot,text,memo");
+const cacheStringFunction = (fn) => {
+  const cache = /* @__PURE__ */ Object.create(null);
+  return (str) => {
+    const hit = cache[str];
+    return hit || (cache[str] = fn(str));
+  };
+};
+const camelizeRE = /-(\w)/g;
+const camelize = cacheStringFunction((str) => {
+  return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : "");
+});
+const hyphenateRE = /\B([A-Z])/g;
+const hyphenate = cacheStringFunction((str) => str.replace(hyphenateRE, "-$1").toLowerCase());
+const capitalize = cacheStringFunction((str) => str.charAt(0).toUpperCase() + str.slice(1));
+const toHandlerKey = cacheStringFunction((str) => str ? `on${capitalize(str)}` : ``);
+const hasChanged = (value, oldValue) => !Object.is(value, oldValue);
+const invokeArrayFns$1 = (fns, arg) => {
+  for (let i = 0; i < fns.length; i++) {
+    fns[i](arg);
+  }
+};
+const def = (obj, key, value) => {
+  Object.defineProperty(obj, key, {
+    configurable: true,
+    enumerable: false,
+    value
+  });
+};
+const toNumber = (val) => {
+  const n2 = parseFloat(val);
+  return isNaN(n2) ? val : n2;
+};
+const LINEFEED = "\n";
+const SLOT_DEFAULT_NAME = "d";
+const ON_SHOW = "onShow";
+const ON_HIDE = "onHide";
+const ON_LAUNCH = "onLaunch";
+const ON_ERROR = "onError";
+const ON_THEME_CHANGE = "onThemeChange";
+const ON_PAGE_NOT_FOUND = "onPageNotFound";
+const ON_UNHANDLE_REJECTION = "onUnhandledRejection";
+const ON_LOAD = "onLoad";
+const ON_READY = "onReady";
+const ON_UNLOAD = "onUnload";
+const ON_INIT = "onInit";
+const ON_SAVE_EXIT_STATE = "onSaveExitState";
+const ON_RESIZE = "onResize";
+const ON_BACK_PRESS = "onBackPress";
+const ON_PAGE_SCROLL = "onPageScroll";
+const ON_TAB_ITEM_TAP = "onTabItemTap";
+const ON_REACH_BOTTOM = "onReachBottom";
+const ON_PULL_DOWN_REFRESH = "onPullDownRefresh";
+const ON_SHARE_TIMELINE = "onShareTimeline";
+const ON_ADD_TO_FAVORITES = "onAddToFavorites";
+const ON_SHARE_APP_MESSAGE = "onShareAppMessage";
+const ON_NAVIGATION_BAR_BUTTON_TAP = "onNavigationBarButtonTap";
+const ON_NAVIGATION_BAR_SEARCH_INPUT_CLICKED = "onNavigationBarSearchInputClicked";
+const ON_NAVIGATION_BAR_SEARCH_INPUT_CHANGED = "onNavigationBarSearchInputChanged";
+const ON_NAVIGATION_BAR_SEARCH_INPUT_CONFIRMED = "onNavigationBarSearchInputConfirmed";
+const ON_NAVIGATION_BAR_SEARCH_INPUT_FOCUS_CHANGED = "onNavigationBarSearchInputFocusChanged";
+const customizeRE = /:/g;
+function customizeEvent(str) {
+  return camelize(str.replace(customizeRE, "-"));
+}
+function hasLeadingSlash(str) {
+  return str.indexOf("/") === 0;
+}
+function addLeadingSlash(str) {
+  return hasLeadingSlash(str) ? str : "/" + str;
+}
+const invokeArrayFns = (fns, arg) => {
+  let ret;
+  for (let i = 0; i < fns.length; i++) {
+    ret = fns[i](arg);
+  }
+  return ret;
+};
+function once(fn, ctx = null) {
+  let res;
+  return (...args) => {
+    if (fn) {
+      res = fn.apply(ctx, args);
+      fn = null;
+    }
+    return res;
+  };
+}
+function getValueByDataPath(obj, path) {
+  if (!isString(path)) {
+    return;
+  }
+  path = path.replace(/\[(\d+)\]/g, ".$1");
+  const parts = path.split(".");
+  let key = parts[0];
+  if (!obj) {
+    obj = {};
+  }
+  if (parts.length === 1) {
+    return obj[key];
+  }
+  return getValueByDataPath(obj[key], parts.slice(1).join("."));
+}
+function sortObject(obj) {
+  let sortObj = {};
+  if (isPlainObject(obj)) {
+    Object.keys(obj).sort().forEach((key) => {
+      const _key = key;
+      sortObj[_key] = obj[_key];
+    });
+  }
+  return !Object.keys(sortObj) ? obj : sortObj;
+}
+const encode = encodeURIComponent;
+function stringifyQuery(obj, encodeStr = encode) {
+  const res = obj ? Object.keys(obj).map((key) => {
+    let val = obj[key];
+    if (typeof val === void 0 || val === null) {
+      val = "";
+    } else if (isPlainObject(val)) {
+      val = JSON.stringify(val);
+    }
+    return encodeStr(key) + "=" + encodeStr(val);
+  }).filter((x) => x.length > 0).join("&") : null;
+  return res ? `?${res}` : "";
+}
+const PAGE_HOOKS = [
+  ON_INIT,
+  ON_LOAD,
+  ON_SHOW,
+  ON_HIDE,
+  ON_UNLOAD,
+  ON_BACK_PRESS,
+  ON_PAGE_SCROLL,
+  ON_TAB_ITEM_TAP,
+  ON_REACH_BOTTOM,
+  ON_PULL_DOWN_REFRESH,
+  ON_SHARE_TIMELINE,
+  ON_SHARE_APP_MESSAGE,
+  ON_ADD_TO_FAVORITES,
+  ON_SAVE_EXIT_STATE,
+  ON_NAVIGATION_BAR_BUTTON_TAP,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_CLICKED,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_CHANGED,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_CONFIRMED,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_FOCUS_CHANGED
+];
+function isRootHook(name) {
+  return PAGE_HOOKS.indexOf(name) > -1;
+}
+const UniLifecycleHooks = [
+  ON_SHOW,
+  ON_HIDE,
+  ON_LAUNCH,
+  ON_ERROR,
+  ON_THEME_CHANGE,
+  ON_PAGE_NOT_FOUND,
+  ON_UNHANDLE_REJECTION,
+  ON_INIT,
+  ON_LOAD,
+  ON_READY,
+  ON_UNLOAD,
+  ON_RESIZE,
+  ON_BACK_PRESS,
+  ON_PAGE_SCROLL,
+  ON_TAB_ITEM_TAP,
+  ON_REACH_BOTTOM,
+  ON_PULL_DOWN_REFRESH,
+  ON_SHARE_TIMELINE,
+  ON_ADD_TO_FAVORITES,
+  ON_SHARE_APP_MESSAGE,
+  ON_SAVE_EXIT_STATE,
+  ON_NAVIGATION_BAR_BUTTON_TAP,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_CLICKED,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_CHANGED,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_CONFIRMED,
+  ON_NAVIGATION_BAR_SEARCH_INPUT_FOCUS_CHANGED
+];
+const MINI_PROGRAM_PAGE_RUNTIME_HOOKS = /* @__PURE__ */ (() => {
+  return {
+    onPageScroll: 1,
+    onShareAppMessage: 1 << 1,
+    onShareTimeline: 1 << 2
+  };
+})();
+function isUniLifecycleHook(name, value, checkType = true) {
+  if (checkType && !isFunction(value)) {
+    return false;
+  }
+  if (UniLifecycleHooks.indexOf(name) > -1) {
+    return true;
+  } else if (name.indexOf("on") === 0) {
+    return true;
+  }
+  return false;
+}
+let vueApp;
+const createVueAppHooks = [];
+function onCreateVueApp(hook) {
+  if (vueApp) {
+    return hook(vueApp);
+  }
+  createVueAppHooks.push(hook);
+}
+function invokeCreateVueAppHook(app) {
+  vueApp = app;
+  createVueAppHooks.forEach((hook) => hook(app));
+}
+const invokeCreateErrorHandler = once((app, createErrorHandler2) => {
+  if (isFunction(app._component.onError)) {
+    return createErrorHandler2(app);
+  }
+});
+const E = function() {
+};
+E.prototype = {
+  on: function(name, callback, ctx) {
+    var e2 = this.e || (this.e = {});
+    (e2[name] || (e2[name] = [])).push({
+      fn: callback,
+      ctx
+    });
+    return this;
+  },
+  once: function(name, callback, ctx) {
+    var self = this;
+    function listener() {
+      self.off(name, listener);
+      callback.apply(ctx, arguments);
+    }
+    listener._ = callback;
+    return this.on(name, listener, ctx);
+  },
+  emit: function(name) {
+    var data = [].slice.call(arguments, 1);
+    var evtArr = ((this.e || (this.e = {}))[name] || []).slice();
+    var i = 0;
+    var len = evtArr.length;
+    for (i; i < len; i++) {
+      evtArr[i].fn.apply(evtArr[i].ctx, data);
+    }
+    return this;
+  },
+  off: function(name, callback) {
+    var e2 = this.e || (this.e = {});
+    var evts = e2[name];
+    var liveEvents = [];
+    if (evts && callback) {
+      for (var i = 0, len = evts.length; i < len; i++) {
+        if (evts[i].fn !== callback && evts[i].fn._ !== callback)
+          liveEvents.push(evts[i]);
+      }
+    }
+    liveEvents.length ? e2[name] = liveEvents : delete e2[name];
+    return this;
+  }
+};
+var E$1 = E;
+const LOCALE_ZH_HANS = "zh-Hans";
+const LOCALE_ZH_HANT = "zh-Hant";
+const LOCALE_EN = "en";
+const LOCALE_FR = "fr";
+const LOCALE_ES = "es";
+function include(str, parts) {
+  return !!parts.find((part) => str.indexOf(part) !== -1);
+}
+function startsWith(str, parts) {
+  return parts.find((part) => str.indexOf(part) === 0);
+}
+function normalizeLocale(locale, messages) {
+  if (!locale) {
+    return;
+  }
+  locale = locale.trim().replace(/_/g, "-");
+  if (messages && messages[locale]) {
+    return locale;
+  }
+  locale = locale.toLowerCase();
+  if (locale === "chinese") {
+    return LOCALE_ZH_HANS;
+  }
+  if (locale.indexOf("zh") === 0) {
+    if (locale.indexOf("-hans") > -1) {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf("-hant") > -1) {
+      return LOCALE_ZH_HANT;
+    }
+    if (include(locale, ["-tw", "-hk", "-mo", "-cht"])) {
+      return LOCALE_ZH_HANT;
+    }
+    return LOCALE_ZH_HANS;
+  }
+  const lang = startsWith(locale, [LOCALE_EN, LOCALE_FR, LOCALE_ES]);
+  if (lang) {
+    return lang;
+  }
+}
+function getBaseSystemInfo() {
+  return wx.getSystemInfoSync();
+}
+function validateProtocolFail(name, msg) {
+  console.warn(`${name}: ${msg}`);
+}
+function validateProtocol(name, data, protocol, onFail) {
+  if (!onFail) {
+    onFail = validateProtocolFail;
+  }
+  for (const key in protocol) {
+    const errMsg = validateProp$1(key, data[key], protocol[key], !hasOwn(data, key));
+    if (isString(errMsg)) {
+      onFail(name, errMsg);
+    }
+  }
+}
+function validateProtocols(name, args, protocol, onFail) {
+  if (!protocol) {
+    return;
+  }
+  if (!isArray(protocol)) {
+    return validateProtocol(name, args[0] || /* @__PURE__ */ Object.create(null), protocol, onFail);
+  }
+  const len = protocol.length;
+  const argsLen = args.length;
+  for (let i = 0; i < len; i++) {
+    const opts = protocol[i];
+    const data = /* @__PURE__ */ Object.create(null);
+    if (argsLen > i) {
+      data[opts.name] = args[i];
+    }
+    validateProtocol(name, data, { [opts.name]: opts }, onFail);
+  }
+}
+function validateProp$1(name, value, prop, isAbsent) {
+  if (!isPlainObject(prop)) {
+    prop = { type: prop };
+  }
+  const { type, required, validator } = prop;
+  if (required && isAbsent) {
+    return 'Missing required args: "' + name + '"';
+  }
+  if (value == null && !required) {
+    return;
+  }
+  if (type != null) {
+    let isValid = false;
+    const types = isArray(type) ? type : [type];
+    const expectedTypes = [];
+    for (let i = 0; i < types.length && !isValid; i++) {
+      const { valid, expectedType } = assertType$1(value, types[i]);
+      expectedTypes.push(expectedType || "");
+      isValid = valid;
+    }
+    if (!isValid) {
+      return getInvalidTypeMessage$1(name, value, expectedTypes);
+    }
+  }
+  if (validator) {
+    return validator(value);
+  }
+}
+const isSimpleType$1 = /* @__PURE__ */ makeMap("String,Number,Boolean,Function,Symbol");
+function assertType$1(value, type) {
+  let valid;
+  const expectedType = getType$1(type);
+  if (isSimpleType$1(expectedType)) {
+    const t2 = typeof value;
+    valid = t2 === expectedType.toLowerCase();
+    if (!valid && t2 === "object") {
+      valid = value instanceof type;
+    }
+  } else if (expectedType === "Object") {
+    valid = isObject(value);
+  } else if (expectedType === "Array") {
+    valid = isArray(value);
+  } else {
+    {
+      valid = value instanceof type;
+    }
+  }
+  return {
+    valid,
+    expectedType
+  };
+}
+function getInvalidTypeMessage$1(name, value, expectedTypes) {
+  let message = `Invalid args: type check failed for args "${name}". Expected ${expectedTypes.map(capitalize).join(", ")}`;
+  const expectedType = expectedTypes[0];
+  const receivedType = toRawType(value);
+  const expectedValue = styleValue$1(value, expectedType);
+  const receivedValue = styleValue$1(value, receivedType);
+  if (expectedTypes.length === 1 && isExplicable$1(expectedType) && !isBoolean$1(expectedType, receivedType)) {
+    message += ` with value ${expectedValue}`;
+  }
+  message += `, got ${receivedType} `;
+  if (isExplicable$1(receivedType)) {
+    message += `with value ${receivedValue}.`;
+  }
+  return message;
+}
+function getType$1(ctor) {
+  const match = ctor && ctor.toString().match(/^\s*function (\w+)/);
+  return match ? match[1] : "";
+}
+function styleValue$1(value, type) {
+  if (type === "String") {
+    return `"${value}"`;
+  } else if (type === "Number") {
+    return `${Number(value)}`;
+  } else {
+    return `${value}`;
+  }
+}
+function isExplicable$1(type) {
+  const explicitTypes = ["string", "number", "boolean"];
+  return explicitTypes.some((elem) => type.toLowerCase() === elem);
+}
+function isBoolean$1(...args) {
+  return args.some((elem) => elem.toLowerCase() === "boolean");
+}
+function tryCatch(fn) {
+  return function() {
+    try {
+      return fn.apply(fn, arguments);
+    } catch (e2) {
+      console.error(e2);
+    }
+  };
+}
+let invokeCallbackId = 1;
+const invokeCallbacks = {};
+function addInvokeCallback(id, name, callback, keepAlive = false) {
+  invokeCallbacks[id] = {
+    name,
+    keepAlive,
+    callback
+  };
+  return id;
+}
+function invokeCallback(id, res, extras) {
+  if (typeof id === "number") {
+    const opts = invokeCallbacks[id];
+    if (opts) {
+      if (!opts.keepAlive) {
+        delete invokeCallbacks[id];
+      }
+      return opts.callback(res, extras);
+    }
+  }
+  return res;
+}
+const API_SUCCESS = "success";
+const API_FAIL = "fail";
+const API_COMPLETE = "complete";
+function getApiCallbacks(args) {
+  const apiCallbacks = {};
+  for (const name in args) {
+    const fn = args[name];
+    if (isFunction(fn)) {
+      apiCallbacks[name] = tryCatch(fn);
+      delete args[name];
+    }
+  }
+  return apiCallbacks;
+}
+function normalizeErrMsg$1(errMsg, name) {
+  if (!errMsg || errMsg.indexOf(":fail") === -1) {
+    return name + ":ok";
+  }
+  return name + errMsg.substring(errMsg.indexOf(":fail"));
+}
+function createAsyncApiCallback(name, args = {}, { beforeAll, beforeSuccess } = {}) {
+  if (!isPlainObject(args)) {
+    args = {};
+  }
+  const { success, fail, complete } = getApiCallbacks(args);
+  const hasSuccess = isFunction(success);
+  const hasFail = isFunction(fail);
+  const hasComplete = isFunction(complete);
+  const callbackId = invokeCallbackId++;
+  addInvokeCallback(callbackId, name, (res) => {
+    res = res || {};
+    res.errMsg = normalizeErrMsg$1(res.errMsg, name);
+    isFunction(beforeAll) && beforeAll(res);
+    if (res.errMsg === name + ":ok") {
+      isFunction(beforeSuccess) && beforeSuccess(res, args);
+      hasSuccess && success(res);
+    } else {
+      hasFail && fail(res);
+    }
+    hasComplete && complete(res);
+  });
+  return callbackId;
+}
+const HOOK_SUCCESS = "success";
+const HOOK_FAIL = "fail";
+const HOOK_COMPLETE = "complete";
+const globalInterceptors = {};
+const scopedInterceptors = {};
+function wrapperHook(hook) {
+  return function(data) {
+    return hook(data) || data;
+  };
+}
+function queue$1(hooks, data) {
+  let promise = false;
+  for (let i = 0; i < hooks.length; i++) {
+    const hook = hooks[i];
+    if (promise) {
+      promise = Promise.resolve(wrapperHook(hook));
+    } else {
+      const res = hook(data);
+      if (isPromise(res)) {
+        promise = Promise.resolve(res);
+      }
+      if (res === false) {
+        return {
+          then() {
+          },
+          catch() {
+          }
+        };
+      }
+    }
+  }
+  return promise || {
+    then(callback) {
+      return callback(data);
+    },
+    catch() {
+    }
+  };
+}
+function wrapperOptions(interceptors2, options = {}) {
+  [HOOK_SUCCESS, HOOK_FAIL, HOOK_COMPLETE].forEach((name) => {
+    const hooks = interceptors2[name];
+    if (!isArray(hooks)) {
+      return;
+    }
+    const oldCallback = options[name];
+    options[name] = function callbackInterceptor(res) {
+      queue$1(hooks, res).then((res2) => {
+        return isFunction(oldCallback) && oldCallback(res2) || res2;
+      });
+    };
+  });
+  return options;
+}
+function wrapperReturnValue(method, returnValue) {
+  const returnValueHooks = [];
+  if (isArray(globalInterceptors.returnValue)) {
+    returnValueHooks.push(...globalInterceptors.returnValue);
+  }
+  const interceptor = scopedInterceptors[method];
+  if (interceptor && isArray(interceptor.returnValue)) {
+    returnValueHooks.push(...interceptor.returnValue);
+  }
+  returnValueHooks.forEach((hook) => {
+    returnValue = hook(returnValue) || returnValue;
+  });
+  return returnValue;
+}
+function getApiInterceptorHooks(method) {
+  const interceptor = /* @__PURE__ */ Object.create(null);
+  Object.keys(globalInterceptors).forEach((hook) => {
+    if (hook !== "returnValue") {
+      interceptor[hook] = globalInterceptors[hook].slice();
+    }
+  });
+  const scopedInterceptor = scopedInterceptors[method];
+  if (scopedInterceptor) {
+    Object.keys(scopedInterceptor).forEach((hook) => {
+      if (hook !== "returnValue") {
+        interceptor[hook] = (interceptor[hook] || []).concat(scopedInterceptor[hook]);
+      }
+    });
+  }
+  return interceptor;
+}
+function invokeApi(method, api, options, params) {
+  const interceptor = getApiInterceptorHooks(method);
+  if (interceptor && Object.keys(interceptor).length) {
+    if (isArray(interceptor.invoke)) {
+      const res = queue$1(interceptor.invoke, options);
+      return res.then((options2) => {
+        return api(wrapperOptions(interceptor, options2), ...params);
+      });
+    } else {
+      return api(wrapperOptions(interceptor, options), ...params);
+    }
+  }
+  return api(options, ...params);
+}
+function hasCallback(args) {
+  if (isPlainObject(args) && [API_SUCCESS, API_FAIL, API_COMPLETE].find((cb) => isFunction(args[cb]))) {
+    return true;
+  }
+  return false;
+}
+function handlePromise(promise) {
+  return promise;
+}
+function promisify$1(name, fn) {
+  return (args = {}, ...rest) => {
+    if (hasCallback(args)) {
+      return wrapperReturnValue(name, invokeApi(name, fn, args, rest));
+    }
+    return wrapperReturnValue(name, handlePromise(new Promise((resolve2, reject) => {
+      invokeApi(name, fn, extend(args, { success: resolve2, fail: reject }), rest);
+    })));
+  };
+}
+function formatApiArgs(args, options) {
+  const params = args[0];
+  if (!options || !isPlainObject(options.formatArgs) && isPlainObject(params)) {
+    return;
+  }
+  const formatArgs = options.formatArgs;
+  const keys = Object.keys(formatArgs);
+  for (let i = 0; i < keys.length; i++) {
+    const name = keys[i];
+    const formatterOrDefaultValue = formatArgs[name];
+    if (isFunction(formatterOrDefaultValue)) {
+      const errMsg = formatterOrDefaultValue(args[0][name], params);
+      if (isString(errMsg)) {
+        return errMsg;
+      }
+    } else {
+      if (!hasOwn(params, name)) {
+        params[name] = formatterOrDefaultValue;
+      }
+    }
+  }
+}
+function invokeSuccess(id, name, res) {
+  return invokeCallback(id, extend(res || {}, { errMsg: name + ":ok" }));
+}
+function invokeFail(id, name, errMsg, errRes) {
+  return invokeCallback(id, extend({ errMsg: name + ":fail" + (errMsg ? " " + errMsg : "") }, errRes));
+}
+function beforeInvokeApi(name, args, protocol, options) {
+  {
+    validateProtocols(name, args, protocol);
+  }
+  if (options && options.beforeInvoke) {
+    const errMsg2 = options.beforeInvoke(args);
+    if (isString(errMsg2)) {
+      return errMsg2;
+    }
+  }
+  const errMsg = formatApiArgs(args, options);
+  if (errMsg) {
+    return errMsg;
+  }
+}
+function normalizeErrMsg(errMsg) {
+  if (!errMsg || isString(errMsg)) {
+    return errMsg;
+  }
+  if (errMsg.stack) {
+    console.error(errMsg.message + LINEFEED + errMsg.stack);
+    return errMsg.message;
+  }
+  return errMsg;
+}
+function wrapperTaskApi(name, fn, protocol, options) {
+  return (args) => {
+    const id = createAsyncApiCallback(name, args, options);
+    const errMsg = beforeInvokeApi(name, [args], protocol, options);
+    if (errMsg) {
+      return invokeFail(id, name, errMsg);
+    }
+    return fn(args, {
+      resolve: (res) => invokeSuccess(id, name, res),
+      reject: (errMsg2, errRes) => invokeFail(id, name, normalizeErrMsg(errMsg2), errRes)
+    });
+  };
+}
+function wrapperSyncApi(name, fn, protocol, options) {
+  return (...args) => {
+    const errMsg = beforeInvokeApi(name, args, protocol, options);
+    if (errMsg) {
+      throw new Error(errMsg);
+    }
+    return fn.apply(null, args);
+  };
+}
+function wrapperAsyncApi(name, fn, protocol, options) {
+  return wrapperTaskApi(name, fn, protocol, options);
+}
+function defineSyncApi(name, fn, protocol, options) {
+  return wrapperSyncApi(name, fn, protocol, options);
+}
+function defineAsyncApi(name, fn, protocol, options) {
+  return promisify$1(name, wrapperAsyncApi(name, fn, protocol, options));
+}
+const API_UPX2PX = "upx2px";
+const Upx2pxProtocol = [
+  {
+    name: "upx",
+    type: [Number, String],
+    required: true
+  }
+];
+const EPS = 1e-4;
+const BASE_DEVICE_WIDTH = 750;
+let isIOS = false;
+let deviceWidth = 0;
+let deviceDPR = 0;
+function checkDeviceWidth() {
+  const { platform, pixelRatio, windowWidth } = getBaseSystemInfo();
+  deviceWidth = windowWidth;
+  deviceDPR = pixelRatio;
+  isIOS = platform === "ios";
+}
+const upx2px = defineSyncApi(API_UPX2PX, (number, newDeviceWidth) => {
+  if (deviceWidth === 0) {
+    checkDeviceWidth();
+  }
+  number = Number(number);
+  if (number === 0) {
+    return 0;
+  }
+  let width = newDeviceWidth || deviceWidth;
+  let result = number / BASE_DEVICE_WIDTH * width;
+  if (result < 0) {
+    result = -result;
+  }
+  result = Math.floor(result + EPS);
+  if (result === 0) {
+    if (deviceDPR === 1 || !isIOS) {
+      result = 1;
+    } else {
+      result = 0.5;
+    }
+  }
+  return number < 0 ? -result : result;
+}, Upx2pxProtocol);
+const API_ADD_INTERCEPTOR = "addInterceptor";
+const API_REMOVE_INTERCEPTOR = "removeInterceptor";
+const AddInterceptorProtocol = [
+  {
+    name: "method",
+    type: [String, Object],
+    required: true
+  }
+];
+const RemoveInterceptorProtocol = AddInterceptorProtocol;
+function mergeInterceptorHook(interceptors2, interceptor) {
+  Object.keys(interceptor).forEach((hook) => {
+    if (isFunction(interceptor[hook])) {
+      interceptors2[hook] = mergeHook(interceptors2[hook], interceptor[hook]);
+    }
+  });
+}
+function removeInterceptorHook(interceptors2, interceptor) {
+  if (!interceptors2 || !interceptor) {
+    return;
+  }
+  Object.keys(interceptor).forEach((name) => {
+    const hooks = interceptors2[name];
+    const hook = interceptor[name];
+    if (isArray(hooks) && isFunction(hook)) {
+      remove(hooks, hook);
+    }
+  });
+}
+function mergeHook(parentVal, childVal) {
+  const res = childVal ? parentVal ? parentVal.concat(childVal) : isArray(childVal) ? childVal : [childVal] : parentVal;
+  return res ? dedupeHooks(res) : res;
+}
+function dedupeHooks(hooks) {
+  const res = [];
+  for (let i = 0; i < hooks.length; i++) {
+    if (res.indexOf(hooks[i]) === -1) {
+      res.push(hooks[i]);
+    }
+  }
+  return res;
+}
+const addInterceptor = defineSyncApi(API_ADD_INTERCEPTOR, (method, interceptor) => {
+  if (isString(method) && isPlainObject(interceptor)) {
+    mergeInterceptorHook(scopedInterceptors[method] || (scopedInterceptors[method] = {}), interceptor);
+  } else if (isPlainObject(method)) {
+    mergeInterceptorHook(globalInterceptors, method);
+  }
+}, AddInterceptorProtocol);
+const removeInterceptor = defineSyncApi(API_REMOVE_INTERCEPTOR, (method, interceptor) => {
+  if (isString(method)) {
+    if (isPlainObject(interceptor)) {
+      removeInterceptorHook(scopedInterceptors[method], interceptor);
+    } else {
+      delete scopedInterceptors[method];
+    }
+  } else if (isPlainObject(method)) {
+    removeInterceptorHook(globalInterceptors, method);
+  }
+}, RemoveInterceptorProtocol);
+const interceptors = {};
+const API_ON = "$on";
+const OnProtocol = [
+  {
+    name: "event",
+    type: String,
+    required: true
+  },
+  {
+    name: "callback",
+    type: Function,
+    required: true
+  }
+];
+const API_ONCE = "$once";
+const OnceProtocol = OnProtocol;
+const API_OFF = "$off";
+const OffProtocol = [
+  {
+    name: "event",
+    type: [String, Array]
+  },
+  {
+    name: "callback",
+    type: Function
+  }
+];
+const API_EMIT = "$emit";
+const EmitProtocol = [
+  {
+    name: "event",
+    type: String,
+    required: true
+  }
+];
+const emitter = new E$1();
+const $on = defineSyncApi(API_ON, (name, callback) => {
+  emitter.on(name, callback);
+  return () => emitter.off(name, callback);
+}, OnProtocol);
+const $once = defineSyncApi(API_ONCE, (name, callback) => {
+  emitter.once(name, callback);
+  return () => emitter.off(name, callback);
+}, OnceProtocol);
+const $off = defineSyncApi(API_OFF, (name, callback) => {
+  if (!name) {
+    emitter.e = {};
+    return;
+  }
+  if (!isArray(name))
+    name = [name];
+  name.forEach((n2) => emitter.off(n2, callback));
+}, OffProtocol);
+const $emit = defineSyncApi(API_EMIT, (name, ...args) => {
+  emitter.emit(name, ...args);
+}, EmitProtocol);
+let cid;
+let cidErrMsg;
+let enabled;
+function normalizePushMessage(message) {
+  try {
+    return JSON.parse(message);
+  } catch (e2) {
+  }
+  return message;
+}
+function invokePushCallback(args) {
+  if (args.type === "enabled") {
+    enabled = true;
+  } else if (args.type === "clientId") {
+    cid = args.cid;
+    cidErrMsg = args.errMsg;
+    invokeGetPushCidCallbacks(cid, args.errMsg);
+  } else if (args.type === "pushMsg") {
+    const message = {
+      type: "receive",
+      data: normalizePushMessage(args.message)
+    };
+    for (let i = 0; i < onPushMessageCallbacks.length; i++) {
+      const callback = onPushMessageCallbacks[i];
+      callback(message);
+      if (message.stopped) {
+        break;
+      }
+    }
+  } else if (args.type === "click") {
+    onPushMessageCallbacks.forEach((callback) => {
+      callback({
+        type: "click",
+        data: normalizePushMessage(args.message)
+      });
+    });
+  }
+}
+const getPushCidCallbacks = [];
+function invokeGetPushCidCallbacks(cid2, errMsg) {
+  getPushCidCallbacks.forEach((callback) => {
+    callback(cid2, errMsg);
+  });
+  getPushCidCallbacks.length = 0;
+}
+const API_GET_PUSH_CLIENT_ID = "getPushClientId";
+const getPushClientId = defineAsyncApi(API_GET_PUSH_CLIENT_ID, (_, { resolve: resolve2, reject }) => {
+  Promise.resolve().then(() => {
+    if (typeof enabled === "undefined") {
+      enabled = false;
+      cid = "";
+      cidErrMsg = "uniPush is not enabled";
+    }
+    getPushCidCallbacks.push((cid2, errMsg) => {
+      if (cid2) {
+        resolve2({ cid: cid2 });
+      } else {
+        reject(errMsg);
+      }
+    });
+    if (typeof cid !== "undefined") {
+      invokeGetPushCidCallbacks(cid, cidErrMsg);
+    }
+  });
+});
+const onPushMessageCallbacks = [];
+const onPushMessage = (fn) => {
+  if (onPushMessageCallbacks.indexOf(fn) === -1) {
+    onPushMessageCallbacks.push(fn);
+  }
+};
+const offPushMessage = (fn) => {
+  if (!fn) {
+    onPushMessageCallbacks.length = 0;
+  } else {
+    const index2 = onPushMessageCallbacks.indexOf(fn);
+    if (index2 > -1) {
+      onPushMessageCallbacks.splice(index2, 1);
+    }
+  }
+};
+const SYNC_API_RE = /^\$|getLocale|setLocale|sendNativeEvent|restoreGlobal|requireGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64|getDeviceInfo|getAppBaseInfo|getWindowInfo|getSystemSetting|getAppAuthorizeSetting/;
+const CONTEXT_API_RE = /^create|Manager$/;
+const CONTEXT_API_RE_EXC = ["createBLEConnection"];
+const ASYNC_API = ["createBLEConnection"];
+const CALLBACK_API_RE = /^on|^off/;
+function isContextApi(name) {
+  return CONTEXT_API_RE.test(name) && CONTEXT_API_RE_EXC.indexOf(name) === -1;
+}
+function isSyncApi(name) {
+  return SYNC_API_RE.test(name) && ASYNC_API.indexOf(name) === -1;
+}
+function isCallbackApi(name) {
+  return CALLBACK_API_RE.test(name) && name !== "onPush";
+}
+function shouldPromise(name) {
+  if (isContextApi(name) || isSyncApi(name) || isCallbackApi(name)) {
+    return false;
+  }
+  return true;
+}
+if (!Promise.prototype.finally) {
+  Promise.prototype.finally = function(onfinally) {
+    const promise = this.constructor;
+    return this.then((value) => promise.resolve(onfinally && onfinally()).then(() => value), (reason) => promise.resolve(onfinally && onfinally()).then(() => {
+      throw reason;
+    }));
+  };
+}
+function promisify(name, api) {
+  if (!shouldPromise(name)) {
+    return api;
+  }
+  if (!isFunction(api)) {
+    return api;
+  }
+  return function promiseApi(options = {}, ...rest) {
+    if (isFunction(options.success) || isFunction(options.fail) || isFunction(options.complete)) {
+      return wrapperReturnValue(name, invokeApi(name, api, options, rest));
+    }
+    return wrapperReturnValue(name, handlePromise(new Promise((resolve2, reject) => {
+      invokeApi(name, api, extend({}, options, {
+        success: resolve2,
+        fail: reject
+      }), rest);
+    })));
+  };
+}
+const CALLBACKS = ["success", "fail", "cancel", "complete"];
+function initWrapper(protocols2) {
+  function processCallback(methodName, method, returnValue) {
+    return function(res) {
+      return method(processReturnValue(methodName, res, returnValue));
+    };
+  }
+  function processArgs(methodName, fromArgs, argsOption = {}, returnValue = {}, keepFromArgs = false) {
+    if (isPlainObject(fromArgs)) {
+      const toArgs = keepFromArgs === true ? fromArgs : {};
+      if (isFunction(argsOption)) {
+        argsOption = argsOption(fromArgs, toArgs) || {};
+      }
+      for (const key in fromArgs) {
+        if (hasOwn(argsOption, key)) {
+          let keyOption = argsOption[key];
+          if (isFunction(keyOption)) {
+            keyOption = keyOption(fromArgs[key], fromArgs, toArgs);
+          }
+          if (!keyOption) {
+            console.warn(`\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F ${methodName} \u6682\u4E0D\u652F\u6301 ${key}`);
+          } else if (isString(keyOption)) {
+            toArgs[keyOption] = fromArgs[key];
+          } else if (isPlainObject(keyOption)) {
+            toArgs[keyOption.name ? keyOption.name : key] = keyOption.value;
+          }
+        } else if (CALLBACKS.indexOf(key) !== -1) {
+          const callback = fromArgs[key];
+          if (isFunction(callback)) {
+            toArgs[key] = processCallback(methodName, callback, returnValue);
+          }
+        } else {
+          if (!keepFromArgs && !hasOwn(toArgs, key)) {
+            toArgs[key] = fromArgs[key];
+          }
+        }
+      }
+      return toArgs;
+    } else if (isFunction(fromArgs)) {
+      fromArgs = processCallback(methodName, fromArgs, returnValue);
+    }
+    return fromArgs;
+  }
+  function processReturnValue(methodName, res, returnValue, keepReturnValue = false) {
+    if (isFunction(protocols2.returnValue)) {
+      res = protocols2.returnValue(methodName, res);
+    }
+    return processArgs(methodName, res, returnValue, {}, keepReturnValue);
+  }
+  return function wrapper(methodName, method) {
+    if (!hasOwn(protocols2, methodName)) {
+      return method;
+    }
+    const protocol = protocols2[methodName];
+    if (!protocol) {
+      return function() {
+        console.error(`\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F \u6682\u4E0D\u652F\u6301${methodName}`);
+      };
+    }
+    return function(arg1, arg2) {
+      let options = protocol;
+      if (isFunction(protocol)) {
+        options = protocol(arg1);
+      }
+      arg1 = processArgs(methodName, arg1, options.args, options.returnValue);
+      const args = [arg1];
+      if (typeof arg2 !== "undefined") {
+        args.push(arg2);
+      }
+      const returnValue = wx[options.name || methodName].apply(wx, args);
+      if (isSyncApi(methodName)) {
+        return processReturnValue(methodName, returnValue, options.returnValue, isContextApi(methodName));
+      }
+      return returnValue;
+    };
+  };
+}
+const getLocale = () => {
+  const app = getApp({ allowDefault: true });
+  if (app && app.$vm) {
+    return app.$vm.$locale;
+  }
+  return normalizeLocale(wx.getSystemInfoSync().language) || LOCALE_EN;
+};
+const setLocale = (locale) => {
+  const app = getApp();
+  if (!app) {
+    return false;
+  }
+  const oldLocale = app.$vm.$locale;
+  if (oldLocale !== locale) {
+    app.$vm.$locale = locale;
+    onLocaleChangeCallbacks.forEach((fn) => fn({ locale }));
+    return true;
+  }
+  return false;
+};
+const onLocaleChangeCallbacks = [];
+const onLocaleChange = (fn) => {
+  if (onLocaleChangeCallbacks.indexOf(fn) === -1) {
+    onLocaleChangeCallbacks.push(fn);
+  }
+};
+if (typeof global !== "undefined") {
+  global.getLocale = getLocale;
+}
+const UUID_KEY = "__DC_STAT_UUID";
+let deviceId;
+function useDeviceId(global2 = wx) {
+  return function addDeviceId(_, toRes) {
+    deviceId = deviceId || global2.getStorageSync(UUID_KEY);
+    if (!deviceId) {
+      deviceId = Date.now() + "" + Math.floor(Math.random() * 1e7);
+      wx.setStorage({
+        key: UUID_KEY,
+        data: deviceId
+      });
+    }
+    toRes.deviceId = deviceId;
+  };
+}
+function addSafeAreaInsets(fromRes, toRes) {
+  if (fromRes.safeArea) {
+    const safeArea = fromRes.safeArea;
+    toRes.safeAreaInsets = {
+      top: safeArea.top,
+      left: safeArea.left,
+      right: fromRes.windowWidth - safeArea.right,
+      bottom: fromRes.screenHeight - safeArea.bottom
+    };
+  }
+}
+function populateParameters(fromRes, toRes) {
+  const { brand = "", model = "", system = "", language = "", theme, version: version2, platform, fontSizeSetting, SDKVersion, pixelRatio, deviceOrientation } = fromRes;
+  let osName = "";
+  let osVersion = "";
+  {
+    osName = system.split(" ")[0] || "";
+    osVersion = system.split(" ")[1] || "";
+  }
+  let hostVersion = version2;
+  let deviceType = getGetDeviceType(fromRes, model);
+  let deviceBrand = getDeviceBrand(brand);
+  let _hostName = getHostName(fromRes);
+  let _deviceOrientation = deviceOrientation;
+  let _devicePixelRatio = pixelRatio;
+  let _SDKVersion = SDKVersion;
+  const hostLanguage = language.replace(/_/g, "-");
+  const parameters = {
+    appId: "__UNI__C1A907D",
+    appName: "todo-list",
+    appVersion: "1.0.0",
+    appVersionCode: "100",
+    appLanguage: getAppLanguage(hostLanguage),
+    uniCompileVersion: "3.6.15",
+    uniRuntimeVersion: "3.6.15",
+    uniPlatform: "mp-weixin",
+    deviceBrand,
+    deviceModel: model,
+    deviceType,
+    devicePixelRatio: _devicePixelRatio,
+    deviceOrientation: _deviceOrientation,
+    osName: osName.toLocaleLowerCase(),
+    osVersion,
+    hostTheme: theme,
+    hostVersion,
+    hostLanguage,
+    hostName: _hostName,
+    hostSDKVersion: _SDKVersion,
+    hostFontSizeSetting: fontSizeSetting,
+    windowTop: 0,
+    windowBottom: 0,
+    osLanguage: void 0,
+    osTheme: void 0,
+    ua: void 0,
+    hostPackageName: void 0,
+    browserName: void 0,
+    browserVersion: void 0
+  };
+  extend(toRes, parameters);
+}
+function getGetDeviceType(fromRes, model) {
+  let deviceType = fromRes.deviceType || "phone";
+  {
+    const deviceTypeMaps = {
+      ipad: "pad",
+      windows: "pc",
+      mac: "pc"
+    };
+    const deviceTypeMapsKeys = Object.keys(deviceTypeMaps);
+    const _model = model.toLocaleLowerCase();
+    for (let index2 = 0; index2 < deviceTypeMapsKeys.length; index2++) {
+      const _m = deviceTypeMapsKeys[index2];
+      if (_model.indexOf(_m) !== -1) {
+        deviceType = deviceTypeMaps[_m];
+        break;
+      }
+    }
+  }
+  return deviceType;
+}
+function getDeviceBrand(brand) {
+  let deviceBrand = brand;
+  if (deviceBrand) {
+    deviceBrand = deviceBrand.toLocaleLowerCase();
+  }
+  return deviceBrand;
+}
+function getAppLanguage(defaultLanguage) {
+  return getLocale ? getLocale() : defaultLanguage;
+}
+function getHostName(fromRes) {
+  const _platform = "WeChat";
+  let _hostName = fromRes.hostName || _platform;
+  {
+    if (fromRes.environment) {
+      _hostName = fromRes.environment;
+    } else if (fromRes.host && fromRes.host.env) {
+      _hostName = fromRes.host.env;
+    }
+  }
+  return _hostName;
+}
+const getSystemInfo = {
+  returnValue: (fromRes, toRes) => {
+    addSafeAreaInsets(fromRes, toRes);
+    useDeviceId()(fromRes, toRes);
+    populateParameters(fromRes, toRes);
+  }
+};
+const getSystemInfoSync = getSystemInfo;
+const redirectTo = {};
+const previewImage = {
+  args(fromArgs, toArgs) {
+    let currentIndex = parseInt(fromArgs.current);
+    if (isNaN(currentIndex)) {
+      return;
+    }
+    const urls = fromArgs.urls;
+    if (!isArray(urls)) {
+      return;
+    }
+    const len = urls.length;
+    if (!len) {
+      return;
+    }
+    if (currentIndex < 0) {
+      currentIndex = 0;
+    } else if (currentIndex >= len) {
+      currentIndex = len - 1;
+    }
+    if (currentIndex > 0) {
+      toArgs.current = urls[currentIndex];
+      toArgs.urls = urls.filter((item, index2) => index2 < currentIndex ? item !== urls[currentIndex] : true);
+    } else {
+      toArgs.current = urls[0];
+    }
+    return {
+      indicator: false,
+      loop: false
+    };
+  }
+};
+const showActionSheet = {
+  args(fromArgs, toArgs) {
+    toArgs.alertText = fromArgs.title;
+  }
+};
+const getDeviceInfo = {
+  returnValue: (fromRes, toRes) => {
+    const { brand, model } = fromRes;
+    let deviceType = getGetDeviceType(fromRes, model);
+    let deviceBrand = getDeviceBrand(brand);
+    useDeviceId()(fromRes, toRes);
+    toRes = sortObject(extend(toRes, {
+      deviceType,
+      deviceBrand,
+      deviceModel: model
+    }));
+  }
+};
+const getAppBaseInfo = {
+  returnValue: (fromRes, toRes) => {
+    const { version: version2, language, SDKVersion, theme } = fromRes;
+    let _hostName = getHostName(fromRes);
+    let hostLanguage = language.replace(/_/g, "-");
+    toRes = sortObject(extend(toRes, {
+      hostVersion: version2,
+      hostLanguage,
+      hostName: _hostName,
+      hostSDKVersion: SDKVersion,
+      hostTheme: theme,
+      appId: "__UNI__C1A907D",
+      appName: "todo-list",
+      appVersion: "1.0.0",
+      appVersionCode: "100",
+      appLanguage: getAppLanguage(hostLanguage)
+    }));
+  }
+};
+const getWindowInfo = {
+  returnValue: (fromRes, toRes) => {
+    addSafeAreaInsets(fromRes, toRes);
+    toRes = sortObject(extend(toRes, {
+      windowTop: 0,
+      windowBottom: 0
+    }));
+  }
+};
+const getAppAuthorizeSetting = {
+  returnValue: function(fromRes, toRes) {
+    const { locationReducedAccuracy } = fromRes;
+    toRes.locationAccuracy = "unsupported";
+    if (locationReducedAccuracy === true) {
+      toRes.locationAccuracy = "reduced";
+    } else if (locationReducedAccuracy === false) {
+      toRes.locationAccuracy = "full";
+    }
+  }
+};
+const baseApis = {
+  $on,
+  $off,
+  $once,
+  $emit,
+  upx2px,
+  interceptors,
+  addInterceptor,
+  removeInterceptor,
+  onCreateVueApp,
+  invokeCreateVueAppHook,
+  getLocale,
+  setLocale,
+  onLocaleChange,
+  getPushClientId,
+  onPushMessage,
+  offPushMessage,
+  invokePushCallback
+};
+function initUni(api, protocols2) {
+  const wrapper = initWrapper(protocols2);
+  const UniProxyHandlers = {
+    get(target, key) {
+      if (hasOwn(target, key)) {
+        return target[key];
+      }
+      if (hasOwn(api, key)) {
+        return promisify(key, api[key]);
+      }
+      if (hasOwn(baseApis, key)) {
+        return promisify(key, baseApis[key]);
+      }
+      return promisify(key, wrapper(key, wx[key]));
+    }
+  };
+  return new Proxy({}, UniProxyHandlers);
+}
+function initGetProvider(providers) {
+  return function getProvider2({ service, success, fail, complete }) {
+    let res;
+    if (providers[service]) {
+      res = {
+        errMsg: "getProvider:ok",
+        service,
+        provider: providers[service]
+      };
+      isFunction(success) && success(res);
+    } else {
+      res = {
+        errMsg: "getProvider:fail:\u670D\u52A1[" + service + "]\u4E0D\u5B58\u5728"
+      };
+      isFunction(fail) && fail(res);
+    }
+    isFunction(complete) && complete(res);
+  };
+}
+const mocks$1 = ["__route__", "__wxExparserNodeId__", "__wxWebviewId__"];
+const getProvider = initGetProvider({
+  oauth: ["weixin"],
+  share: ["weixin"],
+  payment: ["wxpay"],
+  push: ["weixin"]
+});
+function initComponentMocks(component) {
+  const res = /* @__PURE__ */ Object.create(null);
+  mocks$1.forEach((name) => {
+    res[name] = component[name];
+  });
+  return res;
+}
+function createSelectorQuery() {
+  const query = wx.createSelectorQuery();
+  const oldIn = query.in;
+  query.in = function newIn(component) {
+    return oldIn.call(this, initComponentMocks(component));
+  };
+  return query;
+}
+var shims = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  getProvider,
+  createSelectorQuery
+});
+var protocols = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  redirectTo,
+  previewImage,
+  getSystemInfo,
+  getSystemInfoSync,
+  showActionSheet,
+  getDeviceInfo,
+  getAppBaseInfo,
+  getWindowInfo,
+  getAppAuthorizeSetting
+});
+var index = initUni(shims, protocols);
+function warn(msg, ...args) {
+  console.warn(`[Vue warn] ${msg}`, ...args);
+}
+let activeEffectScope;
+class EffectScope {
+  constructor(detached = false) {
+    this.detached = detached;
+    this.active = true;
+    this.effects = [];
+    this.cleanups = [];
+    this.parent = activeEffectScope;
+    if (!detached && activeEffectScope) {
+      this.index = (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(this) - 1;
+    }
+  }
+  run(fn) {
+    if (this.active) {
+      const currentEffectScope = activeEffectScope;
+      try {
+        activeEffectScope = this;
+        return fn();
+      } finally {
+        activeEffectScope = currentEffectScope;
+      }
+    } else {
+      warn(`cannot run an inactive effect scope.`);
+    }
+  }
+  on() {
+    activeEffectScope = this;
+  }
+  off() {
+    activeEffectScope = this.parent;
+  }
+  stop(fromParent) {
+    if (this.active) {
+      let i, l;
+      for (i = 0, l = this.effects.length; i < l; i++) {
+        this.effects[i].stop();
+      }
+      for (i = 0, l = this.cleanups.length; i < l; i++) {
+        this.cleanups[i]();
+      }
+      if (this.scopes) {
+        for (i = 0, l = this.scopes.length; i < l; i++) {
+          this.scopes[i].stop(true);
+        }
+      }
+      if (!this.detached && this.parent && !fromParent) {
+        const last = this.parent.scopes.pop();
+        if (last && last !== this) {
+          this.parent.scopes[this.index] = last;
+          last.index = this.index;
+        }
+      }
+      this.parent = void 0;
+      this.active = false;
+    }
+  }
+}
+function recordEffectScope(effect, scope = activeEffectScope) {
+  if (scope && scope.active) {
+    scope.effects.push(effect);
+  }
+}
+const createDep = (effects) => {
+  const dep = new Set(effects);
+  dep.w = 0;
+  dep.n = 0;
+  return dep;
+};
+const wasTracked = (dep) => (dep.w & trackOpBit) > 0;
+const newTracked = (dep) => (dep.n & trackOpBit) > 0;
+const initDepMarkers = ({ deps }) => {
+  if (deps.length) {
+    for (let i = 0; i < deps.length; i++) {
+      deps[i].w |= trackOpBit;
+    }
+  }
+};
+const finalizeDepMarkers = (effect) => {
+  const { deps } = effect;
+  if (deps.length) {
+    let ptr = 0;
+    for (let i = 0; i < deps.length; i++) {
+      const dep = deps[i];
+      if (wasTracked(dep) && !newTracked(dep)) {
+        dep.delete(effect);
+      } else {
+        deps[ptr++] = dep;
+      }
+      dep.w &= ~trackOpBit;
+      dep.n &= ~trackOpBit;
+    }
+    deps.length = ptr;
+  }
+};
+const targetMap = /* @__PURE__ */ new WeakMap();
+let effectTrackDepth = 0;
+let trackOpBit = 1;
+const maxMarkerBits = 30;
+let activeEffect;
+const ITERATE_KEY = Symbol("iterate");
+const MAP_KEY_ITERATE_KEY = Symbol("Map key iterate");
+class ReactiveEffect {
+  constructor(fn, scheduler = null, scope) {
+    this.fn = fn;
+    this.scheduler = scheduler;
+    this.active = true;
+    this.deps = [];
+    this.parent = void 0;
+    recordEffectScope(this, scope);
+  }
+  run() {
+    if (!this.active) {
+      return this.fn();
+    }
+    let parent = activeEffect;
+    let lastShouldTrack = shouldTrack;
+    while (parent) {
+      if (parent === this) {
+        return;
+      }
+      parent = parent.parent;
+    }
+    try {
+      this.parent = activeEffect;
+      activeEffect = this;
+      shouldTrack = true;
+      trackOpBit = 1 << ++effectTrackDepth;
+      if (effectTrackDepth <= maxMarkerBits) {
+        initDepMarkers(this);
+      } else {
+        cleanupEffect(this);
+      }
+      return this.fn();
+    } finally {
+      if (effectTrackDepth <= maxMarkerBits) {
+        finalizeDepMarkers(this);
+      }
+      trackOpBit = 1 << --effectTrackDepth;
+      activeEffect = this.parent;
+      shouldTrack = lastShouldTrack;
+      this.parent = void 0;
+      if (this.deferStop) {
+        this.stop();
+      }
+    }
+  }
+  stop() {
+    if (activeEffect === this) {
+      this.deferStop = true;
+    } else if (this.active) {
+      cleanupEffect(this);
+      if (this.onStop) {
+        this.onStop();
+      }
+      this.active = false;
+    }
+  }
+}
+function cleanupEffect(effect) {
+  const { deps } = effect;
+  if (deps.length) {
+    for (let i = 0; i < deps.length; i++) {
+      deps[i].delete(effect);
+    }
+    deps.length = 0;
+  }
+}
+let shouldTrack = true;
+const trackStack = [];
+function pauseTracking() {
+  trackStack.push(shouldTrack);
+  shouldTrack = false;
+}
+function resetTracking() {
+  const last = trackStack.pop();
+  shouldTrack = last === void 0 ? true : last;
+}
+function track(target, type, key) {
+  if (shouldTrack && activeEffect) {
+    let depsMap = targetMap.get(target);
+    if (!depsMap) {
+      targetMap.set(target, depsMap = /* @__PURE__ */ new Map());
+    }
+    let dep = depsMap.get(key);
+    if (!dep) {
+      depsMap.set(key, dep = createDep());
+    }
+    const eventInfo = { effect: activeEffect, target, type, key };
+    trackEffects(dep, eventInfo);
+  }
+}
+function trackEffects(dep, debuggerEventExtraInfo) {
+  let shouldTrack2 = false;
+  if (effectTrackDepth <= maxMarkerBits) {
+    if (!newTracked(dep)) {
+      dep.n |= trackOpBit;
+      shouldTrack2 = !wasTracked(dep);
+    }
+  } else {
+    shouldTrack2 = !dep.has(activeEffect);
+  }
+  if (shouldTrack2) {
+    dep.add(activeEffect);
+    activeEffect.deps.push(dep);
+    if (activeEffect.onTrack) {
+      activeEffect.onTrack(Object.assign({ effect: activeEffect }, debuggerEventExtraInfo));
+    }
+  }
+}
+function trigger(target, type, key, newValue, oldValue, oldTarget) {
+  const depsMap = targetMap.get(target);
+  if (!depsMap) {
+    return;
+  }
+  let deps = [];
+  if (type === "clear") {
+    deps = [...depsMap.values()];
+  } else if (key === "length" && isArray(target)) {
+    const newLength = toNumber(newValue);
+    depsMap.forEach((dep, key2) => {
+      if (key2 === "length" || key2 >= newLength) {
+        deps.push(dep);
+      }
+    });
+  } else {
+    if (key !== void 0) {
+      deps.push(depsMap.get(key));
+    }
+    switch (type) {
+      case "add":
+        if (!isArray(target)) {
+          deps.push(depsMap.get(ITERATE_KEY));
+          if (isMap(target)) {
+            deps.push(depsMap.get(MAP_KEY_ITERATE_KEY));
+          }
+        } else if (isIntegerKey(key)) {
+          deps.push(depsMap.get("length"));
+        }
+        break;
+      case "delete":
+        if (!isArray(target)) {
+          deps.push(depsMap.get(ITERATE_KEY));
+          if (isMap(target)) {
+            deps.push(depsMap.get(MAP_KEY_ITERATE_KEY));
+          }
+        }
+        break;
+      case "set":
+        if (isMap(target)) {
+          deps.push(depsMap.get(ITERATE_KEY));
+        }
+        break;
+    }
+  }
+  const eventInfo = { target, type, key, newValue, oldValue, oldTarget };
+  if (deps.length === 1) {
+    if (deps[0]) {
+      {
+        triggerEffects(deps[0], eventInfo);
+      }
+    }
+  } else {
+    const effects = [];
+    for (const dep of deps) {
+      if (dep) {
+        effects.push(...dep);
+      }
+    }
+    {
+      triggerEffects(createDep(effects), eventInfo);
+    }
+  }
+}
+function triggerEffects(dep, debuggerEventExtraInfo) {
+  const effects = isArray(dep) ? dep : [...dep];
+  for (const effect of effects) {
+    if (effect.computed) {
+      triggerEffect(effect, debuggerEventExtraInfo);
+    }
+  }
+  for (const effect of effects) {
+    if (!effect.computed) {
+      triggerEffect(effect, debuggerEventExtraInfo);
+    }
+  }
+}
+function triggerEffect(effect, debuggerEventExtraInfo) {
+  if (effect !== activeEffect || effect.allowRecurse) {
+    if (effect.onTrigger) {
+      effect.onTrigger(extend({ effect }, debuggerEventExtraInfo));
+    }
+    if (effect.scheduler) {
+      effect.scheduler();
+    } else {
+      effect.run();
+    }
+  }
+}
+const isNonTrackableKeys = /* @__PURE__ */ makeMap(`__proto__,__v_isRef,__isVue`);
+const builtInSymbols = new Set(
+  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((key) => key !== "arguments" && key !== "caller").map((key) => Symbol[key]).filter(isSymbol)
+);
+const get = /* @__PURE__ */ createGetter();
+const shallowGet = /* @__PURE__ */ createGetter(false, true);
+const readonlyGet = /* @__PURE__ */ createGetter(true);
+const shallowReadonlyGet = /* @__PURE__ */ createGetter(true, true);
+const arrayInstrumentations = /* @__PURE__ */ createArrayInstrumentations();
+function createArrayInstrumentations() {
+  const instrumentations = {};
+  ["includes", "indexOf", "lastIndexOf"].forEach((key) => {
+    instrumentations[key] = function(...args) {
+      const arr = toRaw(this);
+      for (let i = 0, l = this.length; i < l; i++) {
+        track(arr, "get", i + "");
+      }
+      const res = arr[key](...args);
+      if (res === -1 || res === false) {
+        return arr[key](...args.map(toRaw));
+      } else {
+        return res;
+      }
+    };
+  });
+  ["push", "pop", "shift", "unshift", "splice"].forEach((key) => {
+    instrumentations[key] = function(...args) {
+      pauseTracking();
+      const res = toRaw(this)[key].apply(this, args);
+      resetTracking();
+      return res;
+    };
+  });
+  return instrumentations;
+}
+function createGetter(isReadonly2 = false, shallow = false) {
+  return function get2(target, key, receiver) {
+    if (key === "__v_isReactive") {
+      return !isReadonly2;
+    } else if (key === "__v_isReadonly") {
+      return isReadonly2;
+    } else if (key === "__v_isShallow") {
+      return shallow;
+    } else if (key === "__v_raw" && receiver === (isReadonly2 ? shallow ? shallowReadonlyMap : readonlyMap : shallow ? shallowReactiveMap : reactiveMap).get(target)) {
+      return target;
+    }
+    const targetIsArray = isArray(target);
+    if (!isReadonly2 && targetIsArray && hasOwn(arrayInstrumentations, key)) {
+      return Reflect.get(arrayInstrumentations, key, receiver);
+    }
+    const res = Reflect.get(target, key, receiver);
+    if (isSymbol(key) ? builtInSymbols.has(key) : isNonTrackableKeys(key)) {
+      return res;
+    }
+    if (!isReadonly2) {
+      track(target, "get", key);
+    }
+    if (shallow) {
+      return res;
+    }
+    if (isRef(res)) {
+      return targetIsArray && isIntegerKey(key) ? res : res.value;
+    }
+    if (isObject(res)) {
+      return isReadonly2 ? readonly(res) : reactive(res);
+    }
+    return res;
+  };
+}
+const set$1 = /* @__PURE__ */ createSetter();
+const shallowSet = /* @__PURE__ */ createSetter(true);
+function createSetter(shallow = false) {
+  return function set2(target, key, value, receiver) {
+    let oldValue = target[key];
+    if (isReadonly(oldValue) && isRef(oldValue) && !isRef(value)) {
+      return false;
+    }
+    if (!shallow) {
+      if (!isShallow(value) && !isReadonly(value)) {
+        oldValue = toRaw(oldValue);
+        value = toRaw(value);
+      }
+      if (!isArray(target) && isRef(oldValue) && !isRef(value)) {
+        oldValue.value = value;
+        return true;
+      }
+    }
+    const hadKey = isArray(target) && isIntegerKey(key) ? Number(key) < target.length : hasOwn(target, key);
+    const result = Reflect.set(target, key, value, receiver);
+    if (target === toRaw(receiver)) {
+      if (!hadKey) {
+        trigger(target, "add", key, value);
+      } else if (hasChanged(value, oldValue)) {
+        trigger(target, "set", key, value, oldValue);
+      }
+    }
+    return result;
+  };
+}
+function deleteProperty(target, key) {
+  const hadKey = hasOwn(target, key);
+  const oldValue = target[key];
+  const result = Reflect.deleteProperty(target, key);
+  if (result && hadKey) {
+    trigger(target, "delete", key, void 0, oldValue);
+  }
+  return result;
+}
+function has(target, key) {
+  const result = Reflect.has(target, key);
+  if (!isSymbol(key) || !builtInSymbols.has(key)) {
+    track(target, "has", key);
+  }
+  return result;
+}
+function ownKeys(target) {
+  track(target, "iterate", isArray(target) ? "length" : ITERATE_KEY);
+  return Reflect.ownKeys(target);
+}
+const mutableHandlers = {
+  get,
+  set: set$1,
+  deleteProperty,
+  has,
+  ownKeys
+};
+const readonlyHandlers = {
+  get: readonlyGet,
+  set(target, key) {
+    {
+      warn(`Set operation on key "${String(key)}" failed: target is readonly.`, target);
+    }
+    return true;
+  },
+  deleteProperty(target, key) {
+    {
+      warn(`Delete operation on key "${String(key)}" failed: target is readonly.`, target);
+    }
+    return true;
+  }
+};
+const shallowReactiveHandlers = /* @__PURE__ */ extend({}, mutableHandlers, {
+  get: shallowGet,
+  set: shallowSet
+});
+const shallowReadonlyHandlers = /* @__PURE__ */ extend({}, readonlyHandlers, {
+  get: shallowReadonlyGet
+});
+const toShallow = (value) => value;
+const getProto = (v) => Reflect.getPrototypeOf(v);
+function get$1(target, key, isReadonly2 = false, isShallow2 = false) {
+  target = target["__v_raw"];
+  const rawTarget = toRaw(target);
+  const rawKey = toRaw(key);
+  if (!isReadonly2) {
+    if (key !== rawKey) {
+      track(rawTarget, "get", key);
+    }
+    track(rawTarget, "get", rawKey);
+  }
+  const { has: has2 } = getProto(rawTarget);
+  const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
+  if (has2.call(rawTarget, key)) {
+    return wrap(target.get(key));
+  } else if (has2.call(rawTarget, rawKey)) {
+    return wrap(target.get(rawKey));
+  } else if (target !== rawTarget) {
+    target.get(key);
+  }
+}
+function has$1(key, isReadonly2 = false) {
+  const target = this["__v_raw"];
+  const rawTarget = toRaw(target);
+  const rawKey = toRaw(key);
+  if (!isReadonly2) {
+    if (key !== rawKey) {
+      track(rawTarget, "has", key);
+    }
+    track(rawTarget, "has", rawKey);
+  }
+  return key === rawKey ? target.has(key) : target.has(key) || target.has(rawKey);
+}
+function size(target, isReadonly2 = false) {
+  target = target["__v_raw"];
+  !isReadonly2 && track(toRaw(target), "iterate", ITERATE_KEY);
+  return Reflect.get(target, "size", target);
+}
+function add(value) {
+  value = toRaw(value);
+  const target = toRaw(this);
+  const proto = getProto(target);
+  const hadKey = proto.has.call(target, value);
+  if (!hadKey) {
+    target.add(value);
+    trigger(target, "add", value, value);
+  }
+  return this;
+}
+function set$1$1(key, value) {
+  value = toRaw(value);
+  const target = toRaw(this);
+  const { has: has2, get: get2 } = getProto(target);
+  let hadKey = has2.call(target, key);
+  if (!hadKey) {
+    key = toRaw(key);
+    hadKey = has2.call(target, key);
+  } else {
+    checkIdentityKeys(target, has2, key);
+  }
+  const oldValue = get2.call(target, key);
+  target.set(key, value);
+  if (!hadKey) {
+    trigger(target, "add", key, value);
+  } else if (hasChanged(value, oldValue)) {
+    trigger(target, "set", key, value, oldValue);
+  }
+  return this;
+}
+function deleteEntry(key) {
+  const target = toRaw(this);
+  const { has: has2, get: get2 } = getProto(target);
+  let hadKey = has2.call(target, key);
+  if (!hadKey) {
+    key = toRaw(key);
+    hadKey = has2.call(target, key);
+  } else {
+    checkIdentityKeys(target, has2, key);
+  }
+  const oldValue = get2 ? get2.call(target, key) : void 0;
+  const result = target.delete(key);
+  if (hadKey) {
+    trigger(target, "delete", key, void 0, oldValue);
+  }
+  return result;
+}
+function clear() {
+  const target = toRaw(this);
+  const hadItems = target.size !== 0;
+  const oldTarget = isMap(target) ? new Map(target) : new Set(target);
+  const result = target.clear();
+  if (hadItems) {
+    trigger(target, "clear", void 0, void 0, oldTarget);
+  }
+  return result;
+}
+function createForEach(isReadonly2, isShallow2) {
+  return function forEach(callback, thisArg) {
+    const observed = this;
+    const target = observed["__v_raw"];
+    const rawTarget = toRaw(target);
+    const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
+    !isReadonly2 && track(rawTarget, "iterate", ITERATE_KEY);
+    return target.forEach((value, key) => {
+      return callback.call(thisArg, wrap(value), wrap(key), observed);
+    });
+  };
+}
+function createIterableMethod(method, isReadonly2, isShallow2) {
+  return function(...args) {
+    const target = this["__v_raw"];
+    const rawTarget = toRaw(target);
+    const targetIsMap = isMap(rawTarget);
+    const isPair = method === "entries" || method === Symbol.iterator && targetIsMap;
+    const isKeyOnly = method === "keys" && targetIsMap;
+    const innerIterator = target[method](...args);
+    const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
+    !isReadonly2 && track(rawTarget, "iterate", isKeyOnly ? MAP_KEY_ITERATE_KEY : ITERATE_KEY);
+    return {
+      next() {
+        const { value, done } = innerIterator.next();
+        return done ? { value, done } : {
+          value: isPair ? [wrap(value[0]), wrap(value[1])] : wrap(value),
+          done
+        };
+      },
+      [Symbol.iterator]() {
+        return this;
+      }
+    };
+  };
+}
+function createReadonlyMethod(type) {
+  return function(...args) {
+    {
+      const key = args[0] ? `on key "${args[0]}" ` : ``;
+      console.warn(`${capitalize(type)} operation ${key}failed: target is readonly.`, toRaw(this));
+    }
+    return type === "delete" ? false : this;
+  };
+}
+function createInstrumentations() {
+  const mutableInstrumentations2 = {
+    get(key) {
+      return get$1(this, key);
+    },
+    get size() {
+      return size(this);
+    },
+    has: has$1,
+    add,
+    set: set$1$1,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, false)
+  };
+  const shallowInstrumentations2 = {
+    get(key) {
+      return get$1(this, key, false, true);
+    },
+    get size() {
+      return size(this);
+    },
+    has: has$1,
+    add,
+    set: set$1$1,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, true)
+  };
+  const readonlyInstrumentations2 = {
+    get(key) {
+      return get$1(this, key, true);
+    },
+    get size() {
+      return size(this, true);
+    },
+    has(key) {
+      return has$1.call(this, key, true);
+    },
+    add: createReadonlyMethod("add"),
+    set: createReadonlyMethod("set"),
+    delete: createReadonlyMethod("delete"),
+    clear: createReadonlyMethod("clear"),
+    forEach: createForEach(true, false)
+  };
+  const shallowReadonlyInstrumentations2 = {
+    get(key) {
+      return get$1(this, key, true, true);
+    },
+    get size() {
+      return size(this, true);
+    },
+    has(key) {
+      return has$1.call(this, key, true);
+    },
+    add: createReadonlyMethod("add"),
+    set: createReadonlyMethod("set"),
+    delete: createReadonlyMethod("delete"),
+    clear: createReadonlyMethod("clear"),
+    forEach: createForEach(true, true)
+  };
+  const iteratorMethods = ["keys", "values", "entries", Symbol.iterator];
+  iteratorMethods.forEach((method) => {
+    mutableInstrumentations2[method] = createIterableMethod(method, false, false);
+    readonlyInstrumentations2[method] = createIterableMethod(method, true, false);
+    shallowInstrumentations2[method] = createIterableMethod(method, false, true);
+    shallowReadonlyInstrumentations2[method] = createIterableMethod(method, true, true);
+  });
+  return [
+    mutableInstrumentations2,
+    readonlyInstrumentations2,
+    shallowInstrumentations2,
+    shallowReadonlyInstrumentations2
+  ];
+}
+const [mutableInstrumentations, readonlyInstrumentations, shallowInstrumentations, shallowReadonlyInstrumentations] = /* @__PURE__ */ createInstrumentations();
+function createInstrumentationGetter(isReadonly2, shallow) {
+  const instrumentations = shallow ? isReadonly2 ? shallowReadonlyInstrumentations : shallowInstrumentations : isReadonly2 ? readonlyInstrumentations : mutableInstrumentations;
+  return (target, key, receiver) => {
+    if (key === "__v_isReactive") {
+      return !isReadonly2;
+    } else if (key === "__v_isReadonly") {
+      return isReadonly2;
+    } else if (key === "__v_raw") {
+      return target;
+    }
+    return Reflect.get(hasOwn(instrumentations, key) && key in target ? instrumentations : target, key, receiver);
+  };
+}
+const mutableCollectionHandlers = {
+  get: /* @__PURE__ */ createInstrumentationGetter(false, false)
+};
+const shallowCollectionHandlers = {
+  get: /* @__PURE__ */ createInstrumentationGetter(false, true)
+};
+const readonlyCollectionHandlers = {
+  get: /* @__PURE__ */ createInstrumentationGetter(true, false)
+};
+const shallowReadonlyCollectionHandlers = {
+  get: /* @__PURE__ */ createInstrumentationGetter(true, true)
+};
+function checkIdentityKeys(target, has2, key) {
+  const rawKey = toRaw(key);
+  if (rawKey !== key && has2.call(target, rawKey)) {
+    const type = toRawType(target);
+    console.warn(`Reactive ${type} contains both the raw and reactive versions of the same object${type === `Map` ? ` as keys` : ``}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`);
+  }
+}
+const reactiveMap = /* @__PURE__ */ new WeakMap();
+const shallowReactiveMap = /* @__PURE__ */ new WeakMap();
+const readonlyMap = /* @__PURE__ */ new WeakMap();
+const shallowReadonlyMap = /* @__PURE__ */ new WeakMap();
+function targetTypeMap(rawType) {
+  switch (rawType) {
+    case "Object":
+    case "Array":
+      return 1;
+    case "Map":
+    case "Set":
+    case "WeakMap":
+    case "WeakSet":
+      return 2;
+    default:
+      return 0;
+  }
+}
+function getTargetType(value) {
+  return value["__v_skip"] || !Object.isExtensible(value) ? 0 : targetTypeMap(toRawType(value));
+}
+function reactive(target) {
+  if (isReadonly(target)) {
+    return target;
+  }
+  return createReactiveObject(target, false, mutableHandlers, mutableCollectionHandlers, reactiveMap);
+}
+function shallowReactive(target) {
+  return createReactiveObject(target, false, shallowReactiveHandlers, shallowCollectionHandlers, shallowReactiveMap);
+}
+function readonly(target) {
+  return createReactiveObject(target, true, readonlyHandlers, readonlyCollectionHandlers, readonlyMap);
+}
+function shallowReadonly(target) {
+  return createReactiveObject(target, true, shallowReadonlyHandlers, shallowReadonlyCollectionHandlers, shallowReadonlyMap);
+}
+function createReactiveObject(target, isReadonly2, baseHandlers, collectionHandlers, proxyMap) {
+  if (!isObject(target)) {
+    {
+      console.warn(`value cannot be made reactive: ${String(target)}`);
+    }
+    return target;
+  }
+  if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
+    return target;
+  }
+  const existingProxy = proxyMap.get(target);
+  if (existingProxy) {
+    return existingProxy;
+  }
+  const targetType = getTargetType(target);
+  if (targetType === 0) {
+    return target;
+  }
+  const proxy = new Proxy(target, targetType === 2 ? collectionHandlers : baseHandlers);
+  proxyMap.set(target, proxy);
+  return proxy;
+}
+function isReactive(value) {
+  if (isReadonly(value)) {
+    return isReactive(value["__v_raw"]);
+  }
+  return !!(value && value["__v_isReactive"]);
+}
+function isReadonly(value) {
+  return !!(value && value["__v_isReadonly"]);
+}
+function isShallow(value) {
+  return !!(value && value["__v_isShallow"]);
+}
+function isProxy(value) {
+  return isReactive(value) || isReadonly(value);
+}
+function toRaw(observed) {
+  const raw = observed && observed["__v_raw"];
+  return raw ? toRaw(raw) : observed;
+}
+function markRaw(value) {
+  def(value, "__v_skip", true);
+  return value;
+}
+const toReactive = (value) => isObject(value) ? reactive(value) : value;
+const toReadonly = (value) => isObject(value) ? readonly(value) : value;
+function trackRefValue(ref2) {
+  if (shouldTrack && activeEffect) {
+    ref2 = toRaw(ref2);
+    {
+      trackEffects(ref2.dep || (ref2.dep = createDep()), {
+        target: ref2,
+        type: "get",
+        key: "value"
+      });
+    }
+  }
+}
+function triggerRefValue(ref2, newVal) {
+  ref2 = toRaw(ref2);
+  if (ref2.dep) {
+    {
+      triggerEffects(ref2.dep, {
+        target: ref2,
+        type: "set",
+        key: "value",
+        newValue: newVal
+      });
+    }
+  }
+}
+function isRef(r) {
+  return !!(r && r.__v_isRef === true);
+}
+function ref(value) {
+  return createRef(value, false);
+}
+function createRef(rawValue, shallow) {
+  if (isRef(rawValue)) {
+    return rawValue;
+  }
+  return new RefImpl(rawValue, shallow);
+}
+class RefImpl {
+  constructor(value, __v_isShallow) {
+    this.__v_isShallow = __v_isShallow;
+    this.dep = void 0;
+    this.__v_isRef = true;
+    this._rawValue = __v_isShallow ? value : toRaw(value);
+    this._value = __v_isShallow ? value : toReactive(value);
+  }
+  get value() {
+    trackRefValue(this);
+    return this._value;
+  }
+  set value(newVal) {
+    const useDirectValue = this.__v_isShallow || isShallow(newVal) || isReadonly(newVal);
+    newVal = useDirectValue ? newVal : toRaw(newVal);
+    if (hasChanged(newVal, this._rawValue)) {
+      this._rawValue = newVal;
+      this._value = useDirectValue ? newVal : toReactive(newVal);
+      triggerRefValue(this, newVal);
+    }
+  }
+}
+function unref(ref2) {
+  return isRef(ref2) ? ref2.value : ref2;
+}
+const shallowUnwrapHandlers = {
+  get: (target, key, receiver) => unref(Reflect.get(target, key, receiver)),
+  set: (target, key, value, receiver) => {
+    const oldValue = target[key];
+    if (isRef(oldValue) && !isRef(value)) {
+      oldValue.value = value;
+      return true;
+    } else {
+      return Reflect.set(target, key, value, receiver);
+    }
+  }
+};
+function proxyRefs(objectWithRefs) {
+  return isReactive(objectWithRefs) ? objectWithRefs : new Proxy(objectWithRefs, shallowUnwrapHandlers);
+}
+var _a;
+class ComputedRefImpl {
+  constructor(getter, _setter, isReadonly2, isSSR) {
+    this._setter = _setter;
+    this.dep = void 0;
+    this.__v_isRef = true;
+    this[_a] = false;
+    this._dirty = true;
+    this.effect = new ReactiveEffect(getter, () => {
+      if (!this._dirty) {
+        this._dirty = true;
+        triggerRefValue(this);
+      }
+    });
+    this.effect.computed = this;
+    this.effect.active = this._cacheable = !isSSR;
+    this["__v_isReadonly"] = isReadonly2;
+  }
+  get value() {
+    const self = toRaw(this);
+    trackRefValue(self);
+    if (self._dirty || !self._cacheable) {
+      self._dirty = false;
+      self._value = self.effect.run();
+    }
+    return self._value;
+  }
+  set value(newValue) {
+    this._setter(newValue);
+  }
+}
+_a = "__v_isReadonly";
+function computed(getterOrOptions, debugOptions, isSSR = false) {
+  let getter;
+  let setter;
+  const onlyGetter = isFunction(getterOrOptions);
+  if (onlyGetter) {
+    getter = getterOrOptions;
+    setter = () => {
+      console.warn("Write operation failed: computed value is readonly");
+    };
+  } else {
+    getter = getterOrOptions.get;
+    setter = getterOrOptions.set;
+  }
+  const cRef = new ComputedRefImpl(getter, setter, onlyGetter || !setter, isSSR);
+  if (debugOptions && !isSSR) {
+    cRef.effect.onTrack = debugOptions.onTrack;
+    cRef.effect.onTrigger = debugOptions.onTrigger;
+  }
+  return cRef;
+}
+const stack = [];
+function pushWarningContext(vnode) {
+  stack.push(vnode);
+}
+function popWarningContext() {
+  stack.pop();
+}
+function warn$1(msg, ...args) {
+  pauseTracking();
+  const instance = stack.length ? stack[stack.length - 1].component : null;
+  const appWarnHandler = instance && instance.appContext.config.warnHandler;
+  const trace = getComponentTrace();
+  if (appWarnHandler) {
+    callWithErrorHandling(appWarnHandler, instance, 11, [
+      msg + args.join(""),
+      instance && instance.proxy,
+      trace.map(({ vnode }) => `at <${formatComponentName(instance, vnode.type)}>`).join("\n"),
+      trace
+    ]);
+  } else {
+    const warnArgs = [`[Vue warn]: ${msg}`, ...args];
+    if (trace.length && true) {
+      warnArgs.push(`
+`, ...formatTrace(trace));
+    }
+    console.warn(...warnArgs);
+  }
+  resetTracking();
+}
+function getComponentTrace() {
+  let currentVNode = stack[stack.length - 1];
+  if (!currentVNode) {
+    return [];
+  }
+  const normalizedStack = [];
+  while (currentVNode) {
+    const last = normalizedStack[0];
+    if (last && last.vnode === currentVNode) {
+      last.recurseCount++;
+    } else {
+      normalizedStack.push({
+        vnode: currentVNode,
+        recurseCount: 0
+      });
+    }
+    const parentInstance = currentVNode.component && currentVNode.component.parent;
+    currentVNode = parentInstance && parentInstance.vnode;
+  }
+  return normalizedStack;
+}
+function formatTrace(trace) {
+  const logs = [];
+  trace.forEach((entry, i) => {
+    logs.push(...i === 0 ? [] : [`
+`], ...formatTraceEntry(entry));
+  });
+  return logs;
+}
+function formatTraceEntry({ vnode, recurseCount }) {
+  const postfix = recurseCount > 0 ? `... (${recurseCount} recursive calls)` : ``;
+  const isRoot = vnode.component ? vnode.component.parent == null : false;
+  const open = ` at <${formatComponentName(vnode.component, vnode.type, isRoot)}`;
+  const close = `>` + postfix;
+  return vnode.props ? [open, ...formatProps(vnode.props), close] : [open + close];
+}
+function formatProps(props) {
+  const res = [];
+  const keys = Object.keys(props);
+  keys.slice(0, 3).forEach((key) => {
+    res.push(...formatProp(key, props[key]));
+  });
+  if (keys.length > 3) {
+    res.push(` ...`);
+  }
+  return res;
+}
+function formatProp(key, value, raw) {
+  if (isString(value)) {
+    value = JSON.stringify(value);
+    return raw ? value : [`${key}=${value}`];
+  } else if (typeof value === "number" || typeof value === "boolean" || value == null) {
+    return raw ? value : [`${key}=${value}`];
+  } else if (isRef(value)) {
+    value = formatProp(key, toRaw(value.value), true);
+    return raw ? value : [`${key}=Ref<`, value, `>`];
+  } else if (isFunction(value)) {
+    return [`${key}=fn${value.name ? `<${value.name}>` : ``}`];
+  } else {
+    value = toRaw(value);
+    return raw ? value : [`${key}=`, value];
+  }
+}
+const ErrorTypeStrings = {
+  ["sp"]: "serverPrefetch hook",
+  ["bc"]: "beforeCreate hook",
+  ["c"]: "created hook",
+  ["bm"]: "beforeMount hook",
+  ["m"]: "mounted hook",
+  ["bu"]: "beforeUpdate hook",
+  ["u"]: "updated",
+  ["bum"]: "beforeUnmount hook",
+  ["um"]: "unmounted hook",
+  ["a"]: "activated hook",
+  ["da"]: "deactivated hook",
+  ["ec"]: "errorCaptured hook",
+  ["rtc"]: "renderTracked hook",
+  ["rtg"]: "renderTriggered hook",
+  [0]: "setup function",
+  [1]: "render function",
+  [2]: "watcher getter",
+  [3]: "watcher callback",
+  [4]: "watcher cleanup function",
+  [5]: "native event handler",
+  [6]: "component event handler",
+  [7]: "vnode hook",
+  [8]: "directive hook",
+  [9]: "transition hook",
+  [10]: "app errorHandler",
+  [11]: "app warnHandler",
+  [12]: "ref function",
+  [13]: "async component loader",
+  [14]: "scheduler flush. This is likely a Vue internals bug. Please open an issue at https://new-issue.vuejs.org/?repo=vuejs/core"
+};
+function callWithErrorHandling(fn, instance, type, args) {
+  let res;
+  try {
+    res = args ? fn(...args) : fn();
+  } catch (err) {
+    handleError(err, instance, type);
+  }
+  return res;
+}
+function callWithAsyncErrorHandling(fn, instance, type, args) {
+  if (isFunction(fn)) {
+    const res = callWithErrorHandling(fn, instance, type, args);
+    if (res && isPromise(res)) {
+      res.catch((err) => {
+        handleError(err, instance, type);
+      });
+    }
+    return res;
+  }
+  const values = [];
+  for (let i = 0; i < fn.length; i++) {
+    values.push(callWithAsyncErrorHandling(fn[i], instance, type, args));
+  }
+  return values;
+}
+function handleError(err, instance, type, throwInDev = true) {
+  const contextVNode = instance ? instance.vnode : null;
+  if (instance) {
+    let cur = instance.parent;
+    const exposedInstance = instance.proxy;
+    const errorInfo = ErrorTypeStrings[type] || type;
+    while (cur) {
+      const errorCapturedHooks = cur.ec;
+      if (errorCapturedHooks) {
+        for (let i = 0; i < errorCapturedHooks.length; i++) {
+          if (errorCapturedHooks[i](err, exposedInstance, errorInfo) === false) {
+            return;
+          }
+        }
+      }
+      cur = cur.parent;
+    }
+    const appErrorHandler = instance.appContext.config.errorHandler;
+    if (appErrorHandler) {
+      callWithErrorHandling(appErrorHandler, null, 10, [err, exposedInstance, errorInfo]);
+      return;
+    }
+  }
+  logError(err, type, contextVNode, throwInDev);
+}
+function logError(err, type, contextVNode, throwInDev = true) {
+  {
+    const info = ErrorTypeStrings[type] || type;
+    if (contextVNode) {
+      pushWarningContext(contextVNode);
+    }
+    warn$1(`Unhandled error${info ? ` during execution of ${info}` : ``}`);
+    if (contextVNode) {
+      popWarningContext();
+    }
+    if (throwInDev) {
+      console.error(err);
+    } else {
+      console.error(err);
+    }
+  }
+}
+let isFlushing = false;
+let isFlushPending = false;
+const queue = [];
+let flushIndex = 0;
+const pendingPostFlushCbs = [];
+let activePostFlushCbs = null;
+let postFlushIndex = 0;
+const resolvedPromise = /* @__PURE__ */ Promise.resolve();
+let currentFlushPromise = null;
+const RECURSION_LIMIT = 100;
+function nextTick(fn) {
+  const p2 = currentFlushPromise || resolvedPromise;
+  return fn ? p2.then(this ? fn.bind(this) : fn) : p2;
+}
+function findInsertionIndex(id) {
+  let start = flushIndex + 1;
+  let end = queue.length;
+  while (start < end) {
+    const middle = start + end >>> 1;
+    const middleJobId = getId(queue[middle]);
+    middleJobId < id ? start = middle + 1 : end = middle;
+  }
+  return start;
+}
+function queueJob(job) {
+  if (!queue.length || !queue.includes(job, isFlushing && job.allowRecurse ? flushIndex + 1 : flushIndex)) {
+    if (job.id == null) {
+      queue.push(job);
+    } else {
+      queue.splice(findInsertionIndex(job.id), 0, job);
+    }
+    queueFlush();
+  }
+}
+function queueFlush() {
+  if (!isFlushing && !isFlushPending) {
+    isFlushPending = true;
+    currentFlushPromise = resolvedPromise.then(flushJobs);
+  }
+}
+function hasQueueJob(job) {
+  return queue.indexOf(job) > -1;
+}
+function invalidateJob(job) {
+  const i = queue.indexOf(job);
+  if (i > flushIndex) {
+    queue.splice(i, 1);
+  }
+}
+function queuePostFlushCb(cb) {
+  if (!isArray(cb)) {
+    if (!activePostFlushCbs || !activePostFlushCbs.includes(cb, cb.allowRecurse ? postFlushIndex + 1 : postFlushIndex)) {
+      pendingPostFlushCbs.push(cb);
+    }
+  } else {
+    pendingPostFlushCbs.push(...cb);
+  }
+  queueFlush();
+}
+function flushPreFlushCbs(seen, i = isFlushing ? flushIndex + 1 : 0) {
+  {
+    seen = seen || /* @__PURE__ */ new Map();
+  }
+  for (; i < queue.length; i++) {
+    const cb = queue[i];
+    if (cb && cb.pre) {
+      if (checkRecursiveUpdates(seen, cb)) {
+        continue;
+      }
+      queue.splice(i, 1);
+      i--;
+      cb();
+    }
+  }
+}
+function flushPostFlushCbs(seen) {
+  if (pendingPostFlushCbs.length) {
+    const deduped = [...new Set(pendingPostFlushCbs)];
+    pendingPostFlushCbs.length = 0;
+    if (activePostFlushCbs) {
+      activePostFlushCbs.push(...deduped);
+      return;
+    }
+    activePostFlushCbs = deduped;
+    {
+      seen = seen || /* @__PURE__ */ new Map();
+    }
+    activePostFlushCbs.sort((a, b) => getId(a) - getId(b));
+    for (postFlushIndex = 0; postFlushIndex < activePostFlushCbs.length; postFlushIndex++) {
+      if (checkRecursiveUpdates(seen, activePostFlushCbs[postFlushIndex])) {
+        continue;
+      }
+      activePostFlushCbs[postFlushIndex]();
+    }
+    activePostFlushCbs = null;
+    postFlushIndex = 0;
+  }
+}
+const getId = (job) => job.id == null ? Infinity : job.id;
+const comparator = (a, b) => {
+  const diff2 = getId(a) - getId(b);
+  if (diff2 === 0) {
+    if (a.pre && !b.pre)
+      return -1;
+    if (b.pre && !a.pre)
+      return 1;
+  }
+  return diff2;
+};
+function flushJobs(seen) {
+  isFlushPending = false;
+  isFlushing = true;
+  {
+    seen = seen || /* @__PURE__ */ new Map();
+  }
+  queue.sort(comparator);
+  const check = (job) => checkRecursiveUpdates(seen, job);
+  try {
+    for (flushIndex = 0; flushIndex < queue.length; flushIndex++) {
+      const job = queue[flushIndex];
+      if (job && job.active !== false) {
+        if (check(job)) {
+          continue;
+        }
+        callWithErrorHandling(job, null, 14);
+      }
+    }
+  } finally {
+    flushIndex = 0;
+    queue.length = 0;
+    flushPostFlushCbs(seen);
+    isFlushing = false;
+    currentFlushPromise = null;
+    if (queue.length || pendingPostFlushCbs.length) {
+      flushJobs(seen);
+    }
+  }
+}
+function checkRecursiveUpdates(seen, fn) {
+  if (!seen.has(fn)) {
+    seen.set(fn, 1);
+  } else {
+    const count = seen.get(fn);
+    if (count > RECURSION_LIMIT) {
+      const instance = fn.ownerInstance;
+      const componentName = instance && getComponentName(instance.type);
+      warn$1(`Maximum recursive updates exceeded${componentName ? ` in component <${componentName}>` : ``}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`);
+      return true;
+    } else {
+      seen.set(fn, count + 1);
+    }
+  }
+}
+let devtools;
+let buffer = [];
+let devtoolsNotInstalled = false;
+function emit(event, ...args) {
+  if (devtools) {
+    devtools.emit(event, ...args);
+  } else if (!devtoolsNotInstalled) {
+    buffer.push({ event, args });
+  }
+}
+function setDevtoolsHook(hook, target) {
+  var _a2, _b;
+  devtools = hook;
+  if (devtools) {
+    devtools.enabled = true;
+    buffer.forEach(({ event, args }) => devtools.emit(event, ...args));
+    buffer = [];
+  } else if (typeof window !== "undefined" && window.HTMLElement && !((_b = (_a2 = window.navigator) === null || _a2 === void 0 ? void 0 : _a2.userAgent) === null || _b === void 0 ? void 0 : _b.includes("jsdom"))) {
+    const replay = target.__VUE_DEVTOOLS_HOOK_REPLAY__ = target.__VUE_DEVTOOLS_HOOK_REPLAY__ || [];
+    replay.push((newHook) => {
+      setDevtoolsHook(newHook, target);
+    });
+    setTimeout(() => {
+      if (!devtools) {
+        target.__VUE_DEVTOOLS_HOOK_REPLAY__ = null;
+        devtoolsNotInstalled = true;
+        buffer = [];
+      }
+    }, 3e3);
+  } else {
+    devtoolsNotInstalled = true;
+    buffer = [];
+  }
+}
+function devtoolsInitApp(app, version2) {
+  emit("app:init", app, version2, {
+    Fragment,
+    Text,
+    Comment,
+    Static
+  });
+}
+const devtoolsComponentAdded = /* @__PURE__ */ createDevtoolsComponentHook("component:added");
+const devtoolsComponentUpdated = /* @__PURE__ */ createDevtoolsComponentHook("component:updated");
+const _devtoolsComponentRemoved = /* @__PURE__ */ createDevtoolsComponentHook("component:removed");
+const devtoolsComponentRemoved = (component) => {
+  if (devtools && typeof devtools.cleanupBuffer === "function" && !devtools.cleanupBuffer(component)) {
+    _devtoolsComponentRemoved(component);
+  }
+};
+function createDevtoolsComponentHook(hook) {
+  return (component) => {
+    emit(
+      hook,
+      component.appContext.app,
+      component.uid,
+      component.uid === 0 ? void 0 : component.parent ? component.parent.uid : 0,
+      component
+    );
+  };
+}
+const devtoolsPerfStart = /* @__PURE__ */ createDevtoolsPerformanceHook("perf:start");
+const devtoolsPerfEnd = /* @__PURE__ */ createDevtoolsPerformanceHook("perf:end");
+function createDevtoolsPerformanceHook(hook) {
+  return (component, type, time) => {
+    emit(hook, component.appContext.app, component.uid, component, type, time);
+  };
+}
+function devtoolsComponentEmit(component, event, params) {
+  emit("component:emit", component.appContext.app, component, event, params);
+}
+function emit$1(instance, event, ...rawArgs) {
+  if (instance.isUnmounted)
+    return;
+  const props = instance.vnode.props || EMPTY_OBJ;
+  {
+    const { emitsOptions, propsOptions: [propsOptions] } = instance;
+    if (emitsOptions) {
+      if (!(event in emitsOptions) && true) {
+        if (!propsOptions || !(toHandlerKey(event) in propsOptions)) {
+          warn$1(`Component emitted event "${event}" but it is neither declared in the emits option nor as an "${toHandlerKey(event)}" prop.`);
+        }
+      } else {
+        const validator = emitsOptions[event];
+        if (isFunction(validator)) {
+          const isValid = validator(...rawArgs);
+          if (!isValid) {
+            warn$1(`Invalid event arguments: event validation failed for event "${event}".`);
+          }
+        }
+      }
+    }
+  }
+  let args = rawArgs;
+  const isModelListener2 = event.startsWith("update:");
+  const modelArg = isModelListener2 && event.slice(7);
+  if (modelArg && modelArg in props) {
+    const modifiersKey = `${modelArg === "modelValue" ? "model" : modelArg}Modifiers`;
+    const { number, trim } = props[modifiersKey] || EMPTY_OBJ;
+    if (trim) {
+      args = rawArgs.map((a) => isString(a) ? a.trim() : a);
+    }
+    if (number) {
+      args = rawArgs.map(toNumber);
+    }
+  }
+  {
+    devtoolsComponentEmit(instance, event, args);
+  }
+  {
+    const lowerCaseEvent = event.toLowerCase();
+    if (lowerCaseEvent !== event && props[toHandlerKey(lowerCaseEvent)]) {
+      warn$1(`Event "${lowerCaseEvent}" is emitted in component ${formatComponentName(instance, instance.type)} but the handler is registered for "${event}". Note that HTML attributes are case-insensitive and you cannot use v-on to listen to camelCase events when using in-DOM templates. You should probably use "${hyphenate(event)}" instead of "${event}".`);
+    }
+  }
+  let handlerName;
+  let handler = props[handlerName = toHandlerKey(event)] || props[handlerName = toHandlerKey(camelize(event))];
+  if (!handler && isModelListener2) {
+    handler = props[handlerName = toHandlerKey(hyphenate(event))];
+  }
+  if (handler) {
+    callWithAsyncErrorHandling(handler, instance, 6, args);
+  }
+  const onceHandler = props[handlerName + `Once`];
+  if (onceHandler) {
+    if (!instance.emitted) {
+      instance.emitted = {};
+    } else if (instance.emitted[handlerName]) {
+      return;
+    }
+    instance.emitted[handlerName] = true;
+    callWithAsyncErrorHandling(onceHandler, instance, 6, args);
+  }
+}
+function normalizeEmitsOptions(comp, appContext, asMixin = false) {
+  const cache = appContext.emitsCache;
+  const cached = cache.get(comp);
+  if (cached !== void 0) {
+    return cached;
+  }
+  const raw = comp.emits;
+  let normalized = {};
+  let hasExtends = false;
+  if (!isFunction(comp)) {
+    const extendEmits = (raw2) => {
+      const normalizedFromExtend = normalizeEmitsOptions(raw2, appContext, true);
+      if (normalizedFromExtend) {
+        hasExtends = true;
+        extend(normalized, normalizedFromExtend);
+      }
+    };
+    if (!asMixin && appContext.mixins.length) {
+      appContext.mixins.forEach(extendEmits);
+    }
+    if (comp.extends) {
+      extendEmits(comp.extends);
+    }
+    if (comp.mixins) {
+      comp.mixins.forEach(extendEmits);
+    }
+  }
+  if (!raw && !hasExtends) {
+    if (isObject(comp)) {
+      cache.set(comp, null);
+    }
+    return null;
+  }
+  if (isArray(raw)) {
+    raw.forEach((key) => normalized[key] = null);
+  } else {
+    extend(normalized, raw);
+  }
+  if (isObject(comp)) {
+    cache.set(comp, normalized);
+  }
+  return normalized;
+}
+function isEmitListener(options, key) {
+  if (!options || !isOn(key)) {
+    return false;
+  }
+  key = key.slice(2).replace(/Once$/, "");
+  return hasOwn(options, key[0].toLowerCase() + key.slice(1)) || hasOwn(options, hyphenate(key)) || hasOwn(options, key);
+}
+let currentRenderingInstance = null;
+function setCurrentRenderingInstance(instance) {
+  const prev = currentRenderingInstance;
+  currentRenderingInstance = instance;
+  instance && instance.type.__scopeId || null;
+  return prev;
+}
+function provide(key, value) {
+  if (!currentInstance) {
+    {
+      warn$1(`provide() can only be used inside setup().`);
+    }
+  } else {
+    let provides = currentInstance.provides;
+    const parentProvides = currentInstance.parent && currentInstance.parent.provides;
+    if (parentProvides === provides) {
+      provides = currentInstance.provides = Object.create(parentProvides);
+    }
+    provides[key] = value;
+    if (currentInstance.type.mpType === "app") {
+      currentInstance.appContext.app.provide(key, value);
+    }
+  }
+}
+function inject(key, defaultValue, treatDefaultAsFactory = false) {
+  const instance = currentInstance || currentRenderingInstance;
+  if (instance) {
+    const provides = instance.parent == null ? instance.vnode.appContext && instance.vnode.appContext.provides : instance.parent.provides;
+    if (provides && key in provides) {
+      return provides[key];
+    } else if (arguments.length > 1) {
+      return treatDefaultAsFactory && isFunction(defaultValue) ? defaultValue.call(instance.proxy) : defaultValue;
+    } else {
+      warn$1(`injection "${String(key)}" not found.`);
+    }
+  } else {
+    warn$1(`inject() can only be used inside setup() or functional components.`);
+  }
+}
+const INITIAL_WATCHER_VALUE = {};
+function watch(source, cb, options) {
+  if (!isFunction(cb)) {
+    warn$1(`\`watch(fn, options?)\` signature has been moved to a separate API. Use \`watchEffect(fn, options?)\` instead. \`watch\` now only supports \`watch(source, cb, options?) signature.`);
+  }
+  return doWatch(source, cb, options);
+}
+function doWatch(source, cb, { immediate, deep, flush, onTrack, onTrigger } = EMPTY_OBJ) {
+  if (!cb) {
+    if (immediate !== void 0) {
+      warn$1(`watch() "immediate" option is only respected when using the watch(source, callback, options?) signature.`);
+    }
+    if (deep !== void 0) {
+      warn$1(`watch() "deep" option is only respected when using the watch(source, callback, options?) signature.`);
+    }
+  }
+  const warnInvalidSource = (s2) => {
+    warn$1(`Invalid watch source: `, s2, `A watch source can only be a getter/effect function, a ref, a reactive object, or an array of these types.`);
+  };
+  const instance = currentInstance;
+  let getter;
+  let forceTrigger = false;
+  let isMultiSource = false;
+  if (isRef(source)) {
+    getter = () => source.value;
+    forceTrigger = isShallow(source);
+  } else if (isReactive(source)) {
+    getter = () => source;
+    deep = true;
+  } else if (isArray(source)) {
+    isMultiSource = true;
+    forceTrigger = source.some((s2) => isReactive(s2) || isShallow(s2));
+    getter = () => source.map((s2) => {
+      if (isRef(s2)) {
+        return s2.value;
+      } else if (isReactive(s2)) {
+        return traverse(s2);
+      } else if (isFunction(s2)) {
+        return callWithErrorHandling(s2, instance, 2);
+      } else {
+        warnInvalidSource(s2);
+      }
+    });
+  } else if (isFunction(source)) {
+    if (cb) {
+      getter = () => callWithErrorHandling(source, instance, 2);
+    } else {
+      getter = () => {
+        if (instance && instance.isUnmounted) {
+          return;
+        }
+        if (cleanup) {
+          cleanup();
+        }
+        return callWithAsyncErrorHandling(source, instance, 3, [onCleanup]);
+      };
+    }
+  } else {
+    getter = NOOP;
+    warnInvalidSource(source);
+  }
+  if (cb && deep) {
+    const baseGetter = getter;
+    getter = () => traverse(baseGetter());
+  }
+  let cleanup;
+  let onCleanup = (fn) => {
+    cleanup = effect.onStop = () => {
+      callWithErrorHandling(fn, instance, 4);
+    };
+  };
+  let oldValue = isMultiSource ? new Array(source.length).fill(INITIAL_WATCHER_VALUE) : INITIAL_WATCHER_VALUE;
+  const job = () => {
+    if (!effect.active) {
+      return;
+    }
+    if (cb) {
+      const newValue = effect.run();
+      if (deep || forceTrigger || (isMultiSource ? newValue.some((v, i) => hasChanged(v, oldValue[i])) : hasChanged(newValue, oldValue)) || false) {
+        if (cleanup) {
+          cleanup();
+        }
+        callWithAsyncErrorHandling(cb, instance, 3, [
+          newValue,
+          oldValue === INITIAL_WATCHER_VALUE ? void 0 : isMultiSource && oldValue[0] === INITIAL_WATCHER_VALUE ? [] : oldValue,
+          onCleanup
+        ]);
+        oldValue = newValue;
+      }
+    } else {
+      effect.run();
+    }
+  };
+  job.allowRecurse = !!cb;
+  let scheduler;
+  if (flush === "sync") {
+    scheduler = job;
+  } else if (flush === "post") {
+    scheduler = () => queuePostRenderEffect(job, instance && instance.suspense);
+  } else {
+    job.pre = true;
+    if (instance)
+      job.id = instance.uid;
+    scheduler = () => queueJob(job);
+  }
+  const effect = new ReactiveEffect(getter, scheduler);
+  {
+    effect.onTrack = onTrack;
+    effect.onTrigger = onTrigger;
+  }
+  if (cb) {
+    if (immediate) {
+      job();
+    } else {
+      oldValue = effect.run();
+    }
+  } else if (flush === "post") {
+    queuePostRenderEffect(effect.run.bind(effect), instance && instance.suspense);
+  } else {
+    effect.run();
+  }
+  const unwatch = () => {
+    effect.stop();
+    if (instance && instance.scope) {
+      remove(instance.scope.effects, effect);
+    }
+  };
+  return unwatch;
+}
+function instanceWatch(source, value, options) {
+  const publicThis = this.proxy;
+  const getter = isString(source) ? source.includes(".") ? createPathGetter(publicThis, source) : () => publicThis[source] : source.bind(publicThis, publicThis);
+  let cb;
+  if (isFunction(value)) {
+    cb = value;
+  } else {
+    cb = value.handler;
+    options = value;
+  }
+  const cur = currentInstance;
+  setCurrentInstance(this);
+  const res = doWatch(getter, cb.bind(publicThis), options);
+  if (cur) {
+    setCurrentInstance(cur);
+  } else {
+    unsetCurrentInstance();
+  }
+  return res;
+}
+function createPathGetter(ctx, path) {
+  const segments = path.split(".");
+  return () => {
+    let cur = ctx;
+    for (let i = 0; i < segments.length && cur; i++) {
+      cur = cur[segments[i]];
+    }
+    return cur;
+  };
+}
+function traverse(value, seen) {
+  if (!isObject(value) || value["__v_skip"]) {
+    return value;
+  }
+  seen = seen || /* @__PURE__ */ new Set();
+  if (seen.has(value)) {
+    return value;
+  }
+  seen.add(value);
+  if (isRef(value)) {
+    traverse(value.value, seen);
+  } else if (isArray(value)) {
+    for (let i = 0; i < value.length; i++) {
+      traverse(value[i], seen);
+    }
+  } else if (isSet(value) || isMap(value)) {
+    value.forEach((v) => {
+      traverse(v, seen);
+    });
+  } else if (isPlainObject(value)) {
+    for (const key in value) {
+      traverse(value[key], seen);
+    }
+  }
+  return value;
+}
+const isKeepAlive = (vnode) => vnode.type.__isKeepAlive;
+function onActivated(hook, target) {
+  registerKeepAliveHook(hook, "a", target);
+}
+function onDeactivated(hook, target) {
+  registerKeepAliveHook(hook, "da", target);
+}
+function registerKeepAliveHook(hook, type, target = currentInstance) {
+  const wrappedHook = hook.__wdc || (hook.__wdc = () => {
+    let current = target;
+    while (current) {
+      if (current.isDeactivated) {
+        return;
+      }
+      current = current.parent;
+    }
+    return hook();
+  });
+  injectHook(type, wrappedHook, target);
+  if (target) {
+    let current = target.parent;
+    while (current && current.parent) {
+      if (isKeepAlive(current.parent.vnode)) {
+        injectToKeepAliveRoot(wrappedHook, type, target, current);
+      }
+      current = current.parent;
+    }
+  }
+}
+function injectToKeepAliveRoot(hook, type, target, keepAliveRoot) {
+  const injected = injectHook(type, hook, keepAliveRoot, true);
+  onUnmounted(() => {
+    remove(keepAliveRoot[type], injected);
+  }, target);
+}
+function injectHook(type, hook, target = currentInstance, prepend = false) {
+  if (target) {
+    if (isRootHook(type)) {
+      target = target.root;
+    }
+    const hooks = target[type] || (target[type] = []);
+    const wrappedHook = hook.__weh || (hook.__weh = (...args) => {
+      if (target.isUnmounted) {
+        return;
+      }
+      pauseTracking();
+      setCurrentInstance(target);
+      const res = callWithAsyncErrorHandling(hook, target, type, args);
+      unsetCurrentInstance();
+      resetTracking();
+      return res;
+    });
+    if (prepend) {
+      hooks.unshift(wrappedHook);
+    } else {
+      hooks.push(wrappedHook);
+    }
+    return wrappedHook;
+  } else {
+    const apiName = toHandlerKey((ErrorTypeStrings[type] || type.replace(/^on/, "")).replace(/ hook$/, ""));
+    warn$1(`${apiName} is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup().`);
+  }
+}
+const createHook = (lifecycle) => (hook, target = currentInstance) => (!isInSSRComponentSetup || lifecycle === "sp") && injectHook(lifecycle, (...args) => hook(...args), target);
+const onBeforeMount = createHook("bm");
+const onMounted = createHook("m");
+const onBeforeUpdate = createHook("bu");
+const onUpdated = createHook("u");
+const onBeforeUnmount = createHook("bum");
+const onUnmounted = createHook("um");
+const onServerPrefetch = createHook("sp");
+const onRenderTriggered = createHook("rtg");
+const onRenderTracked = createHook("rtc");
+function onErrorCaptured(hook, target = currentInstance) {
+  injectHook("ec", hook, target);
+}
+function validateDirectiveName(name) {
+  if (isBuiltInDirective(name)) {
+    warn$1("Do not use built-in directive ids as custom directive id: " + name);
+  }
+}
+const COMPONENTS = "components";
+function resolveComponent(name, maybeSelfReference) {
+  return resolveAsset(COMPONENTS, name, true, maybeSelfReference) || name;
+}
+function resolveAsset(type, name, warnMissing = true, maybeSelfReference = false) {
+  const instance = currentRenderingInstance || currentInstance;
+  if (instance) {
+    const Component2 = instance.type;
+    if (type === COMPONENTS) {
+      const selfName = getComponentName(Component2, false);
+      if (selfName && (selfName === name || selfName === camelize(name) || selfName === capitalize(camelize(name)))) {
+        return Component2;
+      }
+    }
+    const res = resolve(instance[type] || Component2[type], name) || resolve(instance.appContext[type], name);
+    if (!res && maybeSelfReference) {
+      return Component2;
+    }
+    if (warnMissing && !res) {
+      const extra = type === COMPONENTS ? `
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.` : ``;
+      warn$1(`Failed to resolve ${type.slice(0, -1)}: ${name}${extra}`);
+    }
+    return res;
+  } else {
+    warn$1(`resolve${capitalize(type.slice(0, -1))} can only be used in render() or setup().`);
+  }
+}
+function resolve(registry, name) {
+  return registry && (registry[name] || registry[camelize(name)] || registry[capitalize(camelize(name))]);
+}
+const getPublicInstance = (i) => {
+  if (!i)
+    return null;
+  if (isStatefulComponent(i))
+    return getExposeProxy(i) || i.proxy;
+  return getPublicInstance(i.parent);
+};
+const publicPropertiesMap = /* @__PURE__ */ extend(/* @__PURE__ */ Object.create(null), {
+  $: (i) => i,
+  $el: (i) => i.__$el || (i.__$el = {}),
+  $data: (i) => i.data,
+  $props: (i) => shallowReadonly(i.props),
+  $attrs: (i) => shallowReadonly(i.attrs),
+  $slots: (i) => shallowReadonly(i.slots),
+  $refs: (i) => shallowReadonly(i.refs),
+  $parent: (i) => getPublicInstance(i.parent),
+  $root: (i) => getPublicInstance(i.root),
+  $emit: (i) => i.emit,
+  $options: (i) => resolveMergedOptions(i),
+  $forceUpdate: (i) => i.f || (i.f = () => queueJob(i.update)),
+  $watch: (i) => instanceWatch.bind(i)
+});
+const isReservedPrefix = (key) => key === "_" || key === "$";
+const hasSetupBinding = (state, key) => state !== EMPTY_OBJ && !state.__isScriptSetup && hasOwn(state, key);
+const PublicInstanceProxyHandlers = {
+  get({ _: instance }, key) {
+    const { ctx, setupState, data, props, accessCache, type, appContext } = instance;
+    if (key === "__isVue") {
+      return true;
+    }
+    let normalizedProps;
+    if (key[0] !== "$") {
+      const n2 = accessCache[key];
+      if (n2 !== void 0) {
+        switch (n2) {
+          case 1:
+            return setupState[key];
+          case 2:
+            return data[key];
+          case 4:
+            return ctx[key];
+          case 3:
+            return props[key];
+        }
+      } else if (hasSetupBinding(setupState, key)) {
+        accessCache[key] = 1;
+        return setupState[key];
+      } else if (data !== EMPTY_OBJ && hasOwn(data, key)) {
+        accessCache[key] = 2;
+        return data[key];
+      } else if ((normalizedProps = instance.propsOptions[0]) && hasOwn(normalizedProps, key)) {
+        accessCache[key] = 3;
+        return props[key];
+      } else if (ctx !== EMPTY_OBJ && hasOwn(ctx, key)) {
+        accessCache[key] = 4;
+        return ctx[key];
+      } else if (shouldCacheAccess) {
+        accessCache[key] = 0;
+      }
+    }
+    const publicGetter = publicPropertiesMap[key];
+    let cssModule, globalProperties;
+    if (publicGetter) {
+      if (key === "$attrs") {
+        track(instance, "get", key);
+      }
+      return publicGetter(instance);
+    } else if ((cssModule = type.__cssModules) && (cssModule = cssModule[key])) {
+      return cssModule;
+    } else if (ctx !== EMPTY_OBJ && hasOwn(ctx, key)) {
+      accessCache[key] = 4;
+      return ctx[key];
+    } else if (globalProperties = appContext.config.globalProperties, hasOwn(globalProperties, key)) {
+      {
+        return globalProperties[key];
+      }
+    } else if (currentRenderingInstance && (!isString(key) || key.indexOf("__v") !== 0)) {
+      if (data !== EMPTY_OBJ && isReservedPrefix(key[0]) && hasOwn(data, key)) {
+        warn$1(`Property ${JSON.stringify(key)} must be accessed via $data because it starts with a reserved character ("$" or "_") and is not proxied on the render context.`);
+      } else if (instance === currentRenderingInstance) {
+        warn$1(`Property ${JSON.stringify(key)} was accessed during render but is not defined on instance.`);
+      }
+    }
+  },
+  set({ _: instance }, key, value) {
+    const { data, setupState, ctx } = instance;
+    if (hasSetupBinding(setupState, key)) {
+      setupState[key] = value;
+      return true;
+    } else if (setupState.__isScriptSetup && hasOwn(setupState, key)) {
+      warn$1(`Cannot mutate <script setup> binding "${key}" from Options API.`);
+      return false;
+    } else if (data !== EMPTY_OBJ && hasOwn(data, key)) {
+      data[key] = value;
+      return true;
+    } else if (hasOwn(instance.props, key)) {
+      warn$1(`Attempting to mutate prop "${key}". Props are readonly.`);
+      return false;
+    }
+    if (key[0] === "$" && key.slice(1) in instance) {
+      warn$1(`Attempting to mutate public property "${key}". Properties starting with $ are reserved and readonly.`);
+      return false;
+    } else {
+      if (key in instance.appContext.config.globalProperties) {
+        Object.defineProperty(ctx, key, {
+          enumerable: true,
+          configurable: true,
+          value
+        });
+      } else {
+        ctx[key] = value;
+      }
+    }
+    return true;
+  },
+  has({ _: { data, setupState, accessCache, ctx, appContext, propsOptions } }, key) {
+    let normalizedProps;
+    return !!accessCache[key] || data !== EMPTY_OBJ && hasOwn(data, key) || hasSetupBinding(setupState, key) || (normalizedProps = propsOptions[0]) && hasOwn(normalizedProps, key) || hasOwn(ctx, key) || hasOwn(publicPropertiesMap, key) || hasOwn(appContext.config.globalProperties, key);
+  },
+  defineProperty(target, key, descriptor) {
+    if (descriptor.get != null) {
+      target._.accessCache[key] = 0;
+    } else if (hasOwn(descriptor, "value")) {
+      this.set(target, key, descriptor.value, null);
+    }
+    return Reflect.defineProperty(target, key, descriptor);
+  }
+};
+{
+  PublicInstanceProxyHandlers.ownKeys = (target) => {
+    warn$1(`Avoid app logic that relies on enumerating keys on a component instance. The keys will be empty in production mode to avoid performance overhead.`);
+    return Reflect.ownKeys(target);
+  };
+}
+function createDevRenderContext(instance) {
+  const target = {};
+  Object.defineProperty(target, `_`, {
+    configurable: true,
+    enumerable: false,
+    get: () => instance
+  });
+  Object.keys(publicPropertiesMap).forEach((key) => {
+    Object.defineProperty(target, key, {
+      configurable: true,
+      enumerable: false,
+      get: () => publicPropertiesMap[key](instance),
+      set: NOOP
+    });
+  });
+  return target;
+}
+function exposePropsOnRenderContext(instance) {
+  const { ctx, propsOptions: [propsOptions] } = instance;
+  if (propsOptions) {
+    Object.keys(propsOptions).forEach((key) => {
+      Object.defineProperty(ctx, key, {
+        enumerable: true,
+        configurable: true,
+        get: () => instance.props[key],
+        set: NOOP
+      });
+    });
+  }
+}
+function exposeSetupStateOnRenderContext(instance) {
+  const { ctx, setupState } = instance;
+  Object.keys(toRaw(setupState)).forEach((key) => {
+    if (!setupState.__isScriptSetup) {
+      if (isReservedPrefix(key[0])) {
+        warn$1(`setup() return property ${JSON.stringify(key)} should not start with "$" or "_" which are reserved prefixes for Vue internals.`);
+        return;
+      }
+      Object.defineProperty(ctx, key, {
+        enumerable: true,
+        configurable: true,
+        get: () => setupState[key],
+        set: NOOP
+      });
+    }
+  });
+}
+function createDuplicateChecker() {
+  const cache = /* @__PURE__ */ Object.create(null);
+  return (type, key) => {
+    if (cache[key]) {
+      warn$1(`${type} property "${key}" is already defined in ${cache[key]}.`);
+    } else {
+      cache[key] = type;
+    }
+  };
+}
+let shouldCacheAccess = true;
+function applyOptions$1(instance) {
+  const options = resolveMergedOptions(instance);
+  const publicThis = instance.proxy;
+  const ctx = instance.ctx;
+  shouldCacheAccess = false;
+  if (options.beforeCreate) {
+    callHook$1(options.beforeCreate, instance, "bc");
+  }
+  const {
+    data: dataOptions,
+    computed: computedOptions,
+    methods,
+    watch: watchOptions,
+    provide: provideOptions,
+    inject: injectOptions,
+    created,
+    beforeMount,
+    mounted,
+    beforeUpdate,
+    updated,
+    activated,
+    deactivated,
+    beforeDestroy,
+    beforeUnmount,
+    destroyed,
+    unmounted,
+    render,
+    renderTracked,
+    renderTriggered,
+    errorCaptured,
+    serverPrefetch,
+    expose,
+    inheritAttrs,
+    components,
+    directives,
+    filters
+  } = options;
+  const checkDuplicateProperties = createDuplicateChecker();
+  {
+    const [propsOptions] = instance.propsOptions;
+    if (propsOptions) {
+      for (const key in propsOptions) {
+        checkDuplicateProperties("Props", key);
+      }
+    }
+  }
+  if (injectOptions) {
+    resolveInjections(injectOptions, ctx, checkDuplicateProperties, instance.appContext.config.unwrapInjectedRef);
+  }
+  if (methods) {
+    for (const key in methods) {
+      const methodHandler = methods[key];
+      if (isFunction(methodHandler)) {
+        {
+          Object.defineProperty(ctx, key, {
+            value: methodHandler.bind(publicThis),
+            configurable: true,
+            enumerable: true,
+            writable: true
+          });
+        }
+        {
+          checkDuplicateProperties("Methods", key);
+        }
+      } else {
+        warn$1(`Method "${key}" has type "${typeof methodHandler}" in the component definition. Did you reference the function correctly?`);
+      }
+    }
+  }
+  if (dataOptions) {
+    if (!isFunction(dataOptions)) {
+      warn$1(`The data option must be a function. Plain object usage is no longer supported.`);
+    }
+    const data = dataOptions.call(publicThis, publicThis);
+    if (isPromise(data)) {
+      warn$1(`data() returned a Promise - note data() cannot be async; If you intend to perform data fetching before component renders, use async setup() + <Suspense>.`);
+    }
+    if (!isObject(data)) {
+      warn$1(`data() should return an object.`);
+    } else {
+      instance.data = reactive(data);
+      {
+        for (const key in data) {
+          checkDuplicateProperties("Data", key);
+          if (!isReservedPrefix(key[0])) {
+            Object.defineProperty(ctx, key, {
+              configurable: true,
+              enumerable: true,
+              get: () => data[key],
+              set: NOOP
+            });
+          }
+        }
+      }
+    }
+  }
+  shouldCacheAccess = true;
+  if (computedOptions) {
+    for (const key in computedOptions) {
+      const opt = computedOptions[key];
+      const get2 = isFunction(opt) ? opt.bind(publicThis, publicThis) : isFunction(opt.get) ? opt.get.bind(publicThis, publicThis) : NOOP;
+      if (get2 === NOOP) {
+        warn$1(`Computed property "${key}" has no getter.`);
+      }
+      const set2 = !isFunction(opt) && isFunction(opt.set) ? opt.set.bind(publicThis) : () => {
+        warn$1(`Write operation failed: computed property "${key}" is readonly.`);
+      };
+      const c = computed$1({
+        get: get2,
+        set: set2
+      });
+      Object.defineProperty(ctx, key, {
+        enumerable: true,
+        configurable: true,
+        get: () => c.value,
+        set: (v) => c.value = v
+      });
+      {
+        checkDuplicateProperties("Computed", key);
+      }
+    }
+  }
+  if (watchOptions) {
+    for (const key in watchOptions) {
+      createWatcher(watchOptions[key], ctx, publicThis, key);
+    }
+  }
+  {
+    if (provideOptions) {
+      const provides = isFunction(provideOptions) ? provideOptions.call(publicThis) : provideOptions;
+      Reflect.ownKeys(provides).forEach((key) => {
+        provide(key, provides[key]);
+      });
+    }
+  }
+  {
+    if (created) {
+      callHook$1(created, instance, "c");
+    }
+  }
+  function registerLifecycleHook(register, hook) {
+    if (isArray(hook)) {
+      hook.forEach((_hook) => register(_hook.bind(publicThis)));
+    } else if (hook) {
+      register(hook.bind(publicThis));
+    }
+  }
+  registerLifecycleHook(onBeforeMount, beforeMount);
+  registerLifecycleHook(onMounted, mounted);
+  registerLifecycleHook(onBeforeUpdate, beforeUpdate);
+  registerLifecycleHook(onUpdated, updated);
+  registerLifecycleHook(onActivated, activated);
+  registerLifecycleHook(onDeactivated, deactivated);
+  registerLifecycleHook(onErrorCaptured, errorCaptured);
+  registerLifecycleHook(onRenderTracked, renderTracked);
+  registerLifecycleHook(onRenderTriggered, renderTriggered);
+  registerLifecycleHook(onBeforeUnmount, beforeUnmount);
+  registerLifecycleHook(onUnmounted, unmounted);
+  registerLifecycleHook(onServerPrefetch, serverPrefetch);
+  if (isArray(expose)) {
+    if (expose.length) {
+      const exposed = instance.exposed || (instance.exposed = {});
+      expose.forEach((key) => {
+        Object.defineProperty(exposed, key, {
+          get: () => publicThis[key],
+          set: (val) => publicThis[key] = val
+        });
+      });
+    } else if (!instance.exposed) {
+      instance.exposed = {};
+    }
+  }
+  if (render && instance.render === NOOP) {
+    instance.render = render;
+  }
+  if (inheritAttrs != null) {
+    instance.inheritAttrs = inheritAttrs;
+  }
+  if (components)
+    instance.components = components;
+  if (directives)
+    instance.directives = directives;
+  if (instance.ctx.$onApplyOptions) {
+    instance.ctx.$onApplyOptions(options, instance, publicThis);
+  }
+}
+function resolveInjections(injectOptions, ctx, checkDuplicateProperties = NOOP, unwrapRef = false) {
+  if (isArray(injectOptions)) {
+    injectOptions = normalizeInject(injectOptions);
+  }
+  for (const key in injectOptions) {
+    const opt = injectOptions[key];
+    let injected;
+    if (isObject(opt)) {
+      if ("default" in opt) {
+        injected = inject(opt.from || key, opt.default, true);
+      } else {
+        injected = inject(opt.from || key);
+      }
+    } else {
+      injected = inject(opt);
+    }
+    if (isRef(injected)) {
+      if (unwrapRef) {
+        Object.defineProperty(ctx, key, {
+          enumerable: true,
+          configurable: true,
+          get: () => injected.value,
+          set: (v) => injected.value = v
+        });
+      } else {
+        {
+          warn$1(`injected property "${key}" is a ref and will be auto-unwrapped and no longer needs \`.value\` in the next minor release. To opt-in to the new behavior now, set \`app.config.unwrapInjectedRef = true\` (this config is temporary and will not be needed in the future.)`);
+        }
+        ctx[key] = injected;
+      }
+    } else {
+      ctx[key] = injected;
+    }
+    {
+      checkDuplicateProperties("Inject", key);
+    }
+  }
+}
+function callHook$1(hook, instance, type) {
+  callWithAsyncErrorHandling(isArray(hook) ? hook.map((h) => h.bind(instance.proxy)) : hook.bind(instance.proxy), instance, type);
+}
+function createWatcher(raw, ctx, publicThis, key) {
+  const getter = key.includes(".") ? createPathGetter(publicThis, key) : () => publicThis[key];
+  if (isString(raw)) {
+    const handler = ctx[raw];
+    if (isFunction(handler)) {
+      watch(getter, handler);
+    } else {
+      warn$1(`Invalid watch handler specified by key "${raw}"`, handler);
+    }
+  } else if (isFunction(raw)) {
+    watch(getter, raw.bind(publicThis));
+  } else if (isObject(raw)) {
+    if (isArray(raw)) {
+      raw.forEach((r) => createWatcher(r, ctx, publicThis, key));
+    } else {
+      const handler = isFunction(raw.handler) ? raw.handler.bind(publicThis) : ctx[raw.handler];
+      if (isFunction(handler)) {
+        watch(getter, handler, raw);
+      } else {
+        warn$1(`Invalid watch handler specified by key "${raw.handler}"`, handler);
+      }
+    }
+  } else {
+    warn$1(`Invalid watch option: "${key}"`, raw);
+  }
+}
+function resolveMergedOptions(instance) {
+  const base = instance.type;
+  const { mixins, extends: extendsOptions } = base;
+  const { mixins: globalMixins, optionsCache: cache, config: { optionMergeStrategies } } = instance.appContext;
+  const cached = cache.get(base);
+  let resolved;
+  if (cached) {
+    resolved = cached;
+  } else if (!globalMixins.length && !mixins && !extendsOptions) {
+    {
+      resolved = base;
+    }
+  } else {
+    resolved = {};
+    if (globalMixins.length) {
+      globalMixins.forEach((m) => mergeOptions(resolved, m, optionMergeStrategies, true));
+    }
+    mergeOptions(resolved, base, optionMergeStrategies);
+  }
+  if (isObject(base)) {
+    cache.set(base, resolved);
+  }
+  return resolved;
+}
+function mergeOptions(to, from, strats, asMixin = false) {
+  const { mixins, extends: extendsOptions } = from;
+  if (extendsOptions) {
+    mergeOptions(to, extendsOptions, strats, true);
+  }
+  if (mixins) {
+    mixins.forEach((m) => mergeOptions(to, m, strats, true));
+  }
+  for (const key in from) {
+    if (asMixin && key === "expose") {
+      warn$1(`"expose" option is ignored when declared in mixins or extends. It should only be declared in the base component itself.`);
+    } else {
+      const strat = internalOptionMergeStrats[key] || strats && strats[key];
+      to[key] = strat ? strat(to[key], from[key]) : from[key];
+    }
+  }
+  return to;
+}
+const internalOptionMergeStrats = {
+  data: mergeDataFn,
+  props: mergeObjectOptions,
+  emits: mergeObjectOptions,
+  methods: mergeObjectOptions,
+  computed: mergeObjectOptions,
+  beforeCreate: mergeAsArray$1,
+  created: mergeAsArray$1,
+  beforeMount: mergeAsArray$1,
+  mounted: mergeAsArray$1,
+  beforeUpdate: mergeAsArray$1,
+  updated: mergeAsArray$1,
+  beforeDestroy: mergeAsArray$1,
+  beforeUnmount: mergeAsArray$1,
+  destroyed: mergeAsArray$1,
+  unmounted: mergeAsArray$1,
+  activated: mergeAsArray$1,
+  deactivated: mergeAsArray$1,
+  errorCaptured: mergeAsArray$1,
+  serverPrefetch: mergeAsArray$1,
+  components: mergeObjectOptions,
+  directives: mergeObjectOptions,
+  watch: mergeWatchOptions,
+  provide: mergeDataFn,
+  inject: mergeInject
+};
+function mergeDataFn(to, from) {
+  if (!from) {
+    return to;
+  }
+  if (!to) {
+    return from;
+  }
+  return function mergedDataFn() {
+    return extend(isFunction(to) ? to.call(this, this) : to, isFunction(from) ? from.call(this, this) : from);
+  };
+}
+function mergeInject(to, from) {
+  return mergeObjectOptions(normalizeInject(to), normalizeInject(from));
+}
+function normalizeInject(raw) {
+  if (isArray(raw)) {
+    const res = {};
+    for (let i = 0; i < raw.length; i++) {
+      res[raw[i]] = raw[i];
+    }
+    return res;
+  }
+  return raw;
+}
+function mergeAsArray$1(to, from) {
+  return to ? [...new Set([].concat(to, from))] : from;
+}
+function mergeObjectOptions(to, from) {
+  return to ? extend(extend(/* @__PURE__ */ Object.create(null), to), from) : from;
+}
+function mergeWatchOptions(to, from) {
+  if (!to)
+    return from;
+  if (!from)
+    return to;
+  const merged = extend(/* @__PURE__ */ Object.create(null), to);
+  for (const key in from) {
+    merged[key] = mergeAsArray$1(to[key], from[key]);
+  }
+  return merged;
+}
+function initProps$1(instance, rawProps, isStateful, isSSR = false) {
+  const props = {};
+  const attrs = {};
+  instance.propsDefaults = /* @__PURE__ */ Object.create(null);
+  setFullProps(instance, rawProps, props, attrs);
+  for (const key in instance.propsOptions[0]) {
+    if (!(key in props)) {
+      props[key] = void 0;
+    }
+  }
+  {
+    validateProps(rawProps || {}, props, instance);
+  }
+  if (isStateful) {
+    instance.props = isSSR ? props : shallowReactive(props);
+  } else {
+    if (!instance.type.props) {
+      instance.props = attrs;
+    } else {
+      instance.props = props;
+    }
+  }
+  instance.attrs = attrs;
+}
+function isInHmrContext(instance) {
+  while (instance) {
+    if (instance.type.__hmrId)
+      return true;
+    instance = instance.parent;
+  }
+}
+function updateProps(instance, rawProps, rawPrevProps, optimized) {
+  const { props, attrs, vnode: { patchFlag } } = instance;
+  const rawCurrentProps = toRaw(props);
+  const [options] = instance.propsOptions;
+  let hasAttrsChanged = false;
+  if (!isInHmrContext(instance) && (optimized || patchFlag > 0) && !(patchFlag & 16)) {
+    if (patchFlag & 8) {
+      const propsToUpdate = instance.vnode.dynamicProps;
+      for (let i = 0; i < propsToUpdate.length; i++) {
+        let key = propsToUpdate[i];
+        if (isEmitListener(instance.emitsOptions, key)) {
+          continue;
+        }
+        const value = rawProps[key];
+        if (options) {
+          if (hasOwn(attrs, key)) {
+            if (value !== attrs[key]) {
+              attrs[key] = value;
+              hasAttrsChanged = true;
+            }
+          } else {
+            const camelizedKey = camelize(key);
+            props[camelizedKey] = resolvePropValue(options, rawCurrentProps, camelizedKey, value, instance, false);
+          }
+        } else {
+          if (value !== attrs[key]) {
+            attrs[key] = value;
+            hasAttrsChanged = true;
+          }
+        }
+      }
+    }
+  } else {
+    if (setFullProps(instance, rawProps, props, attrs)) {
+      hasAttrsChanged = true;
+    }
+    let kebabKey;
+    for (const key in rawCurrentProps) {
+      if (!rawProps || !hasOwn(rawProps, key) && ((kebabKey = hyphenate(key)) === key || !hasOwn(rawProps, kebabKey))) {
+        if (options) {
+          if (rawPrevProps && (rawPrevProps[key] !== void 0 || rawPrevProps[kebabKey] !== void 0)) {
+            props[key] = resolvePropValue(options, rawCurrentProps, key, void 0, instance, true);
+          }
+        } else {
+          delete props[key];
+        }
+      }
+    }
+    if (attrs !== rawCurrentProps) {
+      for (const key in attrs) {
+        if (!rawProps || !hasOwn(rawProps, key) && true) {
+          delete attrs[key];
+          hasAttrsChanged = true;
+        }
+      }
+    }
+  }
+  if (hasAttrsChanged) {
+    trigger(instance, "set", "$attrs");
+  }
+  {
+    validateProps(rawProps || {}, props, instance);
+  }
+}
+function setFullProps(instance, rawProps, props, attrs) {
+  const [options, needCastKeys] = instance.propsOptions;
+  let hasAttrsChanged = false;
+  let rawCastValues;
+  if (rawProps) {
+    for (let key in rawProps) {
+      if (isReservedProp(key)) {
+        continue;
+      }
+      const value = rawProps[key];
+      let camelKey;
+      if (options && hasOwn(options, camelKey = camelize(key))) {
+        if (!needCastKeys || !needCastKeys.includes(camelKey)) {
+          props[camelKey] = value;
+        } else {
+          (rawCastValues || (rawCastValues = {}))[camelKey] = value;
+        }
+      } else if (!isEmitListener(instance.emitsOptions, key)) {
+        if (!(key in attrs) || value !== attrs[key]) {
+          attrs[key] = value;
+          hasAttrsChanged = true;
+        }
+      }
+    }
+  }
+  if (needCastKeys) {
+    const rawCurrentProps = toRaw(props);
+    const castValues = rawCastValues || EMPTY_OBJ;
+    for (let i = 0; i < needCastKeys.length; i++) {
+      const key = needCastKeys[i];
+      props[key] = resolvePropValue(options, rawCurrentProps, key, castValues[key], instance, !hasOwn(castValues, key));
+    }
+  }
+  return hasAttrsChanged;
+}
+function resolvePropValue(options, props, key, value, instance, isAbsent) {
+  const opt = options[key];
+  if (opt != null) {
+    const hasDefault = hasOwn(opt, "default");
+    if (hasDefault && value === void 0) {
+      const defaultValue = opt.default;
+      if (opt.type !== Function && isFunction(defaultValue)) {
+        const { propsDefaults } = instance;
+        if (key in propsDefaults) {
+          value = propsDefaults[key];
+        } else {
+          setCurrentInstance(instance);
+          value = propsDefaults[key] = defaultValue.call(null, props);
+          unsetCurrentInstance();
+        }
+      } else {
+        value = defaultValue;
+      }
+    }
+    if (opt[0]) {
+      if (isAbsent && !hasDefault) {
+        value = false;
+      } else if (opt[1] && (value === "" || value === hyphenate(key))) {
+        value = true;
+      }
+    }
+  }
+  return value;
+}
+function normalizePropsOptions(comp, appContext, asMixin = false) {
+  const cache = appContext.propsCache;
+  const cached = cache.get(comp);
+  if (cached) {
+    return cached;
+  }
+  const raw = comp.props;
+  const normalized = {};
+  const needCastKeys = [];
+  let hasExtends = false;
+  if (!isFunction(comp)) {
+    const extendProps = (raw2) => {
+      hasExtends = true;
+      const [props, keys] = normalizePropsOptions(raw2, appContext, true);
+      extend(normalized, props);
+      if (keys)
+        needCastKeys.push(...keys);
+    };
+    if (!asMixin && appContext.mixins.length) {
+      appContext.mixins.forEach(extendProps);
+    }
+    if (comp.extends) {
+      extendProps(comp.extends);
+    }
+    if (comp.mixins) {
+      comp.mixins.forEach(extendProps);
+    }
+  }
+  if (!raw && !hasExtends) {
+    if (isObject(comp)) {
+      cache.set(comp, EMPTY_ARR);
+    }
+    return EMPTY_ARR;
+  }
+  if (isArray(raw)) {
+    for (let i = 0; i < raw.length; i++) {
+      if (!isString(raw[i])) {
+        warn$1(`props must be strings when using array syntax.`, raw[i]);
+      }
+      const normalizedKey = camelize(raw[i]);
+      if (validatePropName(normalizedKey)) {
+        normalized[normalizedKey] = EMPTY_OBJ;
+      }
+    }
+  } else if (raw) {
+    if (!isObject(raw)) {
+      warn$1(`invalid props options`, raw);
+    }
+    for (const key in raw) {
+      const normalizedKey = camelize(key);
+      if (validatePropName(normalizedKey)) {
+        const opt = raw[key];
+        const prop = normalized[normalizedKey] = isArray(opt) || isFunction(opt) ? { type: opt } : Object.assign({}, opt);
+        if (prop) {
+          const booleanIndex = getTypeIndex(Boolean, prop.type);
+          const stringIndex = getTypeIndex(String, prop.type);
+          prop[0] = booleanIndex > -1;
+          prop[1] = stringIndex < 0 || booleanIndex < stringIndex;
+          if (booleanIndex > -1 || hasOwn(prop, "default")) {
+            needCastKeys.push(normalizedKey);
+          }
+        }
+      }
+    }
+  }
+  const res = [normalized, needCastKeys];
+  if (isObject(comp)) {
+    cache.set(comp, res);
+  }
+  return res;
+}
+function validatePropName(key) {
+  if (key[0] !== "$") {
+    return true;
+  } else {
+    warn$1(`Invalid prop name: "${key}" is a reserved property.`);
+  }
+  return false;
+}
+function getType(ctor) {
+  const match = ctor && ctor.toString().match(/^\s*function (\w+)/);
+  return match ? match[1] : ctor === null ? "null" : "";
+}
+function isSameType(a, b) {
+  return getType(a) === getType(b);
+}
+function getTypeIndex(type, expectedTypes) {
+  if (isArray(expectedTypes)) {
+    return expectedTypes.findIndex((t2) => isSameType(t2, type));
+  } else if (isFunction(expectedTypes)) {
+    return isSameType(expectedTypes, type) ? 0 : -1;
+  }
+  return -1;
+}
+function validateProps(rawProps, props, instance) {
+  const resolvedValues = toRaw(props);
+  const options = instance.propsOptions[0];
+  for (const key in options) {
+    let opt = options[key];
+    if (opt == null)
+      continue;
+    validateProp(key, resolvedValues[key], opt, !hasOwn(rawProps, key) && !hasOwn(rawProps, hyphenate(key)));
+  }
+}
+function validateProp(name, value, prop, isAbsent) {
+  const { type, required, validator } = prop;
+  if (required && isAbsent) {
+    warn$1('Missing required prop: "' + name + '"');
+    return;
+  }
+  if (value == null && !prop.required) {
+    return;
+  }
+  if (type != null && type !== true) {
+    let isValid = false;
+    const types = isArray(type) ? type : [type];
+    const expectedTypes = [];
+    for (let i = 0; i < types.length && !isValid; i++) {
+      const { valid, expectedType } = assertType(value, types[i]);
+      expectedTypes.push(expectedType || "");
+      isValid = valid;
+    }
+    if (!isValid) {
+      warn$1(getInvalidTypeMessage(name, value, expectedTypes));
+      return;
+    }
+  }
+  if (validator && !validator(value)) {
+    warn$1('Invalid prop: custom validator check failed for prop "' + name + '".');
+  }
+}
+const isSimpleType = /* @__PURE__ */ makeMap("String,Number,Boolean,Function,Symbol,BigInt");
+function assertType(value, type) {
+  let valid;
+  const expectedType = getType(type);
+  if (isSimpleType(expectedType)) {
+    const t2 = typeof value;
+    valid = t2 === expectedType.toLowerCase();
+    if (!valid && t2 === "object") {
+      valid = value instanceof type;
+    }
+  } else if (expectedType === "Object") {
+    valid = isObject(value);
+  } else if (expectedType === "Array") {
+    valid = isArray(value);
+  } else if (expectedType === "null") {
+    valid = value === null;
+  } else {
+    valid = value instanceof type;
+  }
+  return {
+    valid,
+    expectedType
+  };
+}
+function getInvalidTypeMessage(name, value, expectedTypes) {
+  let message = `Invalid prop: type check failed for prop "${name}". Expected ${expectedTypes.map(capitalize).join(" | ")}`;
+  const expectedType = expectedTypes[0];
+  const receivedType = toRawType(value);
+  const expectedValue = styleValue(value, expectedType);
+  const receivedValue = styleValue(value, receivedType);
+  if (expectedTypes.length === 1 && isExplicable(expectedType) && !isBoolean(expectedType, receivedType)) {
+    message += ` with value ${expectedValue}`;
+  }
+  message += `, got ${receivedType} `;
+  if (isExplicable(receivedType)) {
+    message += `with value ${receivedValue}.`;
+  }
+  return message;
+}
+function styleValue(value, type) {
+  if (type === "String") {
+    return `"${value}"`;
+  } else if (type === "Number") {
+    return `${Number(value)}`;
+  } else {
+    return `${value}`;
+  }
+}
+function isExplicable(type) {
+  const explicitTypes = ["string", "number", "boolean"];
+  return explicitTypes.some((elem) => type.toLowerCase() === elem);
+}
+function isBoolean(...args) {
+  return args.some((elem) => elem.toLowerCase() === "boolean");
+}
+function createAppContext() {
+  return {
+    app: null,
+    config: {
+      isNativeTag: NO,
+      performance: false,
+      globalProperties: {},
+      optionMergeStrategies: {},
+      errorHandler: void 0,
+      warnHandler: void 0,
+      compilerOptions: {}
+    },
+    mixins: [],
+    components: {},
+    directives: {},
+    provides: /* @__PURE__ */ Object.create(null),
+    optionsCache: /* @__PURE__ */ new WeakMap(),
+    propsCache: /* @__PURE__ */ new WeakMap(),
+    emitsCache: /* @__PURE__ */ new WeakMap()
+  };
+}
+let uid = 0;
+function createAppAPI(render, hydrate) {
+  return function createApp2(rootComponent, rootProps = null) {
+    if (!isFunction(rootComponent)) {
+      rootComponent = Object.assign({}, rootComponent);
+    }
+    if (rootProps != null && !isObject(rootProps)) {
+      warn$1(`root props passed to app.mount() must be an object.`);
+      rootProps = null;
+    }
+    const context = createAppContext();
+    const installedPlugins = /* @__PURE__ */ new Set();
+    const app = context.app = {
+      _uid: uid++,
+      _component: rootComponent,
+      _props: rootProps,
+      _container: null,
+      _context: context,
+      _instance: null,
+      version,
+      get config() {
+        return context.config;
+      },
+      set config(v) {
+        {
+          warn$1(`app.config cannot be replaced. Modify individual options instead.`);
+        }
+      },
+      use(plugin2, ...options) {
+        if (installedPlugins.has(plugin2)) {
+          warn$1(`Plugin has already been applied to target app.`);
+        } else if (plugin2 && isFunction(plugin2.install)) {
+          installedPlugins.add(plugin2);
+          plugin2.install(app, ...options);
+        } else if (isFunction(plugin2)) {
+          installedPlugins.add(plugin2);
+          plugin2(app, ...options);
+        } else {
+          warn$1(`A plugin must either be a function or an object with an "install" function.`);
+        }
+        return app;
+      },
+      mixin(mixin) {
+        {
+          if (!context.mixins.includes(mixin)) {
+            context.mixins.push(mixin);
+          } else {
+            warn$1("Mixin has already been applied to target app" + (mixin.name ? `: ${mixin.name}` : ""));
+          }
+        }
+        return app;
+      },
+      component(name, component) {
+        {
+          validateComponentName(name, context.config);
+        }
+        if (!component) {
+          return context.components[name];
+        }
+        if (context.components[name]) {
+          warn$1(`Component "${name}" has already been registered in target app.`);
+        }
+        context.components[name] = component;
+        return app;
+      },
+      directive(name, directive) {
+        {
+          validateDirectiveName(name);
+        }
+        if (!directive) {
+          return context.directives[name];
+        }
+        if (context.directives[name]) {
+          warn$1(`Directive "${name}" has already been registered in target app.`);
+        }
+        context.directives[name] = directive;
+        return app;
+      },
+      mount() {
+      },
+      unmount() {
+      },
+      provide(key, value) {
+        if (key in context.provides) {
+          warn$1(`App already provides property with key "${String(key)}". It will be overwritten with the new value.`);
+        }
+        context.provides[key] = value;
+        return app;
+      }
+    };
+    return app;
+  };
+}
+let supported;
+let perf;
+function startMeasure(instance, type) {
+  if (instance.appContext.config.performance && isSupported()) {
+    perf.mark(`vue-${type}-${instance.uid}`);
+  }
+  {
+    devtoolsPerfStart(instance, type, isSupported() ? perf.now() : Date.now());
+  }
+}
+function endMeasure(instance, type) {
+  if (instance.appContext.config.performance && isSupported()) {
+    const startTag = `vue-${type}-${instance.uid}`;
+    const endTag = startTag + `:end`;
+    perf.mark(endTag);
+    perf.measure(`<${formatComponentName(instance, instance.type)}> ${type}`, startTag, endTag);
+    perf.clearMarks(startTag);
+    perf.clearMarks(endTag);
+  }
+  {
+    devtoolsPerfEnd(instance, type, isSupported() ? perf.now() : Date.now());
+  }
+}
+function isSupported() {
+  if (supported !== void 0) {
+    return supported;
+  }
+  if (typeof window !== "undefined" && window.performance) {
+    supported = true;
+    perf = window.performance;
+  } else {
+    supported = false;
+  }
+  return supported;
+}
+const queuePostRenderEffect = queuePostFlushCb;
+const Fragment = Symbol("Fragment");
+const Text = Symbol("Text");
+const Comment = Symbol("Comment");
+const Static = Symbol("Static");
+function isVNode(value) {
+  return value ? value.__v_isVNode === true : false;
+}
+const InternalObjectKey = `__vInternal`;
+function guardReactiveProps(props) {
+  if (!props)
+    return null;
+  return isProxy(props) || InternalObjectKey in props ? extend({}, props) : props;
+}
+const emptyAppContext = createAppContext();
+let uid$1 = 0;
+function createComponentInstance(vnode, parent, suspense) {
+  const type = vnode.type;
+  const appContext = (parent ? parent.appContext : vnode.appContext) || emptyAppContext;
+  const instance = {
+    uid: uid$1++,
+    vnode,
+    type,
+    parent,
+    appContext,
+    root: null,
+    next: null,
+    subTree: null,
+    effect: null,
+    update: null,
+    scope: new EffectScope(true),
+    render: null,
+    proxy: null,
+    exposed: null,
+    exposeProxy: null,
+    withProxy: null,
+    provides: parent ? parent.provides : Object.create(appContext.provides),
+    accessCache: null,
+    renderCache: [],
+    components: null,
+    directives: null,
+    propsOptions: normalizePropsOptions(type, appContext),
+    emitsOptions: normalizeEmitsOptions(type, appContext),
+    emit: null,
+    emitted: null,
+    propsDefaults: EMPTY_OBJ,
+    inheritAttrs: type.inheritAttrs,
+    ctx: EMPTY_OBJ,
+    data: EMPTY_OBJ,
+    props: EMPTY_OBJ,
+    attrs: EMPTY_OBJ,
+    slots: EMPTY_OBJ,
+    refs: EMPTY_OBJ,
+    setupState: EMPTY_OBJ,
+    setupContext: null,
+    suspense,
+    suspenseId: suspense ? suspense.pendingId : 0,
+    asyncDep: null,
+    asyncResolved: false,
+    isMounted: false,
+    isUnmounted: false,
+    isDeactivated: false,
+    bc: null,
+    c: null,
+    bm: null,
+    m: null,
+    bu: null,
+    u: null,
+    um: null,
+    bum: null,
+    da: null,
+    a: null,
+    rtg: null,
+    rtc: null,
+    ec: null,
+    sp: null
+  };
+  {
+    instance.ctx = createDevRenderContext(instance);
+  }
+  instance.root = parent ? parent.root : instance;
+  instance.emit = emit$1.bind(null, instance);
+  if (vnode.ce) {
+    vnode.ce(instance);
+  }
+  return instance;
+}
+let currentInstance = null;
+const getCurrentInstance = () => currentInstance || currentRenderingInstance;
+const setCurrentInstance = (instance) => {
+  currentInstance = instance;
+  instance.scope.on();
+};
+const unsetCurrentInstance = () => {
+  currentInstance && currentInstance.scope.off();
+  currentInstance = null;
+};
+const isBuiltInTag = /* @__PURE__ */ makeMap("slot,component");
+function validateComponentName(name, config) {
+  const appIsNativeTag = config.isNativeTag || NO;
+  if (isBuiltInTag(name) || appIsNativeTag(name)) {
+    warn$1("Do not use built-in or reserved HTML elements as component id: " + name);
+  }
+}
+function isStatefulComponent(instance) {
+  return instance.vnode.shapeFlag & 4;
+}
+let isInSSRComponentSetup = false;
+function setupComponent(instance, isSSR = false) {
+  isInSSRComponentSetup = isSSR;
+  const { props } = instance.vnode;
+  const isStateful = isStatefulComponent(instance);
+  initProps$1(instance, props, isStateful, isSSR);
+  const setupResult = isStateful ? setupStatefulComponent(instance, isSSR) : void 0;
+  isInSSRComponentSetup = false;
+  return setupResult;
+}
+function setupStatefulComponent(instance, isSSR) {
+  const Component2 = instance.type;
+  {
+    if (Component2.name) {
+      validateComponentName(Component2.name, instance.appContext.config);
+    }
+    if (Component2.components) {
+      const names = Object.keys(Component2.components);
+      for (let i = 0; i < names.length; i++) {
+        validateComponentName(names[i], instance.appContext.config);
+      }
+    }
+    if (Component2.directives) {
+      const names = Object.keys(Component2.directives);
+      for (let i = 0; i < names.length; i++) {
+        validateDirectiveName(names[i]);
+      }
+    }
+    if (Component2.compilerOptions && isRuntimeOnly()) {
+      warn$1(`"compilerOptions" is only supported when using a build of Vue that includes the runtime compiler. Since you are using a runtime-only build, the options should be passed via your build tool config instead.`);
+    }
+  }
+  instance.accessCache = /* @__PURE__ */ Object.create(null);
+  instance.proxy = markRaw(new Proxy(instance.ctx, PublicInstanceProxyHandlers));
+  {
+    exposePropsOnRenderContext(instance);
+  }
+  const { setup } = Component2;
+  if (setup) {
+    const setupContext = instance.setupContext = setup.length > 1 ? createSetupContext(instance) : null;
+    setCurrentInstance(instance);
+    pauseTracking();
+    const setupResult = callWithErrorHandling(setup, instance, 0, [shallowReadonly(instance.props), setupContext]);
+    resetTracking();
+    unsetCurrentInstance();
+    if (isPromise(setupResult)) {
+      setupResult.then(unsetCurrentInstance, unsetCurrentInstance);
+      {
+        warn$1(`setup() returned a Promise, but the version of Vue you are using does not support it yet.`);
+      }
+    } else {
+      handleSetupResult(instance, setupResult, isSSR);
+    }
+  } else {
+    finishComponentSetup(instance, isSSR);
+  }
+}
+function handleSetupResult(instance, setupResult, isSSR) {
+  if (isFunction(setupResult)) {
+    {
+      instance.render = setupResult;
+    }
+  } else if (isObject(setupResult)) {
+    if (isVNode(setupResult)) {
+      warn$1(`setup() should not return VNodes directly - return a render function instead.`);
+    }
+    {
+      instance.devtoolsRawSetupState = setupResult;
+    }
+    instance.setupState = proxyRefs(setupResult);
+    {
+      exposeSetupStateOnRenderContext(instance);
+    }
+  } else if (setupResult !== void 0) {
+    warn$1(`setup() should return an object. Received: ${setupResult === null ? "null" : typeof setupResult}`);
+  }
+  finishComponentSetup(instance, isSSR);
+}
+let compile;
+const isRuntimeOnly = () => !compile;
+function finishComponentSetup(instance, isSSR, skipOptions) {
+  const Component2 = instance.type;
+  if (!instance.render) {
+    instance.render = Component2.render || NOOP;
+  }
+  {
+    setCurrentInstance(instance);
+    pauseTracking();
+    applyOptions$1(instance);
+    resetTracking();
+    unsetCurrentInstance();
+  }
+  if (!Component2.render && instance.render === NOOP && !isSSR) {
+    if (Component2.template) {
+      warn$1(`Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias "vue" to "vue/dist/vue.esm-bundler.js".`);
+    } else {
+      warn$1(`Component is missing template or render function.`);
+    }
+  }
+}
+function createAttrsProxy(instance) {
+  return new Proxy(
+    instance.attrs,
+    {
+      get(target, key) {
+        track(instance, "get", "$attrs");
+        return target[key];
+      },
+      set() {
+        warn$1(`setupContext.attrs is readonly.`);
+        return false;
+      },
+      deleteProperty() {
+        warn$1(`setupContext.attrs is readonly.`);
+        return false;
+      }
+    }
+  );
+}
+function createSetupContext(instance) {
+  const expose = (exposed) => {
+    if (instance.exposed) {
+      warn$1(`expose() should be called only once per setup().`);
+    }
+    instance.exposed = exposed || {};
+  };
+  let attrs;
+  {
+    return Object.freeze({
+      get attrs() {
+        return attrs || (attrs = createAttrsProxy(instance));
+      },
+      get slots() {
+        return shallowReadonly(instance.slots);
+      },
+      get emit() {
+        return (event, ...args) => instance.emit(event, ...args);
+      },
+      expose
+    });
+  }
+}
+function getExposeProxy(instance) {
+  if (instance.exposed) {
+    return instance.exposeProxy || (instance.exposeProxy = new Proxy(proxyRefs(markRaw(instance.exposed)), {
+      get(target, key) {
+        if (key in target) {
+          return target[key];
+        }
+        return instance.proxy[key];
+      },
+      has(target, key) {
+        return key in target || key in publicPropertiesMap;
+      }
+    }));
+  }
+}
+const classifyRE = /(?:^|[-_])(\w)/g;
+const classify = (str) => str.replace(classifyRE, (c) => c.toUpperCase()).replace(/[-_]/g, "");
+function getComponentName(Component2, includeInferred = true) {
+  return isFunction(Component2) ? Component2.displayName || Component2.name : Component2.name || includeInferred && Component2.__name;
+}
+function formatComponentName(instance, Component2, isRoot = false) {
+  let name = getComponentName(Component2);
+  if (!name && Component2.__file) {
+    const match = Component2.__file.match(/([^/\\]+)\.\w+$/);
+    if (match) {
+      name = match[1];
+    }
+  }
+  if (!name && instance && instance.parent) {
+    const inferFromRegistry = (registry) => {
+      for (const key in registry) {
+        if (registry[key] === Component2) {
+          return key;
+        }
+      }
+    };
+    name = inferFromRegistry(instance.components || instance.parent.type.components) || inferFromRegistry(instance.appContext.components);
+  }
+  return name ? classify(name) : isRoot ? `App` : `Anonymous`;
+}
+const computed$1 = (getterOrOptions, debugOptions) => {
+  return computed(getterOrOptions, debugOptions, isInSSRComponentSetup);
+};
+const version = "3.2.45";
+function unwrapper(target) {
+  return unref(target);
+}
+const ARRAYTYPE = "[object Array]";
+const OBJECTTYPE = "[object Object]";
+function diff(current, pre) {
+  const result = {};
+  syncKeys(current, pre);
+  _diff(current, pre, "", result);
+  return result;
+}
+function syncKeys(current, pre) {
+  current = unwrapper(current);
+  if (current === pre)
+    return;
+  const rootCurrentType = toTypeString(current);
+  const rootPreType = toTypeString(pre);
+  if (rootCurrentType == OBJECTTYPE && rootPreType == OBJECTTYPE) {
+    for (let key in pre) {
+      const currentValue = current[key];
+      if (currentValue === void 0) {
+        current[key] = null;
+      } else {
+        syncKeys(currentValue, pre[key]);
+      }
+    }
+  } else if (rootCurrentType == ARRAYTYPE && rootPreType == ARRAYTYPE) {
+    if (current.length >= pre.length) {
+      pre.forEach((item, index2) => {
+        syncKeys(current[index2], item);
+      });
+    }
+  }
+}
+function _diff(current, pre, path, result) {
+  current = unwrapper(current);
+  if (current === pre)
+    return;
+  const rootCurrentType = toTypeString(current);
+  const rootPreType = toTypeString(pre);
+  if (rootCurrentType == OBJECTTYPE) {
+    if (rootPreType != OBJECTTYPE || Object.keys(current).length < Object.keys(pre).length) {
+      setResult(result, path, current);
+    } else {
+      for (let key in current) {
+        const currentValue = unwrapper(current[key]);
+        const preValue = pre[key];
+        const currentType = toTypeString(currentValue);
+        const preType = toTypeString(preValue);
+        if (currentType != ARRAYTYPE && currentType != OBJECTTYPE) {
+          if (currentValue != preValue) {
+            setResult(result, (path == "" ? "" : path + ".") + key, currentValue);
+          }
+        } else if (currentType == ARRAYTYPE) {
+          if (preType != ARRAYTYPE) {
+            setResult(result, (path == "" ? "" : path + ".") + key, currentValue);
+          } else {
+            if (currentValue.length < preValue.length) {
+              setResult(result, (path == "" ? "" : path + ".") + key, currentValue);
+            } else {
+              currentValue.forEach((item, index2) => {
+                _diff(item, preValue[index2], (path == "" ? "" : path + ".") + key + "[" + index2 + "]", result);
+              });
+            }
+          }
+        } else if (currentType == OBJECTTYPE) {
+          if (preType != OBJECTTYPE || Object.keys(currentValue).length < Object.keys(preValue).length) {
+            setResult(result, (path == "" ? "" : path + ".") + key, currentValue);
+          } else {
+            for (let subKey in currentValue) {
+              _diff(currentValue[subKey], preValue[subKey], (path == "" ? "" : path + ".") + key + "." + subKey, result);
+            }
+          }
+        }
+      }
+    }
+  } else if (rootCurrentType == ARRAYTYPE) {
+    if (rootPreType != ARRAYTYPE) {
+      setResult(result, path, current);
+    } else {
+      if (current.length < pre.length) {
+        setResult(result, path, current);
+      } else {
+        current.forEach((item, index2) => {
+          _diff(item, pre[index2], path + "[" + index2 + "]", result);
+        });
+      }
+    }
+  } else {
+    setResult(result, path, current);
+  }
+}
+function setResult(result, k, v) {
+  result[k] = v;
+}
+function hasComponentEffect(instance) {
+  return queue.includes(instance.update);
+}
+function flushCallbacks(instance) {
+  const ctx = instance.ctx;
+  const callbacks = ctx.__next_tick_callbacks;
+  if (callbacks && callbacks.length) {
+    const copies = callbacks.slice(0);
+    callbacks.length = 0;
+    for (let i = 0; i < copies.length; i++) {
+      copies[i]();
+    }
+  }
+}
+function nextTick$1(instance, fn) {
+  const ctx = instance.ctx;
+  if (!ctx.__next_tick_pending && !hasComponentEffect(instance)) {
+    return nextTick(fn && fn.bind(instance.proxy));
+  }
+  let _resolve;
+  if (!ctx.__next_tick_callbacks) {
+    ctx.__next_tick_callbacks = [];
+  }
+  ctx.__next_tick_callbacks.push(() => {
+    if (fn) {
+      callWithErrorHandling(fn.bind(instance.proxy), instance, 14);
+    } else if (_resolve) {
+      _resolve(instance.proxy);
+    }
+  });
+  return new Promise((resolve2) => {
+    _resolve = resolve2;
+  });
+}
+function clone(src, seen) {
+  src = unwrapper(src);
+  const type = typeof src;
+  if (type === "object" && src !== null) {
+    let copy = seen.get(src);
+    if (typeof copy !== "undefined") {
+      return copy;
+    }
+    if (isArray(src)) {
+      const len = src.length;
+      copy = new Array(len);
+      seen.set(src, copy);
+      for (let i = 0; i < len; i++) {
+        copy[i] = clone(src[i], seen);
+      }
+    } else {
+      copy = {};
+      seen.set(src, copy);
+      for (const name in src) {
+        if (hasOwn(src, name)) {
+          copy[name] = clone(src[name], seen);
+        }
+      }
+    }
+    return copy;
+  }
+  if (type !== "symbol") {
+    return src;
+  }
+}
+function deepCopy(src) {
+  return clone(src, typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : /* @__PURE__ */ new Map());
+}
+function getMPInstanceData(instance, keys) {
+  const data = instance.data;
+  const ret = /* @__PURE__ */ Object.create(null);
+  keys.forEach((key) => {
+    ret[key] = data[key];
+  });
+  return ret;
+}
+function patch(instance, data, oldData) {
+  if (!data) {
+    return;
+  }
+  data = deepCopy(data);
+  const ctx = instance.ctx;
+  const mpType = ctx.mpType;
+  if (mpType === "page" || mpType === "component") {
+    data.r0 = 1;
+    const mpInstance = ctx.$scope;
+    const keys = Object.keys(data);
+    const diffData = diff(data, oldData || getMPInstanceData(mpInstance, keys));
+    if (Object.keys(diffData).length) {
+      ctx.__next_tick_pending = true;
+      mpInstance.setData(diffData, () => {
+        ctx.__next_tick_pending = false;
+        flushCallbacks(instance);
+      });
+      flushPreFlushCbs();
+    } else {
+      flushCallbacks(instance);
+    }
+  }
+}
+function initAppConfig(appConfig) {
+  appConfig.globalProperties.$nextTick = function $nextTick(fn) {
+    return nextTick$1(this.$, fn);
+  };
+}
+function onApplyOptions(options, instance, publicThis) {
+  instance.appContext.config.globalProperties.$applyOptions(options, instance, publicThis);
+  const computedOptions = options.computed;
+  if (computedOptions) {
+    const keys = Object.keys(computedOptions);
+    if (keys.length) {
+      const ctx = instance.ctx;
+      if (!ctx.$computedKeys) {
+        ctx.$computedKeys = [];
+      }
+      ctx.$computedKeys.push(...keys);
+    }
+  }
+  delete instance.ctx.$onApplyOptions;
+}
+function setRef$1(instance, isUnmount = false) {
+  const { setupState, $templateRefs, ctx: { $scope, $mpPlatform } } = instance;
+  if ($mpPlatform === "mp-alipay") {
+    return;
+  }
+  if (!$templateRefs || !$scope) {
+    return;
+  }
+  if (isUnmount) {
+    return $templateRefs.forEach((templateRef) => setTemplateRef(templateRef, null, setupState));
+  }
+  const check = $mpPlatform === "mp-baidu" || $mpPlatform === "mp-toutiao";
+  const doSetByRefs = (refs) => {
+    const mpComponents = ($scope.selectAllComponents(".r") || []).concat($scope.selectAllComponents(".r-i-f") || []);
+    return refs.filter((templateRef) => {
+      const refValue = findComponentPublicInstance(mpComponents, templateRef.i);
+      if (check && refValue === null) {
+        return true;
+      }
+      setTemplateRef(templateRef, refValue, setupState);
+      return false;
+    });
+  };
+  const doSet = () => {
+    const refs = doSetByRefs($templateRefs);
+    if (refs.length && instance.proxy && instance.proxy.$scope) {
+      instance.proxy.$scope.setData({ r1: 1 }, () => {
+        doSetByRefs(refs);
+      });
+    }
+  };
+  if ($scope._$setRef) {
+    $scope._$setRef(doSet);
+  } else {
+    nextTick$1(instance, doSet);
+  }
+}
+function toSkip(value) {
+  if (isObject(value)) {
+    markRaw(value);
+  }
+  return value;
+}
+function findComponentPublicInstance(mpComponents, id) {
+  const mpInstance = mpComponents.find((com) => com && (com.properties || com.props).uI === id);
+  if (mpInstance) {
+    const vm = mpInstance.$vm;
+    if (vm) {
+      return getExposeProxy(vm.$) || vm;
+    }
+    return toSkip(mpInstance);
+  }
+  return null;
+}
+function setTemplateRef({ r, f: f2 }, refValue, setupState) {
+  if (isFunction(r)) {
+    r(refValue, {});
+  } else {
+    const _isString = isString(r);
+    const _isRef = isRef(r);
+    if (_isString || _isRef) {
+      if (f2) {
+        if (!_isRef) {
+          return;
+        }
+        if (!isArray(r.value)) {
+          r.value = [];
+        }
+        const existing = r.value;
+        if (existing.indexOf(refValue) === -1) {
+          existing.push(refValue);
+          if (!refValue) {
+            return;
+          }
+          onBeforeUnmount(() => remove(existing, refValue), refValue.$);
+        }
+      } else if (_isString) {
+        if (hasOwn(setupState, r)) {
+          setupState[r] = refValue;
+        }
+      } else if (isRef(r)) {
+        r.value = refValue;
+      } else {
+        warnRef(r);
+      }
+    } else {
+      warnRef(r);
+    }
+  }
+}
+function warnRef(ref2) {
+  warn$1("Invalid template ref type:", ref2, `(${typeof ref2})`);
+}
+var MPType;
+(function(MPType2) {
+  MPType2["APP"] = "app";
+  MPType2["PAGE"] = "page";
+  MPType2["COMPONENT"] = "component";
+})(MPType || (MPType = {}));
+const queuePostRenderEffect$1 = queuePostFlushCb;
+function mountComponent(initialVNode, options) {
+  const instance = initialVNode.component = createComponentInstance(initialVNode, options.parentComponent, null);
+  {
+    instance.ctx.$onApplyOptions = onApplyOptions;
+    instance.ctx.$children = [];
+  }
+  if (options.mpType === "app") {
+    instance.render = NOOP;
+  }
+  if (options.onBeforeSetup) {
+    options.onBeforeSetup(instance, options);
+  }
+  {
+    pushWarningContext(initialVNode);
+    startMeasure(instance, `mount`);
+  }
+  {
+    startMeasure(instance, `init`);
+  }
+  setupComponent(instance);
+  {
+    endMeasure(instance, `init`);
+  }
+  {
+    if (options.parentComponent && instance.proxy) {
+      options.parentComponent.ctx.$children.push(getExposeProxy(instance) || instance.proxy);
+    }
+  }
+  setupRenderEffect(instance);
+  {
+    popWarningContext();
+    endMeasure(instance, `mount`);
+  }
+  return instance.proxy;
+}
+const getFunctionalFallthrough = (attrs) => {
+  let res;
+  for (const key in attrs) {
+    if (key === "class" || key === "style" || isOn(key)) {
+      (res || (res = {}))[key] = attrs[key];
+    }
+  }
+  return res;
+};
+function renderComponentRoot(instance) {
+  const { type: Component2, vnode, proxy, withProxy, props, propsOptions: [propsOptions], slots, attrs, emit: emit2, render, renderCache, data, setupState, ctx, uid: uid2, appContext: { app: { config: { globalProperties: { pruneComponentPropsCache: pruneComponentPropsCache2 } } } }, inheritAttrs } = instance;
+  instance.$templateRefs = [];
+  instance.$ei = 0;
+  pruneComponentPropsCache2(uid2);
+  instance.__counter = instance.__counter === 0 ? 1 : 0;
+  let result;
+  const prev = setCurrentRenderingInstance(instance);
+  try {
+    if (vnode.shapeFlag & 4) {
+      fallthroughAttrs(inheritAttrs, props, propsOptions, attrs);
+      const proxyToUse = withProxy || proxy;
+      result = render.call(proxyToUse, proxyToUse, renderCache, props, setupState, data, ctx);
+    } else {
+      fallthroughAttrs(inheritAttrs, props, propsOptions, Component2.props ? attrs : getFunctionalFallthrough(attrs));
+      const render2 = Component2;
+      result = render2.length > 1 ? render2(props, { attrs, slots, emit: emit2 }) : render2(props, null);
+    }
+  } catch (err) {
+    handleError(err, instance, 1);
+    result = false;
+  }
+  setRef$1(instance);
+  setCurrentRenderingInstance(prev);
+  return result;
+}
+function fallthroughAttrs(inheritAttrs, props, propsOptions, fallthroughAttrs2) {
+  if (props && fallthroughAttrs2 && inheritAttrs !== false) {
+    const keys = Object.keys(fallthroughAttrs2).filter((key) => key !== "class" && key !== "style");
+    if (!keys.length) {
+      return;
+    }
+    if (propsOptions && keys.some(isModelListener)) {
+      keys.forEach((key) => {
+        if (!isModelListener(key) || !(key.slice(9) in propsOptions)) {
+          props[key] = fallthroughAttrs2[key];
+        }
+      });
+    } else {
+      keys.forEach((key) => props[key] = fallthroughAttrs2[key]);
+    }
+  }
+}
+const updateComponentPreRender = (instance) => {
+  pauseTracking();
+  flushPreFlushCbs();
+  resetTracking();
+};
+function componentUpdateScopedSlotsFn() {
+  const scopedSlotsData = this.$scopedSlotsData;
+  if (!scopedSlotsData || scopedSlotsData.length === 0) {
+    return;
+  }
+  const mpInstance = this.ctx.$scope;
+  const oldData = mpInstance.data;
+  const diffData = /* @__PURE__ */ Object.create(null);
+  scopedSlotsData.forEach(({ path, index: index2, data }) => {
+    const oldScopedSlotData = getValueByDataPath(oldData, path);
+    const diffPath = isString(index2) ? `${path}.${index2}` : `${path}[${index2}]`;
+    if (typeof oldScopedSlotData === "undefined" || typeof oldScopedSlotData[index2] === "undefined") {
+      diffData[diffPath] = data;
+    } else {
+      const diffScopedSlotData = diff(data, oldScopedSlotData[index2]);
+      Object.keys(diffScopedSlotData).forEach((name) => {
+        diffData[diffPath + "." + name] = diffScopedSlotData[name];
+      });
+    }
+  });
+  scopedSlotsData.length = 0;
+  if (Object.keys(diffData).length) {
+    mpInstance.setData(diffData);
+  }
+}
+function toggleRecurse({ effect, update }, allowed) {
+  effect.allowRecurse = update.allowRecurse = allowed;
+}
+function setupRenderEffect(instance) {
+  const updateScopedSlots = componentUpdateScopedSlotsFn.bind(instance);
+  instance.$updateScopedSlots = () => nextTick(() => queueJob(updateScopedSlots));
+  const componentUpdateFn = () => {
+    if (!instance.isMounted) {
+      onBeforeUnmount(() => {
+        setRef$1(instance, true);
+      }, instance);
+      {
+        startMeasure(instance, `patch`);
+      }
+      patch(instance, renderComponentRoot(instance));
+      {
+        endMeasure(instance, `patch`);
+      }
+      {
+        devtoolsComponentAdded(instance);
+      }
+    } else {
+      const { next, bu, u } = instance;
+      {
+        pushWarningContext(next || instance.vnode);
+      }
+      toggleRecurse(instance, false);
+      updateComponentPreRender();
+      if (bu) {
+        invokeArrayFns$1(bu);
+      }
+      toggleRecurse(instance, true);
+      {
+        startMeasure(instance, `patch`);
+      }
+      patch(instance, renderComponentRoot(instance));
+      {
+        endMeasure(instance, `patch`);
+      }
+      if (u) {
+        queuePostRenderEffect$1(u);
+      }
+      {
+        devtoolsComponentUpdated(instance);
+      }
+      {
+        popWarningContext();
+      }
+    }
+  };
+  const effect = instance.effect = new ReactiveEffect(
+    componentUpdateFn,
+    () => queueJob(instance.update),
+    instance.scope
+  );
+  const update = instance.update = effect.run.bind(effect);
+  update.id = instance.uid;
+  toggleRecurse(instance, true);
+  {
+    effect.onTrack = instance.rtc ? (e2) => invokeArrayFns$1(instance.rtc, e2) : void 0;
+    effect.onTrigger = instance.rtg ? (e2) => invokeArrayFns$1(instance.rtg, e2) : void 0;
+    update.ownerInstance = instance;
+  }
+  update();
+}
+function unmountComponent(instance) {
+  const { bum, scope, update, um } = instance;
+  if (bum) {
+    invokeArrayFns$1(bum);
+  }
+  scope.stop();
+  if (update) {
+    update.active = false;
+  }
+  if (um) {
+    queuePostRenderEffect$1(um);
+  }
+  queuePostRenderEffect$1(() => {
+    instance.isUnmounted = true;
+  });
+  {
+    devtoolsComponentRemoved(instance);
+  }
+}
+const oldCreateApp = createAppAPI();
+function getTarget() {
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof globalThis !== "undefined") {
+    return globalThis;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  if (typeof my !== "undefined") {
+    return my;
+  }
+}
+function createVueApp(rootComponent, rootProps = null) {
+  const target = getTarget();
+  target.__VUE__ = true;
+  {
+    setDevtoolsHook(target.__VUE_DEVTOOLS_GLOBAL_HOOK__, target);
+  }
+  const app = oldCreateApp(rootComponent, rootProps);
+  const appContext = app._context;
+  initAppConfig(appContext.config);
+  const createVNode = (initialVNode) => {
+    initialVNode.appContext = appContext;
+    initialVNode.shapeFlag = 6;
+    return initialVNode;
+  };
+  const createComponent2 = function createComponent3(initialVNode, options) {
+    return mountComponent(createVNode(initialVNode), options);
+  };
+  const destroyComponent = function destroyComponent2(component) {
+    return component && unmountComponent(component.$);
+  };
+  app.mount = function mount() {
+    rootComponent.render = NOOP;
+    const instance = mountComponent(createVNode({ type: rootComponent }), {
+      mpType: MPType.APP,
+      mpInstance: null,
+      parentComponent: null,
+      slots: [],
+      props: null
+    });
+    app._instance = instance.$;
+    {
+      devtoolsInitApp(app, version);
+    }
+    instance.$app = app;
+    instance.$createComponent = createComponent2;
+    instance.$destroyComponent = destroyComponent;
+    appContext.$appInstance = instance;
+    return instance;
+  };
+  app.unmount = function unmount() {
+    warn$1(`Cannot unmount an app.`);
+  };
+  return app;
+}
+function injectLifecycleHook(name, hook, publicThis, instance) {
+  if (isFunction(hook)) {
+    injectHook(name, hook.bind(publicThis), instance);
+  }
+}
+function initHooks$1(options, instance, publicThis) {
+  const mpType = options.mpType || publicThis.$mpType;
+  if (!mpType || mpType === "component") {
+    return;
+  }
+  Object.keys(options).forEach((name) => {
+    if (isUniLifecycleHook(name, options[name], false)) {
+      const hooks = options[name];
+      if (isArray(hooks)) {
+        hooks.forEach((hook) => injectLifecycleHook(name, hook, publicThis, instance));
+      } else {
+        injectLifecycleHook(name, hooks, publicThis, instance);
+      }
+    }
+  });
+}
+function applyOptions$2(options, instance, publicThis) {
+  initHooks$1(options, instance, publicThis);
+}
+function set(target, key, val) {
+  return target[key] = val;
+}
+function createErrorHandler(app) {
+  return function errorHandler(err, instance, _info) {
+    if (!instance) {
+      throw err;
+    }
+    const appInstance = app._instance;
+    if (!appInstance || !appInstance.proxy) {
+      throw err;
+    }
+    {
+      appInstance.proxy.$callHook(ON_ERROR, err);
+    }
+  };
+}
+function mergeAsArray(to, from) {
+  return to ? [...new Set([].concat(to, from))] : from;
+}
+function initOptionMergeStrategies(optionMergeStrategies) {
+  UniLifecycleHooks.forEach((name) => {
+    optionMergeStrategies[name] = mergeAsArray;
+  });
+}
+let realAtob;
+const b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+const b64re = /^(?:[A-Za-z\d+/]{4})*?(?:[A-Za-z\d+/]{2}(?:==)?|[A-Za-z\d+/]{3}=?)?$/;
+if (typeof atob !== "function") {
+  realAtob = function(str) {
+    str = String(str).replace(/[\t\n\f\r ]+/g, "");
+    if (!b64re.test(str)) {
+      throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");
+    }
+    str += "==".slice(2 - (str.length & 3));
+    var bitmap;
+    var result = "";
+    var r1;
+    var r2;
+    var i = 0;
+    for (; i < str.length; ) {
+      bitmap = b64.indexOf(str.charAt(i++)) << 18 | b64.indexOf(str.charAt(i++)) << 12 | (r1 = b64.indexOf(str.charAt(i++))) << 6 | (r2 = b64.indexOf(str.charAt(i++)));
+      result += r1 === 64 ? String.fromCharCode(bitmap >> 16 & 255) : r2 === 64 ? String.fromCharCode(bitmap >> 16 & 255, bitmap >> 8 & 255) : String.fromCharCode(bitmap >> 16 & 255, bitmap >> 8 & 255, bitmap & 255);
+    }
+    return result;
+  };
+} else {
+  realAtob = atob;
+}
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(realAtob(str).split("").map(function(c) {
+    return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(""));
+}
+function getCurrentUserInfo() {
+  const token = index.getStorageSync("uni_id_token") || "";
+  const tokenArr = token.split(".");
+  if (!token || tokenArr.length !== 3) {
+    return {
+      uid: null,
+      role: [],
+      permission: [],
+      tokenExpired: 0
+    };
+  }
+  let userInfo;
+  try {
+    userInfo = JSON.parse(b64DecodeUnicode(tokenArr[1]));
+  } catch (error) {
+    throw new Error("\u83B7\u53D6\u5F53\u524D\u7528\u6237\u4FE1\u606F\u51FA\u9519\uFF0C\u8BE6\u7EC6\u9519\u8BEF\u4FE1\u606F\u4E3A\uFF1A" + error.message);
+  }
+  userInfo.tokenExpired = userInfo.exp * 1e3;
+  delete userInfo.exp;
+  delete userInfo.iat;
+  return userInfo;
+}
+function uniIdMixin(globalProperties) {
+  globalProperties.uniIDHasRole = function(roleId) {
+    const { role } = getCurrentUserInfo();
+    return role.indexOf(roleId) > -1;
+  };
+  globalProperties.uniIDHasPermission = function(permissionId) {
+    const { permission } = getCurrentUserInfo();
+    return this.uniIDHasRole("admin") || permission.indexOf(permissionId) > -1;
+  };
+  globalProperties.uniIDTokenValid = function() {
+    const { tokenExpired } = getCurrentUserInfo();
+    return tokenExpired > Date.now();
+  };
+}
+function initApp(app) {
+  const appConfig = app._context.config;
+  appConfig.errorHandler = invokeCreateErrorHandler(app, createErrorHandler);
+  initOptionMergeStrategies(appConfig.optionMergeStrategies);
+  const globalProperties = appConfig.globalProperties;
+  {
+    uniIdMixin(globalProperties);
+  }
+  {
+    globalProperties.$set = set;
+    globalProperties.$applyOptions = applyOptions$2;
+  }
+  {
+    index.invokeCreateVueAppHook(app);
+  }
+}
+const propsCaches = /* @__PURE__ */ Object.create(null);
+function renderProps(props) {
+  const { uid: uid2, __counter } = getCurrentInstance();
+  const propsId = (propsCaches[uid2] || (propsCaches[uid2] = [])).push(guardReactiveProps(props)) - 1;
+  return uid2 + "," + propsId + "," + __counter;
+}
+function pruneComponentPropsCache(uid2) {
+  delete propsCaches[uid2];
+}
+function findComponentPropsData(up) {
+  if (!up) {
+    return;
+  }
+  const [uid2, propsId] = up.split(",");
+  if (!propsCaches[uid2]) {
+    return;
+  }
+  return propsCaches[uid2][parseInt(propsId)];
+}
+var plugin = {
+  install(app) {
+    initApp(app);
+    app.config.globalProperties.pruneComponentPropsCache = pruneComponentPropsCache;
+    const oldMount = app.mount;
+    app.mount = function mount(rootContainer) {
+      const instance = oldMount.call(app, rootContainer);
+      const createApp2 = getCreateApp();
+      if (createApp2) {
+        createApp2(instance);
+      } else {
+        if (typeof createMiniProgramApp !== "undefined") {
+          createMiniProgramApp(instance);
+        }
+      }
+      return instance;
+    };
+  }
+};
+function getCreateApp() {
+  const method = "createApp";
+  if (typeof global !== "undefined") {
+    return global[method];
+  } else if (typeof my !== "undefined") {
+    return my[method];
+  }
+}
+function vOn(value, key) {
+  const instance = getCurrentInstance();
+  const ctx = instance.ctx;
+  const extraKey = typeof key !== "undefined" && (ctx.$mpPlatform === "mp-weixin" || ctx.$mpPlatform === "mp-qq") && (isString(key) || typeof key === "number") ? "_" + key : "";
+  const name = "e" + instance.$ei++ + extraKey;
+  const mpInstance = ctx.$scope;
+  if (!value) {
+    delete mpInstance[name];
+    return name;
+  }
+  const existingInvoker = mpInstance[name];
+  if (existingInvoker) {
+    existingInvoker.value = value;
+  } else {
+    mpInstance[name] = createInvoker(value, instance);
+  }
+  return name;
+}
+function createInvoker(initialValue, instance) {
+  const invoker = (e2) => {
+    patchMPEvent(e2);
+    let args = [e2];
+    if (e2.detail && e2.detail.__args__) {
+      args = e2.detail.__args__;
+    }
+    const eventValue = invoker.value;
+    const invoke = () => callWithAsyncErrorHandling(patchStopImmediatePropagation(e2, eventValue), instance, 5, args);
+    const eventTarget = e2.target;
+    const eventSync = eventTarget ? eventTarget.dataset ? eventTarget.dataset.eventsync === "true" : false : false;
+    if (bubbles.includes(e2.type) && !eventSync) {
+      setTimeout(invoke);
+    } else {
+      const res = invoke();
+      if (e2.type === "input" && (isArray(res) || isPromise(res))) {
+        return;
+      }
+      return res;
+    }
+  };
+  invoker.value = initialValue;
+  return invoker;
+}
+const bubbles = [
+  "tap",
+  "longpress",
+  "longtap",
+  "transitionend",
+  "animationstart",
+  "animationiteration",
+  "animationend",
+  "touchforcechange"
+];
+function patchMPEvent(event) {
+  if (event.type && event.target) {
+    event.preventDefault = NOOP;
+    event.stopPropagation = NOOP;
+    event.stopImmediatePropagation = NOOP;
+    if (!hasOwn(event, "detail")) {
+      event.detail = {};
+    }
+    if (hasOwn(event, "markerId")) {
+      event.detail = typeof event.detail === "object" ? event.detail : {};
+      event.detail.markerId = event.markerId;
+    }
+    if (isPlainObject(event.detail) && hasOwn(event.detail, "checked") && !hasOwn(event.detail, "value")) {
+      event.detail.value = event.detail.checked;
+    }
+    if (isPlainObject(event.detail)) {
+      event.target = extend({}, event.target, event.detail);
+    }
+  }
+}
+function patchStopImmediatePropagation(e2, value) {
+  if (isArray(value)) {
+    const originalStop = e2.stopImmediatePropagation;
+    e2.stopImmediatePropagation = () => {
+      originalStop && originalStop.call(e2);
+      e2._stopped = true;
+    };
+    return value.map((fn) => (e3) => !e3._stopped && fn(e3));
+  } else {
+    return value;
+  }
+}
+function vFor(source, renderItem) {
+  let ret;
+  if (isArray(source) || isString(source)) {
+    ret = new Array(source.length);
+    for (let i = 0, l = source.length; i < l; i++) {
+      ret[i] = renderItem(source[i], i, i);
+    }
+  } else if (typeof source === "number") {
+    if (!Number.isInteger(source)) {
+      warn$1(`The v-for range expect an integer value but got ${source}.`);
+      return [];
+    }
+    ret = new Array(source);
+    for (let i = 0; i < source; i++) {
+      ret[i] = renderItem(i + 1, i, i);
+    }
+  } else if (isObject(source)) {
+    if (source[Symbol.iterator]) {
+      ret = Array.from(source, (item, i) => renderItem(item, i, i));
+    } else {
+      const keys = Object.keys(source);
+      ret = new Array(keys.length);
+      for (let i = 0, l = keys.length; i < l; i++) {
+        const key = keys[i];
+        ret[i] = renderItem(source[key], key, i);
+      }
+    }
+  } else {
+    ret = [];
+  }
+  return ret;
+}
+function stringifyStyle(value) {
+  if (isString(value)) {
+    return value;
+  }
+  return stringify(normalizeStyle(value));
+}
+function stringify(styles) {
+  let ret = "";
+  if (!styles || isString(styles)) {
+    return ret;
+  }
+  for (const key in styles) {
+    ret += `${key.startsWith(`--`) ? key : hyphenate(key)}:${styles[key]};`;
+  }
+  return ret;
+}
+function setRef(ref2, id, opts = {}) {
+  const { $templateRefs } = getCurrentInstance();
+  $templateRefs.push({ i: id, r: ref2, k: opts.k, f: opts.f });
+}
+const o = (value, key) => vOn(value, key);
+const f = (source, renderItem) => vFor(source, renderItem);
+const s = (value) => stringifyStyle(value);
+const e = (target, ...sources) => extend(target, ...sources);
+const n = (value) => normalizeClass(value);
+const t = (val) => toDisplayString(val);
+const p = (props) => renderProps(props);
+const sr = (ref2, id, opts) => setRef(ref2, id, opts);
+function createApp$1(rootComponent, rootProps = null) {
+  rootComponent && (rootComponent.mpType = "app");
+  return createVueApp(rootComponent, rootProps).use(plugin);
+}
+const createSSRApp = createApp$1;
+const MP_METHODS = [
+  "createSelectorQuery",
+  "createIntersectionObserver",
+  "selectAllComponents",
+  "selectComponent"
+];
+function createEmitFn(oldEmit, ctx) {
+  return function emit2(event, ...args) {
+    const scope = ctx.$scope;
+    if (scope && event) {
+      const detail = { __args__: args };
+      {
+        scope.triggerEvent(event, detail);
+      }
+    }
+    return oldEmit.apply(this, [event, ...args]);
+  };
+}
+function initBaseInstance(instance, options) {
+  const ctx = instance.ctx;
+  ctx.mpType = options.mpType;
+  ctx.$mpType = options.mpType;
+  ctx.$mpPlatform = "mp-weixin";
+  ctx.$scope = options.mpInstance;
+  ctx.$mp = {};
+  {
+    ctx._self = {};
+  }
+  instance.slots = {};
+  if (isArray(options.slots) && options.slots.length) {
+    options.slots.forEach((name) => {
+      instance.slots[name] = true;
+    });
+    if (instance.slots[SLOT_DEFAULT_NAME]) {
+      instance.slots.default = true;
+    }
+  }
+  ctx.getOpenerEventChannel = function() {
+    {
+      return options.mpInstance.getOpenerEventChannel();
+    }
+  };
+  ctx.$hasHook = hasHook;
+  ctx.$callHook = callHook;
+  instance.emit = createEmitFn(instance.emit, ctx);
+}
+function initComponentInstance(instance, options) {
+  initBaseInstance(instance, options);
+  const ctx = instance.ctx;
+  MP_METHODS.forEach((method) => {
+    ctx[method] = function(...args) {
+      const mpInstance = ctx.$scope;
+      if (mpInstance && mpInstance[method]) {
+        return mpInstance[method].apply(mpInstance, args);
+      }
+    };
+  });
+}
+function initMocks(instance, mpInstance, mocks2) {
+  const ctx = instance.ctx;
+  mocks2.forEach((mock) => {
+    if (hasOwn(mpInstance, mock)) {
+      instance[mock] = ctx[mock] = mpInstance[mock];
+    }
+  });
+}
+function hasHook(name) {
+  const hooks = this.$[name];
+  if (hooks && hooks.length) {
+    return true;
+  }
+  return false;
+}
+function callHook(name, args) {
+  if (name === "mounted") {
+    callHook.call(this, "bm");
+    this.$.isMounted = true;
+    name = "m";
+  }
+  const hooks = this.$[name];
+  return hooks && invokeArrayFns(hooks, args);
+}
+const PAGE_INIT_HOOKS = [
+  ON_LOAD,
+  ON_SHOW,
+  ON_HIDE,
+  ON_UNLOAD,
+  ON_RESIZE,
+  ON_TAB_ITEM_TAP,
+  ON_REACH_BOTTOM,
+  ON_PULL_DOWN_REFRESH,
+  ON_ADD_TO_FAVORITES
+];
+function findHooks(vueOptions, hooks = /* @__PURE__ */ new Set()) {
+  if (vueOptions) {
+    Object.keys(vueOptions).forEach((name) => {
+      if (isUniLifecycleHook(name, vueOptions[name])) {
+        hooks.add(name);
+      }
+    });
+    {
+      const { extends: extendsOptions, mixins } = vueOptions;
+      if (mixins) {
+        mixins.forEach((mixin) => findHooks(mixin, hooks));
+      }
+      if (extendsOptions) {
+        findHooks(extendsOptions, hooks);
+      }
+    }
+  }
+  return hooks;
+}
+function initHook(mpOptions, hook, excludes) {
+  if (excludes.indexOf(hook) === -1 && !hasOwn(mpOptions, hook)) {
+    mpOptions[hook] = function(args) {
+      return this.$vm && this.$vm.$callHook(hook, args);
+    };
+  }
+}
+const EXCLUDE_HOOKS = [ON_READY];
+function initHooks(mpOptions, hooks, excludes = EXCLUDE_HOOKS) {
+  hooks.forEach((hook) => initHook(mpOptions, hook, excludes));
+}
+function initUnknownHooks(mpOptions, vueOptions, excludes = EXCLUDE_HOOKS) {
+  findHooks(vueOptions).forEach((hook) => initHook(mpOptions, hook, excludes));
+}
+function initRuntimeHooks(mpOptions, runtimeHooks) {
+  if (!runtimeHooks) {
+    return;
+  }
+  const hooks = Object.keys(MINI_PROGRAM_PAGE_RUNTIME_HOOKS);
+  hooks.forEach((hook) => {
+    if (runtimeHooks & MINI_PROGRAM_PAGE_RUNTIME_HOOKS[hook]) {
+      initHook(mpOptions, hook, []);
+    }
+  });
+}
+const findMixinRuntimeHooks = /* @__PURE__ */ once(() => {
+  const runtimeHooks = [];
+  const app = getApp({ allowDefault: true });
+  if (app && app.$vm && app.$vm.$) {
+    const mixins = app.$vm.$.appContext.mixins;
+    if (isArray(mixins)) {
+      const hooks = Object.keys(MINI_PROGRAM_PAGE_RUNTIME_HOOKS);
+      mixins.forEach((mixin) => {
+        hooks.forEach((hook) => {
+          if (hasOwn(mixin, hook) && !runtimeHooks.includes(hook)) {
+            runtimeHooks.push(hook);
+          }
+        });
+      });
+    }
+  }
+  return runtimeHooks;
+});
+function initMixinRuntimeHooks(mpOptions) {
+  initHooks(mpOptions, findMixinRuntimeHooks());
+}
+const HOOKS = [
+  ON_SHOW,
+  ON_HIDE,
+  ON_ERROR,
+  ON_THEME_CHANGE,
+  ON_PAGE_NOT_FOUND,
+  ON_UNHANDLE_REJECTION
+];
+function parseApp(instance, parseAppOptions) {
+  const internalInstance = instance.$;
+  const appOptions = {
+    globalData: instance.$options && instance.$options.globalData || {},
+    $vm: instance,
+    onLaunch(options) {
+      this.$vm = instance;
+      const ctx = internalInstance.ctx;
+      if (this.$vm && ctx.$scope) {
+        return;
+      }
+      initBaseInstance(internalInstance, {
+        mpType: "app",
+        mpInstance: this,
+        slots: []
+      });
+      ctx.globalData = this.globalData;
+      instance.$callHook(ON_LAUNCH, options);
+    }
+  };
+  initLocale(instance);
+  const vueOptions = instance.$.type;
+  initHooks(appOptions, HOOKS);
+  initUnknownHooks(appOptions, vueOptions);
+  {
+    const methods = vueOptions.methods;
+    methods && extend(appOptions, methods);
+  }
+  if (parseAppOptions) {
+    parseAppOptions.parse(appOptions);
+  }
+  return appOptions;
+}
+function initCreateApp(parseAppOptions) {
+  return function createApp2(vm) {
+    return App(parseApp(vm, parseAppOptions));
+  };
+}
+function initCreateSubpackageApp(parseAppOptions) {
+  return function createApp2(vm) {
+    const appOptions = parseApp(vm, parseAppOptions);
+    const app = getApp({
+      allowDefault: true
+    });
+    vm.$.ctx.$scope = app;
+    const globalData = app.globalData;
+    if (globalData) {
+      Object.keys(appOptions.globalData).forEach((name) => {
+        if (!hasOwn(globalData, name)) {
+          globalData[name] = appOptions.globalData[name];
+        }
+      });
+    }
+    Object.keys(appOptions).forEach((name) => {
+      if (!hasOwn(app, name)) {
+        app[name] = appOptions[name];
+      }
+    });
+    initAppLifecycle(appOptions, vm);
+  };
+}
+function initAppLifecycle(appOptions, vm) {
+  if (isFunction(appOptions.onLaunch)) {
+    const args = wx.getLaunchOptionsSync && wx.getLaunchOptionsSync();
+    appOptions.onLaunch(args);
+  }
+  if (isFunction(appOptions.onShow) && wx.onAppShow) {
+    wx.onAppShow((args) => {
+      vm.$callHook("onShow", args);
+    });
+  }
+  if (isFunction(appOptions.onHide) && wx.onAppHide) {
+    wx.onAppHide((args) => {
+      vm.$callHook("onHide", args);
+    });
+  }
+}
+function initLocale(appVm) {
+  const locale = ref(normalizeLocale(wx.getSystemInfoSync().language) || LOCALE_EN);
+  Object.defineProperty(appVm, "$locale", {
+    get() {
+      return locale.value;
+    },
+    set(v) {
+      locale.value = v;
+    }
+  });
+}
+function initVueIds(vueIds, mpInstance) {
+  if (!vueIds) {
+    return;
+  }
+  const ids = vueIds.split(",");
+  const len = ids.length;
+  if (len === 1) {
+    mpInstance._$vueId = ids[0];
+  } else if (len === 2) {
+    mpInstance._$vueId = ids[0];
+    mpInstance._$vuePid = ids[1];
+  }
+}
+const EXTRAS = ["externalClasses"];
+function initExtraOptions(miniProgramComponentOptions, vueOptions) {
+  EXTRAS.forEach((name) => {
+    if (hasOwn(vueOptions, name)) {
+      miniProgramComponentOptions[name] = vueOptions[name];
+    }
+  });
+}
+function initWxsCallMethods(methods, wxsCallMethods) {
+  if (!isArray(wxsCallMethods)) {
+    return;
+  }
+  wxsCallMethods.forEach((callMethod) => {
+    methods[callMethod] = function(args) {
+      return this.$vm[callMethod](args);
+    };
+  });
+}
+function selectAllComponents(mpInstance, selector, $refs) {
+  const components = mpInstance.selectAllComponents(selector);
+  components.forEach((component) => {
+    const ref2 = component.properties.uR;
+    $refs[ref2] = component.$vm || component;
+  });
+}
+function initRefs(instance, mpInstance) {
+  Object.defineProperty(instance, "refs", {
+    get() {
+      const $refs = {};
+      selectAllComponents(mpInstance, ".r", $refs);
+      const forComponents = mpInstance.selectAllComponents(".r-i-f");
+      forComponents.forEach((component) => {
+        const ref2 = component.properties.uR;
+        if (!ref2) {
+          return;
+        }
+        if (!$refs[ref2]) {
+          $refs[ref2] = [];
+        }
+        $refs[ref2].push(component.$vm || component);
+      });
+      return $refs;
+    }
+  });
+}
+function findVmByVueId(instance, vuePid) {
+  const $children = instance.$children;
+  for (let i = $children.length - 1; i >= 0; i--) {
+    const childVm = $children[i];
+    if (childVm.$scope._$vueId === vuePid) {
+      return childVm;
+    }
+  }
+  let parentVm;
+  for (let i = $children.length - 1; i >= 0; i--) {
+    parentVm = findVmByVueId($children[i], vuePid);
+    if (parentVm) {
+      return parentVm;
+    }
+  }
+}
+const builtInProps = [
+  "eO",
+  "uR",
+  "uRIF",
+  "uI",
+  "uT",
+  "uP",
+  "uS"
+];
+function initDefaultProps(options, isBehavior = false) {
+  const properties = {};
+  if (!isBehavior) {
+    builtInProps.forEach((name) => {
+      properties[name] = {
+        type: null,
+        value: ""
+      };
+    });
+    properties.uS = {
+      type: null,
+      value: [],
+      observer: function(newVal) {
+        const $slots = /* @__PURE__ */ Object.create(null);
+        newVal && newVal.forEach((slotName) => {
+          $slots[slotName] = true;
+        });
+        this.setData({
+          $slots
+        });
+      }
+    };
+  }
+  if (options.behaviors) {
+    if (options.behaviors.includes("wx://form-field")) {
+      properties.name = {
+        type: null,
+        value: ""
+      };
+      properties.value = {
+        type: null,
+        value: ""
+      };
+    }
+  }
+  return properties;
+}
+function initVirtualHostProps(options) {
+  const properties = {};
+  {
+    if (options && options.virtualHost) {
+      properties.virtualHostStyle = {
+        type: null,
+        value: ""
+      };
+      properties.virtualHostClass = {
+        type: null,
+        value: ""
+      };
+    }
+  }
+  return properties;
+}
+function initProps(mpComponentOptions) {
+  if (!mpComponentOptions.properties) {
+    mpComponentOptions.properties = {};
+  }
+  extend(mpComponentOptions.properties, initDefaultProps(mpComponentOptions), initVirtualHostProps(mpComponentOptions.options));
+}
+const PROP_TYPES = [String, Number, Boolean, Object, Array, null];
+function parsePropType(type, defaultValue) {
+  if (isArray(type) && type.length === 1) {
+    return type[0];
+  }
+  return type;
+}
+function normalizePropType(type, defaultValue) {
+  const res = parsePropType(type);
+  return PROP_TYPES.indexOf(res) !== -1 ? res : null;
+}
+function initPageProps({ properties }, rawProps) {
+  if (isArray(rawProps)) {
+    rawProps.forEach((key) => {
+      properties[key] = {
+        type: String,
+        value: ""
+      };
+    });
+  } else if (isPlainObject(rawProps)) {
+    Object.keys(rawProps).forEach((key) => {
+      const opts = rawProps[key];
+      if (isPlainObject(opts)) {
+        let value = opts.default;
+        if (isFunction(value)) {
+          value = value();
+        }
+        const type = opts.type;
+        opts.type = normalizePropType(type);
+        properties[key] = {
+          type: opts.type,
+          value
+        };
+      } else {
+        properties[key] = {
+          type: normalizePropType(opts)
+        };
+      }
+    });
+  }
+}
+function findPropsData(properties, isPage2) {
+  return (isPage2 ? findPagePropsData(properties) : findComponentPropsData(properties.uP)) || {};
+}
+function findPagePropsData(properties) {
+  const propsData = {};
+  if (isPlainObject(properties)) {
+    Object.keys(properties).forEach((name) => {
+      if (builtInProps.indexOf(name) === -1) {
+        propsData[name] = properties[name];
+      }
+    });
+  }
+  return propsData;
+}
+function initFormField(vm) {
+  const vueOptions = vm.$options;
+  if (isArray(vueOptions.behaviors) && vueOptions.behaviors.includes("uni://form-field")) {
+    vm.$watch("modelValue", () => {
+      vm.$scope && vm.$scope.setData({
+        name: vm.name,
+        value: vm.modelValue
+      });
+    }, {
+      immediate: true
+    });
+  }
+}
+function initData(_) {
+  return {};
+}
+function initPropsObserver(componentOptions) {
+  const observe = function observe2() {
+    const up = this.properties.uP;
+    if (!up) {
+      return;
+    }
+    if (this.$vm) {
+      updateComponentProps(up, this.$vm.$);
+    } else if (this.properties.uT === "m") {
+      updateMiniProgramComponentProperties(up, this);
+    }
+  };
+  {
+    if (!componentOptions.observers) {
+      componentOptions.observers = {};
+    }
+    componentOptions.observers.uP = observe;
+  }
+}
+function updateMiniProgramComponentProperties(up, mpInstance) {
+  const prevProps = mpInstance.properties;
+  const nextProps = findComponentPropsData(up) || {};
+  if (hasPropsChanged(prevProps, nextProps, false)) {
+    mpInstance.setData(nextProps);
+  }
+}
+function updateComponentProps(up, instance) {
+  const prevProps = toRaw(instance.props);
+  const nextProps = findComponentPropsData(up) || {};
+  if (hasPropsChanged(prevProps, nextProps)) {
+    updateProps(instance, nextProps, prevProps, false);
+    if (hasQueueJob(instance.update)) {
+      invalidateJob(instance.update);
+    }
+    {
+      instance.update();
+    }
+  }
+}
+function hasPropsChanged(prevProps, nextProps, checkLen = true) {
+  const nextKeys = Object.keys(nextProps);
+  if (checkLen && nextKeys.length !== Object.keys(prevProps).length) {
+    return true;
+  }
+  for (let i = 0; i < nextKeys.length; i++) {
+    const key = nextKeys[i];
+    if (nextProps[key] !== prevProps[key]) {
+      return true;
+    }
+  }
+  return false;
+}
+function initBehaviors(vueOptions) {
+  const vueBehaviors = vueOptions.behaviors;
+  let vueProps = vueOptions.props;
+  if (!vueProps) {
+    vueOptions.props = vueProps = [];
+  }
+  const behaviors = [];
+  if (isArray(vueBehaviors)) {
+    vueBehaviors.forEach((behavior) => {
+      behaviors.push(behavior.replace("uni://", "wx://"));
+      if (behavior === "uni://form-field") {
+        if (isArray(vueProps)) {
+          vueProps.push("name");
+          vueProps.push("modelValue");
+        } else {
+          vueProps.name = {
+            type: String,
+            default: ""
+          };
+          vueProps.modelValue = {
+            type: [String, Number, Boolean, Array, Object, Date],
+            default: ""
+          };
+        }
+      }
+    });
+  }
+  return behaviors;
+}
+function applyOptions(componentOptions, vueOptions) {
+  componentOptions.data = initData();
+  componentOptions.behaviors = initBehaviors(vueOptions);
+}
+function parseComponent(vueOptions, { parse, mocks: mocks2, isPage: isPage2, initRelation: initRelation2, handleLink: handleLink2, initLifetimes: initLifetimes2 }) {
+  vueOptions = vueOptions.default || vueOptions;
+  const options = {
+    multipleSlots: true,
+    addGlobalClass: true,
+    pureDataPattern: /^uP$/
+  };
+  if (vueOptions.options) {
+    extend(options, vueOptions.options);
+  }
+  const mpComponentOptions = {
+    options,
+    lifetimes: initLifetimes2({ mocks: mocks2, isPage: isPage2, initRelation: initRelation2, vueOptions }),
+    pageLifetimes: {
+      show() {
+        {
+          devtoolsComponentRemoved(this.$vm.$);
+          devtoolsComponentAdded(this.$vm.$);
+        }
+        this.$vm && this.$vm.$callHook("onPageShow");
+      },
+      hide() {
+        this.$vm && this.$vm.$callHook("onPageHide");
+      },
+      resize(size2) {
+        this.$vm && this.$vm.$callHook("onPageResize", size2);
+      }
+    },
+    methods: {
+      __l: handleLink2
+    }
+  };
+  {
+    applyOptions(mpComponentOptions, vueOptions);
+  }
+  initProps(mpComponentOptions);
+  initPropsObserver(mpComponentOptions);
+  initExtraOptions(mpComponentOptions, vueOptions);
+  initWxsCallMethods(mpComponentOptions.methods, vueOptions.wxsCallMethods);
+  if (parse) {
+    parse(mpComponentOptions, { handleLink: handleLink2 });
+  }
+  return mpComponentOptions;
+}
+function initCreateComponent(parseOptions2) {
+  return function createComponent2(vueComponentOptions) {
+    return Component(parseComponent(vueComponentOptions, parseOptions2));
+  };
+}
+let $createComponentFn;
+let $destroyComponentFn;
+function getAppVm() {
+  return getApp().$vm;
+}
+function $createComponent(initialVNode, options) {
+  if (!$createComponentFn) {
+    $createComponentFn = getAppVm().$createComponent;
+  }
+  const proxy = $createComponentFn(initialVNode, options);
+  return getExposeProxy(proxy.$) || proxy;
+}
+function $destroyComponent(instance) {
+  if (!$destroyComponentFn) {
+    $destroyComponentFn = getAppVm().$destroyComponent;
+  }
+  return $destroyComponentFn(instance);
+}
+function parsePage(vueOptions, parseOptions2) {
+  const { parse, mocks: mocks2, isPage: isPage2, initRelation: initRelation2, handleLink: handleLink2, initLifetimes: initLifetimes2 } = parseOptions2;
+  const miniProgramPageOptions = parseComponent(vueOptions, {
+    mocks: mocks2,
+    isPage: isPage2,
+    initRelation: initRelation2,
+    handleLink: handleLink2,
+    initLifetimes: initLifetimes2
+  });
+  initPageProps(miniProgramPageOptions, (vueOptions.default || vueOptions).props);
+  const methods = miniProgramPageOptions.methods;
+  methods.onLoad = function(query) {
+    this.options = query;
+    this.$page = {
+      fullPath: addLeadingSlash(this.route + stringifyQuery(query))
+    };
+    return this.$vm && this.$vm.$callHook(ON_LOAD, query);
+  };
+  initHooks(methods, PAGE_INIT_HOOKS);
+  {
+    initUnknownHooks(methods, vueOptions);
+  }
+  initRuntimeHooks(methods, vueOptions.__runtimeHooks);
+  initMixinRuntimeHooks(methods);
+  parse && parse(miniProgramPageOptions, { handleLink: handleLink2 });
+  return miniProgramPageOptions;
+}
+function initCreatePage(parseOptions2) {
+  return function createPage2(vuePageOptions) {
+    return Component(parsePage(vuePageOptions, parseOptions2));
+  };
+}
+function initCreatePluginApp(parseAppOptions) {
+  return function createApp2(vm) {
+    initAppLifecycle(parseApp(vm, parseAppOptions), vm);
+  };
+}
+const MPPage = Page;
+const MPComponent = Component;
+function initTriggerEvent(mpInstance) {
+  const oldTriggerEvent = mpInstance.triggerEvent;
+  mpInstance.triggerEvent = function(event, ...args) {
+    return oldTriggerEvent.apply(mpInstance, [customizeEvent(event), ...args]);
+  };
+}
+function initMiniProgramHook(name, options, isComponent) {
+  const oldHook = options[name];
+  if (!oldHook) {
+    options[name] = function() {
+      initTriggerEvent(this);
+    };
+  } else {
+    options[name] = function(...args) {
+      initTriggerEvent(this);
+      return oldHook.apply(this, args);
+    };
+  }
+}
+Page = function(options) {
+  initMiniProgramHook(ON_LOAD, options);
+  return MPPage(options);
+};
+Component = function(options) {
+  initMiniProgramHook("created", options);
+  const isVueComponent = options.properties && options.properties.uP;
+  if (!isVueComponent) {
+    initProps(options);
+    initPropsObserver(options);
+  }
+  return MPComponent(options);
+};
+function initLifetimes({ mocks: mocks2, isPage: isPage2, initRelation: initRelation2, vueOptions }) {
+  return {
+    attached() {
+      let properties = this.properties;
+      initVueIds(properties.uI, this);
+      const relationOptions = {
+        vuePid: this._$vuePid
+      };
+      initRelation2(this, relationOptions);
+      const mpInstance = this;
+      const isMiniProgramPage = isPage2(mpInstance);
+      let propsData = properties;
+      this.$vm = $createComponent({
+        type: vueOptions,
+        props: findPropsData(propsData, isMiniProgramPage)
+      }, {
+        mpType: isMiniProgramPage ? "page" : "component",
+        mpInstance,
+        slots: properties.uS || {},
+        parentComponent: relationOptions.parent && relationOptions.parent.$,
+        onBeforeSetup(instance, options) {
+          initRefs(instance, mpInstance);
+          initMocks(instance, mpInstance, mocks2);
+          initComponentInstance(instance, options);
+        }
+      });
+      if (!isMiniProgramPage) {
+        initFormField(this.$vm);
+      }
+    },
+    ready() {
+      if (this.$vm) {
+        {
+          this.$vm.$callHook("mounted");
+          this.$vm.$callHook(ON_READY);
+        }
+      }
+    },
+    detached() {
+      if (this.$vm) {
+        pruneComponentPropsCache(this.$vm.$.uid);
+        $destroyComponent(this.$vm);
+      }
+    }
+  };
+}
+const mocks = ["__route__", "__wxExparserNodeId__", "__wxWebviewId__"];
+function isPage(mpInstance) {
+  return !!mpInstance.route;
+}
+function initRelation(mpInstance, detail) {
+  mpInstance.triggerEvent("__l", detail);
+}
+function handleLink(event) {
+  const detail = event.detail || event.value;
+  const vuePid = detail.vuePid;
+  let parentVm;
+  if (vuePid) {
+    parentVm = findVmByVueId(this.$vm, vuePid);
+  }
+  if (!parentVm) {
+    parentVm = this.$vm;
+  }
+  detail.parent = parentVm;
+}
+var parseOptions = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  mocks,
+  isPage,
+  initRelation,
+  handleLink,
+  initLifetimes
+});
+const createApp = initCreateApp();
+const createPage = initCreatePage(parseOptions);
+const createComponent = initCreateComponent(parseOptions);
+const createPluginApp = initCreatePluginApp();
+const createSubpackageApp = initCreateSubpackageApp();
+{
+  wx.createApp = global.createApp = createApp;
+  wx.createPage = createPage;
+  wx.createComponent = createComponent;
+  wx.createPluginApp = global.createPluginApp = createPluginApp;
+  wx.createSubpackageApp = global.createSubpackageApp = createSubpackageApp;
+}
+exports._export_sfc = _export_sfc;
+exports.createSSRApp = createSSRApp;
+exports.e = e;
+exports.f = f;
+exports.index = index;
+exports.n = n;
+exports.o = o;
+exports.p = p;
+exports.resolveComponent = resolveComponent;
+exports.s = s;
+exports.sr = sr;
+exports.t = t;

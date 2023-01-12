@@ -21,17 +21,7 @@
     "libVersion": "2.29.0",
     "appid": "wxf2ada0bae82bbd65",
     "projectname": "todo-list",
-    "condition": {
-        "miniprogram": {
-            "list": [
-                {
-                    "name": "pages/message/message",
-                    "pathName": "pages/message/message",
-                    "query": ""
-                }
-            ]
-        }
-    },
+    "condition": {},
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4

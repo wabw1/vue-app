@@ -1,5 +1,5 @@
 {
-  "enablePullDownRefresh": false,
-  "navigationBarTitleText": "主页",
+  "navigationBarTitleText": "消息",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

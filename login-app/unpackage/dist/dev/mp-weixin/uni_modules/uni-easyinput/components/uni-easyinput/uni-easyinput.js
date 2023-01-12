@@ -1,1 +1,391 @@
-"use strict";const s=require("../../../../common/vendor.js");function u(t){let l="";for(let e in t)t[e]&&(l+=`${e} `);return l}function a(t){let l="";for(let e in t){const o=t[e];l+=`${e}:${o};`}return l}const c={name:"uni-easyinput",emits:["click","iconClick","update:modelValue","input","focus","blur","confirm","clear","eyes","change"],model:{prop:"modelValue",event:"update:modelValue"},options:{virtualHost:!0},inject:{form:{from:"uniForm",default:null},formItem:{from:"uniFormItem",default:null}},props:{name:String,value:[Number,String],modelValue:[Number,String],type:{type:String,default:"text"},clearable:{type:Boolean,default:!0},autoHeight:{type:Boolean,default:!1},placeholder:{type:String,default:" "},placeholderStyle:String,focus:{type:Boolean,default:!1},disabled:{type:Boolean,default:!1},maxlength:{type:[Number,String],default:140},confirmType:{type:String,default:"done"},clearSize:{type:[Number,String],default:24},inputBorder:{type:Boolean,default:!0},prefixIcon:{type:String,default:""},suffixIcon:{type:String,default:""},trim:{type:[Boolean,String],default:!0},passwordIcon:{type:Boolean,default:!0},primaryColor:{type:String,default:"#2979ff"},styles:{type:Object,default(){return{color:"#333",backgroundColor:"#fff",disableColor:"#F7F6F6",borderColor:"#e5e5e5"}}},errorMessage:{type:[String,Boolean],default:""}},data(){return{focused:!1,val:"",showMsg:"",border:!1,isFirstBorder:!1,showClearIcon:!1,showPassword:!1,focusShow:!1,localMsg:"",isEnter:!1}},computed:{isVal(){const t=this.val;return!!(t||t===0)},msg(){return this.localMsg||this.errorMessage},inputMaxlength(){return Number(this.maxlength)},boxStyle(){return`color:${this.inputBorder&&this.msg?"#e43d33":this.styles.color};`},inputContentClass(){return u({"is-input-border":this.inputBorder,"is-input-error-border":this.inputBorder&&this.msg,"is-textarea":this.type==="textarea","is-disabled":this.disabled,"is-focused":this.focusShow})},inputContentStyle(){const t=this.focusShow?this.primaryColor:this.styles.borderColor,l=this.inputBorder&&this.msg?"#dd524d":t;return a({"border-color":l||"#e5e5e5","background-color":this.disabled?this.styles.disableColor:this.styles.backgroundColor})},inputStyle(){const t=this.type==="password"||this.clearable||this.prefixIcon?"":"10px";return a({"padding-right":t,"padding-left":this.prefixIcon?"":"10px"})}},watch:{value(t){this.val=t},modelValue(t){this.val=t},focus(t){this.$nextTick(()=>{this.focused=this.focus,this.focusShow=this.focus})}},created(){this.init(),this.form&&this.formItem&&this.$watch("formItem.errMsg",t=>{this.localMsg=t})},mounted(){this.$nextTick(()=>{this.focused=this.focus,this.focusShow=this.focus})},methods:{init(){this.value||this.value===0?this.val=this.value:this.modelValue||this.modelValue===0?this.val=this.modelValue:this.val=null},onClickIcon(t){this.$emit("iconClick",t)},onEyes(){this.showPassword=!this.showPassword,this.$emit("eyes",this.showPassword)},onInput(t){let l=t.detail.value;this.trim&&(typeof this.trim=="boolean"&&this.trim&&(l=this.trimStr(l)),typeof this.trim=="string"&&(l=this.trimStr(l,this.trim))),this.errMsg&&(this.errMsg=""),this.val=l,this.$emit("input",l),this.$emit("update:modelValue",l)},onFocus(){this.$nextTick(()=>{this.focused=!0}),this.$emit("focus",null)},_Focus(t){this.focusShow=!0,this.$emit("focus",t)},onBlur(){this.focused=!1,this.$emit("focus",null)},_Blur(t){if(t.detail.value,this.focusShow=!1,this.$emit("blur",t),this.isEnter===!1&&this.$emit("change",this.val),this.form&&this.formItem){const{validateTrigger:l}=this.form;l==="blur"&&this.formItem.onFieldChange()}},onConfirm(t){this.$emit("confirm",this.val),this.isEnter=!0,this.$emit("change",this.val),this.$nextTick(()=>{this.isEnter=!1})},onClear(t){this.val="",this.$emit("input",""),this.$emit("update:modelValue",""),this.$emit("clear")},trimStr(t,l="both"){return l==="both"?t.trim():l==="left"?t.trimLeft():l==="right"?t.trimRight():l==="start"?t.trimStart():l==="end"?t.trimEnd():l==="all"?t.replace(/\s+/g,""):t}}};Array||s.resolveComponent("uni-icons")();const f=()=>"../../../uni-icons/components/uni-icons/uni-icons.js";Math||f();function h(t,l,e,o,n,i){return s.e({a:e.prefixIcon},e.prefixIcon?{b:s.o(r=>i.onClickIcon("prefix")),c:s.p({type:e.prefixIcon,color:"#c0c4cc",size:"22"})}:{},{d:e.type==="textarea"},e.type==="textarea"?{e:e.inputBorder?1:"",f:e.name,g:n.val,h:e.placeholder,i:e.placeholderStyle,j:e.disabled,k:i.inputMaxlength,l:n.focused,m:e.autoHeight,n:s.o((...r)=>i.onInput&&i.onInput(...r)),o:s.o((...r)=>i._Blur&&i._Blur(...r)),p:s.o((...r)=>i._Focus&&i._Focus(...r)),q:s.o((...r)=>i.onConfirm&&i.onConfirm(...r))}:{r:e.type==="password"?"text":e.type,s:s.s(i.inputStyle),t:e.name,v:n.val,w:!n.showPassword&&e.type==="password",x:e.placeholder,y:e.placeholderStyle,z:e.disabled,A:i.inputMaxlength,B:n.focused,C:e.confirmType,D:s.o((...r)=>i._Focus&&i._Focus(...r)),E:s.o((...r)=>i._Blur&&i._Blur(...r)),F:s.o((...r)=>i.onInput&&i.onInput(...r)),G:s.o((...r)=>i.onConfirm&&i.onConfirm(...r))},{H:e.type==="password"&&e.passwordIcon},e.type==="password"&&e.passwordIcon?s.e({I:i.isVal},i.isVal?{J:e.type==="textarea"?1:"",K:s.o(i.onEyes),L:s.p({type:n.showPassword?"eye-slash-filled":"eye-filled",size:22,color:n.focusShow?e.primaryColor:"#c0c4cc"})}:{}):e.suffixIcon?s.e({N:e.suffixIcon},e.suffixIcon?{O:s.o(r=>i.onClickIcon("suffix")),P:s.p({type:e.suffixIcon,color:"#c0c4cc",size:"22"})}:{}):s.e({Q:e.clearable&&i.isVal&&!e.disabled&&e.type!=="textarea"},e.clearable&&i.isVal&&!e.disabled&&e.type!=="textarea"?{R:e.type==="textarea"?1:"",S:s.o(i.onClear),T:s.p({type:"clear",size:e.clearSize,color:i.msg?"#dd524d":n.focusShow?e.primaryColor:"#c0c4cc"})}:{}),{M:e.suffixIcon,U:s.n(i.inputContentClass),V:s.s(i.inputContentStyle),W:i.msg?1:"",X:s.s(i.boxStyle)})}const d=s._export_sfc(c,[["render",h],["__file","/Users/wangbo/Desktop/HBuilderProjects/login-app/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);wx.createComponent(d);
+"use strict";
+const common_vendor = require("../../../../common/vendor.js");
+function obj2strClass(obj) {
+  let classess = "";
+  for (let key in obj) {
+    const val = obj[key];
+    if (val) {
+      classess += `${key} `;
+    }
+  }
+  return classess;
+}
+function obj2strStyle(obj) {
+  let style = "";
+  for (let key in obj) {
+    const val = obj[key];
+    style += `${key}:${val};`;
+  }
+  return style;
+}
+const _sfc_main = {
+  name: "uni-easyinput",
+  emits: ["click", "iconClick", "update:modelValue", "input", "focus", "blur", "confirm", "clear", "eyes", "change"],
+  model: {
+    prop: "modelValue",
+    event: "update:modelValue"
+  },
+  options: {
+    virtualHost: true
+  },
+  inject: {
+    form: {
+      from: "uniForm",
+      default: null
+    },
+    formItem: {
+      from: "uniFormItem",
+      default: null
+    }
+  },
+  props: {
+    name: String,
+    value: [Number, String],
+    modelValue: [Number, String],
+    type: {
+      type: String,
+      default: "text"
+    },
+    clearable: {
+      type: Boolean,
+      default: true
+    },
+    autoHeight: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: " "
+    },
+    placeholderStyle: String,
+    focus: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    maxlength: {
+      type: [Number, String],
+      default: 140
+    },
+    confirmType: {
+      type: String,
+      default: "done"
+    },
+    clearSize: {
+      type: [Number, String],
+      default: 24
+    },
+    inputBorder: {
+      type: Boolean,
+      default: true
+    },
+    prefixIcon: {
+      type: String,
+      default: ""
+    },
+    suffixIcon: {
+      type: String,
+      default: ""
+    },
+    trim: {
+      type: [Boolean, String],
+      default: true
+    },
+    passwordIcon: {
+      type: Boolean,
+      default: true
+    },
+    primaryColor: {
+      type: String,
+      default: "#2979ff"
+    },
+    styles: {
+      type: Object,
+      default() {
+        return {
+          color: "#333",
+          backgroundColor: "#fff",
+          disableColor: "#F7F6F6",
+          borderColor: "#e5e5e5"
+        };
+      }
+    },
+    errorMessage: {
+      type: [String, Boolean],
+      default: ""
+    }
+  },
+  data() {
+    return {
+      focused: false,
+      val: "",
+      showMsg: "",
+      border: false,
+      isFirstBorder: false,
+      showClearIcon: false,
+      showPassword: false,
+      focusShow: false,
+      localMsg: "",
+      isEnter: false
+    };
+  },
+  computed: {
+    isVal() {
+      const val = this.val;
+      if (val || val === 0) {
+        return true;
+      }
+      return false;
+    },
+    msg() {
+      return this.localMsg || this.errorMessage;
+    },
+    inputMaxlength() {
+      return Number(this.maxlength);
+    },
+    boxStyle() {
+      return `color:${this.inputBorder && this.msg ? "#e43d33" : this.styles.color};`;
+    },
+    inputContentClass() {
+      return obj2strClass({
+        "is-input-border": this.inputBorder,
+        "is-input-error-border": this.inputBorder && this.msg,
+        "is-textarea": this.type === "textarea",
+        "is-disabled": this.disabled,
+        "is-focused": this.focusShow
+      });
+    },
+    inputContentStyle() {
+      const focusColor = this.focusShow ? this.primaryColor : this.styles.borderColor;
+      const borderColor = this.inputBorder && this.msg ? "#dd524d" : focusColor;
+      return obj2strStyle({
+        "border-color": borderColor || "#e5e5e5",
+        "background-color": this.disabled ? this.styles.disableColor : this.styles.backgroundColor
+      });
+    },
+    inputStyle() {
+      const paddingRight = this.type === "password" || this.clearable || this.prefixIcon ? "" : "10px";
+      return obj2strStyle({
+        "padding-right": paddingRight,
+        "padding-left": this.prefixIcon ? "" : "10px"
+      });
+    }
+  },
+  watch: {
+    value(newVal) {
+      this.val = newVal;
+    },
+    modelValue(newVal) {
+      this.val = newVal;
+    },
+    focus(newVal) {
+      this.$nextTick(() => {
+        this.focused = this.focus;
+        this.focusShow = this.focus;
+      });
+    }
+  },
+  created() {
+    this.init();
+    if (this.form && this.formItem) {
+      this.$watch("formItem.errMsg", (newVal) => {
+        this.localMsg = newVal;
+      });
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.focused = this.focus;
+      this.focusShow = this.focus;
+    });
+  },
+  methods: {
+    init() {
+      if (this.value || this.value === 0) {
+        this.val = this.value;
+      } else if (this.modelValue || this.modelValue === 0) {
+        this.val = this.modelValue;
+      } else {
+        this.val = null;
+      }
+    },
+    onClickIcon(type) {
+      this.$emit("iconClick", type);
+    },
+    onEyes() {
+      this.showPassword = !this.showPassword;
+      this.$emit("eyes", this.showPassword);
+    },
+    onInput(event) {
+      let value = event.detail.value;
+      if (this.trim) {
+        if (typeof this.trim === "boolean" && this.trim) {
+          value = this.trimStr(value);
+        }
+        if (typeof this.trim === "string") {
+          value = this.trimStr(value, this.trim);
+        }
+      }
+      if (this.errMsg)
+        this.errMsg = "";
+      this.val = value;
+      this.$emit("input", value);
+      this.$emit("update:modelValue", value);
+    },
+    onFocus() {
+      this.$nextTick(() => {
+        this.focused = true;
+      });
+      this.$emit("focus", null);
+    },
+    _Focus(event) {
+      this.focusShow = true;
+      this.$emit("focus", event);
+    },
+    onBlur() {
+      this.focused = false;
+      this.$emit("focus", null);
+    },
+    _Blur(event) {
+      event.detail.value;
+      this.focusShow = false;
+      this.$emit("blur", event);
+      if (this.isEnter === false) {
+        this.$emit("change", this.val);
+      }
+      if (this.form && this.formItem) {
+        const { validateTrigger } = this.form;
+        if (validateTrigger === "blur") {
+          this.formItem.onFieldChange();
+        }
+      }
+    },
+    onConfirm(e) {
+      this.$emit("confirm", this.val);
+      this.isEnter = true;
+      this.$emit("change", this.val);
+      this.$nextTick(() => {
+        this.isEnter = false;
+      });
+    },
+    onClear(event) {
+      this.val = "";
+      this.$emit("input", "");
+      this.$emit("update:modelValue", "");
+      this.$emit("clear");
+    },
+    trimStr(str, pos = "both") {
+      if (pos === "both") {
+        return str.trim();
+      } else if (pos === "left") {
+        return str.trimLeft();
+      } else if (pos === "right") {
+        return str.trimRight();
+      } else if (pos === "start") {
+        return str.trimStart();
+      } else if (pos === "end") {
+        return str.trimEnd();
+      } else if (pos === "all") {
+        return str.replace(/\s+/g, "");
+      } else if (pos === "none") {
+        return str;
+      }
+      return str;
+    }
+  }
+};
+if (!Array) {
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
+  _easycom_uni_icons2();
+}
+const _easycom_uni_icons = () => "../../../uni-icons/components/uni-icons/uni-icons.js";
+if (!Math) {
+  _easycom_uni_icons();
+}
+function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+  return common_vendor.e({
+    a: $props.prefixIcon
+  }, $props.prefixIcon ? {
+    b: common_vendor.o(($event) => $options.onClickIcon("prefix")),
+    c: common_vendor.p({
+      type: $props.prefixIcon,
+      color: "#c0c4cc",
+      size: "22"
+    })
+  } : {}, {
+    d: $props.type === "textarea"
+  }, $props.type === "textarea" ? {
+    e: $props.inputBorder ? 1 : "",
+    f: $props.name,
+    g: $data.val,
+    h: $props.placeholder,
+    i: $props.placeholderStyle,
+    j: $props.disabled,
+    k: $options.inputMaxlength,
+    l: $data.focused,
+    m: $props.autoHeight,
+    n: common_vendor.o((...args) => $options.onInput && $options.onInput(...args)),
+    o: common_vendor.o((...args) => $options._Blur && $options._Blur(...args)),
+    p: common_vendor.o((...args) => $options._Focus && $options._Focus(...args)),
+    q: common_vendor.o((...args) => $options.onConfirm && $options.onConfirm(...args))
+  } : {
+    r: $props.type === "password" ? "text" : $props.type,
+    s: common_vendor.s($options.inputStyle),
+    t: $props.name,
+    v: $data.val,
+    w: !$data.showPassword && $props.type === "password",
+    x: $props.placeholder,
+    y: $props.placeholderStyle,
+    z: $props.disabled,
+    A: $options.inputMaxlength,
+    B: $data.focused,
+    C: $props.confirmType,
+    D: common_vendor.o((...args) => $options._Focus && $options._Focus(...args)),
+    E: common_vendor.o((...args) => $options._Blur && $options._Blur(...args)),
+    F: common_vendor.o((...args) => $options.onInput && $options.onInput(...args)),
+    G: common_vendor.o((...args) => $options.onConfirm && $options.onConfirm(...args))
+  }, {
+    H: $props.type === "password" && $props.passwordIcon
+  }, $props.type === "password" && $props.passwordIcon ? common_vendor.e({
+    I: $options.isVal
+  }, $options.isVal ? {
+    J: $props.type === "textarea" ? 1 : "",
+    K: common_vendor.o($options.onEyes),
+    L: common_vendor.p({
+      type: $data.showPassword ? "eye-slash-filled" : "eye-filled",
+      size: 22,
+      color: $data.focusShow ? $props.primaryColor : "#c0c4cc"
+    })
+  } : {}) : $props.suffixIcon ? common_vendor.e({
+    N: $props.suffixIcon
+  }, $props.suffixIcon ? {
+    O: common_vendor.o(($event) => $options.onClickIcon("suffix")),
+    P: common_vendor.p({
+      type: $props.suffixIcon,
+      color: "#c0c4cc",
+      size: "22"
+    })
+  } : {}) : common_vendor.e({
+    Q: $props.clearable && $options.isVal && !$props.disabled && $props.type !== "textarea"
+  }, $props.clearable && $options.isVal && !$props.disabled && $props.type !== "textarea" ? {
+    R: $props.type === "textarea" ? 1 : "",
+    S: common_vendor.o($options.onClear),
+    T: common_vendor.p({
+      type: "clear",
+      size: $props.clearSize,
+      color: $options.msg ? "#dd524d" : $data.focusShow ? $props.primaryColor : "#c0c4cc"
+    })
+  } : {}), {
+    M: $props.suffixIcon,
+    U: common_vendor.n($options.inputContentClass),
+    V: common_vendor.s($options.inputContentStyle),
+    W: $options.msg ? 1 : "",
+    X: common_vendor.s($options.boxStyle)
+  });
+}
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
+wx.createComponent(Component);

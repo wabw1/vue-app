@@ -1,1 +1,153 @@
-"use strict";const c=e=>JSON.parse(JSON.stringify(e)),f=e=>e==="int"||e==="double"||e==="number"||e==="timestamp",m=(e,t,r)=>{const s=r.find(a=>a.format&&f(a.format)),n=r.find(a=>a.format&&a.format==="boolean"||a.format==="bool");return s&&(!t&&t!==0?t=null:t=o(Number(t))?Number(t):t),n&&(t=S(t)?t:!1),t},g=(e,t,r)=>(t[e]=r,r||""),d=(e,t)=>D(t,e),N=(e,t={})=>{const r=u(e);return typeof r=="object"&&Array.isArray(r)&&r.length>1?r.reduce((n,a)=>n+=`#${a}`,"_formdata_"):r[0]||e},y=e=>/^_formdata_#*/.test(e),p=(e={},t)=>{let r=JSON.parse(JSON.stringify(e)),s={};for(let n in r){let a=b(n);j(s,a,r[n])}return s},b=e=>{let t=e.replace("_formdata_#","");return t=t.split("#").map(r=>o(r)?Number(r):r),t},j=(e,t,r)=>(typeof e!="object"||u(t).reduce((s,n,a,i)=>a===i.length-1?(s[n]=r,null):(n in s||(s[n]=/^[0-9]{1,}$/.test(i[a+1])?[]:{}),s[n]),e),e);function u(e){return Array.isArray(e)?e:e.replace(/\[/g,".").replace(/\]/g,"").split(".")}const D=(e,t,r="undefined")=>{let n=u(t).reduce((a,i)=>(a||{})[i],e);return!n||n!==void 0?n:r},o=e=>!isNaN(Number(e)),S=e=>typeof e=="boolean",h=e=>{let t=!1;for(let r=0;r<e.length;r++)if(e[r].required){t=!0;break}return t},O=(e,t)=>{if(e===t)return e!==0||1/e===1/t;if(e==null||t==null)return e===t;var r=toString.call(e),s=toString.call(t);if(r!==s)return!1;switch(r){case"[object RegExp]":case"[object String]":return""+e==""+t;case"[object Number]":return+e!=+e?+t!=+t:+e==0?1/+e===1/t:+e==+t;case"[object Date]":case"[object Boolean]":return+e==+t}if(r=="[object Object]"){var n=Object.getOwnPropertyNames(e),a=Object.getOwnPropertyNames(t);if(n.length!=a.length)return!1;for(var i=0;i<n.length;i++){var l=n[i];if(e[l]!==t[l])return!1}return!0}if(r=="[object Array]")return e.toString()==t.toString()};exports.deepCopy=c;exports.getDataValue=d;exports.getValue=m;exports.isEqual=O;exports.isRealName=y;exports.isRequiredField=h;exports.rawData=p;exports.realName=N;exports.setDataValue=g;
+"use strict";
+const deepCopy = (val) => {
+  return JSON.parse(JSON.stringify(val));
+};
+const typeFilter = (format) => {
+  return format === "int" || format === "double" || format === "number" || format === "timestamp";
+};
+const getValue = (key, value, rules) => {
+  const isRuleNumType = rules.find((val) => val.format && typeFilter(val.format));
+  const isRuleBoolType = rules.find((val) => val.format && val.format === "boolean" || val.format === "bool");
+  if (!!isRuleNumType) {
+    if (!value && value !== 0) {
+      value = null;
+    } else {
+      value = isNumber(Number(value)) ? Number(value) : value;
+    }
+  }
+  if (!!isRuleBoolType) {
+    value = isBoolean(value) ? value : false;
+  }
+  return value;
+};
+const setDataValue = (field, formdata, value) => {
+  formdata[field] = value;
+  return value || "";
+};
+const getDataValue = (field, data) => {
+  return objGet(data, field);
+};
+const realName = (name, data = {}) => {
+  const base_name = _basePath(name);
+  if (typeof base_name === "object" && Array.isArray(base_name) && base_name.length > 1) {
+    const realname = base_name.reduce((a, b) => a += `#${b}`, "_formdata_");
+    return realname;
+  }
+  return base_name[0] || name;
+};
+const isRealName = (name) => {
+  const reg = /^_formdata_#*/;
+  return reg.test(name);
+};
+const rawData = (object = {}, name) => {
+  let newData = JSON.parse(JSON.stringify(object));
+  let formData = {};
+  for (let i in newData) {
+    let path = name2arr(i);
+    objSet(formData, path, newData[i]);
+  }
+  return formData;
+};
+const name2arr = (name) => {
+  let field = name.replace("_formdata_#", "");
+  field = field.split("#").map((v) => isNumber(v) ? Number(v) : v);
+  return field;
+};
+const objSet = (object, path, value) => {
+  if (typeof object !== "object")
+    return object;
+  _basePath(path).reduce((o, k, i, _) => {
+    if (i === _.length - 1) {
+      o[k] = value;
+      return null;
+    } else if (k in o) {
+      return o[k];
+    } else {
+      o[k] = /^[0-9]{1,}$/.test(_[i + 1]) ? [] : {};
+      return o[k];
+    }
+  }, object);
+  return object;
+};
+function _basePath(path) {
+  if (Array.isArray(path))
+    return path;
+  return path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
+}
+const objGet = (object, path, defaultVal = "undefined") => {
+  let newPath = _basePath(path);
+  let val = newPath.reduce((o, k) => {
+    return (o || {})[k];
+  }, object);
+  return !val || val !== void 0 ? val : defaultVal;
+};
+const isNumber = (num) => {
+  return !isNaN(Number(num));
+};
+const isBoolean = (bool) => {
+  return typeof bool === "boolean";
+};
+const isRequiredField = (rules) => {
+  let isNoField = false;
+  for (let i = 0; i < rules.length; i++) {
+    const ruleData = rules[i];
+    if (ruleData.required) {
+      isNoField = true;
+      break;
+    }
+  }
+  return isNoField;
+};
+const isEqual = (a, b) => {
+  if (a === b) {
+    return a !== 0 || 1 / a === 1 / b;
+  }
+  if (a == null || b == null) {
+    return a === b;
+  }
+  var classNameA = toString.call(a), classNameB = toString.call(b);
+  if (classNameA !== classNameB) {
+    return false;
+  }
+  switch (classNameA) {
+    case "[object RegExp]":
+    case "[object String]":
+      return "" + a === "" + b;
+    case "[object Number]":
+      if (+a !== +a) {
+        return +b !== +b;
+      }
+      return +a === 0 ? 1 / +a === 1 / b : +a === +b;
+    case "[object Date]":
+    case "[object Boolean]":
+      return +a === +b;
+  }
+  if (classNameA == "[object Object]") {
+    var propsA = Object.getOwnPropertyNames(a), propsB = Object.getOwnPropertyNames(b);
+    if (propsA.length != propsB.length) {
+      return false;
+    }
+    for (var i = 0; i < propsA.length; i++) {
+      var propName = propsA[i];
+      if (a[propName] !== b[propName]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if (classNameA == "[object Array]") {
+    if (a.toString() == b.toString()) {
+      return true;
+    }
+    return false;
+  }
+};
+exports.deepCopy = deepCopy;
+exports.getDataValue = getDataValue;
+exports.getValue = getValue;
+exports.isEqual = isEqual;
+exports.isRealName = isRealName;
+exports.isRequiredField = isRequiredField;
+exports.rawData = rawData;
+exports.realName = realName;
+exports.setDataValue = setDataValue;

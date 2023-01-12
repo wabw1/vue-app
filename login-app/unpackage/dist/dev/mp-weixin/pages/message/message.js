@@ -1,1 +1,19 @@
-"use strict";const e=require("../../common/vendor.js"),s={data(){return{}},methods:{}};function r(n,t,a,c,_,i){return{}}const o=e._export_sfc(s,[["render",r],["__file","/Users/wangbo/Desktop/HBuilderProjects/login-app/pages/message/message.vue"]]);wx.createPage(o);
+"use strict";
+const common_vendor = require("../../common/vendor.js");
+const _sfc_main = {
+  data() {
+    return {};
+  },
+  onPullDownRefresh() {
+    console.log("refresh");
+    setTimeout(function() {
+      common_vendor.index.stopPullDownRefresh();
+    }, 500);
+  },
+  methods: {}
+};
+function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+  return {};
+}
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/message/message.vue"]]);
+wx.createPage(MiniProgramPage);

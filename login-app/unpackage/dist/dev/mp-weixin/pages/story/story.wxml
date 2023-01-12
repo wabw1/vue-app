@@ -1,0 +1,1 @@
+<view class="container data-v-fd6d2232"><nav-bar class="data-v-fd6d2232" u-i="fd6d2232-0" bind:__l="__l"></nav-bar><view class="content-box data-v-fd6d2232" style="{{'margin-top:' + a}}"><view class="tabs data-v-fd6d2232">tabs</view><view class="posts-box data-v-fd6d2232">posts</view></view></view>

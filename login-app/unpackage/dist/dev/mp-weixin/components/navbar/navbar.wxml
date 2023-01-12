@@ -1,0 +1,1 @@
+<view class="bars"><view class="status-bar" style="{{'height:' + a}}"></view><view class="nav-bar" style="{{'height:' + b + ';' + ('padding-right:' + c)}}"></view></view>

@@ -1,1 +1,251 @@
-"use strict";const c=require("./validate.js"),a=require("./utils.js"),p=require("../../../../common/vendor.js"),g={name:"uniForms",emits:["validate","submit"],options:{virtualHost:!0},props:{value:{type:Object,default(){return null}},modelValue:{type:Object,default(){return null}},model:{type:Object,default(){return null}},rules:{type:Object,default(){return{}}},errShowType:{type:String,default:"undertext"},validateTrigger:{type:String,default:"submit"},labelPosition:{type:String,default:"left"},labelWidth:{type:[String,Number],default:""},labelAlign:{type:String,default:"left"},border:{type:Boolean,default:!1}},provide(){return{uniForm:this}},data(){return{formData:{},formRules:{}}},computed:{localData(){const e=this.model||this.modelValue||this.value;return e?a.deepCopy(e):{}}},watch:{rules:{handler:function(e,i){this.setRules(e)},deep:!0,immediate:!0}},created(){getApp().$vm.$.appContext.config.globalProperties.binddata||(getApp().$vm.$.appContext.config.globalProperties.binddata=function(i,t,r){if(r)this.$refs[r].setValue(i,t);else{let s;for(let u in this.$refs){const n=this.$refs[u];if(n&&n.$options&&n.$options.name==="uniForms"){s=n;break}}if(!s)return console.error("\u5F53\u524D uni-froms \u7EC4\u4EF6\u7F3A\u5C11 ref \u5C5E\u6027");s.setValue(i,t)}}),this.childrens=[],this.inputChildrens=[],this.setRules(this.rules)},methods:{setRules(e){this.formRules=Object.assign({},this.formRules,e),this.validator=new c.SchemaValidator(e)},setValue(e,i){let t=this.childrens.find(r=>r.name===e);return t?(this.formData[e]=a.getValue(e,i,this.formRules[e]&&this.formRules[e].rules||[]),t.onFieldChange(this.formData[e])):null},validate(e,i){return this.checkAll(this.formData,e,i)},validateField(e=[],i){e=[].concat(e);let t={};return this.childrens.forEach(r=>{const s=a.realName(r.name);e.indexOf(s)!==-1&&(t=Object.assign({},t,{[s]:this.formData[s]}))}),this.checkAll(t,[],i)},clearValidate(e=[]){e=[].concat(e),this.childrens.forEach(i=>{if(e.length===0)i.errMsg="";else{const t=a.realName(i.name);e.indexOf(t)!==-1&&(i.errMsg="")}})},submit(e,i,t){for(let r in this.dataValue)this.childrens.find(u=>u.name===r)&&this.formData[r]===void 0&&(this.formData[r]=this._getValue(r,this.dataValue[r]));return t||console.warn("submit \u65B9\u6CD5\u5373\u5C06\u5E9F\u5F03\uFF0C\u8BF7\u4F7F\u7528validate\u65B9\u6CD5\u4EE3\u66FF\uFF01"),this.checkAll(this.formData,e,i,"submit")},async checkAll(e,i,t,r){if(!this.validator)return;let s=[];for(let f in e){const l=this.childrens.find(o=>a.realName(o.name)===f);l&&s.push(l)}!t&&typeof i=="function"&&(t=i);let u;!t&&typeof t!="function"&&Promise&&(u=new Promise((f,l)=>{t=function(o,d){o?l(o):f(d)}}));let n=[],m=JSON.parse(JSON.stringify(e));for(let f in s){const l=s[f];let o=a.realName(l.name);const d=await l.onFieldChange(m[o]);if(d&&(n.push(d),this.errShowType==="toast"||this.errShowType==="modal"))break}Array.isArray(n)&&n.length===0&&(n=null),Array.isArray(i)&&i.forEach(f=>{let l=a.realName(f),o=a.getDataValue(f,this.localData);o!==void 0&&(m[l]=o)}),r==="submit"?this.$emit("submit",{detail:{value:m,errors:n}}):this.$emit("validate",n);let h={};return h=a.rawData(m,this.name),t&&typeof t=="function"&&t(n,h),u&&t?u:null},validateCheck(e){this.$emit("validate",e)},_getValue:a.getValue,_isRequiredField:a.isRequiredField,_setDataValue:a.setDataValue,_getDataValue:a.getDataValue,_realName:a.realName,_isRealName:a.isRealName,_isEqual:a.isEqual}};function _(e,i,t,r,s,u){return{}}const v=p._export_sfc(g,[["render",_],["__file","/Users/wangbo/Desktop/HBuilderProjects/login-app/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);wx.createComponent(v);
+"use strict";
+const uni_modules_uniForms_components_uniForms_validate = require("./validate.js");
+const uni_modules_uniForms_components_uniForms_utils = require("./utils.js");
+const common_vendor = require("../../../../common/vendor.js");
+const _sfc_main = {
+  name: "uniForms",
+  emits: ["validate", "submit"],
+  options: {
+    virtualHost: true
+  },
+  props: {
+    value: {
+      type: Object,
+      default() {
+        return null;
+      }
+    },
+    modelValue: {
+      type: Object,
+      default() {
+        return null;
+      }
+    },
+    model: {
+      type: Object,
+      default() {
+        return null;
+      }
+    },
+    rules: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    errShowType: {
+      type: String,
+      default: "undertext"
+    },
+    validateTrigger: {
+      type: String,
+      default: "submit"
+    },
+    labelPosition: {
+      type: String,
+      default: "left"
+    },
+    labelWidth: {
+      type: [String, Number],
+      default: ""
+    },
+    labelAlign: {
+      type: String,
+      default: "left"
+    },
+    border: {
+      type: Boolean,
+      default: false
+    }
+  },
+  provide() {
+    return {
+      uniForm: this
+    };
+  },
+  data() {
+    return {
+      formData: {},
+      formRules: {}
+    };
+  },
+  computed: {
+    localData() {
+      const localVal = this.model || this.modelValue || this.value;
+      if (localVal) {
+        return uni_modules_uniForms_components_uniForms_utils.deepCopy(localVal);
+      }
+      return {};
+    }
+  },
+  watch: {
+    rules: {
+      handler: function(val, oldVal) {
+        this.setRules(val);
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+  created() {
+    let getbinddata = getApp().$vm.$.appContext.config.globalProperties.binddata;
+    if (!getbinddata) {
+      getApp().$vm.$.appContext.config.globalProperties.binddata = function(name, value, formName) {
+        if (formName) {
+          this.$refs[formName].setValue(name, value);
+        } else {
+          let formVm;
+          for (let i in this.$refs) {
+            const vm = this.$refs[i];
+            if (vm && vm.$options && vm.$options.name === "uniForms") {
+              formVm = vm;
+              break;
+            }
+          }
+          if (!formVm)
+            return console.error("\u5F53\u524D uni-froms \u7EC4\u4EF6\u7F3A\u5C11 ref \u5C5E\u6027");
+          formVm.setValue(name, value);
+        }
+      };
+    }
+    this.childrens = [];
+    this.inputChildrens = [];
+    this.setRules(this.rules);
+  },
+  methods: {
+    setRules(rules) {
+      this.formRules = Object.assign({}, this.formRules, rules);
+      this.validator = new uni_modules_uniForms_components_uniForms_validate.SchemaValidator(rules);
+    },
+    setValue(key, value) {
+      let example = this.childrens.find((child) => child.name === key);
+      if (!example)
+        return null;
+      this.formData[key] = uni_modules_uniForms_components_uniForms_utils.getValue(key, value, this.formRules[key] && this.formRules[key].rules || []);
+      return example.onFieldChange(this.formData[key]);
+    },
+    validate(keepitem, callback) {
+      return this.checkAll(this.formData, keepitem, callback);
+    },
+    validateField(props = [], callback) {
+      props = [].concat(props);
+      let invalidFields = {};
+      this.childrens.forEach((item) => {
+        const name = uni_modules_uniForms_components_uniForms_utils.realName(item.name);
+        if (props.indexOf(name) !== -1) {
+          invalidFields = Object.assign({}, invalidFields, {
+            [name]: this.formData[name]
+          });
+        }
+      });
+      return this.checkAll(invalidFields, [], callback);
+    },
+    clearValidate(props = []) {
+      props = [].concat(props);
+      this.childrens.forEach((item) => {
+        if (props.length === 0) {
+          item.errMsg = "";
+        } else {
+          const name = uni_modules_uniForms_components_uniForms_utils.realName(item.name);
+          if (props.indexOf(name) !== -1) {
+            item.errMsg = "";
+          }
+        }
+      });
+    },
+    submit(keepitem, callback, type) {
+      for (let i in this.dataValue) {
+        const itemData = this.childrens.find((v) => v.name === i);
+        if (itemData) {
+          if (this.formData[i] === void 0) {
+            this.formData[i] = this._getValue(i, this.dataValue[i]);
+          }
+        }
+      }
+      if (!type) {
+        console.warn("submit \u65B9\u6CD5\u5373\u5C06\u5E9F\u5F03\uFF0C\u8BF7\u4F7F\u7528validate\u65B9\u6CD5\u4EE3\u66FF\uFF01");
+      }
+      return this.checkAll(this.formData, keepitem, callback, "submit");
+    },
+    async checkAll(invalidFields, keepitem, callback, type) {
+      if (!this.validator)
+        return;
+      let childrens = [];
+      for (let i in invalidFields) {
+        const item = this.childrens.find((v) => uni_modules_uniForms_components_uniForms_utils.realName(v.name) === i);
+        if (item) {
+          childrens.push(item);
+        }
+      }
+      if (!callback && typeof keepitem === "function") {
+        callback = keepitem;
+      }
+      let promise;
+      if (!callback && typeof callback !== "function" && Promise) {
+        promise = new Promise((resolve, reject) => {
+          callback = function(valid, invalidFields2) {
+            !valid ? resolve(invalidFields2) : reject(valid);
+          };
+        });
+      }
+      let results = [];
+      let tempFormData = JSON.parse(JSON.stringify(invalidFields));
+      for (let i in childrens) {
+        const child = childrens[i];
+        let name = uni_modules_uniForms_components_uniForms_utils.realName(child.name);
+        const result = await child.onFieldChange(tempFormData[name]);
+        if (result) {
+          results.push(result);
+          if (this.errShowType === "toast" || this.errShowType === "modal")
+            break;
+        }
+      }
+      if (Array.isArray(results)) {
+        if (results.length === 0)
+          results = null;
+      }
+      if (Array.isArray(keepitem)) {
+        keepitem.forEach((v) => {
+          let vName = uni_modules_uniForms_components_uniForms_utils.realName(v);
+          let value = uni_modules_uniForms_components_uniForms_utils.getDataValue(v, this.localData);
+          if (value !== void 0) {
+            tempFormData[vName] = value;
+          }
+        });
+      }
+      if (type === "submit") {
+        this.$emit("submit", {
+          detail: {
+            value: tempFormData,
+            errors: results
+          }
+        });
+      } else {
+        this.$emit("validate", results);
+      }
+      let resetFormData = {};
+      resetFormData = uni_modules_uniForms_components_uniForms_utils.rawData(tempFormData, this.name);
+      callback && typeof callback === "function" && callback(results, resetFormData);
+      if (promise && callback) {
+        return promise;
+      } else {
+        return null;
+      }
+    },
+    validateCheck(result) {
+      this.$emit("validate", result);
+    },
+    _getValue: uni_modules_uniForms_components_uniForms_utils.getValue,
+    _isRequiredField: uni_modules_uniForms_components_uniForms_utils.isRequiredField,
+    _setDataValue: uni_modules_uniForms_components_uniForms_utils.setDataValue,
+    _getDataValue: uni_modules_uniForms_components_uniForms_utils.getDataValue,
+    _realName: uni_modules_uniForms_components_uniForms_utils.realName,
+    _isRealName: uni_modules_uniForms_components_uniForms_utils.isRealName,
+    _isEqual: uni_modules_uniForms_components_uniForms_utils.isEqual
+  }
+};
+function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+  return {};
+}
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);
+wx.createComponent(Component);

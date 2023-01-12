@@ -93,7 +93,7 @@ export default {
           setTimeout(() => {
             uni.hideLoading();
             uni.navigateTo({
-              url: '/pages/message/message'
+              url: '/pages/home/home'
             });
           }, 1000);
         })

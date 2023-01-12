@@ -1,18 +1,52 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/home/home",
+    "pages/home/search-detail/search-detail",
+    "pages/story/story",
+    "pages/message/message",
+    "pages/profile/profile",
+    "pages/start/start",
     "pages/login/login-pwd",
     "pages/login/login-sms",
-    "pages/message/message"
+    "pages/search/search"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8",
-    "autoBackButton": true,
     "homeButton": true,
+    "navigationBarBackgroundColor": "#82AAE3",
+    "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#82AAE3",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home_ac.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/story/story",
+        "iconPath": "static/icons/star.png",
+        "selectedIconPath": "static/icons/star_ac.png",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "static/icons/message.png",
+        "selectedIconPath": "static/icons/message_ac.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "static/icons/me.png",
+        "selectedIconPath": "static/icons/me_ac.png",
+        "text": "我的"
+      }
+    ]
   },
   "usingComponents": {}
 }

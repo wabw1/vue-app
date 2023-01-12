@@ -1,41 +1,144 @@
 {
-  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+  "easycom": {
+    "^u-(.*)": "@/uni_modules/vk-uview-ui/components/u-$1/u-$1.vue"
+  },
+  "pages": [ //pages数组中第一项表示应用启动页
     {
-      "path": "pages/index/index",
+      "path": "pages/home/home",
       "style": {
-        "navigationBarTitleText": "HOME"
+        "enablePullDownRefresh": true,
+        "navigationBarTitleText": "首页",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "buttons": [{
+              "fontSrc": "/static/iconfont.ttf",
+              "text": "\ue73f",
+              "width": "40px",
+              "fontSize": "34px",
+              "color": "#fff",
+              "background": "rgba(0,0,0,0)"
+            }],
+            // "autoBackButton": true,
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "搜索帖子",
+              "disabled": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/home/search-detail/search-detail",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
+    },
+    {
+      "path": "pages/story/story",
+      "style": {
+        "navigationBarTitleText": "动态",
+        "enablePullDownRefresh": true,
+        "app-plus": {
+          "titleNView": {
+            "buttons": [{
+              "type": "share"
+            }],
+            "autoBackButton": true
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/message/message",
+      "style": {
+        "navigationBarTitleText": "消息",
+        "enablePullDownRefresh": true
+      }
+
+    }, {
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/start/start",
+      "style": {
+        "navigationBarTitleText": "启动页"
       }
     }, {
       "path": "pages/login/login-pwd",
       "style": {
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "密码"
-        // "navigationBarBackgroundColor": "grey"
       }
-
     }, {
       "path": "pages/login/login-sms",
       "style": {
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "验证码"
       }
-    },
-    {
-      "path": "pages/message/message",
+    }, {
+      "path": "pages/search/search",
       "style": {
+        "navigationBarTitleText": "搜索页",
         "enablePullDownRefresh": false,
-        "navigationBarTitleText": "主页"
+        "navigationStyle": "default"
       }
+
     }
   ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#82AAE3",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/home/home",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home_ac.png",
+        "text": "首页"
+      }, {
+        "pagePath": "pages/story/story",
+        "iconPath": "static/icons/star.png",
+        "selectedIconPath": "static/icons/star_ac.png",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "static/icons/message.png",
+        "selectedIconPath": "static/icons/message_ac.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "static/icons/me.png",
+        "selectedIconPath": "static/icons/me_ac.png",
+        "text": "我的"
+      }
+    ]
+  },
   "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8",
-    "autoBackButton": true,
+    // "autoBackButton": true,
     "homeButton": true,
+    "app-plus": {
+      "titleNView": {
+        "backgroundColor": "#82AAE3",
+        "titleColor": "#fff"
+      }
+    },
+    //wx小程序
+    // #ifdef MP-WEIXIN
+    "navigationBarBackgroundColor": "#82AAE3", //统一背景色
+    "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
+    // #endif
   },
   "uniIdRouter": {}
 }

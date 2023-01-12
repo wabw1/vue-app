@@ -1,0 +1,1 @@
+<view class="container"><search-nav-bar u-i="181d589b-0" bind:__l="__l"></search-nav-bar><view class="content-box" style="{{'margin-top:' + a}}"> 首页 </view></view>

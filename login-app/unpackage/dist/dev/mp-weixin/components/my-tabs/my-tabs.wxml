@@ -1,0 +1,1 @@
+<view class="tabs"><u-tabs wx:if="{{c}}" bindchange="{{a}}" u-i="e509b6a2-0" bind:__l="__l" bindupdateModelValue="{{b}}" u-p="{{c}}"></u-tabs></view>

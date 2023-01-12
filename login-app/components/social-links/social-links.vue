@@ -11,8 +11,6 @@
       <text class="t-icon t-icon-imagewechat" @click="loginWx"></text>
       <text class="t-icon t-icon-QQ" @click="loginQQ"></text>
       <text class="t-icon t-icon-weibo" @click="loginWb"></text>
-      <!-- <uni-icons customPrefix="iconfont" type="icon-weibo"></uni-icons>
-      <uni-icons customPrefix="iconfont" type="icon-QQ"></uni-icons> -->
     </view>
     <view class="agreements">
       注册即代表同意
@@ -22,7 +20,6 @@
 </template>
 
 <script>
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
 export default {
   name: 'social-links',
   data() {
