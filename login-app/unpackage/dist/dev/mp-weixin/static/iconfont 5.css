@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "iconfont";
+  /* Project id 3831437 */
+  /* Color fonts */
+  src:
+    url('iconfont.woff2?t=1673544031140') format('woff2'),
+    url('iconfont.ttf?t=1673544031140') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 36px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pencil:before {
+  content: "\e681";
+}
+
+.icon-pencil-white:before {
+  content: "\e73f";
+}
+
+.icon-imagewechat:before {
+  content: "\e684";
+}
+
+.icon-QQ:before {
+  content: "\e73e";
+}
+
+.icon-weibo:before {
+  content: "\e636";
+}

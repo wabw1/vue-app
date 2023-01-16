@@ -4,7 +4,7 @@
 			background: bgColor
 		}">
 		<scroll-view scroll-x class="u-scroll-view" :scroll-left="scrollLeft" scroll-with-animation :style="{ zIndex: zIndex + 1 }">
-			<view class="u-tabs-scroll-box" :class="{'u-tabs-scroll-flex': !isScroll}">
+			<view class="u-tabs-scroll-box" :class="{'u-tabs-scorll-flex': !isScroll}">
 				<view class="u-tabs-item" :style="[tabItemStyle(index)]"
 				 v-for="(item, index) in getTabs" :key="index" :class="[preId + index]" @tap="emit(index)">
 					<u-badge :count="item[count] || item['count'] || 0" :offset="offset" size="mini"></u-badge>
@@ -50,7 +50,6 @@
 	 */
 	export default {
 		name: "u-tabs-swiper",
-    emits: ["update:modelValue", "input", "change"],
 		props: {
 			// 导航菜单是否需要滚动，如只有2或者3个的时候，就不需要滚动了，此时使用flex平分tab的宽度
 			isScroll: {
@@ -429,12 +428,12 @@
 		position: relative;
 	}
 
-	.u-tabs-scroll-flex {
+	.u-tabs-scorll-flex {
 		@include vue-flex;
 		justify-content: space-between;
 	}
 
-	.u-tabs-scroll-flex .u-tabs-item {
+	.u-tabs-scorll-flex .u-tabs-item {
 		flex: 1;
 	}
 

@@ -1,0 +1,1 @@
+<view class="container data-v-6a24639b"><post wx:if="{{a}}" class="data-v-6a24639b" u-i="6a24639b-0" bind:__l="__l" u-p="{{a}}"></post> postlist结束的位置 </view>

@@ -7,26 +7,26 @@
 
 <script>
 export default {
-  name: 'navbar',
+  name: "navbar",
   onShow() {
-    console.log('获得的paddingR:', this.paddingRight);
+    console.log("获得的paddingR:", this.paddingRight);
   },
   data() {
     return {
-      windowHeight: uni.getStorageSync('menuInfo').windowHeight, //窗体高度，暂时没用
-      navBarHeight: '44px',
-      statusBarHeight: uni.getStorageSync('menuInfo').statusBarHeight,
-      menuHeight: uni.getStorageSync('menuInfo').menuHeight,
-      menuWidth: uni.getStorageSync('menuInfo').menuWidth,
-      menuRight: uni.getStorageSync('menuInfo').menuRight,
-      contentTop: uni.getStorageSync('menuInfo').contentTop,
-      paddingRight: uni.getStorageSync('menuInfo').paddingRight //右边胶囊的位置空出来
+      windowHeight: uni.getStorageSync("menuInfo").windowHeight, //窗体高度，暂时没用
+      navBarHeight: "44px",
+      statusBarHeight: uni.getStorageSync("menuInfo").statusBarHeight,
+      menuHeight: uni.getStorageSync("menuInfo").menuHeight,
+      menuWidth: uni.getStorageSync("menuInfo").menuWidth,
+      menuRight: uni.getStorageSync("menuInfo").menuRight,
+      contentTop: uni.getStorageSync("menuInfo").contentTop,
+      paddingRight: uni.getStorageSync("menuInfo").paddingRight //右边胶囊的位置空出来
     };
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bars {
   position: fixed;
   top: 0;

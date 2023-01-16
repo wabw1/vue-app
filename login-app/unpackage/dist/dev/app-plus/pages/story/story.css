@@ -62,8 +62,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 /* 引入vk-uView的全局scss */
-.content-box[data-v-fd6d2232] {
-  font-size: 36px;
+.container[data-v-fd6d2232] {
   text-align: center;
   display: flex;
   flex-direction: column;

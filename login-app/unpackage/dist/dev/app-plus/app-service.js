@@ -41,6 +41,1649 @@ if (uni.restoreGlobal) {
   function resolveEasycom(component, easycom) {
     return shared.isString(component) ? easycom : component;
   }
+  const _export_sfc = (sfc, props) => {
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+      target[key] = val;
+    }
+    return target;
+  };
+  const _sfc_main$n = {
+    name: "u-badge",
+    props: {
+      type: {
+        type: String,
+        default: "error"
+      },
+      size: {
+        type: String,
+        default: "default"
+      },
+      isDot: {
+        type: Boolean,
+        default: false
+      },
+      count: {
+        type: [Number, String]
+      },
+      overflowCount: {
+        type: Number,
+        default: 99
+      },
+      showZero: {
+        type: Boolean,
+        default: false
+      },
+      offset: {
+        type: Array,
+        default: () => {
+          return [20, 20];
+        }
+      },
+      absolute: {
+        type: Boolean,
+        default: true
+      },
+      fontSize: {
+        type: [String, Number],
+        default: "24"
+      },
+      color: {
+        type: String,
+        default: "#ffffff"
+      },
+      bgColor: {
+        type: String,
+        default: ""
+      },
+      isCenter: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      boxStyle() {
+        let style = {};
+        if (this.isCenter) {
+          style.top = 0;
+          style.right = 0;
+          style.transform = "translateY(-50%) translateX(50%)";
+        } else {
+          style.top = this.offset[0] + "rpx";
+          style.right = this.offset[1] + "rpx";
+          style.transform = "translateY(0) translateX(0)";
+        }
+        if (this.size == "mini") {
+          style.transform = style.transform + " scale(0.8)";
+        }
+        return style;
+      },
+      showText() {
+        if (this.isDot)
+          return "";
+        else {
+          if (this.count > this.overflowCount)
+            return `${this.overflowCount}+`;
+          else
+            return this.count;
+        }
+      },
+      show() {
+        if (this.count == 0 && this.showZero == false)
+          return false;
+        else
+          return true;
+      }
+    }
+  };
+  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+    return $options.show ? (vue.openBlock(), vue.createElementBlock("view", {
+      key: 0,
+      class: vue.normalizeClass(["u-badge", [
+        $props.isDot ? "u-badge-dot" : "",
+        $props.size == "mini" ? "u-badge-mini" : "",
+        $props.type ? "u-badge--bg--" + $props.type : ""
+      ]]),
+      style: vue.normalizeStyle([{
+        top: $props.offset[0] + "rpx",
+        right: $props.offset[1] + "rpx",
+        fontSize: $props.fontSize + "rpx",
+        position: $props.absolute ? "absolute" : "static",
+        color: $props.color,
+        backgroundColor: $props.bgColor
+      }, $options.boxStyle])
+    }, vue.toDisplayString($options.showText), 7)) : vue.createCommentVNode("v-if", true);
+  }
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$m], ["__scopeId", "data-v-f84de764"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-badge/u-badge.vue"]]);
+  function colorGradient(startColor = "rgb(0, 0, 0)", endColor = "rgb(255, 255, 255)", step = 10) {
+    let startRGB = hexToRgb(startColor, false);
+    let startR = startRGB[0];
+    let startG = startRGB[1];
+    let startB = startRGB[2];
+    let endRGB = hexToRgb(endColor, false);
+    let endR = endRGB[0];
+    let endG = endRGB[1];
+    let endB = endRGB[2];
+    let sR = (endR - startR) / step;
+    let sG = (endG - startG) / step;
+    let sB = (endB - startB) / step;
+    let colorArr = [];
+    for (let i = 0; i < step; i++) {
+      let hex = rgbToHex("rgb(" + Math.round(sR * i + startR) + "," + Math.round(sG * i + startG) + "," + Math.round(sB * i + startB) + ")");
+      colorArr.push(hex);
+    }
+    return colorArr;
+  }
+  function hexToRgb(sColor, str = true) {
+    let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+    sColor = sColor.toLowerCase();
+    if (sColor && reg.test(sColor)) {
+      if (sColor.length === 4) {
+        let sColorNew = "#";
+        for (let i = 1; i < 4; i += 1) {
+          sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+        }
+        sColor = sColorNew;
+      }
+      let sColorChange = [];
+      for (let i = 1; i < 7; i += 2) {
+        sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
+      }
+      if (!str) {
+        return sColorChange;
+      } else {
+        return `rgb(${sColorChange[0]},${sColorChange[1]},${sColorChange[2]})`;
+      }
+    } else if (/^(rgb|RGB)/.test(sColor)) {
+      let arr = sColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+      return arr.map((val) => Number(val));
+    } else {
+      return sColor;
+    }
+  }
+  function rgbToHex(rgb) {
+    let _this = rgb;
+    let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+    if (/^(rgb|RGB)/.test(_this)) {
+      let aColor = _this.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+      let strHex = "#";
+      for (let i = 0; i < aColor.length; i++) {
+        let hex = Number(aColor[i]).toString(16);
+        hex = String(hex).length == 1 ? 0 + "" + hex : hex;
+        if (hex === "0") {
+          hex += hex;
+        }
+        strHex += hex;
+      }
+      if (strHex.length !== 7) {
+        strHex = _this;
+      }
+      return strHex;
+    } else if (reg.test(_this)) {
+      let aNum = _this.replace(/#/, "").split("");
+      if (aNum.length === 6) {
+        return _this;
+      } else if (aNum.length === 3) {
+        let numHex = "#";
+        for (let i = 0; i < aNum.length; i += 1) {
+          numHex += aNum[i] + aNum[i];
+        }
+        return numHex;
+      }
+    } else {
+      return _this;
+    }
+  }
+  function colorToRgba(color2, alpha = 0.3) {
+    color2 = rgbToHex(color2);
+    var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+    let sColor = color2.toLowerCase();
+    if (sColor && reg.test(sColor)) {
+      if (sColor.length === 4) {
+        var sColorNew = "#";
+        for (let i = 1; i < 4; i += 1) {
+          sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+        }
+        sColor = sColorNew;
+      }
+      var sColorChange = [];
+      for (let i = 1; i < 7; i += 2) {
+        sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
+      }
+      return "rgba(" + sColorChange.join(",") + "," + alpha + ")";
+    } else {
+      return sColor;
+    }
+  }
+  const colorGradient$1 = {
+    colorGradient,
+    hexToRgb,
+    rgbToHex,
+    colorToRgba
+  };
+  let color$1 = colorGradient$1;
+  const { windowWidth } = uni.getSystemInfoSync();
+  const preId = "UEl_";
+  const _sfc_main$m = {
+    name: "u-tabs-swiper",
+    props: {
+      isScroll: {
+        type: Boolean,
+        default: true
+      },
+      list: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
+      current: {
+        type: [Number, String],
+        default: 0
+      },
+      height: {
+        type: [Number, String],
+        default: 80
+      },
+      fontSize: {
+        type: [Number, String],
+        default: 30
+      },
+      swiperWidth: {
+        type: [String, Number],
+        default: 750
+      },
+      activeColor: {
+        type: String,
+        default: "#2979ff"
+      },
+      inactiveColor: {
+        type: String,
+        default: "#303133"
+      },
+      barWidth: {
+        type: [Number, String],
+        default: 40
+      },
+      barHeight: {
+        type: [Number, String],
+        default: 6
+      },
+      gutter: {
+        type: [Number, String],
+        default: 40
+      },
+      zIndex: {
+        type: [Number, String],
+        default: 1
+      },
+      bgColor: {
+        type: String,
+        default: "#ffffff"
+      },
+      autoCenterMode: {
+        type: String,
+        default: "window"
+      },
+      name: {
+        type: String,
+        default: "name"
+      },
+      count: {
+        type: String,
+        default: "count"
+      },
+      offset: {
+        type: Array,
+        default: () => {
+          return [5, 20];
+        }
+      },
+      bold: {
+        type: Boolean,
+        default: true
+      },
+      activeItemStyle: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      showBar: {
+        type: Boolean,
+        default: true
+      },
+      barStyle: {
+        type: Object,
+        default() {
+          return {};
+        }
+      }
+    },
+    data() {
+      return {
+        scrollLeft: 0,
+        tabQueryInfo: [],
+        windowWidth: 0,
+        animationFinishCurrent: this.current,
+        componentsWidth: 0,
+        line3AddDx: 0,
+        line3Dx: 0,
+        preId,
+        sW: 0,
+        tabsInfo: [],
+        colorGradientArr: [],
+        colorStep: 100
+      };
+    },
+    computed: {
+      getCurrent() {
+        const current = Number(this.current);
+        if (current > this.getTabs.length - 1) {
+          return this.getTabs.length - 1;
+        }
+        if (current < 0)
+          return 0;
+        return current;
+      },
+      getTabs() {
+        return this.list;
+      },
+      scrollBarLeft() {
+        return Number(this.line3Dx) + Number(this.line3AddDx);
+      },
+      barWidthPx() {
+        return uni.upx2px(this.barWidth);
+      },
+      tabItemStyle() {
+        return (index) => {
+          let style = {
+            height: this.height + "rpx",
+            lineHeight: this.height + "rpx",
+            padding: `0 ${this.gutter / 2}rpx`,
+            color: this.tabsInfo.length > 0 ? this.tabsInfo[index] ? this.tabsInfo[index].color : this.activeColor : this.inactiveColor,
+            fontSize: this.fontSize + "rpx",
+            zIndex: this.zIndex + 2,
+            fontWeight: index == this.getCurrent && this.bold ? "bold" : "normal"
+          };
+          if (index == this.getCurrent) {
+            style = Object.assign(style, this.activeItemStyle);
+          }
+          return style;
+        };
+      },
+      tabBarStyle() {
+        let style = {
+          width: this.barWidthPx + "px",
+          height: this.barHeight + "rpx",
+          borderRadius: "100px",
+          backgroundColor: this.activeColor,
+          left: this.scrollBarLeft + "px"
+        };
+        return Object.assign(style, this.barStyle);
+      }
+    },
+    watch: {
+      current(n, o) {
+        this.change(n);
+        this.setFinishCurrent(n);
+      },
+      list() {
+        this.$nextTick(() => {
+          this.init();
+        });
+      }
+    },
+    mounted() {
+      this.init();
+    },
+    methods: {
+      async init() {
+        this.countPx();
+        await this.getTabsInfo();
+        this.countLine3Dx();
+        this.getQuery(() => {
+          this.setScrollViewToCenter();
+        });
+        this.colorGradientArr = color$1.colorGradient(this.inactiveColor, this.activeColor, this.colorStep);
+      },
+      getTabsInfo() {
+        return new Promise((resolve, reject) => {
+          let view = uni.createSelectorQuery().in(this);
+          for (let i = 0; i < this.list.length; i++) {
+            view.select("." + preId + i).boundingClientRect();
+          }
+          view.exec((res) => {
+            const arr = [];
+            for (let i = 0; i < res.length; i++) {
+              res[i].color = this.inactiveColor;
+              if (i == this.getCurrent)
+                res[i].color = this.activeColor;
+              arr.push(res[i]);
+            }
+            this.tabsInfo = arr;
+            resolve();
+          });
+        });
+      },
+      countLine3Dx() {
+        const tab = this.tabsInfo[this.animationFinishCurrent];
+        if (tab)
+          this.line3Dx = tab.left + tab.width / 2 - this.barWidthPx / 2 - this.tabsInfo[0].left;
+      },
+      countPx() {
+        this.sW = uni.upx2px(Number(this.swiperWidth));
+      },
+      emit(index) {
+        this.$emit("change", index);
+      },
+      change() {
+        this.setScrollViewToCenter();
+      },
+      getQuery(cb) {
+        try {
+          let view = uni.createSelectorQuery().in(this).select(".u-tabs");
+          view.fields(
+            {
+              size: true
+            },
+            (data) => {
+              if (data) {
+                this.componentsWidth = data.width;
+                if (cb && typeof cb === "function")
+                  cb(data);
+              } else {
+                this.getQuery(cb);
+              }
+            }
+          ).exec();
+        } catch (e) {
+          this.componentsWidth = windowWidth;
+        }
+      },
+      setScrollViewToCenter() {
+        let tab;
+        tab = this.tabsInfo[this.animationFinishCurrent];
+        if (tab) {
+          let tabCenter = tab.left + tab.width / 2;
+          let fatherWidth;
+          if (this.autoCenterMode === "window") {
+            fatherWidth = windowWidth;
+          } else {
+            fatherWidth = this.componentsWidth;
+          }
+          this.scrollLeft = tabCenter - fatherWidth / 2;
+        }
+      },
+      setDx(dx) {
+        let nextTabIndex = dx > 0 ? this.animationFinishCurrent + 1 : this.animationFinishCurrent - 1;
+        nextTabIndex = nextTabIndex <= 0 ? 0 : nextTabIndex;
+        nextTabIndex = nextTabIndex >= this.list.length ? this.list.length - 1 : nextTabIndex;
+        this.tabsInfo[nextTabIndex];
+        let nowTab = this.tabsInfo[this.animationFinishCurrent];
+        let nowTabX = nowTab.left + nowTab.width / 2;
+        let nextTab = this.tabsInfo[nextTabIndex];
+        let nextTabX = nextTab.left + nextTab.width / 2;
+        let distanceX = Math.abs(nextTabX - nowTabX);
+        this.line3AddDx = dx / this.sW * distanceX;
+        this.setTabColor(this.animationFinishCurrent, nextTabIndex, dx);
+      },
+      setTabColor(nowTabIndex, nextTabIndex, dx) {
+        let colorIndex = Math.abs(Math.ceil(dx / this.sW * 100));
+        let colorLength = this.colorGradientArr.length;
+        colorIndex = colorIndex >= colorLength ? colorLength - 1 : colorIndex <= 0 ? 0 : colorIndex;
+        this.tabsInfo[nextTabIndex].color = this.colorGradientArr[colorIndex];
+        this.tabsInfo[nowTabIndex].color = this.colorGradientArr[colorLength - 1 - colorIndex];
+      },
+      setFinishCurrent(current) {
+        this.tabsInfo.map((val, index) => {
+          if (current == index)
+            val.color = this.activeColor;
+          else
+            val.color = this.inactiveColor;
+          return val;
+        });
+        this.line3AddDx = 0;
+        this.animationFinishCurrent = current;
+        this.countLine3Dx();
+      }
+    }
+  };
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_badge = resolveEasycom(vue.resolveDynamicComponent("u-badge"), __easycom_0$4);
+    return vue.openBlock(), vue.createElementBlock("view", {
+      class: "u-tabs",
+      style: vue.normalizeStyle({
+        zIndex: $props.zIndex,
+        background: $props.bgColor
+      })
+    }, [
+      vue.createElementVNode("scroll-view", {
+        "scroll-x": "",
+        class: "u-scroll-view",
+        "scroll-left": $data.scrollLeft,
+        "scroll-with-animation": "",
+        style: vue.normalizeStyle({ zIndex: $props.zIndex + 1 })
+      }, [
+        vue.createElementVNode("view", {
+          class: vue.normalizeClass(["u-tabs-scroll-box", { "u-tabs-scorll-flex": !$props.isScroll }])
+        }, [
+          (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($options.getTabs, (item, index) => {
+            return vue.openBlock(), vue.createElementBlock("view", {
+              class: vue.normalizeClass(["u-tabs-item", [$data.preId + index]]),
+              style: vue.normalizeStyle([$options.tabItemStyle(index)]),
+              key: index,
+              onClick: ($event) => $options.emit(index)
+            }, [
+              vue.createVNode(_component_u_badge, {
+                count: item[$props.count] || item["count"] || 0,
+                offset: $props.offset,
+                size: "mini"
+              }, null, 8, ["count", "offset"]),
+              vue.createTextVNode(" " + vue.toDisplayString(item[$props.name] || item["name"]), 1)
+            ], 14, ["onClick"]);
+          }), 128)),
+          $props.showBar ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: "u-scroll-bar",
+            style: vue.normalizeStyle([$options.tabBarStyle])
+          }, null, 4)) : vue.createCommentVNode("v-if", true)
+        ], 2)
+      ], 12, ["scroll-left"])
+    ], 4);
+  }
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$l], ["__scopeId", "data-v-d226c2b0"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-tabs-swiper/u-tabs-swiper.vue"]]);
+  const _sfc_main$l = {
+    name: "u-line",
+    props: {
+      color: {
+        type: String,
+        default: "#e4e7ed"
+      },
+      length: {
+        type: String,
+        default: "100%"
+      },
+      direction: {
+        type: String,
+        default: "row"
+      },
+      hairLine: {
+        type: Boolean,
+        default: true
+      },
+      margin: {
+        type: String,
+        default: "0"
+      },
+      borderStyle: {
+        type: String,
+        default: "solid"
+      }
+    },
+    computed: {
+      lineStyle() {
+        let style = {};
+        style.margin = this.margin;
+        if (this.direction == "row") {
+          style.borderBottomWidth = "1px";
+          style.borderBottomStyle = this.borderStyle;
+          style.width = this.$u.addUnit(this.length);
+          if (this.hairLine)
+            style.transform = "scaleY(0.5)";
+        } else {
+          style.borderLeftWidth = "1px";
+          style.borderLeftStyle = this.borderStyle;
+          style.height = this.$u.addUnit(this.length);
+          if (this.hairLine)
+            style.transform = "scaleX(0.5)";
+        }
+        style.borderColor = this.color;
+        return style;
+      }
+    }
+  };
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", {
+      class: "u-line",
+      style: vue.normalizeStyle([$options.lineStyle])
+    }, null, 4);
+  }
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__scopeId", "data-v-3e1cc47b"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-line/u-line.vue"]]);
+  const _sfc_main$k = {
+    name: "u-loading",
+    props: {
+      mode: {
+        type: String,
+        default: "circle"
+      },
+      color: {
+        type: String,
+        default: "#c7c7c7"
+      },
+      size: {
+        type: [String, Number],
+        default: "34"
+      },
+      show: {
+        type: Boolean,
+        default: true
+      }
+    },
+    computed: {
+      cricleStyle() {
+        let style = {};
+        style.width = this.size + "rpx";
+        style.height = this.size + "rpx";
+        if (this.mode == "circle")
+          style.borderColor = `#e4e4e4 #e4e4e4 #e4e4e4 ${this.color ? this.color : "#c7c7c7"}`;
+        return style;
+      }
+    }
+  };
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+    return $props.show ? (vue.openBlock(), vue.createElementBlock("view", {
+      key: 0,
+      class: vue.normalizeClass(["u-loading", $props.mode == "circle" ? "u-loading-circle" : "u-loading-flower"]),
+      style: vue.normalizeStyle([$options.cricleStyle])
+    }, null, 6)) : vue.createCommentVNode("v-if", true);
+  }
+  const __easycom_1$3 = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__scopeId", "data-v-32db0ed8"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-loading/u-loading.vue"]]);
+  const _sfc_main$j = {
+    name: "u-loadmore",
+    emits: ["loadmore"],
+    props: {
+      bgColor: {
+        type: String,
+        default: "transparent"
+      },
+      icon: {
+        type: Boolean,
+        default: true
+      },
+      fontSize: {
+        type: String,
+        default: "28"
+      },
+      color: {
+        type: String,
+        default: "#606266"
+      },
+      status: {
+        type: String,
+        default: "loadmore"
+      },
+      iconType: {
+        type: String,
+        default: "circle"
+      },
+      loadText: {
+        type: Object,
+        default() {
+          return {
+            loadmore: "\u52A0\u8F7D\u66F4\u591A",
+            loading: "\u6B63\u5728\u52A0\u8F7D...",
+            nomore: "\u6CA1\u6709\u66F4\u591A\u4E86"
+          };
+        }
+      },
+      isDot: {
+        type: Boolean,
+        default: false
+      },
+      iconColor: {
+        type: String,
+        default: "#b7b7b7"
+      },
+      marginTop: {
+        type: [String, Number],
+        default: 0
+      },
+      marginBottom: {
+        type: [String, Number],
+        default: 0
+      },
+      height: {
+        type: [String, Number],
+        default: "auto"
+      }
+    },
+    data() {
+      return {
+        dotText: "\u25CF"
+      };
+    },
+    computed: {
+      loadTextStyle() {
+        return {
+          color: this.color,
+          fontSize: this.fontSize + "rpx",
+          position: "relative",
+          zIndex: 1,
+          backgroundColor: this.bgColor
+        };
+      },
+      cricleStyle() {
+        return {
+          borderColor: `#e5e5e5 #e5e5e5 #e5e5e5 ${this.circleColor}`
+        };
+      },
+      flowerStyle() {
+        return {};
+      },
+      showText() {
+        let text = "";
+        if (this.status == "loadmore")
+          text = this.loadText.loadmore;
+        else if (this.status == "loading")
+          text = this.loadText.loading;
+        else if (this.status == "nomore" && this.isDot)
+          text = this.dotText;
+        else
+          text = this.loadText.nomore;
+        return text;
+      }
+    },
+    methods: {
+      loadMore() {
+        if (this.status == "loadmore")
+          this.$emit("loadmore");
+      }
+    }
+  };
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_0$2);
+    const _component_u_loading = resolveEasycom(vue.resolveDynamicComponent("u-loading"), __easycom_1$3);
+    return vue.openBlock(), vue.createElementBlock("view", {
+      class: "u-load-more-wrap",
+      style: vue.normalizeStyle({
+        backgroundColor: $props.bgColor,
+        marginBottom: $props.marginBottom + "rpx",
+        marginTop: $props.marginTop + "rpx",
+        height: _ctx.$u.addUnit($props.height)
+      })
+    }, [
+      vue.createVNode(_component_u_line, {
+        color: "#d4d4d4",
+        length: "50"
+      }),
+      vue.createCommentVNode(" \u52A0\u8F7D\u4E2D\u548C\u6CA1\u6709\u66F4\u591A\u7684\u72B6\u6001\u624D\u663E\u793A\u4E24\u8FB9\u7684\u6A2A\u7EBF "),
+      vue.createElementVNode("view", {
+        class: vue.normalizeClass([$props.status == "loadmore" || $props.status == "nomore" ? "u-more" : "", "u-load-more-inner"])
+      }, [
+        vue.createElementVNode("view", { class: "u-loadmore-icon-wrap" }, [
+          vue.createVNode(_component_u_loading, {
+            class: "u-loadmore-icon",
+            color: $props.iconColor,
+            mode: $props.iconType == "circle" ? "circle" : "flower",
+            show: $props.status == "loading" && $props.icon
+          }, null, 8, ["color", "mode", "show"])
+        ]),
+        vue.createCommentVNode(" \u5982\u679C\u6CA1\u6709\u66F4\u591A\u7684\u72B6\u6001\u4E0B\uFF0C\u663E\u793A\u5185\u5BB9\u4E3Adot\uFF08\u7C97\u70B9\uFF09\uFF0C\u52A0\u8F7D\u7279\u5B9A\u6837\u5F0F "),
+        vue.createElementVNode("view", {
+          class: vue.normalizeClass(["u-line-1", [$props.status == "nomore" && $props.isDot == true ? "u-dot-text" : "u-more-text"]]),
+          style: vue.normalizeStyle([$options.loadTextStyle]),
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.loadMore && $options.loadMore(...args))
+        }, vue.toDisplayString($options.showText), 7)
+      ], 2),
+      vue.createVNode(_component_u_line, {
+        color: "#d4d4d4",
+        length: "50"
+      })
+    ], 4);
+  }
+  const __easycom_1$2 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__scopeId", "data-v-e9906cfb"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore.vue"]]);
+  const _sfc_main$i = {
+    name: "u-icon",
+    emits: ["click", "touchstart"],
+    props: {
+      name: {
+        type: String,
+        default: ""
+      },
+      color: {
+        type: String,
+        default: ""
+      },
+      size: {
+        type: [Number, String],
+        default: "inherit"
+      },
+      bold: {
+        type: Boolean,
+        default: false
+      },
+      index: {
+        type: [Number, String],
+        default: ""
+      },
+      hoverClass: {
+        type: String,
+        default: ""
+      },
+      customPrefix: {
+        type: String,
+        default: "uicon"
+      },
+      label: {
+        type: [String, Number],
+        default: ""
+      },
+      labelPos: {
+        type: String,
+        default: "right"
+      },
+      labelSize: {
+        type: [String, Number],
+        default: "28"
+      },
+      labelColor: {
+        type: String,
+        default: "#606266"
+      },
+      marginLeft: {
+        type: [String, Number],
+        default: "6"
+      },
+      marginTop: {
+        type: [String, Number],
+        default: "6"
+      },
+      marginRight: {
+        type: [String, Number],
+        default: "6"
+      },
+      marginBottom: {
+        type: [String, Number],
+        default: "6"
+      },
+      imgMode: {
+        type: String,
+        default: "widthFix"
+      },
+      customStyle: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      width: {
+        type: [String, Number],
+        default: ""
+      },
+      height: {
+        type: [String, Number],
+        default: ""
+      },
+      top: {
+        type: [String, Number],
+        default: 0
+      },
+      showDecimalIcon: {
+        type: Boolean,
+        default: false
+      },
+      inactiveColor: {
+        type: String,
+        default: "#ececec"
+      },
+      percent: {
+        type: [Number, String],
+        default: "50"
+      }
+    },
+    computed: {
+      customClass() {
+        let classes = [];
+        let { customPrefix, name } = this;
+        let index = name.indexOf("-icon-");
+        if (index > -1) {
+          customPrefix = name.substring(0, index + 5);
+          classes.push(name);
+        } else {
+          classes.push(`${customPrefix}-${name}`);
+        }
+        if (customPrefix === "uicon") {
+          classes.push("u-iconfont");
+        } else {
+          classes.push(customPrefix);
+        }
+        if (this.showDecimalIcon && this.inactiveColor && this.$u.config.type.includes(this.inactiveColor)) {
+          classes.push("u-icon__icon--" + this.inactiveColor);
+        } else if (this.color && this.$u.config.type.includes(this.color))
+          classes.push("u-icon__icon--" + this.color);
+        return classes;
+      },
+      iconStyle() {
+        let style = {};
+        style = {
+          fontSize: this.size == "inherit" ? "inherit" : this.$u.addUnit(this.size),
+          fontWeight: this.bold ? "bold" : "normal",
+          top: this.$u.addUnit(this.top)
+        };
+        if (this.showDecimalIcon && this.inactiveColor && !this.$u.config.type.includes(this.inactiveColor)) {
+          style.color = this.inactiveColor;
+        } else if (this.color && !this.$u.config.type.includes(this.color))
+          style.color = this.color;
+        return style;
+      },
+      isImg() {
+        return this.name.indexOf("/") !== -1;
+      },
+      imgStyle() {
+        let style = {};
+        style.width = this.width ? this.$u.addUnit(this.width) : this.$u.addUnit(this.size);
+        style.height = this.height ? this.$u.addUnit(this.height) : this.$u.addUnit(this.size);
+        return style;
+      },
+      decimalIconStyle() {
+        let style = {};
+        style = {
+          fontSize: this.size == "inherit" ? "inherit" : this.$u.addUnit(this.size),
+          fontWeight: this.bold ? "bold" : "normal",
+          top: this.$u.addUnit(this.top),
+          width: this.percent + "%"
+        };
+        if (this.color && !this.$u.config.type.includes(this.color))
+          style.color = this.color;
+        return style;
+      },
+      decimalIconClass() {
+        let classes = [];
+        classes.push(this.customPrefix + "-" + this.name);
+        if (this.customPrefix == "uicon") {
+          classes.push("u-iconfont");
+        } else {
+          classes.push(this.customPrefix);
+        }
+        if (this.color && this.$u.config.type.includes(this.color))
+          classes.push("u-icon__icon--" + this.color);
+        else
+          classes.push("u-icon__icon--primary");
+        return classes;
+      }
+    },
+    methods: {
+      click() {
+        this.$emit("click", this.index);
+      },
+      touchstart() {
+        this.$emit("touchstart", this.index);
+      }
+    }
+  };
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", {
+      style: vue.normalizeStyle([$props.customStyle]),
+      class: vue.normalizeClass(["u-icon", ["u-icon--" + $props.labelPos]]),
+      onClick: _cache[1] || (_cache[1] = (...args) => $options.click && $options.click(...args))
+    }, [
+      $options.isImg ? (vue.openBlock(), vue.createElementBlock("image", {
+        key: 0,
+        class: "u-icon__img",
+        src: $props.name,
+        mode: $props.imgMode,
+        style: vue.normalizeStyle([$options.imgStyle])
+      }, null, 12, ["src", "mode"])) : (vue.openBlock(), vue.createElementBlock("view", {
+        key: 1,
+        class: vue.normalizeClass(["u-icon__icon", $options.customClass]),
+        style: vue.normalizeStyle([$options.iconStyle]),
+        "hover-class": $props.hoverClass,
+        onTouchstart: _cache[0] || (_cache[0] = (...args) => $options.touchstart && $options.touchstart(...args))
+      }, [
+        $props.showDecimalIcon ? (vue.openBlock(), vue.createElementBlock("text", {
+          key: 0,
+          style: vue.normalizeStyle([$options.decimalIconStyle]),
+          class: vue.normalizeClass([$options.decimalIconClass, "u-icon__decimal"]),
+          "hover-class": $props.hoverClass
+        }, null, 14, ["hover-class"])) : vue.createCommentVNode("v-if", true)
+      ], 46, ["hover-class"])),
+      vue.createCommentVNode(' \u8FD9\u91CC\u8FDB\u884C\u7A7A\u5B57\u7B26\u4E32\u5224\u65AD\uFF0C\u5982\u679C\u4EC5\u4EC5\u662Fv-if="label"\uFF0C\u53EF\u80FD\u4F1A\u51FA\u73B0\u4F20\u90120\u7684\u65F6\u5019\uFF0C\u7ED3\u679C\u4E5F\u65E0\u6CD5\u663E\u793A\uFF0C\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F\u4E0D\u4F20\u503C\u9ED8\u8BA4\u4E3Anull\uFF0C\u6545\u9700\u8981\u589E\u52A0null\u7684\u5224\u65AD '),
+      $props.label !== "" && $props.label !== null ? (vue.openBlock(), vue.createElementBlock("text", {
+        key: 2,
+        class: "u-icon__label",
+        style: vue.normalizeStyle({
+          color: $props.labelColor,
+          fontSize: _ctx.$u.addUnit($props.labelSize),
+          marginLeft: $props.labelPos == "right" ? _ctx.$u.addUnit($props.marginLeft) : 0,
+          marginTop: $props.labelPos == "bottom" ? _ctx.$u.addUnit($props.marginTop) : 0,
+          marginRight: $props.labelPos == "left" ? _ctx.$u.addUnit($props.marginRight) : 0,
+          marginBottom: $props.labelPos == "top" ? _ctx.$u.addUnit($props.marginBottom) : 0
+        })
+      }, vue.toDisplayString($props.label), 5)) : vue.createCommentVNode("v-if", true)
+    ], 6);
+  }
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-5de67484"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-icon/u-icon.vue"]]);
+  let base64Avatar = "data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjREMEQwRkY0RjgwNDExRUE5OTY2RDgxODY3NkJFODMxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjREMEQwRkY1RjgwNDExRUE5OTY2RDgxODY3NkJFODMxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NEQwRDBGRjJGODA0MTFFQTk5NjZEODE4Njc2QkU4MzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NEQwRDBGRjNGODA0MTFFQTk5NjZEODE4Njc2QkU4MzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCADIAMgDAREAAhEBAxEB/8QAcQABAQEAAwEBAAAAAAAAAAAAAAUEAQMGAgcBAQAAAAAAAAAAAAAAAAAAAAAQAAIBAwICBgkDBQAAAAAAAAABAhEDBCEFMVFBYXGREiKBscHRMkJSEyOh4XLxYjNDFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHbHFyZ/Dam+yLA+Z2L0Pjtyj2poD4AAAAAAAAAAAAAAAAAAAAAAAAKWFs9y6lcvvwQeqj8z9wFaziY1n/HbUX9XF97A7QAGXI23EvJ1goyfzR0YEfN269jeZ+a03pNe0DIAAAAAAAAAAAAAAAAAAAACvtO3RcVkXlWutuL9YFYAAAAAOJRjKLjJVi9GmB5/csH/mu1h/in8PU+QGMAAAAAAAAAAAAAAAAAAaMDG/6MmMH8C80+xAelSSVFolwQAAAAAAAHVlWI37ErUulaPk+hgeYnCUJuElSUXRrrQHAAAAAAAAAAAAAAAAABa2Oz4bM7r4zdF2ICmAAAAAAAAAg7zZ8GX41wuJP0rRgYAAAAAAAAAAAAAAAAAD0m2R8ODaXU33tsDSAAAAAAAAAlb9HyWZcnJd9PcBHAAAAAAAAAAAAAAAAAPS7e64Vn+KA0AAAAAAAAAJm+v8Ftf3ewCKAAAAAAAAAAAAAAAAAX9muqeGo9NttP06+0DcAAAAAAAAAjb7dTu2ra+VOT9P8AQCWAAAAAAAAAAAAAAAAAUNmyPt5Ltv4bui/kuAF0AAAAAAADiUlGLlJ0SVW+oDzOXfd/Ind6JPRdS0QHSAAAAAAAAAAAAAAAAAE2nVaNcGB6Lbs6OTao9LsF51z60BrAAAAAABJ3jOVHjW3r/sa9QEgAAAAAAAAAAAAAAAAAAAPu1duWriuW34ZR4MC9hbnZyEoy8l36XwfYBsAAADaSq9EuLAlZ+7xSdrGdW9Hc5dgEdtt1erfFgAAAAAAAAAAAAAAAAADVjbblX6NR8MH80tEBRs7HYivyzlN8lovaBPzduvY0m6eK10TXtAyAarO55lpJK54orolr+4GqO/Xaea1FvqbXvA+Z77kNeW3GPbV+4DJfzcm/pcm3H6Vou5AdAFLC2ed2Pjv1txa8sV8T6wOL+yZEKu1JXFy4MDBOE4ScZxcZLinoB8gAAAAAAAAAAAB242LeyJ+C3GvN9C7QLmJtePYpKS+5c+p8F2IDYAANJqj1T4oCfk7Nj3G5Wn9qXJax7gJ93Z82D8sVNc4v30A6Xg5i42Z+iLfqARwcyT0sz9MWvWBps7LlTf5Grce9/oBTxdtxseklHxT+uWr9AGoAB138ezfj4bsFJdD6V2MCPm7RdtJzs1uW1xXzL3gTgAAAAAAAAADRhYc8q74I6RWs5ckB6GxYtWLat21SK731sDsAAAAAAAAAAAAAAAASt021NO/YjrxuQXT1oCOAAAAAAABzGLlJRSq26JAelwsWONYjbXxcZvmwO8AAAAAAAAAAAAAAAAAAef3TEWPkVivx3NY9T6UBiAAAAAABo2+VmGXblddIJ8eivRUD0oAAAAAAAAAAAAAAAAAAAYt4tKeFKVNYNSXfRgefAAAAAAAAr7VuSSWPedKaW5v1MCsAAAAAAAAAAAAAAAAAAIe6bj96Ts2n+JPzSXzP3ATgAAAAAAAAFbbt1UUrOQ9FpC4/UwK6aaqtU+DAAAAAAAAAAAAAAA4lKMIuUmoxWrb4ARNx3R3q2rLpa4Sl0y/YCcAAAAAAAAAAANmFud7G8r89r6X0dgFvGzLGRGtuWvTF6NAdwAAAAAAAAAAAy5W442PVN+K59EePp5ARMvOv5MvO6QXCC4AZwAAAAAAAAAAAAAcxlKLUotprg1owN+PvORborq+7Hnwl3gUbO74VzRydt8pKn68ANcJwmqwkpLmnUDkAAAAfNy9atqtyagut0AxXt5xIV8Fbj6lRd7Am5G65V6qUvtwfyx94GMAAAAAAAAAAAAAAAAAAAOU2nVOj5gdsc3LiqRvTpyqwOxbnnrhdfpSfrQB7pnv/AGvuS9gHXPMy5/Fem1yq0v0A6W29XqwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z";
+  const _sfc_main$h = {
+    name: "u-avatar",
+    emits: ["click"],
+    props: {
+      bgColor: {
+        type: String,
+        default: "transparent"
+      },
+      src: {
+        type: String,
+        default: ""
+      },
+      size: {
+        type: [String, Number],
+        default: "default"
+      },
+      mode: {
+        type: String,
+        default: "circle"
+      },
+      text: {
+        type: String,
+        default: ""
+      },
+      imgMode: {
+        type: String,
+        default: "aspectFill"
+      },
+      index: {
+        type: [String, Number],
+        default: ""
+      },
+      sexIcon: {
+        type: String,
+        default: "man"
+      },
+      levelIcon: {
+        type: String,
+        default: "level"
+      },
+      levelBgColor: {
+        type: String,
+        default: ""
+      },
+      sexBgColor: {
+        type: String,
+        default: ""
+      },
+      showSex: {
+        type: Boolean,
+        default: false
+      },
+      showLevel: {
+        type: Boolean,
+        default: false
+      }
+    },
+    data() {
+      return {
+        error: false,
+        avatar: this.src ? this.src : base64Avatar
+      };
+    },
+    watch: {
+      src(n) {
+        if (!n) {
+          this.avatar = base64Avatar;
+          this.error = true;
+        } else {
+          this.avatar = n;
+          this.error = false;
+        }
+      }
+    },
+    computed: {
+      wrapStyle() {
+        let style = {};
+        style.height = this.size == "large" ? "120rpx" : this.size == "default" ? "90rpx" : this.size == "mini" ? "70rpx" : this.size + "rpx";
+        style.width = style.height;
+        style.flex = `0 0 ${style.height}`;
+        style.backgroundColor = this.bgColor;
+        style.borderRadius = this.mode == "circle" ? "500px" : "5px";
+        if (this.text)
+          style.padding = `0 6rpx`;
+        return style;
+      },
+      imgStyle() {
+        let style = {};
+        style.borderRadius = this.mode == "circle" ? "500px" : "5px";
+        return style;
+      },
+      uText() {
+        return String(this.text)[0];
+      },
+      uSexStyle() {
+        let style = {};
+        if (this.sexBgColor)
+          style.backgroundColor = this.sexBgColor;
+        return style;
+      },
+      uLevelStyle() {
+        let style = {};
+        if (this.levelBgColor)
+          style.backgroundColor = this.levelBgColor;
+        return style;
+      }
+    },
+    methods: {
+      loadError() {
+        this.error = true;
+        this.avatar = base64Avatar;
+      },
+      click() {
+        this.$emit("click", this.index);
+      }
+    }
+  };
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_icon = resolveEasycom(vue.resolveDynamicComponent("u-icon"), __easycom_1$1);
+    return vue.openBlock(), vue.createElementBlock("view", {
+      class: "u-avatar",
+      style: vue.normalizeStyle([$options.wrapStyle]),
+      onClick: _cache[1] || (_cache[1] = (...args) => $options.click && $options.click(...args))
+    }, [
+      !$options.uText && $data.avatar ? (vue.openBlock(), vue.createElementBlock("image", {
+        key: 0,
+        onError: _cache[0] || (_cache[0] = (...args) => $options.loadError && $options.loadError(...args)),
+        style: vue.normalizeStyle([$options.imgStyle]),
+        class: "u-avatar__img",
+        src: $data.avatar,
+        mode: $props.imgMode
+      }, null, 44, ["src", "mode"])) : $options.uText ? (vue.openBlock(), vue.createElementBlock("text", {
+        key: 1,
+        class: "u-line-1",
+        style: {
+          fontSize: "38rpx"
+        }
+      }, vue.toDisplayString($options.uText), 1)) : vue.renderSlot(_ctx.$slots, "default", { key: 2 }, void 0, true),
+      $props.showSex ? (vue.openBlock(), vue.createElementBlock("view", {
+        key: 3,
+        class: vue.normalizeClass(["u-avatar__sex", ["u-avatar__sex--" + $props.sexIcon]]),
+        style: vue.normalizeStyle([$options.uSexStyle])
+      }, [
+        vue.createVNode(_component_u_icon, {
+          name: $props.sexIcon,
+          size: "20"
+        }, null, 8, ["name"])
+      ], 6)) : vue.createCommentVNode("v-if", true),
+      $props.showLevel ? (vue.openBlock(), vue.createElementBlock("view", {
+        key: 4,
+        class: "u-avatar__level",
+        style: vue.normalizeStyle([$options.uLevelStyle])
+      }, [
+        vue.createVNode(_component_u_icon, {
+          name: $props.levelIcon,
+          size: "20"
+        }, null, 8, ["name"])
+      ], 4)) : vue.createCommentVNode("v-if", true)
+    ], 4);
+  }
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__scopeId", "data-v-49012a02"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-avatar/u-avatar.vue"]]);
+  const _sfc_main$g = {
+    name: "post",
+    props: {
+      postObj: {
+        type: Object,
+        default: function() {
+          return {};
+        }
+      }
+    },
+    data() {
+      return {};
+    },
+    methods: {
+      follow() {
+        uni.showToast({
+          title: "\u5DF2\u5173\u6CE8"
+        });
+      }
+    }
+  };
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_avatar = resolveEasycom(vue.resolveDynamicComponent("u-avatar"), __easycom_0$1);
+    const _component_u_icon = resolveEasycom(vue.resolveDynamicComponent("u-icon"), __easycom_1$1);
+    return vue.openBlock(), vue.createElementBlock("view", { class: "post" }, [
+      vue.createElementVNode("view", { class: "user-info" }, [
+        vue.createVNode(_component_u_avatar, {
+          src: $props.postObj.avaSrc,
+          class: "avatar"
+        }, null, 8, ["src"]),
+        vue.createElementVNode("view", { class: "middle-content" }, [
+          vue.createElementVNode("view", { class: "name" }, vue.toDisplayString($props.postObj.name), 1),
+          vue.createTextVNode(),
+          vue.createElementVNode("view", { class: "time" }, vue.toDisplayString($props.postObj.time), 1)
+        ]),
+        vue.createElementVNode("button", {
+          class: "follow-btn",
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.follow && $options.follow(...args))
+        }, "\u5173\u6CE8")
+      ]),
+      vue.createElementVNode("view", { class: "post-content" }, [
+        vue.createElementVNode("view", { class: "post-text" }, vue.toDisplayString($props.postObj.text), 1),
+        vue.createCommentVNode(" \u6709\u56FE\u7247\u624D\u663E\u793A\uFF0C\u6CA1\u6709\u4E0D\u663E\u793A "),
+        vue.withDirectives(vue.createElementVNode("image", {
+          src: $props.postObj.imgSrc,
+          class: "post-img",
+          mode: "widthFix"
+        }, null, 8, ["src"]), [
+          [vue.vShow, $props.postObj.imgSrc]
+        ])
+      ]),
+      vue.createElementVNode("view", { class: "btn-group" }, [
+        vue.createElementVNode("view", { class: "up" }, [
+          vue.createVNode(_component_u_icon, { name: "thumb-up" }),
+          vue.createTextVNode(" " + vue.toDisplayString($props.postObj.thumbup), 1)
+        ]),
+        vue.createElementVNode("view", { class: "down" }, [
+          vue.createVNode(_component_u_icon, { name: "thumb-down" }),
+          vue.createTextVNode(" " + vue.toDisplayString($props.postObj.thumbdown), 1)
+        ]),
+        vue.createElementVNode("view", { class: "comment" }, [
+          vue.createVNode(_component_u_icon, { name: "chat" }),
+          vue.createTextVNode(" \u8BC4\u8BBA ")
+        ]),
+        vue.createElementVNode("view", { class: "share" }, [
+          vue.createVNode(_component_u_icon, { name: "zhuanfa" }),
+          vue.createTextVNode(" \u5206\u4EAB ")
+        ])
+      ])
+    ]);
+  }
+  const Post = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__scopeId", "data-v-2f8ba2b3"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/post/post.vue"]]);
+  const _sfc_main$f = {
+    name: "post-list",
+    components: {
+      Post
+    },
+    props: {
+      postList: {
+        type: Array,
+        default: []
+      }
+    },
+    data() {
+      return {};
+    }
+  };
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_Post = vue.resolveComponent("Post");
+    return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
+      vue.createCommentVNode(" \u4F20\u7ED9\u5B50\u7EC4\u4EF6\u4E00\u6574\u4E2A\u5217\u8868 "),
+      vue.createCommentVNode(" \u7ED9\u5B50\u7EC4\u4EF6\u4F20\u9012postObj\u5BF9\u8C61 "),
+      (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($props.postList, (post, idx) => {
+        return vue.openBlock(), vue.createElementBlock("view", {
+          class: "post",
+          key: "idx"
+        }, [
+          vue.createVNode(_component_Post, { postObj: post }, null, 8, ["postObj"])
+        ]);
+      }), 128))
+    ]);
+  }
+  const PostList = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__scopeId", "data-v-6a24639b"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/post-list/post-list.vue"]]);
+  const a1 = "/static/images/a1.jpg";
+  const a2 = "/static/images/a2.jpg";
+  const p3 = "/static/images/img3.jpg";
+  const p4 = "/static/images/img4.jpg";
+  const _sfc_main$e = {
+    components: {
+      PostList,
+      Post
+    },
+    data() {
+      return {
+        contentTop: uni.getStorageSync("menuInfo").contentTop,
+        triggered: false,
+        list: [
+          { name: "\u5708\u5B50" },
+          { name: "\u70ED\u70B9" },
+          { name: "\u6D3B\u52A8" },
+          { name: "\u516C\u544A" },
+          { name: "\u8BDD\u9898" }
+        ],
+        dataSrcList: [
+          {
+            avaSrc: a1,
+            name: "\u8DF3\u8DF3\u864E",
+            time: "1\u670814\u65E5 \u4E0A\u534812:00",
+            text: "Lorem ipsum dolor ipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            imgSrc: "",
+            thumbup: 2,
+            thumbdown: 1
+          },
+          {
+            avaSrc: a2,
+            name: "\u8F9B\u5FB7\u745E\u62C9",
+            time: "1\u670811\u65E5 \u4E0A\u53489:20",
+            text: "\u6674\u6717\u7684\u4E00\u5929:)",
+            imgSrc: p3,
+            thumbup: 1,
+            thumbdown: 0
+          },
+          {
+            avaSrc: a1,
+            name: "\u8DF3\u8DF3\u864E",
+            time: "1\u670810\u65E5 \u4E0A\u53487:20",
+            text: "\u6DF1\u591C\u6536\u5DE5",
+            imgSrc: p4,
+            thumbup: 12,
+            thumbdown: 0
+          },
+          {
+            avaSrc: "https://images.unsplash.com/profile-1654780721545-f705790401b8image?dpr=2&auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff",
+            name: "RIck",
+            time: "12\u67081\u65E5 \u4E0B\u53486:50",
+            text: "\u5403\u4E0B\u5348\u8336\u5566\uFF01~",
+            imgSrc: "https://images.unsplash.com/photo-1673868077539-9c3120f78420?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80",
+            thumbup: 35,
+            thumbdown: 1
+          }
+        ],
+        postList: [],
+        current: 0,
+        swiperCurrent: 0,
+        dx: 0,
+        loadStatus: "loadmore",
+        bold: true,
+        showBar: true,
+        isScroll: false
+      };
+    },
+    methods: {
+      getData() {
+        formatAppLog("log", "at pages/home/home.vue:126", "\u83B7\u53D6\u6570\u636E");
+        for (let i = 0; i < 4; i++) {
+          this.postList.push(this.dataSrcList[i]);
+        }
+        this.loadStatus = "loadmore";
+      },
+      tabsChange(index) {
+        this.current = index;
+        this.swiperCurrent = index;
+      },
+      transition(e) {
+        let dx = e.detail.dx;
+        this.$refs.uTabs.setDx(dx);
+      },
+      animationfinish(e) {
+        let current = e.detail.current;
+        this.$refs.uTabs.setFinishCurrent(current);
+        this.swiperCurrent = current;
+        this.current = current;
+      },
+      reachBottom() {
+        this.loadStatus = "loading";
+        setTimeout(() => {
+          this.getData();
+        }, 1500);
+      },
+      onPulling(e) {
+        formatAppLog("log", "at pages/home/home.vue:158", "onpulling\u6B63\u5728\u4E0B\u62C9", e);
+        this.triggered = true;
+      },
+      onRefresh() {
+        if (this._freshing)
+          return;
+        this._freshing = true;
+        setTimeout(() => {
+          this.triggered = false;
+          this._freshing = false;
+          this.postList = this.postList.sort(function() {
+            return 0.5 - Math.random();
+          });
+        }, 1500);
+      },
+      onRestore() {
+        this.triggered = "restore";
+        formatAppLog("error", "at pages/home/home.vue:175", "onRestore");
+      },
+      onAbort() {
+        formatAppLog("error", "at pages/home/home.vue:178", "onAbort");
+      }
+    },
+    onNavigationBarButtonTap(e) {
+      formatAppLog("log", "at pages/home/home.vue:183", "\u65B0\u589E");
+    },
+    onNavigationBarSearchInputClicked() {
+      uni.navigateTo({
+        url: "/pages/home/search-detail/search-detail"
+      });
+    },
+    onLoad() {
+      this._freshing = false;
+      this.getData();
+    },
+    onPullDownRefresh() {
+      formatAppLog("log", "at pages/home/home.vue:196", "refresh");
+      setTimeout(function() {
+        uni.stopPullDownRefresh();
+      }, 500);
+    }
+  };
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_tabs_swiper = resolveEasycom(vue.resolveDynamicComponent("u-tabs-swiper"), __easycom_0$3);
+    const _component_PostList = vue.resolveComponent("PostList");
+    const _component_u_loadmore = resolveEasycom(vue.resolveDynamicComponent("u-loadmore"), __easycom_1$2);
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("view", { class: "wrap" }, [
+        vue.createElementVNode("view", { class: "u-tabs-box" }, [
+          vue.createVNode(_component_u_tabs_swiper, {
+            activeColor: "#f29100",
+            ref: "uTabs",
+            list: $data.list,
+            current: $data.current,
+            onChange: $options.tabsChange,
+            "is-scroll": false
+          }, null, 8, ["list", "current", "onChange"])
+        ]),
+        vue.createElementVNode("swiper", {
+          class: "swiper-box",
+          current: $data.swiperCurrent,
+          onTransition: _cache[5] || (_cache[5] = (...args) => $options.transition && $options.transition(...args)),
+          onAnimationfinish: _cache[6] || (_cache[6] = (...args) => $options.animationfinish && $options.animationfinish(...args))
+        }, [
+          vue.createElementVNode("swiper-item", { class: "swiper-item" }, [
+            vue.createElementVNode("scroll-view", {
+              "scroll-y": "",
+              style: { "height": "100%", "width": "100%", "background-color": "#f2f2f2" },
+              "refresher-enabled": "true",
+              "refresher-triggered": $data.triggered,
+              "refresher-threshold": 100,
+              "refresher-background": "#f2f2f2",
+              onRefresherpulling: _cache[0] || (_cache[0] = (...args) => $options.onPulling && $options.onPulling(...args)),
+              onRefresherrefresh: _cache[1] || (_cache[1] = (...args) => $options.onRefresh && $options.onRefresh(...args)),
+              onRefresherrestore: _cache[2] || (_cache[2] = (...args) => $options.onRestore && $options.onRestore(...args)),
+              onRefresherabort: _cache[3] || (_cache[3] = (...args) => $options.onAbort && $options.onAbort(...args)),
+              onScrolltolower: _cache[4] || (_cache[4] = (...args) => $options.reachBottom && $options.reachBottom(...args))
+            }, [
+              vue.createElementVNode("view", { class: "page-box" }, [
+                vue.createVNode(_component_PostList, { postList: $data.postList }, null, 8, ["postList"]),
+                vue.createVNode(_component_u_loadmore, {
+                  status: $data.loadStatus,
+                  bgColor: "#f2f2f2"
+                }, null, 8, ["status"])
+              ])
+            ], 40, ["refresher-triggered"])
+          ])
+        ], 40, ["current"])
+      ])
+    ]);
+  }
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-07e72d3c"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/home/home.vue"]]);
+  const _sfc_main$d = {
+    name: "navbar",
+    onShow() {
+      formatAppLog("log", "at components/navbar/navbar.vue:12", "\u83B7\u5F97\u7684paddingR:", this.paddingRight);
+    },
+    data() {
+      return {
+        windowHeight: uni.getStorageSync("menuInfo").windowHeight,
+        navBarHeight: "44px",
+        statusBarHeight: uni.getStorageSync("menuInfo").statusBarHeight,
+        menuHeight: uni.getStorageSync("menuInfo").menuHeight,
+        menuWidth: uni.getStorageSync("menuInfo").menuWidth,
+        menuRight: uni.getStorageSync("menuInfo").menuRight,
+        contentTop: uni.getStorageSync("menuInfo").contentTop,
+        paddingRight: uni.getStorageSync("menuInfo").paddingRight
+      };
+    }
+  };
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", { class: "bars" }, [
+      vue.createElementVNode("view", {
+        class: "status-bar",
+        style: vue.normalizeStyle({ height: $data.statusBarHeight })
+      }, null, 4),
+      vue.createElementVNode("view", {
+        class: "nav-bar",
+        style: vue.normalizeStyle({ height: $data.navBarHeight, paddingRight: $data.paddingRight })
+      }, null, 4)
+    ]);
+  }
+  const NavBar = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-eaf4c2e5"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/navbar/navbar.vue"]]);
+  const _sfc_main$c = {
+    components: {
+      NavBar
+    },
+    data() {
+      return {
+        contentTop: uni.getStorageSync("menuInfo").contentTop
+      };
+    },
+    onPullDownRefresh() {
+      formatAppLog("log", "at pages/story/story.vue:23", "refresh");
+      setTimeout(function() {
+        uni.stopPullDownRefresh();
+      }, 500);
+    },
+    onPullDownRefresh() {
+      formatAppLog("log", "at pages/story/story.vue:29", "refresh");
+    },
+    methods: {}
+  };
+  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", { class: "container" });
+  }
+  const PagesStoryStory = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__scopeId", "data-v-fd6d2232"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/story/story.vue"]]);
+  const _sfc_main$b = {
+    components: {
+      NavBar
+    },
+    data() {
+      return {};
+    },
+    methods: {}
+  };
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", null, "\u641C\u7D22\u7ED3\u679C...");
+  }
+  const PagesHomeSearchDetailSearchDetail = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/home/search-detail/search-detail.vue"]]);
+  const _sfc_main$a = {
+    components: { PostList },
+    data() {
+      return {
+        list: [
+          { name: "\u5708\u5B50" },
+          { name: "\u70ED\u70B9" },
+          { name: "\u6D3B\u52A8" },
+          { name: "\u516C\u544A" },
+          { name: "\u8BDD\u9898" }
+        ],
+        current: 0,
+        swiperCurrent: 0,
+        dx: 0
+      };
+    },
+    onPullDownRefresh() {
+      formatAppLog("log", "at pages/message/message.vue:54", "refresh");
+      setTimeout(function() {
+        uni.stopPullDownRefresh();
+      }, 500);
+    },
+    methods: {
+      transition(e) {
+        let dx = e.detail.dx;
+        this.$refs.uTabs.setDx(dx);
+      },
+      animationfinish(e) {
+        let current = e.detail.current;
+        this.$refs.uTabs.setFinishCurrent(current);
+        this.swiperCurrent = current;
+        this.current = current;
+      },
+      reachBottom() {
+        formatAppLog("log", "at pages/message/message.vue:72", "\u5230\u5E95\u4E86");
+      },
+      change(index) {
+        this.current = index;
+        this.swiperCurrent = index;
+      }
+    }
+  };
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_tabs_swiper = resolveEasycom(vue.resolveDynamicComponent("u-tabs-swiper"), __easycom_0$3);
+    const _component_PostList = vue.resolveComponent("PostList");
+    const _component_u_loadmore = resolveEasycom(vue.resolveDynamicComponent("u-loadmore"), __easycom_1$2);
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("view", { class: "wrap" }, [
+        vue.createElementVNode("view", { class: "u-tabs-box" }, [
+          vue.createVNode(_component_u_tabs_swiper, {
+            activeColor: "#f29100",
+            ref: "uTabs",
+            list: $data.list,
+            current: $data.current,
+            onChange: $options.change,
+            "is-scroll": false,
+            swiperWidth: "750"
+          }, null, 8, ["list", "current", "onChange"])
+        ]),
+        vue.createElementVNode("swiper", {
+          class: "swiper-box",
+          current: $data.swiperCurrent,
+          onTransition: _cache[1] || (_cache[1] = (...args) => $options.transition && $options.transition(...args)),
+          onAnimationfinish: _cache[2] || (_cache[2] = (...args) => $options.animationfinish && $options.animationfinish(...args))
+        }, [
+          vue.createElementVNode("swiper-item", { class: "swiper-item" }, [
+            vue.createElementVNode("scroll-view", {
+              "scroll-y": "",
+              style: { "height": "100%", "width": "100%" },
+              onScrolltolower: _cache[0] || (_cache[0] = (...args) => $options.reachBottom && $options.reachBottom(...args))
+            }, [
+              vue.createElementVNode("view", {
+                class: "page-box",
+                style: { "background-color": "gold" }
+              }, [
+                vue.createVNode(_component_PostList),
+                vue.createVNode(_component_u_loadmore, {
+                  status: "loadmore",
+                  bgColor: "#f2f2f2"
+                })
+              ])
+            ], 32)
+          ])
+        ], 40, ["current"])
+      ])
+    ]);
+  }
+  const PagesMessageMessage = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-4c1b26cf"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/message/message.vue"]]);
+  const _sfc_main$9 = {
+    data() {
+      return {};
+    },
+    onPullDownRefresh() {
+      formatAppLog("log", "at pages/profile/profile.vue:17", "refresh");
+      setTimeout(function() {
+        uni.stopPullDownRefresh();
+      }, 500);
+    },
+    methods: {}
+  };
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createCommentVNode(" \u53EA\u8981\u4E0D\u662F\u5C0F\u7A0B\u5E8F\uFF0C\u5C31\u5F97\u8BBE\u5360\u4F4D\u533A\u57DF "),
+      vue.createElementVNode("view", { class: "status_bar" }),
+      vue.createTextVNode(" \u6211\u7684 ")
+    ]);
+  }
+  const PagesProfileProfile = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-dd383ca2"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/profile/profile.vue"]]);
   const icons = {
     "id": "2852637",
     "name": "uniui\u56FE\u6807\u5E93",
@@ -1212,18 +2855,11 @@ if (uni.restoreGlobal) {
       }
     ]
   };
-  const _export_sfc = (sfc, props) => {
-    const target = sfc.__vccOpts || sfc;
-    for (const [key, val] of props) {
-      target[key] = val;
-    }
-    return target;
-  };
   const getVal = (val) => {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$j = {
+  const _sfc_main$8 = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -1267,696 +2903,14 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("text", {
       style: vue.normalizeStyle({ color: $props.color, "font-size": $options.iconSize }),
       class: vue.normalizeClass(["uni-icons", ["uniui-" + $props.type, $props.customPrefix, $props.customPrefix ? $props.type : ""]]),
       onClick: _cache[0] || (_cache[0] = (...args) => $options._onClick && $options._onClick(...args))
     }, null, 6);
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__scopeId", "data-v-d31e1c47"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
-  const _sfc_main$i = {
-    name: "search-navbar",
-    onShow() {
-      formatAppLog("log", "at components/search-navbar/search-navbar.vue:16", "\u83B7\u5F97\u7684paddingR:", this.paddingRight);
-    },
-    data() {
-      return {
-        windowHeight: uni.getStorageSync("menuInfo").windowHeight,
-        navBarHeight: "44px",
-        statusBarHeight: uni.getStorageSync("menuInfo").statusBarHeight,
-        menuHeight: uni.getStorageSync("menuInfo").menuHeight,
-        menuWidth: uni.getStorageSync("menuInfo").menuWidth,
-        menuRight: uni.getStorageSync("menuInfo").menuRight,
-        contentTop: uni.getStorageSync("menuInfo").contentTop,
-        paddingRight: uni.getStorageSync("menuInfo").paddingRight
-      };
-    },
-    methods: {
-      toSearchPage() {
-        uni.navigateTo({
-          url: "/pages/home/search-detail/search-detail"
-        });
-      }
-    }
-  };
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
-    return vue.openBlock(), vue.createElementBlock("view", { class: "bars" }, [
-      vue.createElementVNode("view", {
-        class: "status-bar",
-        style: vue.normalizeStyle({ height: $data.statusBarHeight })
-      }, null, 4),
-      vue.createElementVNode("view", {
-        class: "nav-bar",
-        style: vue.normalizeStyle({ height: $data.navBarHeight, paddingRight: $data.paddingRight })
-      }, [
-        vue.createElementVNode("view", { class: "backIcon" }, [
-          vue.createVNode(_component_uni_icons, {
-            type: "back",
-            size: "36",
-            color: "#fff"
-          })
-        ]),
-        vue.createElementVNode("view", { class: "search-input" }, [
-          vue.createElementVNode("input", {
-            type: "text",
-            placeholder: "\u641C\u7D22\u5E16\u5B50",
-            onFocus: _cache[0] || (_cache[0] = (...args) => $options.toSearchPage && $options.toSearchPage(...args))
-          }, null, 32)
-        ]),
-        vue.createElementVNode("view", { class: "noteIcon" }, [
-          vue.createVNode(_component_uni_icons, {
-            "custom-prefix": "iconfont",
-            type: "icon-pencil-white",
-            size: "36"
-          })
-        ])
-      ], 4)
-    ]);
-  }
-  const SearchNavBar = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-36ea8eac"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/search-navbar/search-navbar.vue"]]);
-  const _sfc_main$h = {
-    name: "u-badge",
-    props: {
-      type: {
-        type: String,
-        default: "error"
-      },
-      size: {
-        type: String,
-        default: "default"
-      },
-      isDot: {
-        type: Boolean,
-        default: false
-      },
-      count: {
-        type: [Number, String]
-      },
-      overflowCount: {
-        type: Number,
-        default: 99
-      },
-      showZero: {
-        type: Boolean,
-        default: false
-      },
-      offset: {
-        type: Array,
-        default: () => {
-          return [20, 20];
-        }
-      },
-      absolute: {
-        type: Boolean,
-        default: true
-      },
-      fontSize: {
-        type: [String, Number],
-        default: "24"
-      },
-      color: {
-        type: String,
-        default: "#ffffff"
-      },
-      bgColor: {
-        type: String,
-        default: ""
-      },
-      isCenter: {
-        type: Boolean,
-        default: false
-      }
-    },
-    computed: {
-      boxStyle() {
-        let style = {};
-        if (this.isCenter) {
-          style.top = 0;
-          style.right = 0;
-          style.transform = "translateY(-50%) translateX(50%)";
-        } else {
-          style.top = this.offset[0] + "rpx";
-          style.right = this.offset[1] + "rpx";
-          style.transform = "translateY(0) translateX(0)";
-        }
-        if (this.size == "mini") {
-          style.transform = style.transform + " scale(0.8)";
-        }
-        return style;
-      },
-      showText() {
-        if (this.isDot)
-          return "";
-        else {
-          if (this.count > this.overflowCount)
-            return `${this.overflowCount}+`;
-          else
-            return this.count;
-        }
-      },
-      show() {
-        if (this.count == 0 && this.showZero == false)
-          return false;
-        else
-          return true;
-      }
-    }
-  };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
-    return $options.show ? (vue.openBlock(), vue.createElementBlock("view", {
-      key: 0,
-      class: vue.normalizeClass(["u-badge", [
-        $props.isDot ? "u-badge-dot" : "",
-        $props.size == "mini" ? "u-badge-mini" : "",
-        $props.type ? "u-badge--bg--" + $props.type : ""
-      ]]),
-      style: vue.normalizeStyle([{
-        top: $props.offset[0] + "rpx",
-        right: $props.offset[1] + "rpx",
-        fontSize: $props.fontSize + "rpx",
-        position: $props.absolute ? "absolute" : "static",
-        color: $props.color,
-        backgroundColor: $props.bgColor
-      }, $options.boxStyle])
-    }, vue.toDisplayString($options.showText), 7)) : vue.createCommentVNode("v-if", true);
-  }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__scopeId", "data-v-f84de764"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-badge/u-badge.vue"]]);
-  const _sfc_main$g = {
-    name: "u-tabs",
-    emits: ["update:modelValue", "input", "change"],
-    props: {
-      value: {
-        type: [Number, String],
-        default: 0
-      },
-      modelValue: {
-        type: [Number, String],
-        default: 0
-      },
-      current: {
-        type: [Number, String],
-        default: 0
-      },
-      isScroll: {
-        type: Boolean,
-        default: true
-      },
-      list: {
-        type: Array,
-        default() {
-          return [];
-        }
-      },
-      height: {
-        type: [String, Number],
-        default: 80
-      },
-      fontSize: {
-        type: [String, Number],
-        default: 30
-      },
-      duration: {
-        type: [String, Number],
-        default: 0.5
-      },
-      activeColor: {
-        type: String,
-        default: "#2979ff"
-      },
-      inactiveColor: {
-        type: String,
-        default: "#303133"
-      },
-      barWidth: {
-        type: [String, Number],
-        default: 40
-      },
-      barHeight: {
-        type: [String, Number],
-        default: 6
-      },
-      gutter: {
-        type: [String, Number],
-        default: 30
-      },
-      bgColor: {
-        type: String,
-        default: "#ffffff"
-      },
-      name: {
-        type: String,
-        default: "name"
-      },
-      count: {
-        type: String,
-        default: "count"
-      },
-      offset: {
-        type: Array,
-        default: () => {
-          return [5, 20];
-        }
-      },
-      bold: {
-        type: Boolean,
-        default: true
-      },
-      activeItemStyle: {
-        type: Object,
-        default() {
-          return {};
-        }
-      },
-      showBar: {
-        type: Boolean,
-        default: true
-      },
-      barStyle: {
-        type: Object,
-        default() {
-          return {};
-        }
-      },
-      itemWidth: {
-        type: [Number, String],
-        default: "auto"
-      }
-    },
-    data() {
-      return {
-        scrollLeft: 0,
-        tabQueryInfo: [],
-        componentWidth: 0,
-        scrollBarLeft: 0,
-        parentLeft: 0,
-        id: this.$u.guid(),
-        currentIndex: this.current,
-        barFirstTimeMove: true
-      };
-    },
-    watch: {
-      list(n, o) {
-        if (n.length !== o.length)
-          this.currentIndex = 0;
-        this.$nextTick(() => {
-          this.init();
-        });
-      },
-      current: {
-        immediate: true,
-        handler(nVal, oVal) {
-          this.$nextTick(() => {
-            this.currentIndex = nVal;
-            this.scrollByIndex();
-          });
-        }
-      },
-      valueCom: {
-        immediate: true,
-        handler(nVal, oVal) {
-          this.$nextTick(() => {
-            this.currentIndex = nVal;
-            this.scrollByIndex();
-          });
-        }
-      }
-    },
-    computed: {
-      valueCom() {
-        return this.modelValue;
-      },
-      tabBarStyle() {
-        let style = {
-          width: this.barWidth + "rpx",
-          transform: `translate(${this.scrollBarLeft}px, -100%)`,
-          "transition-duration": `${this.barFirstTimeMove ? 0 : this.duration}s`,
-          "background-color": this.activeColor,
-          height: this.barHeight + "rpx",
-          "border-radius": `${this.barHeight / 2}px`
-        };
-        Object.assign(style, this.barStyle);
-        return style;
-      },
-      tabItemStyle() {
-        return (index) => {
-          let style = {
-            height: this.height + "rpx",
-            "line-height": this.height + "rpx",
-            "font-size": this.fontSize + "rpx",
-            "transition-duration": `${this.duration}s`,
-            padding: this.isScroll ? `0 ${this.gutter}rpx` : "",
-            flex: this.isScroll ? "auto" : "1",
-            width: this.$u.addUnit(this.itemWidth)
-          };
-          if (index == this.currentIndex && this.bold)
-            style.fontWeight = "bold";
-          if (index == this.currentIndex) {
-            style.color = this.activeColor;
-            style = Object.assign(style, this.activeItemStyle);
-          } else {
-            style.color = this.inactiveColor;
-          }
-          return style;
-        };
-      }
-    },
-    methods: {
-      async init() {
-        let tabRect = await this.$uGetRect("#" + this.id);
-        this.parentLeft = tabRect.left;
-        this.componentWidth = tabRect.width;
-        this.getTabRect();
-      },
-      clickTab(index) {
-        if (index == this.currentIndex)
-          return;
-        this.$emit("change", index);
-        this.$emit("input", index);
-        this.$emit("update:modelValue", index);
-      },
-      getTabRect() {
-        let query = uni.createSelectorQuery().in(this);
-        for (let i = 0; i < this.list.length; i++) {
-          query.select(`#u-tab-item-${i}`).fields({
-            size: true,
-            rect: true
-          });
-        }
-        query.exec(
-          function(res) {
-            this.tabQueryInfo = res;
-            this.scrollByIndex();
-          }.bind(this)
-        );
-      },
-      scrollByIndex() {
-        let tabInfo = this.tabQueryInfo[this.currentIndex];
-        if (!tabInfo)
-          return;
-        let tabWidth = tabInfo.width;
-        let offsetLeft = tabInfo.left - this.parentLeft;
-        let scrollLeft = offsetLeft - (this.componentWidth - tabWidth) / 2;
-        this.scrollLeft = scrollLeft < 0 ? 0 : scrollLeft;
-        let left = tabInfo.left + tabInfo.width / 2 - this.parentLeft;
-        this.scrollBarLeft = left - uni.upx2px(this.barWidth) / 2;
-        if (this.barFirstTimeMove == true) {
-          setTimeout(() => {
-            this.barFirstTimeMove = false;
-          }, 100);
-        }
-      }
-    },
-    mounted() {
-      this.init();
-    }
-  };
-  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_badge = resolveEasycom(vue.resolveDynamicComponent("u-badge"), __easycom_0$1);
-    return vue.openBlock(), vue.createElementBlock("view", {
-      class: "u-tabs",
-      style: vue.normalizeStyle({
-        background: $props.bgColor
-      })
-    }, [
-      vue.createCommentVNode(" $u.getRect()\u5BF9\u7EC4\u4EF6\u6839\u8282\u70B9\u65E0\u6548\uFF0C\u56E0\u4E3A\u5199\u4E86.in(this)\uFF0C\u6545\u8FD9\u91CC\u83B7\u53D6\u5185\u5C42\u63A5\u70B9\u5C3A\u5BF8 "),
-      vue.createElementVNode("view", { id: $data.id }, [
-        vue.createElementVNode("scroll-view", {
-          "scroll-x": "",
-          class: "u-scroll-view",
-          "scroll-left": $data.scrollLeft,
-          "scroll-with-animation": ""
-        }, [
-          vue.createElementVNode("view", {
-            class: vue.normalizeClass(["u-scroll-box", { "u-tabs-scroll-flex": !$props.isScroll }]),
-            id: $data.id
-          }, [
-            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($props.list, (item, index) => {
-              return vue.openBlock(), vue.createElementBlock("view", {
-                class: "u-tab-item u-line-1",
-                id: "u-tab-item-" + index,
-                key: index,
-                onClick: ($event) => $options.clickTab(index),
-                style: vue.normalizeStyle([$options.tabItemStyle(index)])
-              }, [
-                vue.createVNode(_component_u_badge, {
-                  count: item[$props.count] || item["count"] || 0,
-                  offset: $props.offset,
-                  size: "mini"
-                }, null, 8, ["count", "offset"]),
-                vue.createTextVNode(" " + vue.toDisplayString(item[$props.name] || item["name"]), 1)
-              ], 12, ["id", "onClick"]);
-            }), 128)),
-            $props.showBar ? (vue.openBlock(), vue.createElementBlock("view", {
-              key: 0,
-              class: "u-tab-bar",
-              style: vue.normalizeStyle([$options.tabBarStyle])
-            }, null, 4)) : vue.createCommentVNode("v-if", true)
-          ], 10, ["id"])
-        ], 8, ["scroll-left"])
-      ], 8, ["id"])
-    ], 4);
-  }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__scopeId", "data-v-750d9d75"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/vk-uview-ui/components/u-tabs/u-tabs.vue"]]);
-  const _sfc_main$f = {
-    name: "my-tabs",
-    data() {
-      return {
-        list: [
-          {
-            name: "\u5708\u5B50"
-          },
-          {
-            name: "\u70ED\u70B9"
-          },
-          {
-            name: "\u6D3B\u52A8"
-          },
-          {
-            name: "\u516C\u544A"
-          },
-          {
-            name: "\u8BDD\u9898"
-          }
-        ],
-        current: 0
-      };
-    },
-    methods: {
-      change(index) {
-        formatAppLog("log", "at components/my-tabs/my-tabs.vue:34", index);
-      }
-    }
-  };
-  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_tabs = resolveEasycom(vue.resolveDynamicComponent("u-tabs"), __easycom_0);
-    return vue.openBlock(), vue.createElementBlock("view", { class: "tabs" }, [
-      vue.createVNode(_component_u_tabs, {
-        list: $data.list,
-        "is-scroll": true,
-        modelValue: $data.current,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.current = $event),
-        onChange: $options.change,
-        height: "80"
-      }, null, 8, ["list", "modelValue", "onChange"])
-    ]);
-  }
-  const MyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__scopeId", "data-v-dba27115"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/my-tabs/my-tabs.vue"]]);
-  const _sfc_main$e = {
-    components: {
-      SearchNavBar,
-      MyTabs
-    },
-    data() {
-      return {
-        contentTop: uni.getStorageSync("menuInfo").contentTop
-      };
-    },
-    methods: {},
-    onNavigationBarButtonTap(e) {
-      formatAppLog("log", "at pages/home/home.vue:31", "\u70B9\u51FB\u4E86button");
-    },
-    onNavigationBarSearchInputClicked() {
-      uni.navigateTo({
-        url: "/pages/home/search-detail/search-detail"
-      });
-    },
-    onPullDownRefresh() {
-      formatAppLog("log", "at pages/home/home.vue:40", "refresh");
-      setTimeout(function() {
-        uni.stopPullDownRefresh();
-      }, 500);
-    }
-  };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
-      vue.createCommentVNode(" \u5C0F\u7A0B\u5E8F\u81EA\u5B9A\u4E49\u7684navBar "),
-      vue.createCommentVNode(" \u975EMP-WX\uFF0CcontentTop\u4E3Aundefined\uFF0C\u56E0\u6B64\u6837\u5F0F\u4E0D\u8D77\u4F5C\u7528\uFF0C\u6240\u4EE5\u65E0\u9700\u518D\u505A\u6761\u4EF6\u7F16\u8BD1 "),
-      vue.createElementVNode("view", {
-        class: "content-box",
-        style: vue.normalizeStyle({ marginTop: $data.contentTop })
-      }, [
-        vue.createCommentVNode(" \u9876\u90E8\u9009\u9879\u5361tabbar "),
-        vue.createTextVNode(" \u9996\u9875 ")
-      ], 4)
-    ]);
-  }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/home/home.vue"]]);
-  const _sfc_main$d = {
-    name: "navbar",
-    onShow() {
-      formatAppLog("log", "at components/navbar/navbar.vue:12", "\u83B7\u5F97\u7684paddingR:", this.paddingRight);
-    },
-    data() {
-      return {
-        windowHeight: uni.getStorageSync("menuInfo").windowHeight,
-        navBarHeight: "44px",
-        statusBarHeight: uni.getStorageSync("menuInfo").statusBarHeight,
-        menuHeight: uni.getStorageSync("menuInfo").menuHeight,
-        menuWidth: uni.getStorageSync("menuInfo").menuWidth,
-        menuRight: uni.getStorageSync("menuInfo").menuRight,
-        contentTop: uni.getStorageSync("menuInfo").contentTop,
-        paddingRight: uni.getStorageSync("menuInfo").paddingRight
-      };
-    }
-  };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "bars" }, [
-      vue.createElementVNode("view", {
-        class: "status-bar",
-        style: vue.normalizeStyle({ height: $data.statusBarHeight })
-      }, null, 4),
-      vue.createElementVNode("view", {
-        class: "nav-bar",
-        style: vue.normalizeStyle({ height: $data.navBarHeight, paddingRight: $data.paddingRight })
-      }, null, 4)
-    ]);
-  }
-  const NavBar = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-eaf4c2e5"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/navbar/navbar.vue"]]);
-  const _sfc_main$c = {
-    components: {
-      NavBar
-    },
-    data() {
-      return {};
-    },
-    methods: {}
-  };
-  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", null, "SearchDetail");
-  }
-  const PagesHomeSearchDetailSearchDetail = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/home/search-detail/search-detail.vue"]]);
-  const _sfc_main$b = {
-    components: {
-      NavBar
-    },
-    data() {
-      return {
-        contentTop: uni.getStorageSync("menuInfo").contentTop
-      };
-    },
-    onPullDownRefresh() {
-      formatAppLog("log", "at pages/story/story.vue:28", "refresh");
-      setTimeout(function() {
-        uni.stopPullDownRefresh();
-      }, 500);
-    },
-    onReady() {
-    },
-    methods: {}
-  };
-  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
-      vue.createCommentVNode(" \u5185\u5BB9\u533A\u9700\u8981margin, \u56E0\u4E3A\u4E0A\u9762\u662Ffixed\u4F1A\u8131\u79BB\u6587\u6863\u6D41 "),
-      vue.createElementVNode("view", {
-        class: "content-box",
-        style: vue.normalizeStyle({ marginTop: $data.contentTop })
-      }, [
-        vue.createElementVNode("view", { class: "tabs" }, "tabs"),
-        vue.createElementVNode("view", { class: "posts-box" }, "posts")
-      ], 4)
-    ]);
-  }
-  const PagesStoryStory = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__scopeId", "data-v-fd6d2232"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/story/story.vue"]]);
-  const _sfc_main$a = {
-    data() {
-      return {};
-    },
-    onPullDownRefresh() {
-      formatAppLog("log", "at pages/message/message.vue:11", "refresh");
-      setTimeout(function() {
-        uni.stopPullDownRefresh();
-      }, 500);
-    },
-    methods: {}
-  };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", null, "\u6D88\u606F");
-  }
-  const PagesMessageMessage = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/message/message.vue"]]);
-  const _sfc_main$9 = {
-    data() {
-      return {};
-    },
-    onPullDownRefresh() {
-      formatAppLog("log", "at pages/profile/profile.vue:17", "refresh");
-      setTimeout(function() {
-        uni.stopPullDownRefresh();
-      }, 500);
-    },
-    methods: {}
-  };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", null, [
-      vue.createCommentVNode(" \u53EA\u8981\u4E0D\u662F\u5C0F\u7A0B\u5E8F\uFF0C\u5C31\u5F97\u8BBE\u5360\u4F4D\u533A\u57DF "),
-      vue.createElementVNode("view", { class: "status_bar" }),
-      vue.createTextVNode(" \u6211\u7684 ")
-    ]);
-  }
-  const PagesProfileProfile = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/profile/profile.vue"]]);
-  const _sfc_main$8 = {
-    data() {
-      return {
-        title: "Hello"
-      };
-    },
-    onLoad() {
-    },
-    methods: {
-      loginPwd() {
-        uni.navigateTo({
-          url: "/pages/login/login-pwd"
-        });
-      },
-      loginCaptcha() {
-        uni.navigateTo({
-          url: "/pages/login/login-sms"
-        });
-      }
-    }
-  };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
-      vue.createElementVNode("image", {
-        class: "logo",
-        src: "/static/logo.png"
-      }),
-      vue.createElementVNode("view", { class: "text-area" }, [
-        vue.createElementVNode("text", { class: "title" }, vue.toDisplayString($data.title), 1)
-      ]),
-      vue.createElementVNode("view", { class: "btn-wrapper" }, [
-        vue.createElementVNode("button", {
-          onClick: _cache[0] || (_cache[0] = (...args) => $options.loginPwd && $options.loginPwd(...args))
-        }, "\u5BC6\u7801\u767B\u5F55"),
-        vue.createElementVNode("view", { class: "sep" }),
-        vue.createElementVNode("button", {
-          onClick: _cache[1] || (_cache[1] = (...args) => $options.loginCaptcha && $options.loginCaptcha(...args))
-        }, "\u624B\u673A\u9A8C\u8BC1\u7801")
-      ])
-    ]);
-  }
-  const PagesStartStart = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-ddc8dd5d"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/start/start.vue"]]);
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-d31e1c47"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   function obj2strClass(obj) {
     let classess = "";
     for (let key in obj) {
@@ -2256,7 +3210,7 @@ if (uni.restoreGlobal) {
     }
   };
   function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: vue.normalizeClass(["uni-easyinput", { "uni-easyinput-error": $options.msg }]),
       style: vue.normalizeStyle($options.boxStyle)
@@ -3591,7 +4545,7 @@ if (uni.restoreGlobal) {
     }
   };
   function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0);
     const _component_uni_easyinput = resolveEasycom(vue.resolveDynamicComponent("uni-easyinput"), __easycom_1);
     const _component_uni_forms_item = resolveEasycom(vue.resolveDynamicComponent("uni-forms-item"), __easycom_2);
     const _component_social_links = resolveEasycom(vue.resolveDynamicComponent("social-links"), __easycom_3);
@@ -3761,7 +4715,7 @@ if (uni.restoreGlobal) {
     }
   };
   function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0);
     const _component_uni_easyinput = resolveEasycom(vue.resolveDynamicComponent("uni-easyinput"), __easycom_1);
     const _component_uni_forms_item = resolveEasycom(vue.resolveDynamicComponent("uni-forms-item"), __easycom_2);
     const _component_social_links = resolveEasycom(vue.resolveDynamicComponent("social-links"), __easycom_3);
@@ -3860,11 +4814,10 @@ if (uni.restoreGlobal) {
   }
   const PagesSearchSearch = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/pages/search/search.vue"]]);
   __definePage("pages/home/home", PagesHomeHome);
-  __definePage("pages/home/search-detail/search-detail", PagesHomeSearchDetailSearchDetail);
   __definePage("pages/story/story", PagesStoryStory);
+  __definePage("pages/home/search-detail/search-detail", PagesHomeSearchDetailSearchDetail);
   __definePage("pages/message/message", PagesMessageMessage);
   __definePage("pages/profile/profile", PagesProfileProfile);
-  __definePage("pages/start/start", PagesStartStart);
   __definePage("pages/login/login-pwd", PagesLoginLoginPwd);
   __definePage("pages/login/login-sms", PagesLoginLoginSms);
   __definePage("pages/search/search", PagesSearchSearch);
@@ -4443,112 +5396,6 @@ if (uni.restoreGlobal) {
     }
     return tips;
   }
-  function colorGradient(startColor = "rgb(0, 0, 0)", endColor = "rgb(255, 255, 255)", step = 10) {
-    let startRGB = hexToRgb(startColor, false);
-    let startR = startRGB[0];
-    let startG = startRGB[1];
-    let startB = startRGB[2];
-    let endRGB = hexToRgb(endColor, false);
-    let endR = endRGB[0];
-    let endG = endRGB[1];
-    let endB = endRGB[2];
-    let sR = (endR - startR) / step;
-    let sG = (endG - startG) / step;
-    let sB = (endB - startB) / step;
-    let colorArr = [];
-    for (let i = 0; i < step; i++) {
-      let hex = rgbToHex("rgb(" + Math.round(sR * i + startR) + "," + Math.round(sG * i + startG) + "," + Math.round(sB * i + startB) + ")");
-      colorArr.push(hex);
-    }
-    return colorArr;
-  }
-  function hexToRgb(sColor, str = true) {
-    let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-    sColor = sColor.toLowerCase();
-    if (sColor && reg.test(sColor)) {
-      if (sColor.length === 4) {
-        let sColorNew = "#";
-        for (let i = 1; i < 4; i += 1) {
-          sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-        }
-        sColor = sColorNew;
-      }
-      let sColorChange = [];
-      for (let i = 1; i < 7; i += 2) {
-        sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
-      }
-      if (!str) {
-        return sColorChange;
-      } else {
-        return `rgb(${sColorChange[0]},${sColorChange[1]},${sColorChange[2]})`;
-      }
-    } else if (/^(rgb|RGB)/.test(sColor)) {
-      let arr = sColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
-      return arr.map((val) => Number(val));
-    } else {
-      return sColor;
-    }
-  }
-  function rgbToHex(rgb) {
-    let _this = rgb;
-    let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-    if (/^(rgb|RGB)/.test(_this)) {
-      let aColor = _this.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
-      let strHex = "#";
-      for (let i = 0; i < aColor.length; i++) {
-        let hex = Number(aColor[i]).toString(16);
-        hex = String(hex).length == 1 ? 0 + "" + hex : hex;
-        if (hex === "0") {
-          hex += hex;
-        }
-        strHex += hex;
-      }
-      if (strHex.length !== 7) {
-        strHex = _this;
-      }
-      return strHex;
-    } else if (reg.test(_this)) {
-      let aNum = _this.replace(/#/, "").split("");
-      if (aNum.length === 6) {
-        return _this;
-      } else if (aNum.length === 3) {
-        let numHex = "#";
-        for (let i = 0; i < aNum.length; i += 1) {
-          numHex += aNum[i] + aNum[i];
-        }
-        return numHex;
-      }
-    } else {
-      return _this;
-    }
-  }
-  function colorToRgba(color2, alpha = 0.3) {
-    color2 = rgbToHex(color2);
-    var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-    let sColor = color2.toLowerCase();
-    if (sColor && reg.test(sColor)) {
-      if (sColor.length === 4) {
-        var sColorNew = "#";
-        for (let i = 1; i < 4; i += 1) {
-          sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-        }
-        sColor = sColorNew;
-      }
-      var sColorChange = [];
-      for (let i = 1; i < 7; i += 2) {
-        sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
-      }
-      return "rgba(" + sColorChange.join(",") + "," + alpha + ")";
-    } else {
-      return sColor;
-    }
-  }
-  const colorGradient$1 = {
-    colorGradient,
-    hexToRgb,
-    rgbToHex,
-    colorToRgba
-  };
   function guid(len = 32, firstU = true, radix = null) {
     let chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
     let uuid = [];

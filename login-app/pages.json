@@ -6,7 +6,6 @@
     {
       "path": "pages/home/home",
       "style": {
-        "enablePullDownRefresh": true,
         "navigationBarTitleText": "首页",
         "app-plus": {
           "titleNView": {
@@ -31,14 +30,6 @@
       }
     },
     {
-      "path": "pages/home/search-detail/search-detail",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
-      }
-
-    },
-    {
       "path": "pages/story/story",
       "style": {
         "navigationBarTitleText": "动态",
@@ -53,42 +44,64 @@
         }
       }
     },
+
+    {
+      "path": "pages/home/search-detail/search-detail",
+      "style": {
+        "navigationBarTitleText": "搜索",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "buttons": [{
+              "fontSrc": "/static/uni.ttf",
+              "text": "\ue537",
+              "width": "auto",
+              "fontSize": "28px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "搜索帖子 ",
+              "autoFocus": true
+            }
+          }
+        }
+      }
+
+    },
+
     {
       "path": "pages/message/message",
       "style": {
-        "navigationBarTitleText": "消息",
-        "enablePullDownRefresh": true
+        "navigationBarTitleText": "消息"
+
       }
 
     }, {
       "path": "pages/profile/profile",
       "style": {
-        "navigationBarTitleText": "我的",
-        "enablePullDownRefresh": true
+        "navigationBarTitleText": "我的"
+
       }
     },
     {
-      "path": "pages/start/start",
-      "style": {
-        "navigationBarTitleText": "启动页"
-      }
-    }, {
       "path": "pages/login/login-pwd",
       "style": {
-        "enablePullDownRefresh": false,
+
         "navigationBarTitleText": "密码"
       }
     }, {
       "path": "pages/login/login-sms",
       "style": {
-        "enablePullDownRefresh": false,
+
         "navigationBarTitleText": "验证码"
       }
     }, {
       "path": "pages/search/search",
       "style": {
         "navigationBarTitleText": "搜索页",
-        "enablePullDownRefresh": false,
+
         "navigationStyle": "default"
       }
 
@@ -139,6 +152,7 @@
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
     // #endif
+    // "enablePullDownRefresh": true
   },
   "uniIdRouter": {}
 }

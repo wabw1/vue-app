@@ -1,9 +1,8 @@
 <template>
   <!-- #ifdef MP-WEIXIN  -->
-  <!-- 只有小程序才需要自定义的navBar -->
   <NavBar></NavBar>
   <!-- #endif -->
-  <view>SearchDetail</view>
+  <view>搜索结果...</view>
 </template>
 
 <script>

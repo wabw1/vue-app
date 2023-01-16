@@ -22,23 +22,20 @@
 /* 透明度 */
 /* 文章场景相关 */
 /* 引入vk-uView的全局scss */
-.content-box {
-  font-size: 36px;
+page.data-v-07e72d3c {
+  height: 100%;
+  background-color: #f2f2f2;
+}
+.container.data-v-07e72d3c {
+  font-size: 36rpx;
   display: flex;
+  height: 100%;
   flex-direction: column;
   text-align: center;
 }
-.swiper-box {
+.swiper-box.data-v-07e72d3c {
   flex: 1;
 }
-.swiper-item {
-  height: 100%;
-}
-.main {
-  display: flex;
-  flex-direction: column;
-}
-.posts-box {
-  background-color: gainsboro;
-  flex: 1;
+.swiper-item.data-v-07e72d3c {
+  background-color: #f2f2f2;
 }
