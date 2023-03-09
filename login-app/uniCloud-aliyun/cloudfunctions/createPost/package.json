@@ -1,0 +1,7 @@
+{
+  "name": "createPost",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

@@ -1,5 +1,5 @@
 
-.status_bar {
+.status_bar.data-v-dd383ca2 {
   height: var(--status-bar-height);
   width: 100%;
 }

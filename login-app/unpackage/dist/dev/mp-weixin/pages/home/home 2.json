@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "首页",
-  "usingComponents": {
-    "search-nav-bar": "../../components/search-navbar/search-navbar",
-    "post-list": "../../components/post-list/post-list",
-    "u-tabs-swiper": "../../uni_modules/vk-uview-ui/components/u-tabs-swiper/u-tabs-swiper",
-    "u-loadmore": "../../uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore"
-  }
-}

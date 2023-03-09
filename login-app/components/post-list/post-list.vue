@@ -3,7 +3,7 @@
     <!-- 传给子组件一整个列表 -->
     <!-- 给子组件传递postObj对象 -->
     <view class="post" v-for="(post, idx) in postList" key="idx">
-      <Post :postObj="post"></Post>
+      <Post :postObj="post" @thumbup="thumbup"></Post>
     </view>
   </view>
 </template>
@@ -24,6 +24,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    thumbup(id) {
+      this.$emit("modifyThumb", "up", id);
+    }
   }
 };
 </script>

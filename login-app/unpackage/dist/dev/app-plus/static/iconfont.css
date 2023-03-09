@@ -1,18 +1,21 @@
 @font-face {
-  font-family: "iconfont";
-  /* Project id 3831437 */
+  font-family: "iconfont"; /* Project id 3831437 */
   /* Color fonts */
-  src:
-    url('iconfont.woff2?t=1673544031140') format('woff2'),
-    url('iconfont.ttf?t=1673544031140') format('truetype');
+  src: 
+       url('iconfont.woff2?t=1676281338990') format('woff2'),
+       url('iconfont.ttf?t=1676281338990') format('truetype');
 }
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 36px;
+  font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-setting:before {
+  content: "\e6f0";
 }
 
 .icon-pencil:before {
@@ -34,3 +37,4 @@
 .icon-weibo:before {
   content: "\e636";
 }
+

@@ -22,16 +22,16 @@
 /* 透明度 */
 /* 文章场景相关 */
 /* 引入vk-uView的全局scss */
-.bars {
+.bars.data-v-eaf4c2e5 {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
 }
-.bars .status-bar {
+.bars .status-bar.data-v-eaf4c2e5 {
   background-color: #82aae3;
 }
-.bars .nav-bar {
+.bars .nav-bar.data-v-eaf4c2e5 {
   background-color: #82aae3;
   display: flex;
   width: 100%;

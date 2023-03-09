@@ -1,0 +1,7 @@
+{
+  "name": "getFollwers",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

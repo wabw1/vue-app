@@ -1261,8 +1261,8 @@ function populateParameters(fromRes, toRes) {
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.17",
-    uniRuntimeVersion: "3.6.17",
+    uniCompileVersion: "3.6.18",
+    uniRuntimeVersion: "3.6.18",
     uniPlatform: "mp-weixin",
     deviceBrand,
     deviceModel: model,
@@ -1484,6 +1484,7 @@ function initGetProvider(providers) {
   };
 }
 const objectKeys = [
+  "qy",
   "env",
   "error",
   "version",
@@ -1493,18 +1494,20 @@ const objectKeys = [
   "router",
   "worklet"
 ];
+function isWxKey(key) {
+  return objectKeys.indexOf(key) > -1 || typeof wx[key] === "function";
+}
 function initWx() {
-  const WxProxyHandlers = {
-    get(target, key) {
-      if (hasOwn(target, key)) {
-        return target[key];
-      }
-      if (objectKeys.indexOf(key) > -1 || isFunction(wx[key])) {
-        return wx[key];
-      }
+  const newWx = {};
+  for (const key in wx) {
+    if (isWxKey(key)) {
+      newWx[key] = wx[key];
     }
-  };
-  return new Proxy({}, WxProxyHandlers);
+  }
+  if (typeof globalThis !== "undefined") {
+    globalThis.wx = newWx;
+  }
+  return newWx;
 }
 const mocks$1 = ["__route__", "__wxExparserNodeId__", "__wxWebviewId__"];
 const getProvider = initGetProvider({
@@ -1529,7 +1532,11 @@ function createSelectorQuery() {
   return query;
 }
 const wx$2 = initWx();
-const host = wx$2.getAppBaseInfo ? wx$2.getAppBaseInfo().host : wx$2.getSystemInfoSync().host;
+let baseInfo = wx$2.getAppBaseInfo && wx$2.getAppBaseInfo();
+if (!baseInfo) {
+  baseInfo = wx$2.getSystemInfoSync();
+}
+const host = baseInfo ? baseInfo.host : null;
 const shareVideoMessage = host && host.env === "SAAASDK" ? wx$2.miniapp.shareVideoMessage : wx$2.shareVideoMessage;
 var shims = /* @__PURE__ */ Object.freeze({
   __proto__: null,

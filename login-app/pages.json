@@ -2,14 +2,12 @@
   "easycom": {
     "^u-(.*)": "@/uni_modules/vk-uview-ui/components/u-$1/u-$1.vue"
   },
-  "pages": [ //pages数组中第一项表示应用启动页
-    {
+  "pages": [{
       "path": "pages/home/home",
       "style": {
         "navigationBarTitleText": "首页",
         "app-plus": {
           "titleNView": {
-            "titleColor": "#fff",
             "buttons": [{
               "fontSrc": "/static/iconfont.ttf",
               "text": "\ue73f",
@@ -18,7 +16,6 @@
               "color": "#fff",
               "background": "rgba(0,0,0,0)"
             }],
-            // "autoBackButton": true,
             "searchInput": {
               "backgroundColor": "#fff",
               "borderRadius": "6px",
@@ -29,95 +26,130 @@
         }
       }
     },
-    {
-      "path": "pages/story/story",
-      "style": {
-        "navigationBarTitleText": "动态",
-        "enablePullDownRefresh": true,
-        "app-plus": {
-          "titleNView": {
-            "buttons": [{
-              "type": "share"
-            }],
-            "autoBackButton": true
-          }
-        }
-      }
-    },
-
+    // 搜索详情
     {
       "path": "pages/home/search-detail/search-detail",
+      "navigationBarTextStyle": "black",
       "style": {
-        "navigationBarTitleText": "搜索",
         "app-plus": {
           "titleNView": {
-            "titleColor": "#fff",
+            "backgroundColor": "#fff",
             "buttons": [{
-              "fontSrc": "/static/uni.ttf",
-              "text": "\ue537",
-              "width": "auto",
-              "fontSize": "28px",
-              "color": "#fff"
+              "text": "搜索",
+              "fontSize": "18px",
+              "width": "60px",
+              "color": "#000"
             }],
             "searchInput": {
-              "backgroundColor": "#fff",
+              "backgroundColor": "#eee",
+              "placeholderColor": "#434242",
               "borderRadius": "6px",
               "placeholder": "搜索帖子 ",
               "autoFocus": true
+              // "disabled": true
+            },
+            "autoBackButton": true,
+            "backButton": {
+              "fontWeight": "bold"
             }
           }
         }
       }
-
     },
+    // 新增帖子页面
+    {
+      "path": "pages/createPost/createPost",
+      "navigationBarTextStyle": "black", // 导航字体颜色
+      "style": {
+        "navigationBarTitleText": "所有人可见",
+        "enablePullDownRefresh": false,
+        "app-plus": {
+          "titleNView": {
 
+            "backgroundColor": "#fff", //背景色
+            "autoBackButton": true,
+            "buttons": [{
+                "text": "", // 占位
+                "fontSize": "14",
+                "width": "110px"
+              },
+              {
+                "fontSize": "24px",
+                "width": "auto",
+                "fontSrc": "/static/iconfont.ttf",
+                "text": "\ue6f0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/story/story",
+      "style": {
+        "navigationBarTitleText": "好友动态",
+        "enablePullDownRefresh": true,
+        "app-plus": {
+          "titleNView": {
+            "autoBackButton": true,
+            "buttons": [{
+              "fontSrc": "/static/iconfont.ttf",
+              "text": "\ue73f",
+              "width": "40px",
+              "fontSize": "34px",
+              "color": "#fff",
+              "background": "rgba(0,0,0,0)"
+            }]
+          }
+        }
+      }
+    },
     {
       "path": "pages/message/message",
       "style": {
         "navigationBarTitleText": "消息"
-
       }
-
-    }, {
+    },
+    {
       "path": "pages/profile/profile",
       "style": {
-        "navigationBarTitleText": "我的"
-
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#000"
       }
     },
     {
       "path": "pages/login/login-pwd",
       "style": {
-
         "navigationBarTitleText": "密码"
       }
-    }, {
+    },
+    {
       "path": "pages/login/login-sms",
       "style": {
-
         "navigationBarTitleText": "验证码"
       }
-    }, {
-      "path": "pages/search/search",
+    },
+    {
+      "path": "pages/postDetail/postDetail",
       "style": {
-        "navigationBarTitleText": "搜索页",
-
-        "navigationStyle": "default"
+        "navigationBarTitleText": "帖子详情",
+        "enablePullDownRefresh": false
       }
-
     }
   ],
+
   "tabBar": {
     "color": "#7A7E83",
     "selectedColor": "#82AAE3",
     "borderStyle": "black",
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#fff",
     "list": [{
         "pagePath": "pages/home/home",
         "iconPath": "static/icons/home.png",
         "selectedIconPath": "static/icons/home_ac.png",
         "text": "首页"
-      }, {
+      },
+      {
         "pagePath": "pages/story/story",
         "iconPath": "static/icons/star.png",
         "selectedIconPath": "static/icons/star_ac.png",
@@ -138,21 +170,9 @@
     ]
   },
   "globalStyle": {
-    // "autoBackButton": true,
     "homeButton": true,
-    "app-plus": {
-      "titleNView": {
-        "backgroundColor": "#82AAE3",
-        "titleColor": "#fff"
-      }
-    },
-    //wx小程序
-    // #ifdef MP-WEIXIN
-    "navigationBarBackgroundColor": "#82AAE3", //统一背景色
-    "navigationBarTextStyle": "white",
-    "navigationStyle": "custom"
-    // #endif
-    // "enablePullDownRefresh": true
+    "navigationBarBackgroundColor": "#93c0ff",
+    "navigationBarTextStyle": "black"
   },
   "uniIdRouter": {}
 }

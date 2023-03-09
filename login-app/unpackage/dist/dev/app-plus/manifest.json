@@ -71,15 +71,15 @@
     },
     "statusbar": {
       "immersed": "supportedDevice",
-      "style": "light",
-      "background": "#82AAE3"
+      "style": "dark",
+      "background": "#82aae3"
     },
     "uniStatistics": {
       "enable": false
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#ffffff",
+      "background": "#fff",
       "bottom": {
         "offset": "auto"
       }
@@ -87,7 +87,7 @@
     "uni-app": {
       "control": "uni-v3",
       "vueVersion": "3",
-      "compilerVersion": "3.6.17",
+      "compilerVersion": "3.6.18",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
       "nvue": {
@@ -108,7 +108,7 @@
       "iconWidth": "24px",
       "spacing": "3px",
       "height": "50px",
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#fff",
       "list": [
         {
           "pagePath": "pages/home/home",

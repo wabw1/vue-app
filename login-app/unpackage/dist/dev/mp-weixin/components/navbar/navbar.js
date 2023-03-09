@@ -25,5 +25,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     c: $data.paddingRight
   };
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/navbar/navbar.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-eaf4c2e5"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/navbar/navbar.vue"]]);
 wx.createComponent(Component);

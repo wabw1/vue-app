@@ -22,19 +22,23 @@
 /* 透明度 */
 /* 文章场景相关 */
 /* 引入vk-uView的全局scss */
-.bars[data-v-eaf4c2e5] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+body[data-v-b5edfcbc] {
+  box-sizing: border-box;
 }
-.bars .status-bar[data-v-eaf4c2e5] {
-  background-color: #82aae3;
+.content[data-v-b5edfcbc] {
+  height: 100%;
+  padding: 0.125rem;
 }
-.bars .nav-bar[data-v-eaf4c2e5] {
-  background-color: #82aae3;
+.content .title[data-v-b5edfcbc] {
+  font-size: 16px;
+  margin: 0.375rem auto 0.625rem 0.375rem;
+  font-weight: bold;
+}
+.content .wrapper[data-v-b5edfcbc] {
   display: flex;
-  width: 100%;
-  padding-left: 6px;
-  padding-top: 4px;
+}
+.content .wrapper .card[data-v-b5edfcbc] {
+  border: 1px solid #c8c7cc;
+  padding: 0.125rem 0.625rem;
+  margin: 0.25rem 0.375rem;
 }

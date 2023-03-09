@@ -1,5 +1,5 @@
 // #ifndef VUE3
-import App from './App'
+import App from './App.vue'
 import Vue from 'vue'
 import uView from './uni_modules/vk-uview-ui' //引入组件库
 Vue.use(uView)
@@ -11,6 +11,7 @@ const app = new Vue({
 })
 app.$mount()
 // #endif
+
 
 // #ifdef VUE3
 import {

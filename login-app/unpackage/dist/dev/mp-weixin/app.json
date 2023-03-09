@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/home/search-detail/search-detail",
     "pages/story/story",
+    "pages/home/search-detail/search-detail",
     "pages/message/message",
     "pages/profile/profile",
     "pages/login/login-pwd",
@@ -13,8 +13,7 @@
     "homeButton": true,
     "navigationBarBackgroundColor": "#82AAE3",
     "navigationBarTextStyle": "white",
-    "navigationStyle": "custom",
-    "enablePullDownRefresh": true
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#7A7E83",

@@ -29,8 +29,8 @@ require("./uni_modules/vk-uview-ui/libs/config/config.js");
 require("./uni_modules/vk-uview-ui/libs/config/zIndex.js");
 if (!Math) {
   "./pages/home/home.js";
-  "./pages/home/search-detail/search-detail.js";
   "./pages/story/story.js";
+  "./pages/home/search-detail/search-detail.js";
   "./pages/message/message.js";
   "./pages/profile/profile.js";
   "./pages/login/login-pwd.js";

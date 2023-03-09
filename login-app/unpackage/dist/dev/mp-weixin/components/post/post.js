@@ -3,7 +3,12 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   name: "post",
   props: {
-    list: Array
+    postObj: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    }
   },
   data() {
     return {};
@@ -28,40 +33,30 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.f($props.list, (post, idx, i0) => {
-      return {
-        a: "560b236f-0-" + i0,
-        b: common_vendor.p({
-          src: post.avaSrc
-        }),
-        c: common_vendor.t(post.name),
-        d: common_vendor.t(post.time),
-        e: common_vendor.o((...args) => $options.follow && $options.follow(...args), idx),
-        f: common_vendor.t(post.text),
-        g: post.imgSrc,
-        h: post.imgSrc,
-        i: "560b236f-1-" + i0,
-        j: common_vendor.t(post.thumbup),
-        k: "560b236f-2-" + i0,
-        l: common_vendor.t(post.thumbdown),
-        m: "560b236f-3-" + i0,
-        n: "560b236f-4-" + i0,
-        o: idx
-      };
+    a: common_vendor.p({
+      src: $props.postObj.avaSrc
     }),
-    b: common_vendor.p({
+    b: common_vendor.t($props.postObj.name),
+    c: common_vendor.t($props.postObj.time),
+    d: common_vendor.o((...args) => $options.follow && $options.follow(...args)),
+    e: common_vendor.t($props.postObj.text),
+    f: $props.postObj.imgSrc,
+    g: $props.postObj.imgSrc,
+    h: common_vendor.p({
       name: "thumb-up"
     }),
-    c: common_vendor.p({
+    i: common_vendor.t($props.postObj.thumbup),
+    j: common_vendor.p({
       name: "thumb-down"
     }),
-    d: common_vendor.p({
+    k: common_vendor.t($props.postObj.thumbdown),
+    l: common_vendor.p({
       name: "chat"
     }),
-    e: common_vendor.p({
+    m: common_vendor.p({
       name: "zhuanfa"
     })
   };
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/post/post.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-2f8ba2b3"], ["__file", "/Users/wangbo/Desktop/Github/vue-app/login-app/components/post/post.vue"]]);
 wx.createComponent(Component);

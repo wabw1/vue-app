@@ -1,11 +1,18 @@
 <script>
 export default {
   onLaunch: function() {
-    console.log("App Launch");
+    // console.log("App Launch");
+    // 这里初始化搜索历史记录
+    uni.setStorage({
+      key: "search_history",
+      data: this.historyList,
+      success: function() {
+        console.log("初始缓存成功");
+      }
+    });
   },
   onShow: function() {
-    console.log("App Show");
-
+    // console.log("App on show");
     // #ifdef MP-WEIXIN
     uni.getSystemInfo({
       success: res => {
@@ -47,7 +54,7 @@ export default {
     // #endif
   },
   onHide: function() {
-    console.log("App Hide");
+    // console.log("App Hide");
   }
 };
 </script>

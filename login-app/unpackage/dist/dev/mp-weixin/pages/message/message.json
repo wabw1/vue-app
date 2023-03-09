@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "消息",
-  "usingComponents": {}
+  "usingComponents": {
+    "post-list": "../../components/post-list/post-list",
+    "u-tabs-swiper": "../../uni_modules/vk-uview-ui/components/u-tabs-swiper/u-tabs-swiper",
+    "u-loadmore": "../../uni_modules/vk-uview-ui/components/u-loadmore/u-loadmore"
+  }
 }

@@ -1,0 +1,57 @@
+{
+  "tabList": [{ "name": "圈子" }, { "name": "热点" }, { "name": "活动" }, { "name": "公告" }, { "name": "话题" }],
+  "postList": [{
+      "id": 0,
+      "avaSrc": "../static/images/a1.jpg",
+      "name": "跳跳虎",
+      "time": "1月14日 上午12:00",
+      "text": "illustrations for personal and commercial projects, an unlimited number of times. ",
+      "imgSrc": "../static/images/img1.jpg",
+      "thumbup": 2,
+      "thumbdown": 1,
+      "commentCnt": 1
+    },
+    {
+      "id": 1,
+      "avaSrc": "../static/images/a2.jpg",
+      "name": "辛德瑞拉",
+      "time": "1月11日 上午9:20",
+      "text": "晴朗的一天:)",
+      "imgSrc": "../static/images/img2.jpg",
+      "thumbup": 1,
+      "thumbdown": 0,
+      "commentCnt": 3
+    },
+    {
+      "id": 2,
+      "avaSrc": "../static/images/a1.jpg",
+      "name": "跳跳虎",
+      "time": "1月10日 上午7:20",
+      "text": "深夜收工",
+      "thumbup": 12,
+      "thumbdown": 0,
+      "commentCnt": 0
+    },
+    {
+      "id": 3,
+      "avaSrc": "../static/images/a3.jpg",
+      "name": "RIck",
+      "time": "12月1日 下午6:50",
+      "text": "吃下午茶啦！~",
+      "imgSrc": "../static/images/img3.jpg",
+      "thumbup": 35,
+      "thumbdown": 1,
+      "commentCnt": 12
+    },
+    {
+      "id": 4,
+      "avaSrc": "../static/images/a3.jpg",
+      "name": "Rick",
+      "time": "12月21日 下午1:44",
+      "text": "正是这种稀缺性激发了他的创造力",
+      "thumbup": 3,
+      "thumbdown": 0,
+      "commentCnt": 2
+    }
+  ]
+}

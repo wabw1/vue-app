@@ -13,12 +13,7 @@
         ></u-tabs-swiper>
       </view>
 
-      <swiper
-        class="swiper-box"
-        :current="swiperCurrent"
-        @transition="transition"
-        @animationfinish="animationfinish"
-      >
+      <swiper class="swiper-box" :current="swiperCurrent" @transition="transition" @animationfinish="animationfinish">
         <swiper-item class="swiper-item">
           <scroll-view scroll-y style="height: 100%; width: 100%" @scrolltolower="reachBottom">
             <view class="page-box" style="background-color: gold">
@@ -38,21 +33,15 @@ export default {
   components: { PostList },
   data() {
     return {
-      list: [
-        { name: "圈子" },
-        { name: "热点" },
-        { name: "活动" },
-        { name: "公告" },
-        { name: "话题" }
-      ],
+      list: [{ name: "圈子" }, { name: "热点" }, { name: "活动" }, { name: "公告" }, { name: "话题" }],
       current: 0,
       swiperCurrent: 0,
-      dx: 0
+      dx: 0,
     };
   },
   onPullDownRefresh() {
     console.log("refresh");
-    setTimeout(function() {
+    setTimeout(function () {
       uni.stopPullDownRefresh();
     }, 500);
   },
@@ -74,8 +63,8 @@ export default {
     change(index) {
       this.current = index;
       this.swiperCurrent = index;
-    }
-  }
+    },
+  },
 };
 </script>
 

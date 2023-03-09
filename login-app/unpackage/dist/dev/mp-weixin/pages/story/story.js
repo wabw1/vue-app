@@ -16,10 +16,8 @@ const _sfc_main = {
       common_vendor.index.stopPullDownRefresh();
     }, 500);
   },
-  onReachBottom() {
-    common_vendor.index.showToast({
-      title: "\u52A0\u8F7D\u4E2D..."
-    });
+  onPullDownRefresh() {
+    console.log("refresh");
   },
   methods: {}
 };

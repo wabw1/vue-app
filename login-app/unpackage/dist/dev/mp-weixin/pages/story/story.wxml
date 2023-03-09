@@ -1,1 +1,1 @@
-<nav-bar class="data-v-fd6d2232" u-i="fd6d2232-0" bind:__l="__l"></nav-bar> 动态 
+<view class="container data-v-fd6d2232"><nav-bar class="data-v-fd6d2232" u-i="fd6d2232-0" bind:__l="__l"></nav-bar></view>
